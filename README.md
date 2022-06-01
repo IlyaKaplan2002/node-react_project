@@ -11,7 +11,7 @@ To run in dev mode both backend and frontend you can use in the root directory t
 To run backend in dev mode you can use in `backend` directory this command:
 `npm run start:dev`
 
-# Important: not forget to create `.env` file, you can find an example in `.env.example`
+# Important: do not forget to create `.env` file, you can find an example in `.env.example`
 
 ## Frontend
 
