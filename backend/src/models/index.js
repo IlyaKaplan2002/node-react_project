@@ -1,3 +1,9 @@
-const { joiStatisticSchema } = require('./statistic');
+const joiUserSchemas = require('./user');
+const joiBookSchemas = require('./book');
+const joiTrainingSchemas = require('./training');
 
-module.exports = { joiStatisticSchema };
+module.exports = {
+  joiUserSchemas,
+  joiBookSchemas,
+  joiTrainingSchemas,
+};
