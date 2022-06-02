@@ -1,3 +1,7 @@
-const { joiTrainingSchema } = require('./training');
+const joiUserSchemas = require('./user');
+const joiBookSchemas = require('./book');
 
-module.exports = { joiTrainingSchema };
+module.exports = {
+  joiUserSchemas,
+  joiBookSchemas,
+};
