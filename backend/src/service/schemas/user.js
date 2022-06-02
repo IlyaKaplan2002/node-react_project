@@ -19,10 +19,6 @@ const userSchema = Schema(
       unique: true,
       match: regEx,
     },
-    avatarURL: {
-      type: String,
-      required: true,
-    },
   },
   { versionKey: false, timestamps: true }
 );
