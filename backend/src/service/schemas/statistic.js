@@ -20,6 +20,4 @@ const statisticSchema = Schema(
 
 const Statistic = model('statistic', statisticSchema);
 
-module.exports = {
-  Statistic,
-};
+module.exports = Statistic;
