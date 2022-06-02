@@ -11,7 +11,7 @@ const trainingSchema = Schema(
       required: [true, 'Enter end of training'],
     },
     books: {
-      type: Schema.Types.ObjectId,
+      type: [Schema.Types.ObjectId],
       ref: 'book',
     },
     owner: {
@@ -24,6 +24,4 @@ const trainingSchema = Schema(
 
 const Training = model('training', trainingSchema);
 
-module.exports = {
-  Training,
-};
+module.exports = Training;
