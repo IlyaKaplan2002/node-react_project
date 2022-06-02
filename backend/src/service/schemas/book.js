@@ -20,11 +20,9 @@ const bookSchema = Schema(
     },
     rating: {
       type: Number,
-      required: [true, 'Enter book rating'],
     },
     review: {
       type: String,
-      required: [true, 'Enter book review'],
     },
     owner: {
       type: Schema.Types.ObjectId,
