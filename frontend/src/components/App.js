@@ -4,16 +4,12 @@ import { Container } from 'styles';
 import AuthGoogle from './GoogleReg/GoogleReg';
 
 const App = () => {
-<<<<<<< HEAD
-  return <Container>App</Container>;
-=======
   return (
-    <>
+    <Container>
       App
       <AuthGoogle />
-    </>
+    </Container>
   );
->>>>>>> 2443407 (google_ctrl)
 };
 
 export default App;
