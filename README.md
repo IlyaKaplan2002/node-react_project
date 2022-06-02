@@ -88,6 +88,23 @@ To run frontend in dev mode you can use in `frontend` directory this command:
 ## Frontend
 
 ```
+├── frontend
+|   src
+|   │   ├── api (dirs with all operations with our REST API to each entity)
+|   │   │   └── helpers (files with all helpers you need in your api, with reexport)
+|   │   ├── components (dirs with all components)
+|   │   │   ├── App.js
+|   │   │   └── utils (util components)
+|   │   ├── constants (dirs with all non-secure constants we need)
+|   │   ├── index.js
+|   │   ├── redux (dirs with reducer, actions, selectors with reexport to each entity)
+|   │   │   ├── rootReducer.js
+|   │   │   └── store.js
+|   │   ├── styles (global styles)
+|   │   └── views (files with view to each page)
+```
+
+```
     frontend
         src
             api (dirs with all operations with our REST API to each entity)
