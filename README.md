@@ -40,7 +40,7 @@ To run frontend in dev mode you can use in `frontend` directory this command:
     pages: number,
     rating: number,
     review: string,
-    owner: ObjectId,
+    owner: ObjectId (key to user),
 }
 ```
 
@@ -50,8 +50,8 @@ To run frontend in dev mode you can use in `frontend` directory this command:
 {
     start: date,
     end: date,
-    books: [ObjectId],
-    owner: ObjectId,
+    books: [ObjectId] (keys to books),
+    owner: ObjectId (key to user),
 }
 ```
 
@@ -61,6 +61,63 @@ To run frontend in dev mode you can use in `frontend` directory this command:
 {
     data: Date,
     pages: number,
-    owner: owner,
+    owner: owner (key to user),
 }
+```
+
+# Structure of project
+
+## Backend
+
+```
+    backend
+        src
+            controllers (dirs with controllers to each entity)
+            helpers (all helpers with reexport)
+            middlewares (all middlewares with reexport)
+            models (files with all joi-models to each entity, with reexport)
+            routes
+                api (file with all routes to each entity, with reexport)
+            service (dirs with all operations with db to each entity)
+                schemas (files with shemas to each entity)
+            app.js
+            server.js
+
+```
+
+## Frontend
+
+```
+    frontend
+        src
+            api (dirs with all operations with our REST API to each entity)
+                helpers (files with all helpers you need in your api, with reexport)
+            components (dirs with all components)
+                utils (util components)
+                App.js
+            constants (dirs with all non-secure constants we need)
+            redux (dirs with reducer, actions, selectors with reexport to each entity)
+                store.js
+                rootReducer.js
+            views (files with view to each page)
+            index.js
+```
+
+### Component structure
+
+```
+    Component
+        Component.js (markup and logic)
+        Component.styled.js (styles)
+        index.js (reexport)
+```
+
+### Redux entity structure
+
+```
+    entity
+        reducer.js
+        actions.js
+        selectors.js
+        index.js (reexport)
 ```
