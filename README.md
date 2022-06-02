@@ -17,3 +17,50 @@ To run backend in dev mode you can use in `backend` directory this command:
 
 To run frontend in dev mode you can use in `frontend` directory this command:
 `npm start`
+
+# Structure of DB
+
+## Users
+
+```
+{
+    name: string('John Doe'),
+    email: string('test@mail.com'),
+    password: string('hashed password)',
+}
+```
+
+## Books
+
+```
+{
+    name: string,
+    author: string,
+    year: number,
+    pages: number,
+    rating: number,
+    review: string,
+    owner: ObjectId,
+}
+```
+
+## Trainings
+
+```
+{
+    start: date,
+    end: date,
+    books: [ObjectId],
+    owner: ObjectId,
+}
+```
+
+## Statistics
+
+```
+{
+    data: Date,
+    pages: number,
+    owner: owner,
+}
+```
