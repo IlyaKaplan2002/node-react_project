@@ -35,6 +35,4 @@ const bookSchema = Schema(
 
 const Book = model('book', bookSchema);
 
-module.exports = {
-  Book,
-};
+module.exports = Book;
