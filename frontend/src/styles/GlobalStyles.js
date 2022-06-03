@@ -2,8 +2,6 @@ import { createGlobalStyle } from 'styled-components';
 import { modernNormalize } from 'styled-modern-normalize';
 
 const GlobalStyles = createGlobalStyle`
-    @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@700&family=Roboto:wght@700&display=swap');
-
     ${modernNormalize}
 
     body {
