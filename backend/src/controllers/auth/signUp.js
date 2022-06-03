@@ -6,7 +6,7 @@ const signUp = async (req, res) => {
   const { name, email, password, confirmPassword } = req.body;
 
   if (password !== confirmPassword) {
-    res.json(throwError(`Passwords do not match`, 400));
+    throwError(`Passwords do not match`, 400);
   }
 
   const user = await userService.findOne({ email });

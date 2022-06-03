@@ -10,18 +10,18 @@ const auth = async (req, res, next) => {
 
   try {
     if (bearer !== 'Bearer') {
-      throw throwError('Bearer should be in Authorization header', 401);
+      throwError('Bearer should be in Authorization header', 401);
     }
 
     if (!token) {
-      throw throwError('Token was not provided', 401);
+      throwError('Token was not provided', 401);
     }
 
     const { id } = jwt.verify(token, JWT_SECRET_KEY);
     const user = await userService.findUserById(id);
 
     if (!user || user.token !== token) {
-      throw throwError('User was logged out', 401);
+      throwError('Token is invalid', 401);
     }
 
     req.user = user;
