@@ -1,8 +1,13 @@
 import React from 'react';
 import { Container } from 'styles';
+import { HelpInfoMobile } from './HelpInfoMobile';
 
 const App = () => {
-  return <Container>App</Container>;
+  return (
+    <Container>
+      <HelpInfoMobile />
+    </Container>
+  );
 };
 
 export default App;

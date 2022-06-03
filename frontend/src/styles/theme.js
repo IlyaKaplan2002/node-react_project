@@ -1,7 +1,7 @@
 const theme = {
   fonts: {
     families: {
-      abril: `'Abril Fatface', cursive`,
+      abril: `'Abril Fatface', sans-serif`,
       montserrat: `'Montserrat', sans-serif`,
       sans: `'Open Sans', sans-serif`,
       roboto: `'Roboto', sans-serif`,
@@ -22,6 +22,8 @@ const theme = {
   colors: {
     mainBlack: '#242a37',
     mainWhite: '#ffffff',
+    secondaryText: '#898f9f',
+    activeColor: '#ff6b08',
   },
   borders: {},
   shadows: {
