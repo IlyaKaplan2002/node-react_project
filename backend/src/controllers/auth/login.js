@@ -25,7 +25,7 @@ const login = async (req, res) => {
 
   const token = jwt.sign(payload, JWT_SECRET_KEY, { expiresIn: '1d' });
 
-  await userService.addToken(user._id, token);
+  await userService.updateToken(user._id, token);
 
   res.json(
     createResponse(200, {

@@ -18,6 +18,8 @@ router.post(
   ctrlWrapper(ctrl.login)
 );
 
-router.get('/info', auth, ctrl.info);
+router.get('/info', auth, ctrlWrapper(ctrl.info));
+
+router.get('/logout', auth, ctrlWrapper(ctrl.logout));
 
 module.exports = router;

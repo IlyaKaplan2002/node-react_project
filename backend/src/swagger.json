@@ -24,7 +24,6 @@
         "tags": ["Auth"],
         "summary": "User registration",
         "parameters": [],
-        "security": [{ "Bearer": [] }],
         "requestBody": {
           "description": "Registration's object",
           "required": true,
@@ -63,7 +62,6 @@
         "tags": ["Auth"],
         "summary": "User authentification",
         "parameters": [],
-        "security": [{ "Bearer": [] }],
         "requestBody": {
           "description": "Authentification's object",
           "required": true,
@@ -92,6 +90,34 @@
           },
           "401": {
             "description": "Unauthorized",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/api/auth/logout": {
+      "get": {
+        "tags": ["Auth"],
+        "summary": "User logout",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LogoutResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No token provided",
+            "content": {}
+          },
+          "500": {
+            "description": "Invalid token",
             "content": {}
           }
         }
@@ -184,6 +210,15 @@
                 "example": "Mango"
               }
             }
+          }
+        }
+      },
+      "LogoutResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "successfull"
           }
         }
       }
