@@ -20,9 +20,11 @@ const signUp = async (req, res) => {
     email,
     password: hashedPassword,
   });
-  res.json(
-    createResponse(201, { user: { email: result.email, name: result.name } })
-  );
+  res
+    .status(201)
+    .json(
+      createResponse(201, { user: { email: result.email, name: result.name } })
+    );
 };
 
 module.exports = signUp;
