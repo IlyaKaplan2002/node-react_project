@@ -19,9 +19,14 @@ const theme = {
     tablet: '768px',
     desktop: '1280px',
   },
-  colors: {},
+  colors: {
+    mainBlack: '#242a37',
+    mainWhite: '#ffffff',
+  },
   borders: {},
-  shadows: {},
+  shadows: {
+    header: '0px 2px 3px rgba(9, 30, 63, 0.1)',
+  },
 };
 
 export default theme;
