@@ -19,9 +19,22 @@ const theme = {
     tablet: '768px',
     desktop: '1280px',
   },
-  colors: {},
-  borders: {},
-  shadows: {},
+  colors: {
+    secondary: '#898f9f',
+    mainBg: '#f6f7fb',
+    mainBlack: '#242A37',
+    mainWhite: '#ffffff',
+    placeholder: '#a6abb9',
+    error: 'red',
+    mainOrange: '#FF6B08',
+  },
+  borders: {
+    input: '1px solid #a6abb9',
+    button: '1px solid #242A37',
+  },
+  shadows: {
+    input: 'inset 0px 1px 2px rgba(29, 29, 27, 0.15)',
+  },
 };
 
 export default theme;
