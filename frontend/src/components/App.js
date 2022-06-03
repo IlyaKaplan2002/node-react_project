@@ -1,8 +1,8 @@
 import React from 'react';
-import { Container } from 'styles';
+import Router from './Router';
 
 const App = () => {
-  return <Container>App</Container>;
+  return <Router />;
 };
 
 export default App;
