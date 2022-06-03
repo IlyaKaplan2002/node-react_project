@@ -4,6 +4,10 @@ import { modernNormalize } from 'styled-modern-normalize';
 const GlobalStyles = createGlobalStyle`
     ${modernNormalize}
 
+    * {
+      box-sizing: border-box;
+    }
+
     body {
         margin: 0;
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -11,6 +15,19 @@ const GlobalStyles = createGlobalStyle`
           sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+        background: ${props => props.theme.colors.mainBg};
+    }
+
+    p {
+      margin: 0;
+      padding: 0;
+    }
+
+    button {
+      background: none;
+      border: none;
+      margin: 0;
+      padding: 0;
     }
 `;
 
