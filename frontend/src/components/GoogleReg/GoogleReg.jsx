@@ -1,9 +1,11 @@
-function AuthGoogle() {
+const BASE_URL = `http://localhost:5000/api`;
+
+const AuthGoogle = () => {
   return (
-    <div>
-      <a href="http://localhost:5000/api/auth/google">Google</a>
-    </div>
+    <>
+      <a href={`${BASE_URL}/auth/google`}>Google</a>
+    </>
   );
-}
+};
 
 export default AuthGoogle;

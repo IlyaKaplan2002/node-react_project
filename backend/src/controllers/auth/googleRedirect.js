@@ -1,6 +1,9 @@
 const queryString = require('query-string');
 const axios = require('axios');
 const URL = require('url');
+const { userService } = require('../../service');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 const googleRedirect = async (req, res) => {
   const fullUrl = `${req.protocol}://${req.get('host')}${req.originalUrl}`;
@@ -26,8 +29,42 @@ const googleRedirect = async (req, res) => {
     },
   });
 
+  const { id, name, email } = userData.data;
+
+  const user = await userService.findOne({ email });
+
+  if (!user) {
+    const hashedPassword = bcrypt.hashSync(id, bcrypt.genSaltSync(10));
+    const resalt = await userService.create({
+      token: null,
+      name: name,
+      email: email,
+      password: hashedPassword,
+    });
+
+    const payload = {
+      id: resalt._id,
+    };
+
+    const token = jwt.sign(payload, { expiresIn: '1d' });
+
+    await userService.addToken(resalt._id, token);
+
+    return res.redirect(
+      `${process.env.FRONTEND_URL}/google-redirect/?access_token=${token}`
+    );
+  }
+
+  const payload = {
+    id: user._id,
+  };
+
+  const token = jwt.sign(payload, { expiresIn: '1d' });
+
+  await userService.addToken(user._id, token);
+
   return res.redirect(
-    `${process.env.FRONTEND_URL}?email=${userData.data.email}`
+    `${process.env.FRONTEND_URL}/google-redirect/?access_token=${token}`
   );
 };
 

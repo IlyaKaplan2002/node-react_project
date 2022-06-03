@@ -3,8 +3,6 @@ const jwt = require('jsonwebtoken');
 const { userService } = require('../../service');
 const { throwError, createResponse } = require('../../helpers');
 
-const { JWT_SECRET_KEY } = process.env;
-
 const login = async (req, res) => {
   const { email, password } = req.body;
 
@@ -23,7 +21,7 @@ const login = async (req, res) => {
     id: user._id,
   };
 
-  const token = jwt.sign(payload, JWT_SECRET_KEY, { expiresIn: '1d' });
+  const token = jwt.sign(payload, { expiresIn: '1d' });
 
   await userService.addToken(user._id, token);
 
