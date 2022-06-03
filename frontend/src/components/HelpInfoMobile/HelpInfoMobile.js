@@ -12,10 +12,18 @@ const HelpInfoMobile = () => {
         items={[
           'Create your goal faster and proceed to read',
           'Divide process proportionally for each day',
+          'Track your success',
         ]}
         className="list"
       />
-      <InfoList title="You may also" items={[]} />
+      <InfoList
+        title="You may also"
+        items={[
+          'Pose your own independent point of view',
+          'Improve your professional skills according to new knowledge',
+          'Become an interesting interlocuto',
+        ]}
+      />
     </HelpInfoMobileStyled>
   );
 };
