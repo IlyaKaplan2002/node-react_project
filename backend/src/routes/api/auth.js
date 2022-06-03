@@ -20,6 +20,9 @@ router.post(
 
 router.get('/google', ctrlWrapper(ctrl.googleAuth));
 router.get('/google-redirect', ctrlWrapper(ctrl.googleRedirect));
-router.get('/info', auth, ctrl.info);
+
+router.get('/info', auth, ctrlWrapper(ctrl.info));
+
+router.get('/logout', auth, ctrlWrapper(ctrl.logout));
 
 module.exports = router;

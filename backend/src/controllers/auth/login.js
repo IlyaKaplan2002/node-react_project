@@ -23,7 +23,7 @@ const login = async (req, res) => {
 
   const token = jwt.sign(payload, { expiresIn: '1d' });
 
-  await userService.addToken(user._id, token);
+  await userService.updateToken(user._id, token);
 
   res.json(
     createResponse(200, {
