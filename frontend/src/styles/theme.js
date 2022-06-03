@@ -1,7 +1,7 @@
 const theme = {
   fonts: {
     families: {
-      abril: `'Abril Fatface', cursive`,
+      abril: `'Abril Fatface', sans-serif`,
       montserrat: `'Montserrat', sans-serif`,
       sans: `'Open Sans', sans-serif`,
       roboto: `'Roboto', sans-serif`,
@@ -34,6 +34,7 @@ const theme = {
   },
   shadows: {
     input: 'inset 0px 1px 2px rgba(29, 29, 27, 0.15)',
+    header: '0px 2px 3px rgba(9, 30, 63, 0.1)',
   },
 };
 

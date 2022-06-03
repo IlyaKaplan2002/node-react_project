@@ -29,6 +29,18 @@ const GlobalStyles = createGlobalStyle`
       margin: 0;
       padding: 0;
     }
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    h1, h2, h3 {
+      margin: 0;
+      padding: 0;
+    }
+    a {
+      text-decoration: none;
+    }
 `;
 
 export default GlobalStyles;
