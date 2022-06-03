@@ -1,13 +1,8 @@
 import React from 'react';
-import { Container } from 'styles';
-import { HelpInfoMobile } from './HelpInfoMobile';
+import Router from './Router';
 
 const App = () => {
-  return (
-    <Container>
-      <HelpInfoMobile />
-    </Container>
-  );
+  return <Router />;
 };
 
 export default App;
