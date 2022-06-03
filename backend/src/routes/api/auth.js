@@ -1,6 +1,6 @@
 const express = require('express');
 
-const { validation, ctrlWrapper } = require('../../middlewares');
+const { validation, ctrlWrapper, auth } = require('../../middlewares');
 const { auth: ctrl } = require('../../controllers');
 const { joiUserSchemas } = require('../../models');
 
@@ -20,5 +20,6 @@ router.post(
 
 router.get('/google', ctrlWrapper(ctrl.googleAuth));
 router.get('/google-redirect', ctrlWrapper(ctrl.googleRedirect));
+router.get('/info', auth, ctrl.info);
 
 module.exports = router;

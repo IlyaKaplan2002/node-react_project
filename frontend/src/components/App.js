@@ -1,15 +1,8 @@
 import React from 'react';
-import { Container } from 'styles';
-
-import AuthGoogle from './GoogleReg/GoogleReg';
+import Router from './Router';
 
 const App = () => {
-  return (
-    <Container>
-      App
-      <AuthGoogle />
-    </Container>
-  );
+  return <Router />;
 };
 
 export default App;
