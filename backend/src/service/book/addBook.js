@@ -1,7 +1,7 @@
 const { Book } = require('../schemas');
 
-const addBook = async (id, name, author, year, pages) => {
-  Book.findByIdAndUpdate(id, { name, author, year, pages });
+const addBook = async (id, body) => {
+  Book.create(id, body);
 };
 
 module.exports = addBook;
