@@ -1,12 +1,13 @@
 const { bookService } = require('../../service');
-const { createResponse } = require('../../helpers');
+const { createResponse, throwError } = require('../../helpers');
 
 const addReview = async (req, res) => {
-  const { name, author, rating, review } = req.body;
-  const findBook = await bookService.findBookByNameAuthor({ name, author });
-  const { _id } = findBook;
-  const addedReview = await bookService.addReview({ _id, rating, review });
-  res.status(201).json(createResponse(201, { addedReview }));
+  const { _id: userId } = req.user;
+  const { bookId } = req.params;
+  const book = await bookService.findBook({ _id: bookId, owner: userId });
+  if (!book) throwError('Boook not found', 404);
+  const newBook = await bookService.updateBook(bookId, req.body);
+  res.status(201).json(createResponse(201, { book: newBook }));
 };
 
 module.exports = addReview;

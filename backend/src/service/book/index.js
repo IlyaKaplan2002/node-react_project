@@ -1,9 +1,9 @@
 const addBook = require('./addBook');
-const findBookByNameAuthor = require('./findBookByNameAuthor');
-const addReview = require('./addReview');
+const findBook = require('./findBook');
+const updateBook = require('./updateBook');
 
 module.exports = {
   addBook,
-  findBookByNameAuthor,
-  addReview
+  findBook,
+  updateBook,
 };

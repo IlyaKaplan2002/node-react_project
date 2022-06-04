@@ -14,7 +14,7 @@ router.post(
 );
 
 router.post(
-  '/review',
+  '/:bookId/review',
   auth,
   validation(joiBookSchemas.resume),
   ctrlWrapper(ctrl.addReview)
