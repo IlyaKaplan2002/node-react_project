@@ -1,1 +1,1 @@
-export { HelpInfoMobile } from './HelpInfoMobile';
+export { default } from './HelpInfoMobile';

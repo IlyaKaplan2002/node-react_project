@@ -1,7 +1,7 @@
 import { googleAuth } from 'api/auth';
 import React, { useEffect } from 'react';
 
-const AuthGoogle = () => {
+const AuthGoogle = ({ className }) => {
   const handleResponse = async res => {
     try {
       const result = await googleAuth(res.credential);
@@ -26,7 +26,7 @@ const AuthGoogle = () => {
     });
   }, []);
 
-  return <div id="googleReg"></div>;
+  return <div className={className} id="googleReg"></div>;
 };
 
 export default AuthGoogle;
