@@ -43,4 +43,4 @@ const HelpInfoMobile = () => {
   );
 };
 
-export { HelpInfoMobile };
+export default HelpInfoMobile;

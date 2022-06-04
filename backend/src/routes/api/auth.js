@@ -18,6 +18,12 @@ router.post(
   ctrlWrapper(ctrl.login)
 );
 
+router.post(
+  '/google',
+  validation(joiUserSchemas.googleAuth),
+  ctrlWrapper(ctrl.googleAuth)
+);
+
 router.get('/info', auth, ctrlWrapper(ctrl.info));
 
 router.get('/logout', auth, ctrlWrapper(ctrl.logout));
