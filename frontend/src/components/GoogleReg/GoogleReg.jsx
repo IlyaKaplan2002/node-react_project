@@ -26,14 +26,7 @@ const AuthGoogle = () => {
     });
   }, []);
 
-  return (
-    <>
-      {/* <a href={`${process.env.REACT_APP_API_BASE_URL}/api/auth/google`}>
-        Google
-      </a> */}
-      <div id="googleReg"></div>
-    </>
-  );
+  return <div id="googleReg"></div>;
 };
 
 export default AuthGoogle;
