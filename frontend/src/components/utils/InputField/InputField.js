@@ -11,7 +11,7 @@ const InputField = ({
   touched,
   error,
   type,
-  classNames = {},
+  classNames = { field: '', labelText: '', input: '', error: '' },
 }) => {
   return (
     <InputFieldStyled className={classNames.field}>
