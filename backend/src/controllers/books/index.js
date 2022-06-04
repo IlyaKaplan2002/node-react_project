@@ -1,3 +1,4 @@
 const addBook = require('./addBook.js');
+const addReview = require('./addReview.js');
 
-module.exports = { addBook };
+module.exports = { addBook, addReview };
