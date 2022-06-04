@@ -19,7 +19,7 @@ const trainingSchema = Schema(
       ref: 'user',
     },
   },
-  { versionKey: false, timestamp: true }
+  { versionKey: false, timestamps: true }
 );
 
 const Training = model('training', trainingSchema);
