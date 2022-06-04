@@ -15,7 +15,12 @@ const login = Joi.object({
   password: Joi.string().min(6).max(30).required(),
 });
 
+const googleAuth = Joi.object({
+  token: Joi.string().required(),
+});
+
 module.exports = {
   signUp,
   login,
+  googleAuth,
 };
