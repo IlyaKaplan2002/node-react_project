@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
@@ -14,10 +14,12 @@ ReactDOM.render(
     <Provider store={store}>
       {/* <PersistGate loading={null} persistor={persistor}> */}
       <BrowserRouter>
-        <ThemeProvider theme={theme}>
-          <GlobalStyles />
-          <App />
-        </ThemeProvider>
+        <Suspense fallback={null}>
+          <ThemeProvider theme={theme}>
+            <GlobalStyles />
+            <App />
+          </ThemeProvider>
+        </Suspense>
       </BrowserRouter>
       {/* </PersistGate> */}
     </Provider>

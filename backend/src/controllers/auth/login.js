@@ -10,13 +10,13 @@ const login = async (req, res) => {
 
   const user = await userService.findOne({ email });
   if (!user) {
-    res.json(throwError(`Email is wrong`, 401));
+    throwError(`Email or password is wrong`, 401);
   }
 
   const passCompare = bcrypt.compareSync(password, user.password);
 
   if (!passCompare) {
-    res.json(throwError(`Password is wrong`, 401));
+    throwError(`Email or password is wrong`, 401);
   }
 
   const payload = {
@@ -25,7 +25,7 @@ const login = async (req, res) => {
 
   const token = jwt.sign(payload, JWT_SECRET_KEY, { expiresIn: '1d' });
 
-  await userService.addToken(user._id, token);
+  await userService.updateToken(user._id, token);
 
   res.json(
     createResponse(200, {
