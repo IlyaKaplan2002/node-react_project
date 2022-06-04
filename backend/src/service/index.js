@@ -1,7 +1,7 @@
 const userService = require('./user');
-const bookServise = require('./book');
+const bookService = require('./book');
 
 module.exports = {
   userService,
-  bookServise
+  bookService,
 };

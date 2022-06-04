@@ -1,12 +1,11 @@
-const { bookServise } = require('../../service');
+const { bookService } = require('../../service');
 const { createResponse } = require('../../helpers');
 
 const addBook = async (req, res) => {
-  console.log(bookServise);
   const { _id } = req.user;
-  const books = await bookServise.addBook({ ...req.body, owner: _id });
+  const book = await bookService.addBook({ ...req.body, owner: _id });
 
-  res.json(createResponse(200, { books }));
+  res.status(201).json(createResponse(201, { book }));
 };
 
 module.exports = addBook;
