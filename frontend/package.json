@@ -12,6 +12,7 @@
     "formik": "^2.2.9",
     "notiflix": "^3.2.4",
     "react": "^16.14.0",
+    "react-avatar": "^5.0.1",
     "react-dom": "^16.14.0",
     "react-icons": "^4.4.0",
     "react-redux": "^7.2.6",
