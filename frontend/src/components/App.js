@@ -1,15 +1,8 @@
 import React from 'react';
-
-import { Container } from 'styles';
-import AppBar from './AppBar';
+import Router from './Router';
 
 const App = () => {
-  return (
-    <Container>
-      <AppBar />
-      App
-    </Container>
-  );
+  return <Router />;
 };
 
 export default App;

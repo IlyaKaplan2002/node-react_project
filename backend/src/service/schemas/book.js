@@ -30,7 +30,7 @@ const bookSchema = Schema(
       required: [true],
     },
   },
-  { versionKey: false, timestamp: true }
+  { versionKey: false, timestamps: true }
 );
 
 const Book = model('book', bookSchema);
