@@ -13,4 +13,11 @@ router.post(
   ctrlWrapper(ctrl.addBook)
 );
 
+router.patch(
+  '/:bookId/review',
+  auth,
+  validation(joiBookSchemas.resume),
+  ctrlWrapper(ctrl.addReview)
+);
+
 module.exports = router;
