@@ -1,11 +1,13 @@
 import React from 'react';
 import HelpInfoMobile from 'components/HelpInfoMobile';
-import NonAuthHeader from 'components/NonAuthHeader';
+import AppBar from 'components/AppBar';
+// import NonAuthHeader from 'components/NonAuthHeader';
 
 const HomeView = () => {
   return (
     <>
-      <NonAuthHeader />
+      {/* <NonAuthHeader /> */}
+      <AppBar />
       <HelpInfoMobile />
     </>
   );
