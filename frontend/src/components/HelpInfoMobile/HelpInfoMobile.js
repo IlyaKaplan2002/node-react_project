@@ -6,11 +6,29 @@ import { Link } from 'react-router-dom';
 import { Container } from 'styles';
 import HelpInfoMobileStyled from './HelpInfoMobile.styled';
 import Button from '../utils/Button';
+import ReadingCard from 'components/ReadingCard';
+import GoingToReadCard from 'components/GoingToReadCard';
+import AlreadyReadCard from 'components/AlreadyReadCard';
 
 const HelpInfoMobile = () => {
   return (
     <Container>
-      <HelpInfoMobileStyled>
+      <ReadingCard 
+    name={'Development of valuable proposal Development of valuable proposal Development of valuable proposal Development of valuable proposal ' }
+    author={'Jeff Sutherland' }
+    year={2014 }
+    pages={ 25}/>
+    <GoingToReadCard 
+  name={'Development of valuable propojkbwejk Development of valuable proposal Development of valuable proposal Development of valuable proposal Development of valuable proposal Development of valuable proposal ' }
+  author={'Jeff Sutherland' }
+  year={2014 }
+  pages={ 25}/>
+  <AlreadyReadCard 
+name={'Already of valuable propojkbwejk ' }
+author={'Jeff Sutherland' }
+        year={2014}
+pages={ 25}/>
+      {/* <HelpInfoMobileStyled>
         <InfoTitle title="Books Reading" className="title" />
         <InfoList
           title="Will help you to"
@@ -44,7 +62,7 @@ const HelpInfoMobile = () => {
             </Link>
           </Button>
         </div>
-      </HelpInfoMobileStyled>
+      </HelpInfoMobileStyled> */}
     </Container>
   );
 };

@@ -27,6 +27,7 @@ const theme = {
     placeholder: '#a6abb9',
     error: 'red',
     mainOrange: '#FF6B08',
+    darkGray: '#6D7A8D'
   },
   borders: {
     input: '1px solid #a6abb9',
