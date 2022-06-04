@@ -14,10 +14,10 @@ router.post(
 );
 
 router.post(
-  '/rewiew',
+  '/review',
   auth,
   validation(joiBookSchemas.resume),
-  ctrlWrapper(ctrl)
+  ctrlWrapper(ctrl.addReview)
 );
 
 module.exports = router;
