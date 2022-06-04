@@ -13,7 +13,7 @@ router.post(
   ctrlWrapper(ctrl.addBook)
 );
 
-router.post(
+router.patch(
   '/:bookId/review',
   auth,
   validation(joiBookSchemas.resume),
