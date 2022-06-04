@@ -1,31 +1,28 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const UserMenuStyled = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-left: 8px;
-`;
-
-export const Button = styled.button`
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 300;
-  font-size: 14px;
-  line-height: 17px;
-  cursor: pointer;
-  border: none;
-  background-color: inherit;
-  &:hover,
-  &:focus {
-    text-decoration-line: underline;
+  .button {
+    font-family: ${props => props.theme.fonts.families.montserrat};
+    font-weight: ${props => props.theme.fonts.weights.light};
+    font-size: 14px;
+    line-height: 17px;
+    color: ${props => props.theme.colors.mainBlack};
+    cursor: pointer;
+    margin-left: 8px;
+    &:hover,
+    &:focus {
+      border-bottom: 1px solid ${props => props.theme.colors.mainBlack};
+    }
+  }
+  .profileImage {
+    border-radius: 50%;
+    background-color: ${props => props.theme.colors.iconActiveBg} !important;
+    color: ${props => props.theme.colors.mainBlack} !important;
   }
 `;
 
-export const ProfileImage = styled.div`
-  width: 33px;
-  height: 33px;
-  border-radius: 50%;
-  background: #f5f7fa;
-  text-align: center;
-`;
+export default UserMenuStyled;

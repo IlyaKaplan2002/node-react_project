@@ -1,7 +1,7 @@
 import React from 'react';
 // import { useSelector } from 'react-redux';
-import { Container, ContainerNav } from './AppBar.styled';
-import Logo from './Logo';
+import AppBarContainer from './AppBar.styled';
+import Logo from 'components/utils/Logo';
 import Navigation from './Navigation';
 import UserMenu from './UserMenu';
 
@@ -11,14 +11,14 @@ export default function AppBar() {
   //   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
   return (
     <>
-      <Container>
+      <AppBarContainer>
         <Logo />
-        <ContainerNav>
+        <div className="containerNav">
           <Navigation />
           <UserMenu />
-        </ContainerNav>
+        </div>
         {/* {isLoggedIn ? <UserMenu /> : <AuthNav />} */}
-      </Container>
+      </AppBarContainer>
     </>
   );
 }

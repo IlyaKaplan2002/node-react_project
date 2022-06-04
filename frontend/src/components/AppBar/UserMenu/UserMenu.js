@@ -1,19 +1,22 @@
 import React from 'react';
-import { Container, Button, ProfileImage } from './UserMenu.styled';
+import UserMenuStyled from './UserMenu.styled';
 // import { useDispatch, useSelector } from 'react-redux';
 // import { authSelectors, authOperations } from '../../redux/auth';
+import Avatar from 'react-avatar';
 
 export default function UserMenu() {
   //   const dispatch = useDispatch();
   //   const name = useSelector(authSelectors.getUsername);
 
   return (
-    <Container>
-      <ProfileImage>{'M'}</ProfileImage>
+    <UserMenuStyled>
+      <Avatar name="Wim" size="33" className="profileImage" />
+
       {/* <Button type="button" onClick={() => dispatch(authOperations.logOut())}>
         Вихід
       </Button> */}
-      <Button type="button">Вихід</Button>
-    </Container>
+
+      <button className="button">Вихід</button>
+    </UserMenuStyled>
   );
 }
