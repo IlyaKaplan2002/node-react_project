@@ -19,6 +19,7 @@ app.use(express.json());
 app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use('/api/auth', authRouter);
+app.use('/api/books', booksRouter);
 
 app.use((req, res, next) => {
   res.status(404).json({ status: 'failed', code: 404, message: 'Not found' });
