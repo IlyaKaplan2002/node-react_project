@@ -31,6 +31,7 @@ const theme = {
   borders: {
     input: '1px solid #a6abb9',
     button: '1px solid #242A37',
+    transparent: '1px solid transparent',
   },
   shadows: {
     input: 'inset 0px 1px 2px rgba(29, 29, 27, 0.15)',

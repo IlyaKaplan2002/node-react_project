@@ -13,6 +13,11 @@ router.post(
   ctrlWrapper(ctrl.addBook)
 );
 
-router.post('/rewiew', auth, validation(joiBookSchemas.resume),ctrlWrapper(ctrl));
+router.post(
+  '/rewiew',
+  auth,
+  validation(joiBookSchemas.resume),
+  ctrlWrapper(ctrl)
+);
 
 module.exports = router;
