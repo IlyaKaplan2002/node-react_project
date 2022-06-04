@@ -16,7 +16,7 @@ export default function UserMenu() {
         Вихід
       </Button> */}
 
-      <button className="button">Вихід</button>
+      <button className="button">Logout</button>
     </UserMenuStyled>
   );
 }

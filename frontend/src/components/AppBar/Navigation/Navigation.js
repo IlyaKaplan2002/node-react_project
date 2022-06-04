@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavigationStyled } from './Navigation.styled';
 import { VscHome } from 'react-icons/vsc';
-import { MdMenuBook, MdLibraryAdd } from 'react-icons/md';
+import { MdMenuBook } from 'react-icons/md';
 import { routes } from 'constants';
 import { NavLink } from 'react-router-dom';
 // import { useSelector } from 'react-redux';

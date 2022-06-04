@@ -22,7 +22,6 @@ export const NavigationStyled = styled.div`
     display: block;
     margin: auto;
     align-items: center;
-    fill: #a6abb9;
     fill: ${props => props.theme.colors.placeholder};
   }
 `;
