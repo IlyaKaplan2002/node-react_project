@@ -2,6 +2,8 @@ import React from 'react';
 import { useFormik } from 'formik';
 import addBookSchema from 'models/addBookShema';
 import AddBookFormStyled from './AddBookForm.styled';
+import Button from 'components/utils/Button';
+import InputField from 'components/utils/InputField';
 
 const initialValues = {
   name: '',
@@ -28,64 +30,70 @@ const AddBookForm = () => {
   return (
     <AddBookFormStyled onSubmit={formik.handleSubmit}>
       <div className="wrapper">
-        <label className="label">
-          <span className="labelText">Book title</span>
-          <input
-            className="input"
-            placeholder="..."
-            name="name"
-            value={formik.values.name}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-          />
-          <p className="error">{formik.touched.name && formik.errors.name}</p>
-        </label>
-        <label className="label">
-          <span className="labelText">Author</span>
-          <input
-            className="input"
-            placeholder="..."
-            name="author"
-            value={formik.values.author}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            type="text"
-          />
-          <p className="error">
-            {formik.touched.author && formik.errors.author}
-          </p>
-        </label>
-        <label className="label">
-          <span className="labelText">Publication date</span>
-          <input
-            className="input"
-            placeholder="..."
-            name="year"
-            value={formik.values.year}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            type="text"
-          />
-          <p className="error">{formik.touched.year && formik.errors.year}</p>
-        </label>
-        <label className="label">
-          <span className="labelText">Amount of pages</span>
-          <input
-            className="input"
-            placeholder="..."
-            name="pages"
-            value={formik.values.pages}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            type="text"
-          />
-          <p className="error">{formik.touched.pages && formik.errors.pages}</p>
-        </label>
+        <InputField
+          type="text"
+          placeholder="..."
+          name="name"
+          value={formik.values.name}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          label="Book title"
+          touched={formik.touched.name}
+          error={formik.errors.name}
+          classNames={{
+            field: 'label',
+          }}
+        />
+
+        <InputField
+          placeholder="..."
+          name="author"
+          type="text"
+          value={formik.values.author}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          label="Author"
+          touched={formik.touched.author}
+          error={formik.errors.author}
+          classNames={{
+            field: 'label',
+          }}
+        />
+
+        <InputField
+          placeholder="..."
+          name="year"
+          type="text"
+          value={formik.values.year}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          label="Publication date"
+          touched={formik.touched.year}
+          error={formik.errors.year}
+          classNames={{
+            field: 'label',
+          }}
+        />
+
+        <InputField
+          placeholder="..."
+          name="pages"
+          type="text"
+          value={formik.values.pages}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          label="Amount of pages"
+          touched={formik.touched.pages}
+          error={formik.errors.pages}
+          classNames={{
+            field: 'label',
+          }}
+        />
       </div>
 
-      <button className="button" type="submit">
+      <Button className="button" type="submit">
         Add
-      </button>
+      </Button>
     </AddBookFormStyled>
   );
 };

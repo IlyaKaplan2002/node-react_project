@@ -3,6 +3,7 @@ import StyledButton from './Button.styled';
 
 const Button = ({
   label,
+  children,
   type = 'button',
   className,
   onClick,
@@ -15,7 +16,7 @@ const Button = ({
       onClick={onClick}
       filled={filled}
     >
-      {label}
+      {label || children}
     </StyledButton>
   );
 };

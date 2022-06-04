@@ -5,6 +5,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Container } from 'styles';
 import HelpInfoMobileStyled from './HelpInfoMobile.styled';
+import Button from '../utils/Button';
 
 const HelpInfoMobile = () => {
   return (
@@ -31,12 +32,17 @@ const HelpInfoMobile = () => {
         />
 
         <div className="buttonsWrapper">
-          <Link to={routes.login.path} className="button">
-            Log in
-          </Link>
-          <Link to={routes.signUp.path} className="button filled">
-            Register
-          </Link>
+          <Button className="button">
+            <Link to={routes.login.path} className="link">
+              Log in
+            </Link>
+          </Button>
+
+          <Button filled className="button">
+            <Link to={routes.signUp.path} className="link filled">
+              Register
+            </Link>
+          </Button>
         </div>
       </HelpInfoMobileStyled>
     </Container>

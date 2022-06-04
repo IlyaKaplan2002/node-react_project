@@ -2,7 +2,7 @@ const { Schema, model } = require('mongoose');
 
 const statisticSchema = Schema(
   {
-    data: {
+    date: {
       type: Date,
       required: [true, 'Enter is data'],
     },
@@ -15,7 +15,7 @@ const statisticSchema = Schema(
       ref: 'user',
     },
   },
-  { versionKey: false, timestamp: true }
+  { versionKey: false, timestamps: true }
 );
 
 const Statistic = model('statistic', statisticSchema);
