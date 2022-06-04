@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 
 const Button = styled.button`
+  display: block;
   text-transform: capitalize;
   padding: 12px;
   min-width: 100px;
   font-size: 16px;
   font-family: ${props => props.theme.fonts.families.montserrat};
-  font-style: ${props => props.theme.fonts.weights.semiBold};
+  font-weight: ${props => props.theme.fonts.weights.semiBold};
   line-height: 1.25;
   border: ${props =>
     props.filled

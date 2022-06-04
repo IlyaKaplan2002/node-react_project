@@ -2,6 +2,7 @@ import React from 'react';
 import { useFormik } from 'formik';
 import addBookSchema from 'models/addBookShema';
 import AddBookFormStyled from './AddBookForm.styled';
+import Button from 'components/utils/Button';
 
 const initialValues = {
   name: '',
@@ -83,9 +84,9 @@ const AddBookForm = () => {
         </label>
       </div>
 
-      <button className="button" type="submit">
+      <Button className="button" type="submit">
         Add
-      </button>
+      </Button>
     </AddBookFormStyled>
   );
 };

@@ -63,15 +63,12 @@ const AddBookFormStyled = styled.form`
   }
 
   .button {
-    display: block;
     width: fit-content;
     height: fit-content;
     padding: 12px 70px;
     margin: 0 auto;
     font-size: 14px;
     line-height: 17px;
-    color: ${props => props.theme.colors.mainBlack};
-    border: ${props => props.theme.borders.button};
   }
 `;
 

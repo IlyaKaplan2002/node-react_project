@@ -17,18 +17,17 @@ const HelpInfoMobileStyled = styled.div`
   }
   .button {
     width: calc((100% - 20px) / 2);
+    padding: 0;
+  }
+  .link {
     font-family: ${props => props.theme.fonts.families.montserrat};
     font-weight: ${props => props.theme.fonts.weights.medium};
     font-size: 14px;
     line-height: 38px;
     color: ${props => props.theme.colors.mainBlack};
-    text-align: center;
-    border: ${props => props.theme.borders.button};
   }
 
-  .filled {
-    border: transparent;
-    background: ${props => props.theme.colors.mainOrange};
+  .link.filled {
     color: ${props => props.theme.colors.mainWhite};
   }
 `;
