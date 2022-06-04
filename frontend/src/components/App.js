@@ -1,8 +1,15 @@
 import React from 'react';
+
 import { Container } from 'styles';
+import AppBar from './AppBar';
 
 const App = () => {
-  return <Container>App</Container>;
+  return (
+    <Container>
+      <AppBar />
+      App
+    </Container>
+  );
 };
 
 export default App;
