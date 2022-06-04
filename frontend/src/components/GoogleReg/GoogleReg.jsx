@@ -1,9 +1,37 @@
-const BASE_URL = `http://localhost:5000/api`;
+import { googleAuth } from 'api/auth';
+import React, { useEffect } from 'react';
 
 const AuthGoogle = () => {
+  const handleResponse = async res => {
+    try {
+      const result = await googleAuth(res.credential);
+      console.log(result);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    /* global google */
+    google.accounts.id.initialize({
+      client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
+      callback: handleResponse,
+    });
+
+    google.accounts.id.renderButton(document.getElementById('googleReg'), {
+      width: 150,
+      text: 'signin',
+      logo_alignment: 'left',
+      locale: 'en',
+    });
+  }, []);
+
   return (
     <>
-      <a href={`${BASE_URL}/auth/google`}>Google</a>
+      {/* <a href={`${process.env.REACT_APP_API_BASE_URL}/api/auth/google`}>
+        Google
+      </a> */}
+      <div id="googleReg"></div>
     </>
   );
 };

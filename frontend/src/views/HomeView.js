@@ -1,3 +1,4 @@
+import GoogleReg from 'components/GoogleReg';
 import { HelpInfoMobile } from 'components/HelpInfoMobile';
 import NonAuthHeader from 'components/NonAuthHeader';
 import React from 'react';
@@ -5,8 +6,9 @@ import React from 'react';
 const HomeView = () => {
   return (
     <>
-      <NonAuthHeader />
-      <HelpInfoMobile />
+      <GoogleReg />
+      {/* <NonAuthHeader />
+      <HelpInfoMobile /> */}
     </>
   );
 };
