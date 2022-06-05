@@ -1,17 +1,14 @@
 import styled from 'styled-components';
 
 const CardSectionStyled = styled.div`
-  width: fit-content;
+  width: 280px;
   margin: 0 auto;
 
-  & + & {
-    margin-top: 20px;
-    @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
-      margin-top: 40px;
-    }
-    @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
-      margin-top: 32px;
-    }
+  @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
+    width: 704px;
+  }
+  @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
+    width: 1248px;
   }
 `;
 
@@ -43,16 +40,16 @@ const CardsNameList = styled.ul`
     font-weight: ${props => props.theme.fonts.weights.medium};
     grid-template-columns: ${props =>
       props.read
-        ? '2fr 1.4fr 0.85fr 0.75fr 3.25fr'
-        : '2.4fr 1.7fr 0.6fr 0.85fr'};
+        ? '2.2fr 1.5fr 1fr 0.8fr 2.8fr'
+        : '2.55fr 1.75fr 0.65fr 0.4fr'};
       margin-bottom: 8px;
       padding-left: 60px;
   }
   @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
     grid-template-columns: ${props =>
       props.read
-        ? '1.6fr 1.45fr 0.65fr 0.7fr 2.1fr'
-        : '2.55fr 1.75fr 0.6fr 0.55fr'};
+        ? '1.65fr 1.5fr 0.65fr 0.7fr 2fr'
+        : '2.6fr 1.75fr 0.6fr 0.45fr'};
   }
 `;
 

@@ -6,6 +6,7 @@ import {
 } from './CardSection.styled';
 import { Card } from 'components/Card';
 import { cardTypes } from 'constants';
+import { Container } from 'styles';
 
 const CardSection = ({ cardType, books = [] }) => {
   const isReading = cardType === cardTypes.reading;
@@ -13,7 +14,8 @@ const CardSection = ({ cardType, books = [] }) => {
   const isGoingToRead = cardType === cardTypes.isGoingToRead;
 
   return (
-    <CardSectionStyled>
+    <Container>
+      <CardSectionStyled>
       {isRead && <CardSectionNameStyled>Already read</CardSectionNameStyled>}
       {isGoingToRead && (
         <CardSectionNameStyled>Going to read</CardSectionNameStyled>
@@ -39,6 +41,7 @@ const CardSection = ({ cardType, books = [] }) => {
         />
       ))}
     </CardSectionStyled>
+    </Container>
   );
 };
 
