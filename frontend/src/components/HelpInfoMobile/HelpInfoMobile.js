@@ -6,37 +6,11 @@ import { Link } from 'react-router-dom';
 import { Container } from 'styles';
 import HelpInfoMobileStyled from './HelpInfoMobile.styled';
 import Button from '../utils/Button';
-import { Card } from 'components/Card';
-import { cardTypes } from 'constants';
-import CardSection from 'components/CardSection/CardSection';
-const books = [{
-  name: 'Development of valuable proposal Development of valuable proposal Development of valuable proposal Development of valuable proposal',
-  author: 'Jeff Sutherland',
-  year: 2014,
-  pages: 589,
-  rating: 4,
-  review: 'sfjhbwehf',
-  owner: 'khvekfvwekfv',
-},
-{
-  name: 'Development of valuable proposal Development of valuable proposal Development of valuable proposal Development of valuable proposal',
-  author: 'Jeff Sutherland',
-  year: 2014,
-  pages: 589,
-  rating: 4,
-  review: 'sfjhbwehf',
-  owner: 'khvekfvwekfv',
-}];
+
 const HelpInfoMobile = () => {
   return (
     <Container>
-      <CardSection
-      cardType={cardTypes.isGoingToRead}  books={ books}/>
-      <CardSection
-      cardType={cardTypes.reading}  books={ books}/>
-      <CardSection
-      cardType={cardTypes.alreadyRead}  books={ books}/>
-      {/* <HelpInfoMobileStyled>
+      <HelpInfoMobileStyled>
         <InfoTitle title="Books Reading" className="title" />
         <InfoList
           title="Will help you to"
@@ -70,7 +44,7 @@ const HelpInfoMobile = () => {
             </Link>
           </Button>
         </div>
-      </HelpInfoMobileStyled> */}
+      </HelpInfoMobileStyled>
     </Container>
   );
 };
