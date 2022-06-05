@@ -1,4 +1,5 @@
 const addTraining = require('./addTraining');
-const getTraining = require('./getTraining.js');
+const getTraining = require('./getTraining');
+const updateTraining = require('./updateTraining');
 
-module.exports = { addTraining, getTraining };
+module.exports = { addTraining, getTraining, updateTraining };

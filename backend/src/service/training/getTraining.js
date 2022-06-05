@@ -1,6 +1,6 @@
 const { Training } = require('../schemas');
 
-const getTraining = async userId => Training.find({ owner: userId });
-console.log(getTraining);
+const getTraining = async userId =>
+  Training.findOne({ owner: userId }).populate('owner books');
 
 module.exports = getTraining;
