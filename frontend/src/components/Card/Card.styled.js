@@ -13,13 +13,26 @@ const CardStyled = styled.div`
   background-color: ${props => props.theme.colors.mainWhite};
   color: ${props => props.theme.colors.mainBlack};
   box-shadow: ${props => props.theme.shadows.header};
+
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     display: inline-grid;
     grid-template-columns: ${props =>
       props.read ? '1.2fr 3fr 0.2fr' : '1fr 1.15fr'};
     column-gap: 30px;
     padding: 14px 20px 14px 60px;
+    height: 62px;
+    font-size: 14px;
+    max-width: 704px;
   }
+
+  @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
+    grid-template-columns: ${props =>
+      props.read ? '1.25fr 3fr 0.9fr' : '1fr 1.3fr'};
+    max-width: 1248px;
+    column-gap: ${props =>
+        props.read ? '30px' : '110px'};
+  }
+
   & + & {
     margin-top: 16px;
     @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
@@ -48,13 +61,12 @@ const CardStyled = styled.div`
       margin: 0;
       padding: 12px 0;
       height: fit-content;
-      width: 80px;
     }
-  }
 
-  @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
-    font-size: 14px;
-    max-width: 704px;
+    @media screen and  (min-width: ${props => props.theme.breakpoints.desktop}){
+      padding: 12px 36px;
+      width:130px;
+    }
   }
 `;
 
@@ -81,6 +93,12 @@ const ListStyled = styled.div`
     grid-template-columns: ${props =>
       props.read ? '1fr  0.5fr 0.2fr 1fr' : '2fr 0.5fr 0.2fr'};
     column-gap: 30px;
+  }
+
+  @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
+    grid-template-columns: ${props =>
+      props.read ? '1.8fr  0.7fr 0.7fr 1fr' : '2fr 0.6fr 0.4fr'};
+    max-width: 1248px;
   }
 `;
 
