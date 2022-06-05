@@ -9,18 +9,15 @@ export const InstructionListStyled = styled.div`
     font-size: 18px;
     line-height: 1.22;
     margin-bottom: 8px;
+
+    @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
+      margin-bottom: 16px;
+    }
   }
 
   .itemWrapper {
     display: flex;
     margin-bottom: 8px;
-  }
-
-  .itemWrapper .icon {
-    margin-right: 12px;
-    stroke: ${props => props.theme.colors.placeholder};
-    width: 22px;
-    height: 17px;
   }
 
   .itemTitle {
@@ -35,11 +32,8 @@ export const InstructionListStyled = styled.div`
     color: ${props => props.theme.colors.secondary};
   }
 
-  .textWrapper .icon {
+  .icon {
     margin-right: 8px;
-    stroke: ${props => props.theme.colors.mainOrange};
-    width: 10px;
-    height: 12px;
   }
 
   .text {

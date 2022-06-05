@@ -1,3 +1,4 @@
+import { MdMenuBook, MdOutlineOutlinedFlag } from 'react-icons/md';
 import { Container } from 'styles';
 import { ModalOverlay, Modal } from './InstructionModal.styled';
 import GoBackButton from 'components/utils/GoBackButton';
@@ -13,16 +14,14 @@ const InstructionModal = () => {
           <InstructionList
             className="fisrtStepWrapper"
             title="Step 1."
-            bigIconId="book"
-            smallIconId="vector"
+            bigIcon={<MdMenuBook className="reactIcon" />}
             instruction="Create your own library"
             text="Add there books which you are going to read."
           />
           <InstructionList
             className="secondStepWrapper"
             title="Step 2."
-            bigIconId="flag"
-            smallIconId="vector"
+            bigIcon={<MdOutlineOutlinedFlag className="reactIcon" />}
             instruction="Create your first training"
             text="Set a goal, choose period, start training."
           />

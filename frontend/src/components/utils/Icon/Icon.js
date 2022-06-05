@@ -1,28 +1,12 @@
-import PropTypes from 'prop-types';
+import { IconStyled } from './Icon.styled';
 import sprite from 'assets/icons/sprite.svg';
 
-export function Icon({ iconId, className, fill, stroke, width, height }) {
+const Icon = ({ iconId, className }) => {
   return (
-    <svg
-      className={`icon icon-${iconId} ${className}`}
-      fill={fill}
-      stroke={stroke}
-      width={width}
-      height={height}
-    >
+    <IconStyled className={className}>
       <use xlinkHref={`${sprite}#${iconId}`}></use>
-    </svg>
+    </IconStyled>
   );
-}
-
-Icon.defaultProps = {
-  className: '',
-  fill: 'A6ABB9',
-  stroke: '',
-  width: '15px',
-  height: '15px',
 };
 
-Icon.propTypes = {
-  iconId: PropTypes.string.isRequired,
-};
+export default Icon;

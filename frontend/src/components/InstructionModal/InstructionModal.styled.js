@@ -8,6 +8,14 @@ export const ModalOverlay = styled.div`
   height: 100vh;
   padding: 153px 20px 70px;
 
+  @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
+    padding: 372px 80px;
+  }
+
+  @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
+    padding: 207px 336px;
+  }
+
   .back {
     position: absolute;
     top: 84px;
@@ -20,12 +28,31 @@ export const Modal = styled.div`
   box-shadow: ${props => props.theme.shadows.header};
   padding: 43px 18px 98px 20px;
 
+  @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
+    padding: 40px;
+  }
+
   .fisrtStepWrapper {
     margin-bottom: 20px;
+
+    @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
+      margin-bottom: 24px;
+    }
   }
 
   .secondStepWrapper {
     margin-bottom: 40px;
+
+    @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
+      margin-bottom: 0;
+    }
+  }
+
+  .reactIcon {
+    fill: ${props => props.theme.colors.placeholder};
+    margin-right: 12px;
+    width: 22px;
+    height: 17px;
   }
 
   .button {
@@ -35,7 +62,6 @@ export const Modal = styled.div`
     font-size: 14px;
     padding: 11px 53px;
     line-height: 1.21;
-
     box-shadow: ${props => props.theme.shadows.instrustion};
   }
 `;
