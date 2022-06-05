@@ -8,28 +8,34 @@ import HelpInfoMobileStyled from './HelpInfoMobile.styled';
 import Button from '../utils/Button';
 import { Card } from 'components/Card';
 import { cardTypes } from 'constants';
-
+import CardSection from 'components/CardSection/CardSection';
+const books = [{
+  name: 'Development of valuable proposal Development of valuable proposal Development of valuable proposal Development of valuable proposal',
+  author: 'Jeff Sutherland',
+  year: 2014,
+  pages: 589,
+  rating: 4,
+  review: 'sfjhbwehf',
+  owner: 'khvekfvwekfv',
+},
+{
+  name: 'Development of valuable proposal Development of valuable proposal Development of valuable proposal Development of valuable proposal',
+  author: 'Jeff Sutherland',
+  year: 2014,
+  pages: 589,
+  rating: 4,
+  review: 'sfjhbwehf',
+  owner: 'khvekfvwekfv',
+}];
 const HelpInfoMobile = () => {
   return (
     <Container>
-      <Card 
-        cardType={cardTypes.alreadyRead}
-    name={'Development of valuable proposal Development of valuable proposal Development of valuable proposal Development of valuable proposal ' }
-    author={'Jeff Sutherland' }
-    year={2014 }
-    pages={ 25}/>
-    <Card 
-        cardType={cardTypes.reading}
-  name={'Development of valuable propojkbwejk Development of valuable proposal Development of valuable proposal Development of valuable proposal Development of valuable proposal Development of valuable proposal ' }
-  author={'Jeff Sutherland' }
-  year={2014 }
-  pages={ 25}/>
-  <Card 
-        cardType={cardTypes.goingToRead}
-name={'Already of valuable propojkbwejk ' }
-author={'Jeff Sutherland' }
-        year={2014}
-pages={ 25}/>
+      <CardSection
+      cardType={cardTypes.isGoingToRead}  books={ books}/>
+      <CardSection
+      cardType={cardTypes.reading}  books={ books}/>
+      <CardSection
+      cardType={cardTypes.alreadyRead}  books={ books}/>
       {/* <HelpInfoMobileStyled>
         <InfoTitle title="Books Reading" className="title" />
         <InfoList

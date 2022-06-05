@@ -27,7 +27,7 @@ const CardStyled = styled.div`
 
   @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
     grid-template-columns: ${props =>
-      props.read ? '1.25fr 3fr 0.9fr' : '1fr 1.3fr'};
+      props.read ? '1.25fr 3fr 0.84fr' : '1fr 1.3fr'};
     max-width: 1248px;
     column-gap: ${props =>
         props.read ? '30px' : '110px'};
