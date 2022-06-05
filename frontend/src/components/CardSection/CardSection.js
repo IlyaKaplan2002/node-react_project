@@ -1,5 +1,9 @@
 import React from 'react';
-import { CardSectionStyled, CardSectionNameStyled, CardsNameList } from './CardSection.styled';
+import {
+  CardSectionStyled,
+  CardSectionNameStyled,
+  CardsNameList,
+} from './CardSection.styled';
 import { Card } from 'components/Card';
 import { cardTypes } from 'constants';
 
@@ -16,31 +20,20 @@ const CardSection = ({ cardType, books = [] }) => {
       )}
       {isReading && <CardSectionNameStyled>Reading now</CardSectionNameStyled>}
       <CardsNameList read={isRead}>
-        <li>
-        Book title
-        </li>
-        <li>
-        Author
-        </li>
-        <li>
-        Year
-        </li>
-        <li>
-        Pages
-        </li>
-        {isRead && (
-          <li>
-            Rating
-          </li>
-        )}
-        </CardsNameList>
-      {books.map(({ name, author, year, pages }) => (
+        <li>Book title</li>
+        <li>Author</li>
+        <li>Year</li>
+        <li>Pages</li>
+        {isRead && <li>Rating</li>}
+      </CardsNameList>
+      {books.map(({ name, author, year, pages, rating }) => (
         <Card
           cardType={cardType}
           name={name}
           author={author}
           year={year}
           pages={pages}
+          rating={rating}
         />
       ))}
     </CardSectionStyled>
