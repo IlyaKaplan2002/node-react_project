@@ -20,6 +20,7 @@ const HelpInfoMobileStyled = styled.div`
     padding: 0;
   }
   .link {
+    display: block;
     font-family: ${props => props.theme.fonts.families.montserrat};
     font-weight: ${props => props.theme.fonts.weights.medium};
     font-size: 14px;
