@@ -1,11 +1,11 @@
 import React from 'react';
-import { ReactComponent as BackIcon } from 'assets/icons/back.svg';
 import GoBackButtonStyled from './GoBackButton.styled';
+import Icon from '../Icon';
 
 const GoBackButton = ({ onClick, className }) => {
   return (
     <GoBackButtonStyled className={className} type="button" onClick={onClick}>
-      <BackIcon className="icon" />
+      <Icon className="icon" iconId="back" />
     </GoBackButtonStyled>
   );
 };
