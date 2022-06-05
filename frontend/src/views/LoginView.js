@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-// import NonAuthHeader from 'components/NonAuthHeader';
+import NonAuthHeader from 'components/NonAuthHeader';
 import LoginForm from 'components/Forms/FormLogin/LoginForm';
 import { Container } from 'styles';
 import Quote from 'components/Quote';
@@ -13,7 +13,7 @@ const LoginView = () => {
   return (
     <>
       <Container>
-        {/* <NonAuthHeader /> */}
+        <NonAuthHeader />
         <Wrapper>
           <LoginForm />
           <Quote />

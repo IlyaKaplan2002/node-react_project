@@ -21,7 +21,7 @@ export const UserMenuStyled = styled.div`
   }
   .profileImage {
     border-radius: 50%;
-    background-color: ${props => props.theme.colors.iconActiveBg} !important;
+    background-color: ${props => props.theme.colors.input} !important;
     color: ${props => props.theme.colors.mainBlack} !important;
   }
 `;
