@@ -2,24 +2,17 @@ import React from 'react';
 import { useFormik } from 'formik';
 import loginSchema from 'models/loginSchema';
 import {
-  LoginFormStyled,
-  LabelStyled,
-  LabelTextStyled,
+  AuthFormStyled,
   FormSpanStarStyled,
-  InputStyled,
-  ErrorInfoStyled,
   LinkStyled,
   FormSpanStyled,
   FormContainer,
 } from '../AuthForm.styled';
 import Button from 'components/utils/Button';
 import AuthGoogle from '../../GoogleReg/GoogleReg';
+import InputField from 'components/utils/InputField';
 
 const initialValues = {
-  email: '',
-  password: '',
-};
-const initialErrors = {
   email: '',
   password: '',
 };
@@ -27,7 +20,7 @@ const initialErrors = {
 const LoginForm = () => {
   const formik = useFormik({
     initialValues,
-    initialErrors,
+    initialErrors: initialValues,
     validationSchema: loginSchema,
     validateOnBlur: true,
     onSubmit: values => console.log(values),
@@ -35,47 +28,54 @@ const LoginForm = () => {
 
   return (
     <FormContainer>
-      <LoginFormStyled onSubmit={formik.handleSubmit}>
+      <AuthFormStyled onSubmit={formik.handleSubmit}>
         <AuthGoogle type="button" className="googleButton" />
-        <LabelStyled>
-          <LabelTextStyled>
-            Email <FormSpanStarStyled>*</FormSpanStarStyled>
-          </LabelTextStyled>
-          <InputStyled
+        <div className="wrapper">
+          <InputField
             type="email"
-            name="email"
             placeholder="your@email.com"
-            values={formik.values.email}
+            name="email"
+            value={formik.values.email}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
+            label={
+              <div>
+                Email <FormSpanStarStyled>*</FormSpanStarStyled>
+              </div>
+            }
+            touched={formik.touched.email}
+            error={formik.errors.email}
+            classNames={{
+              field: 'label',
+            }}
           />
-          <ErrorInfoStyled className="error">
-            {formik.touched.email && formik.errors.email}
-          </ErrorInfoStyled>
-        </LabelStyled>
-        <LabelStyled>
-          <LabelTextStyled>
-            Password <FormSpanStarStyled>*</FormSpanStarStyled>
-          </LabelTextStyled>
-          <InputStyled
-            type="password "
-            name="password"
+          <InputField
+            type="password"
             placeholder="Password"
-            values={formik.values.password}
+            name="password"
+            value={formik.values.password}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-          ></InputStyled>
-          <ErrorInfoStyled className="error">
-            {formik.touched.password && formik.errors.password}
-          </ErrorInfoStyled>
-        </LabelStyled>
+            label={
+              <div>
+                Password <FormSpanStarStyled>*</FormSpanStarStyled>
+              </div>
+            }
+            touched={formik.touched.password}
+            error={formik.errors.password}
+            classNames={{
+              field: 'label',
+            }}
+          />
+        </div>
+
         <Button className="button" type="submit" filled>
           Login
         </Button>
         <FormSpanStyled>
           <LinkStyled to="/signup"> SignUp </LinkStyled>
         </FormSpanStyled>
-      </LoginFormStyled>
+      </AuthFormStyled>
     </FormContainer>
   );
 };
