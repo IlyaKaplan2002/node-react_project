@@ -65,3 +65,15 @@ export const Modal = styled.div`
     box-shadow: ${props => props.theme.shadows.instrustion};
   }
 `;
+
+export const Wrapper = styled.div`
+  max-width: 280px;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
+    max-width: 608px;
+    margin-left: 0;
+    margin-right: 0;
+  }
+`;
