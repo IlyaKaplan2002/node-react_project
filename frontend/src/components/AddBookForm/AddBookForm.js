@@ -11,17 +11,11 @@ const initialValues = {
   year: '',
   pages: '',
 };
-const initialErrors = {
-  name: '',
-  author: '',
-  year: '',
-  pages: '',
-};
 
 const AddBookForm = () => {
   const formik = useFormik({
     initialValues,
-    initialErrors,
+    initialErrors: initialValues,
     validationSchema: addBookSchema,
     validateOnBlur: true,
     onSubmit: values => console.log(values),
