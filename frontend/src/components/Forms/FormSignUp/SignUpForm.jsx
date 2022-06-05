@@ -38,7 +38,7 @@ const SignUpForm = () => {
   });
 
   return (
-    <FormContainer className="signUp">
+    <FormContainer className="signUp" signup>
       <LoginFormStyled onSubmit={formik.handleSubmit}>
         <AuthGoogle type="button" className="googleButton" />
         <LabelStyled>

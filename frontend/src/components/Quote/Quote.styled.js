@@ -6,25 +6,36 @@ const QuoteContainer = styled.div`
   font-weight: ${props => props.theme.fonts.weights.medium};
   line-height: 1.2;
   width: 230px;
+  padding-top: 4px;
+  padding-bottom: 48px;
   margin-left: auto;
   margin-right: auto;
   font-size: 13px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
+    padding-top: 64px;
+    padding-bottom: 109px;
     width: 526px;
     font-size: 24px;
     line-height: 1.6;
   }
 
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
     width: 397px;
     font-size: 24px;
     line-height: 1.2;
   }
   .quote {
     color: ${props => props.theme.colors.mainOrange};
-    width: 27px;
-    height: 40px;
+    font-family: ${props => props.theme.fonts.families.abril};
+    font-weight: ${props => props.theme.fonts.weights.regular};
+    font-size: 59px;
+    line-height: 80px;
+
+    @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
+      font-size: 69px;
+      line-height: 93px;
+    }
   }
 `;
 

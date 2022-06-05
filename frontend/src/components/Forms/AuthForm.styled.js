@@ -5,7 +5,12 @@ import backgroundImgTablet from 'assets/img/pic@2x.jpg';
 import backgroundDesktop from 'assets/img/pic@3x.jpg';
 
 const FormContainer = styled.div`
-  height: 100vh;
+  ${props =>
+    props.signup
+      ? `min-height: calc(100vh - 60px);
+  display: flex;
+  align-items: center;`
+      : ''}
   padding-top: 32px;
   padding-bottom: 32px;
   text-align: center;
@@ -30,7 +35,11 @@ const FormContainer = styled.div`
       url(${backgroundImgTablet});
   }
   @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
-    padding: 100px 75px;
+    /* padding: 100px 75px; */
+    padding: 50px 75px;
+    min-height: calc(100vh - 60px);
+    display: flex;
+    align-items: center;
     background-image: linear-gradient(
         to right,
         rgba(9, 30, 63, 0.8),
