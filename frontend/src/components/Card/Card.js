@@ -10,6 +10,7 @@ import {
   ListItemStyled,
   ListItemName,
   RatingIcon,
+  CardNameWrapper
 } from './Card.styled';
 import { cardTypes } from 'constants';
 
@@ -25,12 +26,12 @@ const Card = ({
   const isReading = cardType === cardTypes.reading;
   const isRead = cardType === cardTypes.alreadyRead;
   return (
-    <CardStyled>
+    <CardStyled read={isRead}>
       <BookIcon reading={isReading}>
-        <MdMenuBook size={20} />
+        <MdMenuBook size={21} />
       </BookIcon>
-      <CardName>{name}</CardName>
-      <ListStyled>
+      <CardNameWrapper ><CardName>{name}</CardName></CardNameWrapper>
+      <ListStyled read={isRead}>
         <ListItemStyled>
           <ListItemName>Author:</ListItemName>
           <span>{author}</span>
