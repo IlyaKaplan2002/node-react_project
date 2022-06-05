@@ -13,7 +13,7 @@ export const NavigationStyled = styled.div`
     text-align: center;
     margin-right: 8px;
     &.active {
-      background: ${props => props.theme.colors.iconActiveBg};
+      background: ${props => props.theme.colors.input};
       border-radius: 50%;
     }
   }
