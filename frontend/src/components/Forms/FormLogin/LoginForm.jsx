@@ -60,7 +60,7 @@ const LoginForm = () => {
           <InputStyled
             type="password "
             name="password"
-            placeholder="Пароль"
+            placeholder="Password"
             values={formik.values.password}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}

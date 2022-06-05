@@ -6,10 +6,9 @@ const Quote = () => {
     <QuoteContainer>
       <ImQuotesLeft className="quote" />
       <QuoteText>
-        Книги — это корабли мысли, странствующие по волнам времени и бережно
-        несущие свой драгоценный груз от поколения к поколению.
+        Books are the ships of thoughts, wandering through the waves of time.
       </QuoteText>
-      <QuoteAuthor>Бэкон Ф.</QuoteAuthor>
+      <QuoteAuthor>Francis Bacon</QuoteAuthor>
     </QuoteContainer>
   );
 };
