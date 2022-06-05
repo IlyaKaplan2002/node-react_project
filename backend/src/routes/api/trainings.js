@@ -12,4 +12,6 @@ router.post(
   ctrlWrapper(ctrl.addTraining)
 );
 
+router.get('/', auth, ctrlWrapper(ctrl.getTraining));
+
 module.exports = router;
