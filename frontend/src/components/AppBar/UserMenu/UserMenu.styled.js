@@ -7,7 +7,7 @@ export const UserMenuStyled = styled.div`
 
   .profileImage {
     border-radius: 50%;
-    background-color: ${props => props.theme.colors.input} !important;
+    background-color: ${props => props.theme.colors.iconActiveBg} !important;
     color: ${props => props.theme.colors.mainBlack} !important;
   }
 
