@@ -27,7 +27,7 @@ const theme = {
     placeholder: '#a6abb9',
     error: 'red',
     mainOrange: '#FF6B08',
-    input: '#F5F7FA',
+    iconActiveBg: '#f5f7fa',
   },
   borders: {
     input: '1px solid #a6abb9',
