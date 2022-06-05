@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const NavigationStyled = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
   margin: 0;
   border-right: 1px #a6abb9 solid;
   .link {
