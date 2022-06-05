@@ -4,7 +4,7 @@ const Button = styled.button`
   display: block;
   text-transform: capitalize;
   padding: 12px;
-  min-width: 100px;
+  min-width: 80px;
   font-size: 16px;
   font-family: ${props => props.theme.fonts.families.montserrat};
   font-weight: ${props => props.theme.fonts.weights.semiBold};
