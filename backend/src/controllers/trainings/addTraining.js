@@ -14,10 +14,19 @@ const addTraining = async (req, res) => {
   books.forEach(book => {
     if (!usersBooksIds.includes(book)) throwError('User has no such book', 404);
   });
-  const training = await trainingService.addTraining({
-    ...req.body,
-    owner: _id,
-  });
+
+  const oldTraining = await trainingService.getTraining(_id);
+
+  let training;
+
+  if (!oldTraining) {
+    training = await trainingService.addTraining({
+      ...req.body,
+      owner: _id,
+    });
+  } else {
+    training = await trainingService.updateTraining({ owner: _id }, req.body);
+  }
 
   res.status(201).json(createResponse(201, { training }));
 };
