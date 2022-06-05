@@ -36,8 +36,9 @@ const theme = {
   },
   shadows: {
     input: 'inset 0px 1px 2px rgba(29, 29, 27, 0.15)',
-    header: '0px 2px 3px rgba(9, 30, 63, 0.1)',
-    instrustion: '0px 2px 4px rgba(0, 0, 0, 0.25)',
+    header: '0px 2px 3px  rgba(9, 30, 63, 0.1)',
+    google: '0px 2px 2px rgba(9, 30, 63, 0.15)',
+    hero: '0px 4px 4px rgba(0, 0, 0, 0.25)',
   },
 };
 
