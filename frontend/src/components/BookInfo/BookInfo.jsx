@@ -8,20 +8,20 @@ const BookInfo = () => {
     <BookInfoContainerStyled>
       <InfoTitle title="Books Reading" className="title" />
       <InfoList
-        title="Допоможе вам"
+        title="Will help you to"
         items={[
-          'Швидше сформулювати свою ціль і розпочати читати',
-          'Пропорційно розподілити навантаження на кожний день',
-          'Відстежувати особистий успіх',
+          'Create your goal faster and proceed to read',
+          'Divide process proportionally for each day',
+          'Track your success',
         ]}
         className="list"
       />
       <InfoList
-        title="Також ви зможете "
+        title="You may also"
         items={[
-          'Швидше сформулювати свою ціль і розпочати читати',
-          'Пропорційно розподілити навантаження на кожний день',
-          'Відстежувати особистий успіх',
+          'Pose your own independent point of view',
+          'Improve your professional skills according to new knowledge',
+          'Become an interesting interlocutor',
         ]}
         className="list"
       />

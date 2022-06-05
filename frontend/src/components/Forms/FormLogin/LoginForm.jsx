@@ -14,6 +14,7 @@ import {
 } from '../AuthForm.styled';
 import Button from 'components/utils/Button';
 import AuthGoogle from '../../GoogleReg/GoogleReg';
+
 const initialValues = {
   email: '',
   password: '',
@@ -38,7 +39,7 @@ const LoginForm = () => {
         <AuthGoogle type="button" className="googleButton" />
         <LabelStyled>
           <LabelTextStyled>
-            Електронна адреса <FormSpanStarStyled>*</FormSpanStarStyled>
+            Email <FormSpanStarStyled>*</FormSpanStarStyled>
           </LabelTextStyled>
           <InputStyled
             type="email"
@@ -54,7 +55,7 @@ const LoginForm = () => {
         </LabelStyled>
         <LabelStyled>
           <LabelTextStyled>
-            Пароль <FormSpanStarStyled>*</FormSpanStarStyled>
+            Password <FormSpanStarStyled>*</FormSpanStarStyled>
           </LabelTextStyled>
           <InputStyled
             type="password "
@@ -63,16 +64,16 @@ const LoginForm = () => {
             values={formik.values.password}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-          />
+          ></InputStyled>
           <ErrorInfoStyled className="error">
             {formik.touched.password && formik.errors.password}
           </ErrorInfoStyled>
         </LabelStyled>
         <Button className="button" type="submit" filled>
-          Увійти
+          Login
         </Button>
         <FormSpanStyled>
-          <LinkStyled to="/signup"> Реєстрація </LinkStyled>
+          <LinkStyled to="/signup"> SignUp </LinkStyled>
         </FormSpanStyled>
       </LoginFormStyled>
     </FormContainer>

@@ -43,7 +43,7 @@ const SignUpForm = () => {
         <AuthGoogle type="button" className="googleButton" />
         <LabelStyled>
           <LabelTextStyled>
-            Ім’я <FormSpanStarStyled>*</FormSpanStarStyled>
+            Name <FormSpanStarStyled>*</FormSpanStarStyled>
           </LabelTextStyled>
           <InputStyled
             type="text"
@@ -59,7 +59,7 @@ const SignUpForm = () => {
         </LabelStyled>
         <LabelStyled>
           <LabelTextStyled>
-            Електронна адреса <FormSpanStarStyled>*</FormSpanStarStyled>
+            Email <FormSpanStarStyled>*</FormSpanStarStyled>
           </LabelTextStyled>
           <InputStyled
             type="email"
@@ -75,7 +75,7 @@ const SignUpForm = () => {
         </LabelStyled>
         <LabelStyled>
           <LabelTextStyled>
-            Пароль <FormSpanStarStyled>*</FormSpanStarStyled>
+            Password <FormSpanStarStyled>*</FormSpanStarStyled>
           </LabelTextStyled>
           <InputStyled
             type="password "
@@ -91,7 +91,7 @@ const SignUpForm = () => {
         </LabelStyled>
         <LabelStyled>
           <LabelTextStyled>
-            Підтвердити пароль <FormSpanStarStyled>*</FormSpanStarStyled>
+            Confirm password <FormSpanStarStyled>*</FormSpanStarStyled>
           </LabelTextStyled>
           <InputStyled
             type="password "
@@ -106,10 +106,10 @@ const SignUpForm = () => {
           </ErrorInfoStyled>
         </LabelStyled>
         <Button type="submit" filled className="button">
-          Зареєструватися
+          SignUp
         </Button>
         <FormSpanStyled>
-          Вже з нами? <LinkStyled to="/login">Увійти</LinkStyled>
+          Already with us? <LinkStyled to="/login">Login</LinkStyled>
         </FormSpanStyled>
       </LoginFormStyled>
     </FormContainer>

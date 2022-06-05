@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import backgroundImgMobile from 'img/pic.jpg';
-import backgroundImgTablet from 'img/pic@2x.jpg';
-import backgroundDesktop from 'img/pic@3x.jpg';
+import backgroundImgMobile from 'assets/img/pic.jpg';
+import backgroundImgTablet from 'assets/img/pic@2x.jpg';
+import backgroundDesktop from 'assets/img/pic@3x.jpg';
 
 const FormContainer = styled.div`
+  height: 100vh;
   padding-top: 32px;
   padding-bottom: 32px;
   text-align: center;
@@ -29,7 +30,7 @@ const FormContainer = styled.div`
       url(${backgroundImgTablet});
   }
   @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
-    padding: 185px 75px;
+    padding: 100px 75px;
     background-image: linear-gradient(
         to right,
         rgba(9, 30, 63, 0.8),
