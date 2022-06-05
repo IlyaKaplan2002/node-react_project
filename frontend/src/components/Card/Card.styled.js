@@ -64,7 +64,7 @@ const CardStyled = styled.div`
     }
 
     @media screen and  (min-width: ${props => props.theme.breakpoints.desktop}){
-      padding: 12px 36px;
+      padding: 10px 36px;
       width:130px;
     }
   }
