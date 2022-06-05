@@ -26,8 +26,10 @@ const CardSection = ({ cardType, books = [] }) => {
         <li>Pages</li>
         {isRead && <li>Rating</li>}
       </CardsNameList>
-      {books.map(({ name, author, year, pages, rating }) => (
+      {books.map(({ name, author, year, pages, rating, _id }) => (
         <Card
+          key={_id ?? name}
+          id={_id}
           cardType={cardType}
           name={name}
           author={author}

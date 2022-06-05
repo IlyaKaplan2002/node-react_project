@@ -10,7 +10,7 @@ import {
   ListItemStyled,
   ListItemName,
   RatingIcon,
-  CardNameWrapper
+  CardNameWrapper,
 } from './Card.styled';
 import { cardTypes } from 'constants';
 
@@ -22,6 +22,7 @@ const Card = ({
   pages,
   rating = 0,
   cardType,
+  id,
 }) => {
   const isReading = cardType === cardTypes.reading;
   const isRead = cardType === cardTypes.alreadyRead;
@@ -30,7 +31,9 @@ const Card = ({
       <BookIcon reading={isReading}>
         <MdMenuBook size={21} />
       </BookIcon>
-      <CardNameWrapper ><CardName>{name}</CardName></CardNameWrapper>
+      <CardNameWrapper>
+        <CardName>{name}</CardName>
+      </CardNameWrapper>
       <ListStyled read={isRead}>
         <ListItemStyled>
           <ListItemName>Author:</ListItemName>
@@ -48,8 +51,19 @@ const Card = ({
           <ListItemStyled>
             <ListItemName>Rating:</ListItemName>
             <RatingIcon>
-              {Array(rating).fill(<AiFillStar size={17} />)}
-              {Array(5 - rating).fill(<AiOutlineStar size={17} />)}
+              {Array(rating)
+                .fill(null)
+                .map((_, idx) => (
+                  <AiFillStar key={`${idx}${id ?? name}`} size={17} />
+                ))}
+              {Array(5 - rating)
+                .fill()
+                .map((_, idx) => (
+                  <AiOutlineStar
+                    key={`${rating - idx}${id ?? name}`}
+                    size={17}
+                  />
+                ))}
             </RatingIcon>
           </ListItemStyled>
         )}
