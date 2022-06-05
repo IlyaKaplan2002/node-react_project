@@ -6,24 +6,26 @@ import { Link } from 'react-router-dom';
 import { Container } from 'styles';
 import HelpInfoMobileStyled from './HelpInfoMobile.styled';
 import Button from '../utils/Button';
-import ReadingCard from 'components/ReadingCard';
-import GoingToReadCard from 'components/GoingToReadCard';
-import AlreadyReadCard from 'components/AlreadyReadCard';
+import { Card } from 'components/Card';
+import { cardTypes } from 'constants';
 
 const HelpInfoMobile = () => {
   return (
     <Container>
-      <ReadingCard 
+      <Card 
+        cardType={cardTypes.alreadyRead}
     name={'Development of valuable proposal Development of valuable proposal Development of valuable proposal Development of valuable proposal ' }
     author={'Jeff Sutherland' }
     year={2014 }
     pages={ 25}/>
-    <GoingToReadCard 
+    <Card 
+        cardType={cardTypes.reading}
   name={'Development of valuable propojkbwejk Development of valuable proposal Development of valuable proposal Development of valuable proposal Development of valuable proposal Development of valuable proposal ' }
   author={'Jeff Sutherland' }
   year={2014 }
   pages={ 25}/>
-  <AlreadyReadCard 
+  <Card 
+        cardType={cardTypes.goingToRead}
 name={'Already of valuable propojkbwejk ' }
 author={'Jeff Sutherland' }
         year={2014}
