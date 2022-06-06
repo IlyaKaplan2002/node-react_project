@@ -1,7 +1,8 @@
+import AppBar from 'components/AppBar';
 import React from 'react';
 
 const LibraryView = () => {
-  return <>library</>;
+  return <AppBar />;
 };
 
 export default LibraryView;
