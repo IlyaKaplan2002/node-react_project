@@ -1,8 +1,6 @@
-import axios from 'axios';
-
-const { REACT_APP_API_BASE_URL } = process.env;
+import { getData, _axios } from 'api/helpers';
 
 const googleAuth = token =>
-  axios.post(REACT_APP_API_BASE_URL + '/api/auth/google', { token });
+  _axios.post('/api/auth/google', { token }).then(getData);
 
 export default googleAuth;
