@@ -8,6 +8,7 @@ import {
   PointElement,
   LineElement,
   Tooltip,
+  Title,
   Legend,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
@@ -17,18 +18,38 @@ ChartJS.register(
   LinearScale,
   PointElement,
   LineElement,
+  Title,
   Tooltip,
   Legend
 );
+
+const day = 4; // from back
 
 const options = {
   plugins: {
     title: {
       display: true,
-      text: 'Custom Chart Title',
+      text: ` ${'Amont of pages / DA'.toUpperCase()} ${day}`,
+      align: 'start',
+      font: {
+        size: 12,
+        weight: 500,
+      },
     },
     legend: {
       display: false,
+    },
+    tooltip: {
+      backgroundColor: 'rgba(245, 247, 250, 1)',
+      displayColors: false,
+      bodyColor: ' rgba(9, 30, 63, 1)',
+      bodyFont: {
+        size: 12,
+        weight: 600,
+      },
+      bodyAlign: 'center',
+      borderColor: ' rgba(9, 30, 63, 0.1)',
+      titleFont: { size: 0 },
     },
   },
 
@@ -36,21 +57,25 @@ const options = {
 
   scales: {
     x: {
+      beginAtZero: true,
       ticks: {
         display: false,
       },
       display: true,
       title: {
         display: true,
-        text: 'TIME',
+        text: `${'time'.toUpperCase()}`,
         align: 'end',
         font: {
           size: 12,
+          weight: 500,
         },
       },
+      grid: {},
     },
 
     y: {
+      beginAtZero: true,
       display: true,
       ticks: {
         display: false,
@@ -58,6 +83,7 @@ const options = {
 
       grid: {
         display: false,
+        beginAtZero: true,
       },
     },
   },
@@ -70,15 +96,19 @@ const data = {
   datasets: [
     {
       label: 'PLAN',
-      data: [1, 2, 3, 4, 5, 6], //from back
+      fill: false,
+      data: [0, 2, 3, 4, 5, 6, 5, 4], //from back
       borderColor: 'rgba(9, 30, 63, 1,)',
       backgroundColor: 'rgba(9, 30, 63, 1)',
+      borderWidth: 2,
     },
     {
       label: 'ACT',
-      data: [1, 2, 6, 8], //from back
+      fill: false,
+      data: [1, 2, 6, 8, 5, 6, 3, 2], //from back
       borderColor: 'rgba(255, 107, 8, 1)',
       backgroundColor: 'rgba(255, 107, 8, 1)',
+      borderWidth: 2,
     },
   ],
 };
