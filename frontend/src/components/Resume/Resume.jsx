@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { createPortal } from 'react-dom';
+import React, { useState } from 'react';
 import StarRatings from 'react-star-ratings';
 import {
   ResumeContainerStyled,
@@ -8,30 +7,9 @@ import {
 } from './Resyme.styled';
 import Button from 'components/utils/Button';
 
-const modalRoot = document.querySelector('#modal-root');
-
 const Resume = ({ onCloseModal }) => {
   const [rating, setRaning] = useState(0);
   const [value, setValue] = useState('');
-
-  useEffect(() => {
-    window.addEventListener('keydown', onCloseModalClick);
-    return () => {
-      window.removeEventListener('keydown', onCloseModalClick);
-    };
-  });
-
-  const onCloseModalClick = evt => {
-    if (evt.code === 'Escape') {
-      onCloseModal();
-    }
-  };
-
-  const onBackdropClick = evt => {
-    if (evt.target === evt.currentTarget) {
-      onCloseModal();
-    }
-  };
 
   const onSaveModalButtonClick = evt => {
     evt.preventDefault();
@@ -46,7 +24,7 @@ const Resume = ({ onCloseModal }) => {
     setRaning(newRating);
   };
 
-  return createPortal(
+  return (
     <ResumeContainerStyled>
       <TextStyled>Choose rating of the book</TextStyled>
       <StarRatings
@@ -55,6 +33,7 @@ const Resume = ({ onCloseModal }) => {
         changeRating={changeRating}
         starDimension="17px"
         name="rating"
+        starSpacing="2px"
       />
       <form className="form" onSubmit={onSaveModalButtonClick}>
         <label>
@@ -68,7 +47,7 @@ const Resume = ({ onCloseModal }) => {
           />
         </label>
         <div className="buttonContainer">
-          <Button type="button" className="button" onClick={onBackdropClick}>
+          <Button type="button" className="button" onClick={onCloseModal}>
             Back
           </Button>
           <Button type="submit" filled className="button">
@@ -76,8 +55,7 @@ const Resume = ({ onCloseModal }) => {
           </Button>
         </div>
       </form>
-    </ResumeContainerStyled>,
-    modalRoot
+    </ResumeContainerStyled>
   );
 };
 export default Resume;

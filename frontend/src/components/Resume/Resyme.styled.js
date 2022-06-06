@@ -13,7 +13,6 @@ const ResumeContainerStyled = styled.div`
   color: ${props => props.theme.colors.mainBlack};
   font-size: 16px;
   line-height: 1.2;
-
   .buttonContainer {
     display: flex;
     justify-content: space-evenly;
@@ -26,21 +25,25 @@ const ResumeContainerStyled = styled.div`
   .form {
     margin-top: 20px;
   }
-
-  @media screen and(min-width:${props => props.theme.breakpoints.tablet}) {
+  @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     width: 608px;
     height: 399px;
-
     .form {
       margin-top: 28px;
     }
-
     .button {
       width: 130px;
       height: 40px;
+      &:first-child {
+        margin-right: 28px;
+      }
+    }
+    .buttonContainer {
+      justify-content: center;
     }
   }
 `;
+
 const TextStyled = styled.p`
   margin-bottom: 20px;
 `;
@@ -54,8 +57,13 @@ const TextAreaStyled = styled.textarea`
   &:valid {
     border: 1px solid #a6abb9;
   }
-
-  @media screen and(min-width:${props => props.theme.breakpoints.tablet}) {
+  &:focus {
+    background: ${props => props.theme.colors.mainWhite};
+    box-shadow: ${props => props.theme.shadows.input};
+    border-color: transparent;
+  }
+  outline: none;
+  @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     width: 568px;
     height: 170px;
   }

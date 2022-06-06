@@ -4,8 +4,6 @@ import LoginForm from 'components/Forms/FormLogin/LoginForm';
 import { Container } from 'styles';
 import Quote from 'components/Quote';
 import { Wrapper } from 'components/Forms/AuthForm.styled';
-import Resume from 'components/Resume';
-import Button from 'components/utils/Button/Button.styled';
 
 const LoginView = () => {
   const [showModal, setShowModal] = useState(false);
@@ -19,15 +17,11 @@ const LoginView = () => {
   return (
     <>
       <Container>
-        {/* <NonAuthHeader /> */}
-        {/* <Wrapper>
+        <NonAuthHeader />
+        <Wrapper>
           <LoginForm />
           <Quote />
-        </Wrapper> */}
-        {showModal && <Resume onCloseModal={onToggleModal} />}
-        <Button type="button" onClick={onToggleModal}>
-          Click
-        </Button>
+        </Wrapper>
       </Container>
     </>
   );
