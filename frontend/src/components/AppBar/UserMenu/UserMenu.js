@@ -1,22 +1,16 @@
 import React from 'react';
 import UserMenuStyled from './UserMenu.styled';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { authSelectors, authOperations } from '../../redux/auth';
 import Avatar from 'react-avatar';
+import { useSelector } from 'react-redux';
+import { authSelectors } from 'redux/auth';
 
 export default function UserMenu() {
-  //   const dispatch = useDispatch();
-  //   const name = useSelector(authSelectors.getUsername);
+  const { name } = useSelector(authSelectors.getUser);
 
   return (
     <UserMenuStyled>
-      <Avatar name="Wim" size="33" className="profileImage" />
-
-      {/* <Button type="button" onClick={() => dispatch(authOperations.logOut())}>
-        Вихід
-      </Button> */}
-
-      <button className="button">Logout</button>
+      <Avatar name={name} size="33" className="profileImage" />
+      <p className="userName">{name}</p>
     </UserMenuStyled>
   );
 }

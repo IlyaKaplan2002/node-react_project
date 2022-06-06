@@ -11,6 +11,11 @@ import {
 import Button from 'components/utils/Button';
 import AuthGoogle from '../../GoogleReg/GoogleReg';
 import InputField from 'components/utils/InputField';
+import { login } from 'api/auth';
+import { notifyError } from 'helpers';
+import { useDispatch } from 'react-redux';
+import { authActions } from 'redux/auth';
+import { routes } from 'constants';
 
 const initialValues = {
   email: '',
@@ -18,12 +23,23 @@ const initialValues = {
 };
 
 const LoginForm = () => {
+  const dispatch = useDispatch();
+
+  const onSubmit = async values => {
+    try {
+      const data = await login(values);
+      dispatch(authActions.login(data));
+    } catch (error) {
+      notifyError(error);
+    }
+  };
+
   const formik = useFormik({
     initialValues,
     initialErrors: initialValues,
     validationSchema: loginSchema,
     validateOnBlur: true,
-    onSubmit: values => console.log(values),
+    onSubmit,
   });
 
   return (
@@ -73,7 +89,7 @@ const LoginForm = () => {
           Login
         </Button>
         <FormSpanStyled>
-          <LinkStyled to="/signup"> SignUp </LinkStyled>
+          <LinkStyled to={routes.signUp.path}>Register</LinkStyled>
         </FormSpanStyled>
       </AuthFormStyled>
     </FormContainer>

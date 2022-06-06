@@ -28,6 +28,7 @@ const theme = {
     error: 'red',
     mainOrange: '#FF6B08',
     iconActiveBg: '#f5f7fa',
+    darkGray: '#6D7A8D',
   },
   borders: {
     input: '1px solid #a6abb9',
@@ -40,6 +41,7 @@ const theme = {
     google: '0px 2px 2px rgba(9, 30, 63, 0.15)',
     hero: '0px 4px 4px rgba(0, 0, 0, 0.25)',
     modal: '10px 10px 20px rgba(9, 30, 63, 0.2)',
+    instrustion: '0px 2px 4px rgba(0, 0, 0, 0.25)',
   },
 };
 

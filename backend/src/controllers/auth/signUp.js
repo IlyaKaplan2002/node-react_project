@@ -11,7 +11,7 @@ const signUp = async (req, res) => {
 
   const user = await userService.findOne({ email });
   if (user) {
-    throwError(`User with ${email} already exists`, 409);
+    throwError(`User with email ${email} already exists`, 409);
   }
 
   const hashedPassword = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
