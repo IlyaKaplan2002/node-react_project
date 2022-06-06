@@ -1,0 +1,30 @@
+{
+  "name": "node-react_project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "installation": "npm i && cd ./backend && npm i && cd ../frontend && npm i",
+    "installation:yarn": "yarn && cd ./backend && yarn && cd ../frontend && yarn",
+    "server": "cd ./backend && npm run start:dev",
+    "front": "cd ./frontend && npm start",
+    "start:dev": "concurrently --kill-others \"npm run server\" \"npm run front\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IlyaKaplan2002/node-react_project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IlyaKaplan2002/node-react_project/issues"
+  },
+  "homepage": "https://github.com/IlyaKaplan2002/node-react_project#readme",
+  "devDependencies": {
+    "concurrently": "^7.2.1"
+  },
+  "dependencies": {
+    "react-media": "^1.10.0"
+  }
+}
