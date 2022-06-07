@@ -37,9 +37,11 @@ const options = {
       },
     },
     legend: {
+      beginAtZero: true,
       display: false,
     },
     tooltip: {
+      beginAtZero: true,
       backgroundColor: 'rgba(245, 247, 250, 1)',
       displayColors: false,
       bodyColor: ' rgba(9, 30, 63, 1)',
@@ -54,6 +56,7 @@ const options = {
   },
 
   responsive: true,
+  maintainAspectRatio: false,
 
   scales: {
     x: {
@@ -61,7 +64,7 @@ const options = {
       ticks: {
         display: false,
       },
-      display: true,
+
       title: {
         display: true,
         text: `${'time'.toUpperCase()}`,
@@ -71,11 +74,11 @@ const options = {
           weight: 500,
         },
       },
-      grid: {},
+
+      grid: { display: false },
     },
 
     y: {
-      beginAtZero: true,
       display: true,
       ticks: {
         display: false,
@@ -83,7 +86,6 @@ const options = {
 
       grid: {
         display: false,
-        beginAtZero: true,
       },
     },
   },
