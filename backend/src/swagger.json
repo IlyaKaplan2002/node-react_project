@@ -16,6 +16,14 @@
     {
       "name": "Books",
       "description": "Books endpoints"
+    },
+    {
+      "name": "Statistics",
+      "description": "Statistics endpoints"
+    },
+    {
+      "name": "Trainings",
+      "description": "Trainings endpoints"
     }
   ],
   "paths": {
@@ -122,6 +130,270 @@
           }
         }
       }
+    },
+    "/api/auth/google": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "User Google authentification",
+        "parameters": [],
+        "requestBody": {
+          "description": "Authentification's object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GoogleRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthentificationResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/api/auth/info": {
+      "get": {
+        "tags": ["Auth"],
+        "summary": "Get current user information",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetInfoResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No token provided",
+            "content": {}
+          },
+          "500": {
+            "description": "Invalid token",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/api/auth/library": {
+      "get": {
+        "tags": ["Auth"],
+        "summary": "Get current user library",
+        "parameters": [],
+        "security": [{ "Bearer": [] }]
+      }
+    },
+    "/api/books/": {
+      "post": {
+        "tags": ["Books"],
+        "summary": "Add new book",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "description": "New book's object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddNewBookRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddNewBookResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/api/books/{bookId}/review": {
+      "patch": {
+        "tags": ["Books"],
+        "summary": "Add book review",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "bookId",
+            "required": true,
+            "description": "Book id",
+            "type": "string"
+          }
+        ],
+        "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "description": "Book review object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddBookReviewRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddBookReviewResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/api/statistics/": {
+      "post": {
+        "tags": ["Statistics"],
+        "summary": "Add user statistics",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "description": "User statistics object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddUserStatisticsRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddUserStatisticsResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No token provided",
+            "content": {}
+          },
+          "500": {
+            "description": "Invalid token",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/api/trainings/": {
+      "post": {
+        "tags": ["Trainings"],
+        "summary": "Add new training",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "description": "New training object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddNewTrainingRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddNewTrainingResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          }
+        }
+      },
+      "get": {
+        "tags": ["Trainings"],
+        "summary": "Get training",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetTrainingResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "404": {
+            "description": "Not found",
+            "content": {}
+          }
+        }
+      }
     }
   },
   "components": {
@@ -219,6 +491,440 @@
           "message": {
             "type": "string",
             "example": "successfull"
+          }
+        }
+      },
+      "GoogleRequest": {
+        "type": "object",
+        "required": ["token"],
+        "properties": {
+          "token": {
+            "type": "string",
+            "description": "User's token",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOWEwMjczNzM3MGFlMGI0NjEyZmUxYSIsImlhdCI6MTY1NDI2MDM0OCwiZXhwIjoxNjU0MzQ2NzQ4fQ.5SdH_3w3weMg6caqx9fAJd79AFRmVjcNz3Ugre0WxgI"
+          }
+        }
+      },
+      "GetInfoResponse": {
+        "type": "object",
+        "properties": {
+          "user": {
+            "type": "object",
+            "properties": {
+              "email": {
+                "type": "string",
+                "description": "User's email",
+                "format": "email"
+              },
+              "name": {
+                "type": "string",
+                "description": "User's name",
+                "example": "Mango"
+              }
+            }
+          }
+        }
+      },
+      "AddNewBookRequest": {
+        "type": "object",
+        "required": ["name", "author", "year", "pages"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Book title",
+            "example": "Scrum. The Art of Doing Twice the Work in Half the Time"
+          },
+          "author": {
+            "type": "string",
+            "description": "Book author",
+            "example": "Jeff Sutherland"
+          },
+          "year": {
+            "type": "number",
+            "description": "Published",
+            "example": 2015
+          },
+          "pages": {
+            "type": "number",
+            "description": "Book pages",
+            "example": 256
+          }
+        }
+      },
+      "AddNewBookResponse": {
+        "type": "object",
+        "properties": {
+          "book": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Book title",
+                "example": "Scrum. The Art of Doing Twice the Work in Half the Time"
+              },
+              "author": {
+                "type": "string",
+                "description": "Book author",
+                "example": "Jeff Sutherland"
+              },
+              "year": {
+                "type": "number",
+                "description": "Published",
+                "example": 2015
+              },
+              "pages": {
+                "type": "number",
+                "description": "Book pages",
+                "example": 256
+              },
+              "owner": {
+                "type": "string",
+                "description": "Book owner",
+                "example": "629f0e7c725dda80525ea815"
+              },
+              "_id": {
+                "type": "string",
+                "description": "Book id",
+                "example": "629f0eea725dda80525ea81d"
+              },
+              "createdAt": {
+                "type": "string",
+                "description": "Time created",
+                "format": "date-time"
+              },
+              "updatedAt": {
+                "type": "string",
+                "description": "Time updated",
+                "format": "date-time"
+              }
+            }
+          }
+        }
+      },
+      "AddBookReviewRequest": {
+        "type": "object",
+        "required": ["rating", "review"],
+        "properties": {
+          "rating": {
+            "type": "number",
+            "description": "Book rating",
+            "example": 5
+          },
+          "review": {
+            "type": "string",
+            "description": "Book review",
+            "example": "This is the original book on Scrum-way of project management. It was amazing."
+          }
+        }
+      },
+      "AddBookReviewResponse": {
+        "type": "object",
+        "properties": {
+          "book": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Book title",
+                "example": "Scrum. The Art of Doing Twice the Work in Half the Time"
+              },
+              "author": {
+                "type": "string",
+                "description": "Book author",
+                "example": "Jeff Sutherland"
+              },
+              "year": {
+                "type": "number",
+                "description": "Published",
+                "example": 2015
+              },
+              "pages": {
+                "type": "number",
+                "description": "Book pages",
+                "example": 256
+              },
+              "owner": {
+                "type": "string",
+                "description": "Book owner",
+                "example": "629f0e7c725dda80525ea815"
+              },
+              "_id": {
+                "type": "string",
+                "description": "Book id",
+                "example": "629f0eea725dda80525ea81d"
+              },
+              "createdAt": {
+                "type": "string",
+                "description": "Time created",
+                "format": "date-time"
+              },
+              "updatedAt": {
+                "type": "string",
+                "description": "Time updated",
+                "format": "date-time"
+              },
+              "rating": {
+                "type": "number",
+                "description": "Book rating",
+                "example": 5
+              },
+              "review": {
+                "type": "string",
+                "description": "Book review",
+                "example": "This is the original book on Scrum-way of project management. It was amazing."
+              }
+            }
+          }
+        }
+      },
+      "AddUserStatisticsRequest": {
+        "type": "object",
+        "required": ["date", "pages"],
+        "properties": {
+          "date": {
+            "type": "string",
+            "description": "Statistics date",
+            "format": "date"
+          },
+          "pages": {
+            "type": "nember",
+            "description": "Number of pages read",
+            "example": 26
+          }
+        }
+      },
+      "AddUserStatisticsResponse": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "description": "Statistics date",
+            "format": "date"
+          },
+          "pages": {
+            "type": "nember",
+            "description": "Number of pages read",
+            "example": 26
+          },
+          "owner": {
+            "type": "string",
+            "description": "Book owner",
+            "example": "629f0e7c725dda80525ea815"
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "Time created",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "Time updated",
+            "format": "date-time"
+          }
+        }
+      },
+      "AddNewTrainingRequest": {
+        "type": "object",
+        "required": ["start", "end", "books"],
+        "properties": {
+          "start": {
+            "type": "string",
+            "description": "Training start date",
+            "format": "date"
+          },
+          "end": {
+            "type": "string",
+            "description": "Training finish date",
+            "format": "date"
+          },
+          "books": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "_id": {
+                  "type": "string",
+                  "description": "Book id",
+                  "example": "629f0eea725dda80525ea81d"
+                }
+              }
+            }
+          }
+        }
+      },
+      "AddNewTrainingResponse": {
+        "type": "object",
+        "properties": {
+          "start": {
+            "type": "string",
+            "description": "Date added",
+            "format": "date-time"
+          },
+          "end": {
+            "type": "string",
+            "description": "Date finished",
+            "format": "date-time"
+          },
+          "books": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "_id": {
+                  "type": "string",
+                  "description": "Book id",
+                  "example": "629f0eea725dda80525ea81d"
+                }
+              }
+            }
+          },
+          "owner": {
+            "type": "string",
+            "description": "Book owner",
+            "example": "629f0e7c725dda80525ea815"
+          },
+          "_id": {
+            "type": "string",
+            "description": "Book id",
+            "example": "629f0eea725dda80525ea81d"
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "Time created",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "Time updated",
+            "format": "date-time"
+          }
+        }
+      },
+      "GetTrainingResponse": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "Training id",
+            "example": "629f0eea725dda80525ea81d"
+          },
+          "start": {
+            "type": "string",
+            "description": "Date added",
+            "format": "date-time"
+          },
+          "end": {
+            "type": "string",
+            "description": "Date finished",
+            "format": "date-time"
+          },
+          "books": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "_id": {
+                  "type": "string",
+                  "description": "Book id",
+                  "example": "629f0eea725dda80525ea81d"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "Book title",
+                  "example": "Scrum. The Art of Doing Twice the Work in Half the Time"
+                },
+                "author": {
+                  "type": "string",
+                  "description": "Book author",
+                  "example": "Jeff Sutherland"
+                },
+                "year": {
+                  "type": "number",
+                  "description": "Published",
+                  "example": 2015
+                },
+                "pages": {
+                  "type": "number",
+                  "description": "Book pages",
+                  "example": 256
+                },
+                "owner": {
+                  "type": "string",
+                  "description": "Book owner",
+                  "example": "629f0e7c725dda80525ea815"
+                },
+                "createdAt": {
+                  "type": "string",
+                  "description": "Time created",
+                  "format": "date-time"
+                },
+                "updatedAt": {
+                  "type": "string",
+                  "description": "Time updated",
+                  "format": "date-time"
+                },
+                "rating": {
+                  "type": "number",
+                  "description": "Book rating",
+                  "example": 5
+                },
+                "review": {
+                  "type": "string",
+                  "description": "Book review",
+                  "example": "This is the original book on Scrum-way of project management. It was amazing."
+                }
+              }
+            }
+          },
+          "owner": {
+            "type": "object",
+            "properties": {
+              "_id": {
+                "type": "string",
+                "description": "Book owner",
+                "example": "629f0e7c725dda80525ea815"
+              },
+              "name": {
+                "type": "string",
+                "description": "User's name",
+                "example": "Mango"
+              },
+              "password": {
+                "type": "string",
+                "description": "User's password",
+                "example": "$2a$10$teL6baOUoQLYE1ogDv5oa.kI5S0vXH8CWJWYlZzJOM6OKW5uV/aCO"
+              },
+              "email": {
+                "type": "string",
+                "description": "User's email",
+                "format": "email"
+              },
+              "token": {
+                "type": "string",
+                "description": "User's token",
+                "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOWEwMjczNzM3MGFlMGI0NjEyZmUxYSIsImlhdCI6MTY1NDI2MDM0OCwiZXhwIjoxNjU0MzQ2NzQ4fQ.5SdH_3w3weMg6caqx9fAJd79AFRmVjcNz3Ugre0WxgI"
+              },
+              "createdAt": {
+                "type": "string",
+                "description": "Time created",
+                "format": "date-time"
+              },
+              "updatedAt": {
+                "type": "string",
+                "description": "Time updated",
+                "format": "date-time"
+              }
+            }
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "Time created",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "Time updated",
+            "format": "date-time"
           }
         }
       }
