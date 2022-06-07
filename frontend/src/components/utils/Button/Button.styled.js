@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 const Button = styled.button`
+  position: relative;
+
   display: block;
   padding: 12px;
   min-width: 80px;
