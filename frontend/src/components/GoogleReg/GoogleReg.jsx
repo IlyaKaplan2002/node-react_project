@@ -1,15 +1,23 @@
 import { googleAuth } from 'api/auth';
-import React, { useEffect } from 'react';
+import { notifyError } from 'helpers';
+import React, { useCallback, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { authActions } from 'redux/auth';
 
 const AuthGoogle = ({ className }) => {
-  const handleResponse = async res => {
-    try {
-      const result = await googleAuth(res.credential);
-      console.log(result);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const dispatch = useDispatch();
+
+  const handleResponse = useCallback(
+    async res => {
+      try {
+        const result = await googleAuth(res.credential);
+        dispatch(authActions.login(result));
+      } catch (error) {
+        notifyError(error);
+      }
+    },
+    [dispatch]
+  );
 
   useEffect(() => {
     /* global google */
@@ -24,7 +32,7 @@ const AuthGoogle = ({ className }) => {
       logo_alignment: 'left',
       locale: 'en',
     });
-  }, []);
+  }, [handleResponse]);
 
   return <div className={className} id="googleReg"></div>;
 };

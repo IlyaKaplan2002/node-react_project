@@ -1,9 +1,11 @@
 import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { routes } from 'constants';
+import { useSelector } from 'react-redux';
+import { authSelectors } from 'redux/auth';
 
 const Router = () => {
-  const isLoggedIn = false;
+  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
 
   return (
     <Routes>
