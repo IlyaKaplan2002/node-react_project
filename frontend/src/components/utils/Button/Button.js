@@ -8,9 +8,11 @@ const Button = ({
   className,
   onClick,
   filled = false,
+  disabled,
 }) => {
   return (
     <StyledButton
+      disabled={disabled}
       type={type}
       className={className}
       onClick={onClick}
