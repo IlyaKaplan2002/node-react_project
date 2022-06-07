@@ -193,14 +193,7 @@
         }
       }
     },
-    "/api/auth/library": {
-      "get": {
-        "tags": ["Auth"],
-        "summary": "Get current user library",
-        "parameters": [],
-        "security": [{ "Bearer": [] }]
-      }
-    },
+
     "/api/books/": {
       "post": {
         "tags": ["Books"],
@@ -238,6 +231,12 @@
             "content": {}
           }
         }
+      },
+      "get": {
+        "tags": ["Books"],
+        "summary": "Get current user library",
+        "parameters": [],
+        "security": [{ "Bearer": [] }]
       }
     },
     "/api/books/{bookId}/review": {
