@@ -103,6 +103,7 @@ const data = {
       borderColor: 'rgba(9, 30, 63, 1,)',
       backgroundColor: 'rgba(9, 30, 63, 1)',
       borderWidth: 2,
+      tension: 0.5,
     },
     {
       label: 'ACT',
@@ -111,6 +112,7 @@ const data = {
       borderColor: 'rgba(255, 107, 8, 1)',
       backgroundColor: 'rgba(255, 107, 8, 1)',
       borderWidth: 2,
+      tension: 0.5,
     },
   ],
 };
