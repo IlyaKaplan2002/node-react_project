@@ -1,1 +1,1 @@
-export { default as MyGoalsSection } from './MyGoalsSection';
+export { default } from './MyGoalsSection';

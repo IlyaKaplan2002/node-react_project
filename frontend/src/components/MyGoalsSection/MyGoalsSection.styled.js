@@ -67,6 +67,7 @@ const GoalsAmount = styled.div`
   text-align: center;
   width: ${props => (props.active ? '63px' : '100px')};
 
+  font-family: ${props => props.theme.fonts.families.montserrat};
   font-size: ${props => (props.active ? '11px' : '14px')};
   line-height: ${props => (props.active ? '1.18' : '1.21')};
   font-weight: ${props => props.theme.fonts.weights.medium};
