@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import loginSchema from 'models/loginSchema';
 import {
@@ -16,6 +16,7 @@ import { notifyError } from 'helpers';
 import { useDispatch } from 'react-redux';
 import { authActions } from 'redux/auth';
 import { routes } from 'constants';
+import Loader from 'components/utils/Loader';
 
 const initialValues = {
   email: '',
@@ -24,14 +25,17 @@ const initialValues = {
 
 const LoginForm = () => {
   const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(false);
 
   const onSubmit = async values => {
     try {
+      setIsLoading(true);
       const data = await login(values);
       dispatch(authActions.login(data));
     } catch (error) {
       notifyError(error);
     }
+    setIsLoading(false);
   };
 
   const formik = useFormik({
@@ -85,8 +89,9 @@ const LoginForm = () => {
           />
         </div>
 
-        <Button className="button" type="submit" filled>
+        <Button className="button" disabled={isLoading} type="submit" filled>
           Login
+          {isLoading && <Loader button width={30} height={30} />}
         </Button>
         <FormSpanStyled>
           <LinkStyled to={routes.signUp.path}>Register</LinkStyled>
