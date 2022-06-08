@@ -1,4 +1,5 @@
-const addBook = require('./addBook.js');
-const addReview = require('./addReview.js');
+const addBook = require('./addBook');
+const addReview = require('./addReview');
+const getBooks = require('./getBooks');
 
-module.exports = { addBook, addReview };
+module.exports = { addBook, addReview, getBooks };

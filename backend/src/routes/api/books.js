@@ -6,6 +6,8 @@ const { joiBookSchemas } = require('../../models');
 
 const router = express.Router();
 
+router.get('/', auth, ctrlWrapper(ctrl.getBooks));
+
 router.post(
   '/',
   auth,

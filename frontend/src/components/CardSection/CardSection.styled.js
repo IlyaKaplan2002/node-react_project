@@ -14,8 +14,10 @@ const CardSectionStyled = styled.div`
 
 const CardSectionNameStyled = styled.h2`
   font-weight: ${props => props.theme.fonts.weights.semiBold};
+  font-family: ${props => props.theme.fonts.families.montserrat};
   margin-bottom: 20px;
   font-size: 19px;
+  color: ${props => props.theme.colors.mainBlack};
   line-height: 1.21;
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
