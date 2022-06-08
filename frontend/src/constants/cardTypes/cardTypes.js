@@ -3,6 +3,8 @@ const cardTypes = {
   reading: 'reading',
   goingToRead: 'goingToRead',
   withDel: 'withDel',
-  withoutDel: 'withoutDel',
+  withoutDelEmpty: 'withoutDelEmpty',
+  notChecked: 'notChecked',
+  checked: 'checked',
 };
 export default cardTypes;

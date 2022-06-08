@@ -1,6 +1,8 @@
 import React from 'react';
 import { MdMenuBook } from 'react-icons/md';
 import { MdOutlineDelete } from 'react-icons/md';
+import {MdCheckBoxOutlineBlank} from 'react-icons/md';
+import {BiCheckSquare} from 'react-icons/bi';
 import { AiOutlineStar, AiFillStar } from 'react-icons/ai';
 import Button from 'components/utils/Button';
 import {
@@ -28,17 +30,30 @@ const CardForStart = ({
 }) => {
   const isReading = cardType === cardTypes.reading;
   const isRead = cardType === cardTypes.alreadyRead;
+
+  const withoutDelEmpty = cardType === cardTypes.withoutDelEmpty;
+  const withDel = cardType === cardTypes.withDel;
+  const notChecked = cardType === cardTypes.notChecked;
+  const checked = cardType === cardTypes.checked;
+
   return (
     <CardStyled read={isRead}>
-      <BookIcon reading={isReading}>
+      {(withoutDelEmpty||withDel)&&<BookIcon reading={isReading}>
         <MdMenuBook size={21} />
-      </BookIcon>
+      </BookIcon>}
+      {checked&&<BookIcon reading={checked}>
+        <BiCheckSquare size={21} />
+      </BookIcon>}
+      {notChecked&&<BookIcon >
+        <MdCheckBoxOutlineBlank size={21} />
+      </BookIcon>}
       <CardNameWrapper>
         <CardName>{name}</CardName>
       </CardNameWrapper>
-      <DellIcon reading={isReading}>
+
+      {withDel&&<DellIcon reading={withDel}>
         <MdOutlineDelete size={21} />
-      </DellIcon>
+      </DellIcon>}
       <ListStyled read={isRead}>
         <ListItemStyled>
           <ListItemName>Author:</ListItemName>
