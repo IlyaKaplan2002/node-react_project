@@ -12,4 +12,6 @@ router.post(
   ctrlWrapper(ctrl.addStatistic)
 );
 
+router.get('/', auth, ctrlWrapper(ctrl.getStatistic));
+
 module.exports = router;
