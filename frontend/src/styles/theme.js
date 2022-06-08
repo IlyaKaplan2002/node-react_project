@@ -29,6 +29,7 @@ const theme = {
     mainOrange: '#FF6B08',
     iconActiveBg: '#f5f7fa',
     darkGray: '#6D7A8D',
+    backdrop: 'rgba(43, 43, 43, 0.1)',
   },
   borders: {
     input: '1px solid #a6abb9',

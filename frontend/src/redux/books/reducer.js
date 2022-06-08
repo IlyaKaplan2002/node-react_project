@@ -27,6 +27,10 @@ const reducer = createReducer(initialState, {
       [cardTypes.goingToRead]: [...newGoingToRead],
     };
   },
+  [actions.add]: (state, action) => {
+    const status = action.payload.status;
+    return { ...state, [status]: [...state[status], action.payload] };
+  },
 });
 
 export default reducer;

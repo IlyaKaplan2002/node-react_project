@@ -7,7 +7,7 @@ const AddBookModal = ({ onClose }) => {
   return (
     <AddBookModalStyled>
       <GoBackButton className="back" onClick={onClose} />
-      <AddBookForm />
+      <AddBookForm onClose={onClose} />
     </AddBookModalStyled>
   );
 };

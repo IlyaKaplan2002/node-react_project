@@ -33,7 +33,6 @@ const CardsItemName = styled.li`
 `;
 
 const CardsNameList = styled.ul`
-  display: none;
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     display: inline-grid;
     width: 100%

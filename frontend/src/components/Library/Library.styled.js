@@ -7,6 +7,13 @@ const LibraryStyled = styled.div`
   .cards:not(:last-child) {
     margin-bottom: 20px;
   }
+
+  .empty {
+    font-family: ${props => props.theme.fonts.families.montserrat};
+    color: ${props => props.theme.colors.secondary};
+    width: fit-content;
+    margin: 0 auto;
+  }
 `;
 
 export default LibraryStyled;

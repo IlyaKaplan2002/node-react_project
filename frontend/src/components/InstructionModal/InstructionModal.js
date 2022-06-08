@@ -5,7 +5,7 @@ import { Wrapper } from './InstructionModal.styled';
 import InstructionList from 'components/utils/InstructionList';
 import Button from 'components/utils/Button';
 
-const InstructionModal = () => {
+const InstructionModal = ({ onClose }) => {
   return (
     <Container>
       <Wrapper>
@@ -31,7 +31,7 @@ const InstructionModal = () => {
               className="button"
               type="button"
               filled="true"
-              onClick={() => console.log('click')}
+              onClick={onClose}
             >
               Ok
             </Button>

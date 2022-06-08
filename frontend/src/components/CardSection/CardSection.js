@@ -7,8 +7,15 @@ import {
 import { Card } from 'components/Card';
 import { cardTypes } from 'constants';
 import { Container } from 'styles';
+import Media from 'react-media';
 
-const CardSection = ({ cardType, books = [], className }) => {
+const CardSection = ({
+  cardType,
+  books = [],
+  className,
+  onResumeClick,
+  setResumeBookId,
+}) => {
   const isReading = cardType === cardTypes.reading;
   const isRead = cardType === cardTypes.alreadyRead;
   const isGoingToRead = cardType === cardTypes.goingToRead;
@@ -27,13 +34,20 @@ const CardSection = ({ cardType, books = [], className }) => {
             {isReading && (
               <CardSectionNameStyled>Reading now</CardSectionNameStyled>
             )}
-            <CardsNameList read={isRead}>
-              <li>Book title</li>
-              <li>Author</li>
-              <li>Year</li>
-              <li>Pages</li>
-              {isRead && <li>Rating</li>}
-            </CardsNameList>
+            <Media
+              query="(min-width: 768px)"
+              render={() => (
+                <>
+                  <CardsNameList read={isRead}>
+                    <li>Book title</li>
+                    <li>Author</li>
+                    <li>Year</li>
+                    <li>Pages</li>
+                    {isRead && <li>Rating</li>}
+                  </CardsNameList>
+                </>
+              )}
+            />
             {books.map(({ name, author, year, pages, rating, _id }) => (
               <Card
                 key={_id ?? name}
@@ -44,6 +58,8 @@ const CardSection = ({ cardType, books = [], className }) => {
                 year={year}
                 pages={pages}
                 rating={rating}
+                onResumeClick={onResumeClick}
+                setResumeBookId={setResumeBookId}
               />
             ))}
           </CardSectionStyled>
