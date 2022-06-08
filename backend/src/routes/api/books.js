@@ -22,4 +22,6 @@ router.patch(
   ctrlWrapper(ctrl.addReview)
 );
 
+router.delete('/:bookId', auth, ctrlWrapper(ctrl.removeBook));
+
 module.exports = router;

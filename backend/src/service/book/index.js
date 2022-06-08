@@ -1,13 +1,15 @@
 const addBook = require('./addBook');
-const findBook = require('./findBook');
 const updateBook = require('./updateBook');
 const findBooksByUserId = require('./findBooksByUserId');
 const getBookById = require('./getBookById');
+const findBooksByIdAndRemove = require('./findBooksByIdAndRemove');
+const findBook = require('./findBook');
 
 module.exports = {
   addBook,
-  findBook,
   updateBook,
   findBooksByUserId,
   getBookById,
+  findBook,
+  findBooksByIdAndRemove,
 };
