@@ -20,6 +20,12 @@ router.patch(
   ctrlWrapper(ctrl.addReview)
 );
 
-router.delete('/:bookId', auth, ctrl.removeBook);
+router.delete('/:bookId', auth, ctrlWrapper(ctrl.removeBook));
+
+router.get('/', auth, ctrlWrapper(ctrl.getAllBooks));
+
+router.get('/:bookId', auth, ctrlWrapper(ctrl.getBookById));
+
+router.put('/:bookId', auth, ctrlWrapper(ctrl.updateUSerBook));
 
 module.exports = router;

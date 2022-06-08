@@ -29,6 +29,5 @@ router.get('/info', auth, ctrlWrapper(ctrl.info));
 router.get('/logout', auth, ctrlWrapper(ctrl.logout));
 
 router.get('/library', auth);
-router.get('/current', auth, ctrl.currentUser);
 
 module.exports = router;
