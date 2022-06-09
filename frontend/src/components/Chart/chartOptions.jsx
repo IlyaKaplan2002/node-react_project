@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 const fn = value => {
   if (value < 768) {
     console.log(value);
@@ -7,8 +6,6 @@ const fn = value => {
   return true;
 };
 
-=======
->>>>>>> f5932d2 (styled)
 const options = {
   plugins: {
     title: {
@@ -61,13 +58,9 @@ const options = {
         },
       },
 
-<<<<<<< HEAD
       grid: {
         display: fn(window.innerWidth),
       },
-=======
-      grid: { display: false },
->>>>>>> f5932d2 (styled)
     },
 
     y: {
