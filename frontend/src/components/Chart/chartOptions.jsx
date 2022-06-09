@@ -1,3 +1,11 @@
+const fn = value => {
+  if (value < 768) {
+    console.log(value);
+    return false;
+  }
+  return true;
+};
+
 const options = {
   plugins: {
     title: {
@@ -50,7 +58,9 @@ const options = {
         },
       },
 
-      grid: { display: false },
+      grid: {
+        display: fn(window.innerWidth),
+      },
     },
 
     y: {
