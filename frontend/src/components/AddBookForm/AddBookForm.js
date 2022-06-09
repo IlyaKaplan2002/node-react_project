@@ -17,11 +17,11 @@ const initialValues = {
   pages: '',
 };
 
-const AddBookForm = ({ onClose }) => {
+const AddBookForm = ({ onClose = () => {} }) => {
   const dispatch = useDispatch();
   const token = useSelector(authSelectors.getToken);
 
-  const onSubmit = async values => {
+  const onSubmit = async (values, { resetForm }) => {
     try {
       const { book } = await addBook(token, values);
       dispatch(booksActions.add(book));
@@ -29,6 +29,7 @@ const AddBookForm = ({ onClose }) => {
       notifyError(error);
     }
     onClose();
+    resetForm();
   };
 
   const formik = useFormik({
@@ -53,54 +54,55 @@ const AddBookForm = ({ onClose }) => {
           touched={formik.touched.name}
           error={formik.errors.name}
           classNames={{
-            field: 'label',
+            field: 'label name',
           }}
         />
+        <div className="dataWrapper">
+          <InputField
+            placeholder="..."
+            name="author"
+            type="text"
+            value={formik.values.author}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            label="Author"
+            touched={formik.touched.author}
+            error={formik.errors.author}
+            classNames={{
+              field: 'label',
+            }}
+          />
 
-        <InputField
-          placeholder="..."
-          name="author"
-          type="text"
-          value={formik.values.author}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          label="Author"
-          touched={formik.touched.author}
-          error={formik.errors.author}
-          classNames={{
-            field: 'label',
-          }}
-        />
+          <InputField
+            placeholder="..."
+            name="year"
+            type="text"
+            value={formik.values.year}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            label="Publication date"
+            touched={formik.touched.year}
+            error={formik.errors.year}
+            classNames={{
+              field: 'label',
+            }}
+          />
 
-        <InputField
-          placeholder="..."
-          name="year"
-          type="text"
-          value={formik.values.year}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          label="Publication date"
-          touched={formik.touched.year}
-          error={formik.errors.year}
-          classNames={{
-            field: 'label',
-          }}
-        />
-
-        <InputField
-          placeholder="..."
-          name="pages"
-          type="text"
-          value={formik.values.pages}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          label="Amount of pages"
-          touched={formik.touched.pages}
-          error={formik.errors.pages}
-          classNames={{
-            field: 'label',
-          }}
-        />
+          <InputField
+            placeholder="..."
+            name="pages"
+            type="text"
+            value={formik.values.pages}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            label="Amount of pages"
+            touched={formik.touched.pages}
+            error={formik.errors.pages}
+            classNames={{
+              field: 'label',
+            }}
+          />
+        </div>
       </div>
 
       <Button className="button" type="submit">

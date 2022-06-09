@@ -38,6 +38,7 @@ const CardsNameList = styled.ul`
     width: 100%;
     color: ${props => props.theme.colors.secondary};
     font-size: 14px;
+    font-family: ${props => props.theme.fonts.families.montserrat};
     font-weight: ${props => props.theme.fonts.weights.medium};
     grid-template-columns: ${props =>
       props.read
