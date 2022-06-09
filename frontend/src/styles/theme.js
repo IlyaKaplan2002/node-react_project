@@ -29,6 +29,8 @@ const theme = {
     mainOrange: '#FF6B08',
     iconActiveBg: '#f5f7fa',
     darkGray: '#6D7A8D',
+    backdrop: 'rgba(43, 43, 43, 0.1)',
+    timer: '#091E3F',
   },
   borders: {
     input: '1px solid #a6abb9',
@@ -42,6 +44,7 @@ const theme = {
     hero: '0px 4px 4px rgba(0, 0, 0, 0.25)',
     modal: '10px 10px 20px rgba(9, 30, 63, 0.2)',
     instrustion: '0px 2px 4px rgba(0, 0, 0, 0.25)',
+    goals: '4px 4px 8px rgba(36, 42, 55, 0.15)',
   },
 };
 

@@ -6,6 +6,8 @@ const { joiBookSchemas } = require('../../models');
 
 const router = express.Router();
 
+router.get('/', auth, ctrlWrapper(ctrl.getBooks));
+
 router.post(
   '/',
   auth,
@@ -19,5 +21,7 @@ router.patch(
   validation(joiBookSchemas.resume),
   ctrlWrapper(ctrl.addReview)
 );
+
+router.delete('/:bookId', auth, ctrlWrapper(ctrl.removeBook));
 
 module.exports = router;

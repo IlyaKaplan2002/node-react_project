@@ -1,14 +1,8 @@
-import AppBar from 'components/AppBar';
-import Resume from 'components/Resume';
+import Library from 'components/Library/Library';
 import React from 'react';
 
 const LibraryView = () => {
-  return (
-    <>
-      <AppBar />
-      <Resume />
-    </>
-  );
+  return <Library />;
 };
 
 export default LibraryView;

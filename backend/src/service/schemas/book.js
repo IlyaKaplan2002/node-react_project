@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose');
+const { bookStatusTypes } = require('../../constants');
 
 const bookSchema = Schema(
   {
@@ -17,6 +18,15 @@ const bookSchema = Schema(
     pages: {
       type: Number,
       required: [true, 'Enter book pages'],
+    },
+    pagesAlreadyRead: {
+      type: Number,
+      default: 0,
+    },
+    status: {
+      type: String,
+      default: 'goingToRead',
+      enum: [...Object.values(bookStatusTypes)],
     },
     rating: {
       type: Number,
