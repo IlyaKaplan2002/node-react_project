@@ -1,7 +1,7 @@
 import getInfo from 'api/auth/getInfo';
 import { notifyError } from 'helpers';
 import React, { useCallback, useEffect } from 'react';
-import Chart from './Chart';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { authActions, authSelectors } from 'redux/auth';
 import Router from './Router';
@@ -25,7 +25,7 @@ const App = () => {
     }
   }, [token, getUserData]);
 
-  return <Chart />;
+  return <Router />;
 };
 
 export default App;
