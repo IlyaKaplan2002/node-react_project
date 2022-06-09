@@ -30,6 +30,7 @@ const theme = {
     iconActiveBg: '#f5f7fa',
     darkGray: '#6D7A8D',
     backdrop: 'rgba(43, 43, 43, 0.1)',
+    timer: '#091E3F',
   },
   borders: {
     input: '1px solid #a6abb9',

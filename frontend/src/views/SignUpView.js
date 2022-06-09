@@ -9,6 +9,7 @@ const SignUpView = () => {
   useEffect(() => {
     document.title = 'Books Reading SigUp';
   }, []);
+
   return (
     <Container>
       <NonAuthHeader />
