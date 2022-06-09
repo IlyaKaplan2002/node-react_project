@@ -16,19 +16,14 @@ const CardStyled = styled.div`
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     display: inline-grid;
     grid-template-columns: ${props =>
-      props.read ? '1.2fr 3fr 0.2fr' : '1fr 1.15fr'};
+      props.read ? '0.8fr 3fr 0.2fr' : '0.5fr 1.15fr'};
     column-gap: 30px;
     padding: 14px 20px 14px 60px;
     height: 62px;
     font-size: 14px;
     max-width: 704px;
-  }
-
-  @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
-    grid-template-columns: ${props =>
-      props.read ? '1.25fr 3fr 0.84fr' : '1fr 1.3fr'};
-    max-width: 1248px;
-    column-gap: ${props => (props.read ? '30px' : '110px')};
+    padding-right: 60px;    
+  }    
   }
 
   & + & {
@@ -85,7 +80,7 @@ const BookIcon = styled.span`
 const DellIcon = styled.span`
   position: absolute;
   top: 20px;
-  right: 0px;
+  right: 5px;
   color: ${props => props.theme.colors.secondary};
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     top: 50%;
@@ -127,9 +122,6 @@ const ListItemName = styled.span`
   }
 `;
 
-const RatingIcon = styled.span`
-  color: ${props => props.theme.colors.mainOrange};
-`;
 const CardName = styled.p`
   overflow: hidden;
   margin-bottom: 12px;
@@ -161,7 +153,6 @@ export {
   ListItemStyled,
   ListItemName,
   BookIcon,
-  RatingIcon,
   CardName,
   CardNameWrapper,
   DellIcon,

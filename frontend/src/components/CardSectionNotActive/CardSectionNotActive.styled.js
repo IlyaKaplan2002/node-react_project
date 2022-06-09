@@ -8,7 +8,8 @@ const CardSectionStyled = styled.div`
     width: 704px;
   }
   @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
-    width: 1248px;
+    max-width: 928px;
+    border-bottom: 1px solid #e0e5eb;
   }
 `;
 
@@ -22,6 +23,10 @@ const CardsItemName = styled.li`
 const CardsNameList = styled.ul`
   display: none;
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
+    height:41px;
+    align-items: center
+    border-top: 1px solid #E0E5EB;
+    border-bottom: 1px solid #E0E5EB;
     display: inline-grid;
     width: 100%
     color: ${props => props.theme.colors.secondary};
@@ -29,17 +34,19 @@ const CardsNameList = styled.ul`
     font-weight: ${props => props.theme.fonts.weights.medium};
     grid-template-columns: ${props =>
       props.read
-        ? '2.2fr 1.5fr 1fr 0.8fr 2.8fr'
-        : '2.55fr 1.75fr 0.65fr 0.4fr'};
+        ? '1.5fr 1.5fr 1fr 0.8fr 2.8fr'
+        : '1.85fr 1.75fr 0.65fr 0.4fr'};
       margin-bottom: 8px;
-      padding-left: 60px;
-  }
-  @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
-    grid-template-columns: ${props =>
-      props.read
-        ? '1.65fr 1.5fr 0.65fr 0.7fr 2fr'
-        : '2.6fr 1.75fr 0.6fr 0.45fr'};
+      padding-right: 60px;
+  }  
+`;
+
+const ListOwerflow = styled.div`
+  height: 480px;
+  overflow: auto;
+  @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
+    height: 200px;
   }
 `;
 
-export { CardSectionStyled, CardsItemName, CardsNameList };
+export { CardSectionStyled, CardsItemName, CardsNameList, ListOwerflow };
