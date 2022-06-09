@@ -10,12 +10,13 @@ const options = {
   plugins: {
     title: {
       display: true,
-      text: ` ${'Amont of pages / DA'.toUpperCase()}`,
+      text: ` ${'Amount of pages / DA'.toUpperCase()}`,
       align: 'start',
       color: 'rgba(36, 42, 55, 1)',
       font: {
+        family: 'Montserrat',
         size: 12,
-        weight: 600,
+        weight: 500,
       },
     },
     legend: {
@@ -53,8 +54,9 @@ const options = {
         color: 'rgba(36, 42, 55, 1)',
         align: 'end',
         font: {
+          family: 'Montserrat',
           size: 12,
-          weight: 600,
+          weight: 500,
         },
       },
 

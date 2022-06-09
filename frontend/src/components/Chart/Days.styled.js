@@ -3,8 +3,8 @@ import styled from 'styled-components';
 const DaysStyled = styled.div`
   color: red;
   position: relative;
-  top: 28px;
-  left: 143px;
+  top: 30px;
+  left: 165px;
   font-size: 12px;
   font-weight: 600;
   line-height: 1.2;

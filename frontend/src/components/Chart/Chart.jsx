@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import ChartStyled from './Chart.styled';
 import Days from './Days';
 import options from './chartOptions';
