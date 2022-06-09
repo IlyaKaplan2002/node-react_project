@@ -1,2 +1,3 @@
 export { default as routes } from './routes';
-export { default as cardTypes } from './cardTypes';
+export { cardTypes } from './cardTypes';
+export { trainingCardTypes } from './cardTypes';

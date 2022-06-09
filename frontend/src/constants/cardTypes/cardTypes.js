@@ -3,4 +3,5 @@ const cardTypes = {
   reading: 'reading',
   goingToRead: 'goingToRead',
 };
+
 export default cardTypes;
