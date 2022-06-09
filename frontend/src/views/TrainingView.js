@@ -1,11 +1,10 @@
-import CardSectionNotActive from 'components/CardSectionNotActive';
-import { trainingCardTypes } from 'constants';
+import AppBar from 'components/AppBar';
 import React from 'react';
 
 const TrainingView = () => {
   return (
     <>
-      <CardSectionNotActive cardType={trainingCardTypes.withDel} />
+      <AppBar />
     </>
   );
 };

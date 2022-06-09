@@ -14,15 +14,16 @@ import {
   DellIcon,
 } from './CardForStart.styled';
 import { cardTypes } from 'constants';
+import { trainingCardTypes } from 'constants';
 
 const CardForStart = ({ name, author, year, pages, cardType }) => {
   const isReading = cardType === cardTypes.reading;
   const isRead = cardType === cardTypes.alreadyRead;
 
-  const withoutDelEmpty = cardType === cardTypes.withoutDelEmpty;
-  const withDel = cardType === cardTypes.withDel;
-  const notChecked = cardType === cardTypes.notChecked;
-  const checked = cardType === cardTypes.checked;
+  const withoutDelEmpty = cardType === trainingCardTypes.withoutDelEmpty;
+  const withDel = cardType === trainingCardTypes.withDel;
+  const notChecked = cardType === trainingCardTypes.notChecked;
+  const checked = cardType === trainingCardTypes.checked;
 
   return (
     <CardStyled read={isRead}>
