@@ -4,12 +4,20 @@ export const WrapperStyled = styled.div`
   .backdrop {
     position: fixed;
     left: 0;
-    top: 0;
+    top: 0px;
     width: 100vw;
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
+
+    @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
+      top: 150px;
+    }
+
+    @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
+      top: -30px;
+    }
   }
 `;
 
@@ -25,9 +33,6 @@ export const Wrapper = styled.div`
     width: 608px;
     height: 272px;
     padding: 40px;
-  }
-
-  @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
   }
 
   .fisrtStepWrapper {

@@ -50,7 +50,7 @@ const AddBookFormStyled = styled.form`
     line-height: 17px;
 
     @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
-      top: 25px;
+      top: 22px;
       margin-left: 48px;
     }
   }
