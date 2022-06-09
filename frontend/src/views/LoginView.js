@@ -4,16 +4,17 @@ import LoginForm from 'components/Forms/FormLogin/LoginForm';
 import { Container } from 'styles';
 import Quote from 'components/Quote';
 import { Wrapper } from 'components/Forms/AuthForm.styled';
-
+import Result from 'components/Result';
 const LoginView = () => {
   return (
     <>
       <Container>
         <NonAuthHeader />
-        <Wrapper>
+        {/* <Wrapper>
           <LoginForm />
           <Quote />
-        </Wrapper>
+        </Wrapper> */}
+        <Result />
       </Container>
     </>
   );
