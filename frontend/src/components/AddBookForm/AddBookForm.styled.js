@@ -4,6 +4,7 @@ const AddBookFormStyled = styled.form`
   .wrapper {
     margin-bottom: 40px;
     @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
+      margin-bottom: 0;
       display: flex;
       .label:first-child {
         min-width: 346px;
@@ -14,6 +15,18 @@ const AddBookFormStyled = styled.form`
 
   .label:not(:last-child) {
     margin-bottom: 20px;
+    @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
+      margin-bottom: 0;
+    }
+  }
+
+  .label.name {
+    @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
+      margin-bottom: 24px;
+    }
+    @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
+      margin-bottom: 0;
+    }
   }
 
   .dataWrapper {
@@ -22,9 +35,9 @@ const AddBookFormStyled = styled.form`
       .label:not(:last-child) {
         margin-right: 32px;
       }
-    }
-    .label:first-child {
-      min-width: 315px;
+      .label:first-child {
+        min-width: 315px;
+      }
     }
 
     @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
@@ -39,6 +52,7 @@ const AddBookFormStyled = styled.form`
 
   @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
     display: flex;
+    align-items: flex-end;
   }
 
   .button {
@@ -50,7 +64,6 @@ const AddBookFormStyled = styled.form`
     line-height: 17px;
 
     @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
-      top: 22px;
       margin-left: 48px;
     }
   }

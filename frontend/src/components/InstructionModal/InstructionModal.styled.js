@@ -1,22 +1,27 @@
 import styled from 'styled-components';
 
 export const WrapperStyled = styled.div`
-  .backdrop {
-    position: fixed;
-    left: 0;
-    top: 0px;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  @media screen and (max-width: calc(${props =>
+      props.theme.breakpoints.tablet} - 1px)) {
+    .backdrop {
+      position: fixed;
+      left: 0;
+      top: 0px;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-    @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
-      top: 150px;
-    }
+      @media screen and (min-width: ${props =>
+          props.theme.breakpoints.tablet}) {
+        top: 150px;
+      }
 
-    @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
-      top: -30px;
+      @media screen and (min-width: ${props =>
+          props.theme.breakpoints.desktop}) {
+        top: -30px;
+      }
     }
   }
 `;
@@ -30,6 +35,7 @@ export const Wrapper = styled.div`
   padding: 43px 18px 98px 20px;
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
+    margin: 0 auto;
     width: 608px;
     height: 272px;
     padding: 40px;

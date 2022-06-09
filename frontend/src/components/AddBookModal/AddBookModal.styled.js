@@ -8,15 +8,11 @@ const AddBookModalStyled = styled.div`
   }
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
-    padding: 32px 32px 40px 32px;
-
-    .back {
-      display: none;
-    }
+    padding: 32px 32px 0 32px;
   }
 
   @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
-    padding: 40px 123px 40px 16px;
+    padding: 40px 123px 0 16px;
   }
 `;
 

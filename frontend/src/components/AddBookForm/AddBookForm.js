@@ -17,11 +17,11 @@ const initialValues = {
   pages: '',
 };
 
-const AddBookForm = ({ onClose }) => {
+const AddBookForm = ({ onClose = () => {} }) => {
   const dispatch = useDispatch();
   const token = useSelector(authSelectors.getToken);
 
-  const onSubmit = async values => {
+  const onSubmit = async (values, { resetForm }) => {
     try {
       const { book } = await addBook(token, values);
       dispatch(booksActions.add(book));
@@ -29,6 +29,7 @@ const AddBookForm = ({ onClose }) => {
       notifyError(error);
     }
     onClose();
+    resetForm();
   };
 
   const formik = useFormik({
@@ -53,7 +54,7 @@ const AddBookForm = ({ onClose }) => {
           touched={formik.touched.name}
           error={formik.errors.name}
           classNames={{
-            field: 'label',
+            field: 'label name',
           }}
         />
         <div className="dataWrapper">
