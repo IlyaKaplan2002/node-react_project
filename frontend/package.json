@@ -24,6 +24,7 @@
     "react-scripts": "5.0.0",
     "react-star-ratings": "^2.3.0",
     "react-timer-hook": "^3.0.5",
+    "react-loader-spinner": "^5.1.5",
     "redux": "^4.1.2",
     "redux-persist": "^6.0.0",
     "serve": "^13.0.2",

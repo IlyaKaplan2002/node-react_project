@@ -1,6 +1,7 @@
 import getInfo from 'api/auth/getInfo';
 import { notifyError } from 'helpers';
 import React, { useCallback, useEffect } from 'react';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { authActions, authSelectors } from 'redux/auth';
 import Router from './Router';
