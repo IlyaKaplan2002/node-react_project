@@ -1,19 +1,51 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import StarRatings from 'react-star-ratings';
 import {
   ResumeContainerStyled,
   TextStyled,
   TextAreaStyled,
-} from './Resyme.styled';
+  ResumeBackdrop,
+} from './Resume.styled';
 import Button from 'components/utils/Button';
+import { notifyError } from 'helpers';
+import { addResume } from 'api/books';
+import { useDispatch, useSelector } from 'react-redux';
+import { authSelectors } from 'redux/auth';
+import { booksActions } from 'redux/books';
+import { useOnEscClose } from 'hooks';
+import { disableBodyScroll } from 'body-scroll-lock';
+import { enableBodyScroll } from 'body-scroll-lock';
 
-const Resume = ({ onCloseModal }) => {
-  const [rating, setRaning] = useState(0);
-  const [value, setValue] = useState('');
+const Resume = ({ onCloseModal, bookId, initBook }) => {
+  const [rating, setRating] = useState(initBook.rating);
+  const [value, setValue] = useState(initBook.review);
+  const token = useSelector(authSelectors.getToken);
+  const dispatch = useDispatch();
+  const [addOnEscClose, removeOnEscClose] = useOnEscClose(onCloseModal);
 
-  const onSaveModalButtonClick = evt => {
+  useEffect(() => {
+    addOnEscClose();
+    disableBodyScroll(document.body);
+
+    return () => {
+      removeOnEscClose();
+      enableBodyScroll(document.body);
+    };
+  }, [addOnEscClose, removeOnEscClose]);
+
+  const onSaveModalButtonClick = async evt => {
     evt.preventDefault();
-    console.log(value);
+    try {
+      const { book } = await addResume(token, bookId, {
+        rating,
+        review: value,
+      });
+
+      dispatch(booksActions.update(book));
+    } catch (error) {
+      notifyError(error);
+    }
+    onCloseModal();
   };
 
   const onChangeValue = evt => {
@@ -21,41 +53,48 @@ const Resume = ({ onCloseModal }) => {
   };
 
   const changeRating = newRating => {
-    setRaning(newRating);
+    setRating(newRating);
+  };
+
+  const onBackdropClick = e => {
+    if (e.target !== e.currentTarget) return;
+    onCloseModal();
   };
 
   return (
-    <ResumeContainerStyled>
-      <TextStyled>Choose rating of the book</TextStyled>
-      <StarRatings
-        rating={rating}
-        starRatedColor="orange"
-        changeRating={changeRating}
-        starDimension="17px"
-        name="rating"
-        starSpacing="2px"
-      />
-      <form className="form" onSubmit={onSaveModalButtonClick}>
-        <label>
-          <span>Resume</span>
-          <TextAreaStyled
-            name="textArea"
-            type="text"
-            placeholder="..."
-            value={value}
-            onChange={onChangeValue}
-          />
-        </label>
-        <div className="buttonContainer">
-          <Button type="button" className="button" onClick={onCloseModal}>
-            Back
-          </Button>
-          <Button type="submit" filled className="button">
-            Save
-          </Button>
-        </div>
-      </form>
-    </ResumeContainerStyled>
+    <ResumeBackdrop onClick={onBackdropClick}>
+      <ResumeContainerStyled>
+        <TextStyled>Choose rating of the book</TextStyled>
+        <StarRatings
+          rating={rating}
+          starRatedColor="orange"
+          changeRating={changeRating}
+          starDimension="17px"
+          name="rating"
+          starSpacing="2px"
+        />
+        <form className="form" onSubmit={onSaveModalButtonClick}>
+          <label>
+            <span>Resume</span>
+            <TextAreaStyled
+              name="textArea"
+              type="text"
+              placeholder="..."
+              value={value}
+              onChange={onChangeValue}
+            />
+          </label>
+          <div className="buttonContainer">
+            <Button type="button" className="button" onClick={onCloseModal}>
+              Back
+            </Button>
+            <Button type="submit" filled className="button">
+              Save
+            </Button>
+          </div>
+        </form>
+      </ResumeContainerStyled>
+    </ResumeBackdrop>
   );
 };
 export default Resume;

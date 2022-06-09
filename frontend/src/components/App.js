@@ -15,6 +15,7 @@ const App = () => {
       const data = await getInfo(token);
       dispatch(authActions.info(data));
     } catch (error) {
+      dispatch(authActions.logout());
       notifyError(error);
     }
   }, [token, dispatch]);

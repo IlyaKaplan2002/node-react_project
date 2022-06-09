@@ -4,6 +4,11 @@ import addBookSchema from 'models/addBookShema';
 import AddBookFormStyled from './AddBookForm.styled';
 import Button from 'components/utils/Button';
 import InputField from 'components/utils/InputField';
+import { useDispatch, useSelector } from 'react-redux';
+import { notifyError } from 'helpers';
+import { addBook } from 'api/books';
+import { authSelectors } from 'redux/auth';
+import { booksActions } from 'redux/books';
 
 const initialValues = {
   name: '',
@@ -12,13 +17,26 @@ const initialValues = {
   pages: '',
 };
 
-const AddBookForm = () => {
+const AddBookForm = ({ onClose }) => {
+  const dispatch = useDispatch();
+  const token = useSelector(authSelectors.getToken);
+
+  const onSubmit = async values => {
+    try {
+      const { book } = await addBook(token, values);
+      dispatch(booksActions.add(book));
+    } catch (error) {
+      notifyError(error);
+    }
+    onClose();
+  };
+
   const formik = useFormik({
     initialValues,
     initialErrors: initialValues,
     validationSchema: addBookSchema,
     validateOnBlur: true,
-    onSubmit: values => console.log(values),
+    onSubmit: onSubmit,
   });
 
   return (

@@ -16,16 +16,23 @@ import { cardTypes } from 'constants';
 
 const Card = ({
   name,
-  onResumeClick = () => {},
+  onResumeClick,
   author,
   year,
   pages,
   rating = 0,
   cardType,
   id,
+  setResumeBookId,
 }) => {
+  const onResumeButtonClick = () => {
+    setResumeBookId(id);
+    onResumeClick();
+  };
+
   const isReading = cardType === cardTypes.reading;
   const isRead = cardType === cardTypes.alreadyRead;
+
   return (
     <CardStyled read={isRead}>
       <BookIcon reading={isReading}>
@@ -72,7 +79,7 @@ const Card = ({
         <Button
           className={'resume-card-button'}
           label={'Resume'}
-          onClick={onResumeClick}
+          onClick={onResumeButtonClick}
         />
       )}
     </CardStyled>
