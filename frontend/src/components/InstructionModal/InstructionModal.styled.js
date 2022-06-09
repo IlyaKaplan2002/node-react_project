@@ -1,26 +1,33 @@
 import styled from 'styled-components';
 
+export const WrapperStyled = styled.div`
+  .backdrop {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+`;
+
 export const Wrapper = styled.div`
-  position: fixed;
-  top: 50%;
-  left: 50%;
   width: 280px;
   height: 425px;
-  transform: translate(-50%, -43%);
 
   background: ${props => props.theme.colors.mainWhite};
   box-shadow: ${props => props.theme.shadows.header};
   padding: 43px 18px 98px 20px;
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
-    transform: translate(-50%, -50%);
     width: 608px;
     height: 272px;
     padding: 40px;
   }
 
   @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
-    transform: translate(-50%, -95%);
   }
 
   .fisrtStepWrapper {

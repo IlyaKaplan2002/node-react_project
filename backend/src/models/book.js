@@ -9,7 +9,7 @@ const add = Joi.object({
 
 const resume = Joi.object({
   rating: Joi.number().min(1).max(5).required(),
-  review: Joi.string().max(1000).required(),
+  review: Joi.string(),
 });
 
 module.exports = {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import StarRatings from 'react-star-ratings';
 import {
   ResumeContainerStyled,
@@ -9,13 +9,29 @@ import {
 import Button from 'components/utils/Button';
 import { notifyError } from 'helpers';
 import { addResume } from 'api/books';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { authSelectors } from 'redux/auth';
+import { booksActions } from 'redux/books';
+import { useOnEscClose } from 'hooks';
+import { disableBodyScroll } from 'body-scroll-lock';
+import { enableBodyScroll } from 'body-scroll-lock';
 
-const Resume = ({ onCloseModal, bookId }) => {
-  const [rating, setRating] = useState(0);
-  const [value, setValue] = useState('');
+const Resume = ({ onCloseModal, bookId, initBook }) => {
+  const [rating, setRating] = useState(initBook.rating);
+  const [value, setValue] = useState(initBook.review);
   const token = useSelector(authSelectors.getToken);
+  const dispatch = useDispatch();
+  const [addOnEscClose, removeOnEscClose] = useOnEscClose(onCloseModal);
+
+  useEffect(() => {
+    addOnEscClose();
+    disableBodyScroll(document.body);
+
+    return () => {
+      removeOnEscClose();
+      enableBodyScroll(document.body);
+    };
+  }, [addOnEscClose, removeOnEscClose]);
 
   const onSaveModalButtonClick = async evt => {
     evt.preventDefault();
@@ -24,10 +40,12 @@ const Resume = ({ onCloseModal, bookId }) => {
         rating,
         review: value,
       });
-      console.log(book);
+
+      dispatch(booksActions.update(book));
     } catch (error) {
       notifyError(error);
     }
+    onCloseModal();
   };
 
   const onChangeValue = evt => {

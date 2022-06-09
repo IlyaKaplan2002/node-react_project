@@ -9,7 +9,7 @@ const initialState = {
 };
 
 const reducer = createReducer(initialState, {
-  [actions.update]: (state, action) => {
+  [actions.init]: (state, action) => {
     const newBooks = action.payload;
     const newAlreadyRead = [];
     const newReading = [];
@@ -26,6 +26,16 @@ const reducer = createReducer(initialState, {
       [cardTypes.reading]: [...newReading],
       [cardTypes.goingToRead]: [...newGoingToRead],
     };
+  },
+  [actions.update]: (state, action) => {
+    const { status, _id: bookId } = action.payload;
+
+    const booksGroup = [...state[status]];
+    const newBooks = booksGroup.map(book => {
+      if (book._id !== bookId) return book;
+      return action.payload;
+    });
+    return { ...state, [status]: [...newBooks] };
   },
   [actions.add]: (state, action) => {
     const status = action.payload.status;

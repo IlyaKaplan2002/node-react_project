@@ -8,6 +8,7 @@ import AddButton from 'components/utils/AddButton';
 import { cardTypes } from 'constants';
 import { notifyError } from 'helpers';
 import React, { useCallback, useEffect, useState } from 'react';
+import Media from 'react-media';
 import { useDispatch, useSelector } from 'react-redux';
 import { authSelectors } from 'redux/auth';
 import { booksActions, booksSelectors } from 'redux/books';
@@ -32,7 +33,7 @@ const Library = () => {
         setAddModalOpened(true);
         setInstructionModalOpened(true);
       }
-      dispatch(booksActions.update(books));
+      dispatch(booksActions.init(books));
     } catch (error) {
       notifyError(error);
     }
@@ -50,7 +51,10 @@ const Library = () => {
     <>
       <AppBar />
       {addModalOpened ? (
-        <AddBookModal onClose={toggleAddBookModal} />
+        <AddBookModal
+          onClose={toggleAddBookModal}
+          isInstructionModalOpened={instructionModalOpened}
+        />
       ) : (
         <>
           <LibraryStyled>
@@ -80,14 +84,21 @@ const Library = () => {
               <p className="empty">Your library is empty</p>
             )}
           </LibraryStyled>
-          <AddButton onClick={toggleAddBookModal} />
+          <Media
+            query="(max-width:767px)"
+            render={() => <AddButton onClick={toggleAddBookModal} />}
+          />
         </>
       )}
       {instructionModalOpened && (
         <InstructionModal onClose={closeInstructionModal} />
       )}
       {resumeModalOpened && (
-        <Resume onCloseModal={toggleResumeModal} bookId={resumeBookId} />
+        <Resume
+          onCloseModal={toggleResumeModal}
+          bookId={resumeBookId}
+          initBook={alreadyRead.find(book => book._id === resumeBookId)}
+        />
       )}
     </>
   );
