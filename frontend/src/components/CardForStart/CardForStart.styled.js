@@ -22,8 +22,7 @@ const CardStyled = styled.div`
     height: 62px;
     font-size: 14px;
     max-width: 704px;
-    padding-right: 60px;    
-  }    
+    padding-right: 60px;
   }
 
   & + & {

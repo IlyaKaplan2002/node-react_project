@@ -6,14 +6,14 @@ import {
 } from './CardSectionNotActive.styled';
 import CardForStart from 'components/CardForStart';
 import Spliter from 'components/utils/Spliter';
-import { cardTypes } from 'constants';
 import { Container } from 'styles';
+import { trainingCardTypes } from 'constants';
 
 const CardSectionNotActive = ({ cardType, books = [] }) => {
-  const withoutDelEmpty = cardType === cardTypes.withoutDelEmpty;
-  const withDel = cardType === cardTypes.withDel;
-  const notChecked = cardType === cardTypes.notChecked;
-  const checked = cardType === cardTypes.checked;
+  const withoutDelEmpty = cardType === trainingCardTypes.withoutDelEmpty;
+  const withDel = cardType === trainingCardTypes.withDel;
+  const notChecked = cardType === trainingCardTypes.notChecked;
+  const checked = cardType === trainingCardTypes.checked;
 
   return (
     <Container>
