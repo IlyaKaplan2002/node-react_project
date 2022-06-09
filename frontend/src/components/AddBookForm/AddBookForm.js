@@ -56,51 +56,52 @@ const AddBookForm = ({ onClose }) => {
             field: 'label',
           }}
         />
+        <div className="dataWrapper">
+          <InputField
+            placeholder="..."
+            name="author"
+            type="text"
+            value={formik.values.author}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            label="Author"
+            touched={formik.touched.author}
+            error={formik.errors.author}
+            classNames={{
+              field: 'label',
+            }}
+          />
 
-        <InputField
-          placeholder="..."
-          name="author"
-          type="text"
-          value={formik.values.author}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          label="Author"
-          touched={formik.touched.author}
-          error={formik.errors.author}
-          classNames={{
-            field: 'label',
-          }}
-        />
+          <InputField
+            placeholder="..."
+            name="year"
+            type="text"
+            value={formik.values.year}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            label="Publication date"
+            touched={formik.touched.year}
+            error={formik.errors.year}
+            classNames={{
+              field: 'label',
+            }}
+          />
 
-        <InputField
-          placeholder="..."
-          name="year"
-          type="text"
-          value={formik.values.year}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          label="Publication date"
-          touched={formik.touched.year}
-          error={formik.errors.year}
-          classNames={{
-            field: 'label',
-          }}
-        />
-
-        <InputField
-          placeholder="..."
-          name="pages"
-          type="text"
-          value={formik.values.pages}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          label="Amount of pages"
-          touched={formik.touched.pages}
-          error={formik.errors.pages}
-          classNames={{
-            field: 'label',
-          }}
-        />
+          <InputField
+            placeholder="..."
+            name="pages"
+            type="text"
+            value={formik.values.pages}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            label="Amount of pages"
+            touched={formik.touched.pages}
+            error={formik.errors.pages}
+            classNames={{
+              field: 'label',
+            }}
+          />
+        </div>
       </div>
 
       <Button className="button" type="submit">
