@@ -16,10 +16,10 @@ const Days = () => {
 
   const fetchAllBooks = useCallback(async () => {
     try {
-      const date = await getStatistic(token);
-      dispatch(statisticsActions.init(date));
-      console.log(date);
-      console.log(date[1]);
+      const { statistic } = await getStatistic(token);
+      dispatch(statisticsActions.init(statistic));
+      console.log(statistic);
+      console.log(statistic[1]);
 
       return data;
     } catch (error) {

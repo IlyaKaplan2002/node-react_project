@@ -1,12 +1,12 @@
 import { createReducer } from '@reduxjs/toolkit';
 import actions from './actions';
 
-const initialState = [];
+const initialState = { items: [] };
 
 const reducer = createReducer(initialState, {
   [actions.init]: (state, action) => {
-    const stat = action.payload;
-    return { ...state, stat };
+    const items = action.payload;
+    return { ...state, items: [...items] };
   },
 });
 
