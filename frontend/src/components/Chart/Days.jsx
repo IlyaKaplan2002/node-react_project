@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { authSelectors } from 'redux/auth';
 import DaysStyled from './Days.styled';
 import { statisticsActions } from 'redux/statistics';
-import data from './chartDate';
+import { getDays } from './helpers';
 
 const Days = () => {
   const [days, setDays] = useState();
@@ -12,16 +12,12 @@ const Days = () => {
   const token = useSelector(authSelectors.getToken);
   const dispatch = useDispatch();
 
-  /// PROBLEM
-
   const fetchAllBooks = useCallback(async () => {
     try {
       const { statistic } = await getStatistic(token);
       dispatch(statisticsActions.init(statistic));
-      console.log(statistic);
-      console.log(statistic[1]);
-
-      return data;
+      const dates = getDays(statistic).length;
+      setDays(dates);
     } catch (error) {
       console.log(error);
     }
