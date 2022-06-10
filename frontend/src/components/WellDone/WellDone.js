@@ -6,20 +6,22 @@ import {
   PStyled,
   MyButton,
   DivButtonStyled,
-  WellDoneIcon
+  WellDoneIcon,
 } from './WellDone.styled';
 
 const WellDone = ({ onCloseModal, onNewTrainingClick, onBackClick }) => {
   return (
     <Modal onClick={onCloseModal}>
       <ArticleStyled>
-          <WellDoneIcon>
+        <WellDoneIcon>
           <use xlinkHref={`${sprite}#welldone`}></use>
-          </WellDoneIcon>
+        </WellDoneIcon>
 
         <PStyled>
-          Well done!<br/> but you need to be a little bit faster. <br/>You can do it)
-        </PStyled>        
+          Well done!
+          <br /> but you need to be a little bit faster. <br />
+          You can do it)
+        </PStyled>
         <DivButtonStyled>
           <MyButton label={'New training'} onClick={onNewTrainingClick}>
             New training

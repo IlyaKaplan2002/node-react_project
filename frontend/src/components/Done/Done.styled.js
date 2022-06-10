@@ -4,7 +4,7 @@ const ArticleStyled = styled.article`
   margin: 0px;
   padding: 0px;
   width: 280px;
-  height: 358px;
+  height: 256px;
   margin: 0 auto;
   font-size: 16px;
   text-align: center;
@@ -14,11 +14,11 @@ const ArticleStyled = styled.article`
   line-height: 1.4;
   background-color: ${props => props.theme.colors.mainWhite};
   color: ${props => props.theme.colors.mainBlack};
-  padding: 46px 63px 44px 63px;
+  padding: 42px 26px 40px 27px;
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     width: 394px;
-    height: 286px;
-    padding: 42px 29px 48px 29px;
+    height: 256px;
+    padding: 42px 84px 40px 83px;
   }
 `;
 
@@ -34,10 +34,11 @@ const PStyled = styled.p`
 const MyButton = styled.button`
   position: relative;
   display: block;
-  width: 152px;
+  width: 130px;
   height: 40px;
   font-size: 14px;
   text-align: center;
+  margin: 0 auto;
   font-family: ${props => props.theme.fonts.families.montserrat};
   font-weight: ${props => props.theme.fonts.weights.semiBold};
   line-height: 2;
@@ -60,25 +61,14 @@ const MyButton = styled.button`
     border: none;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
   }
-  @media screen and (max-width: ${props => props.theme.breakpoints.tablet}) {
-    &:not(last-child) {
-      margin-bottom: 20px;
-    }
-  }
 `;
 
-const DivButtonStyled = styled.div`
-  justify-content: space-between;
-  @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
-    display: flex;
-  }
-`;
 const WellDoneIcon = styled.svg`
-  fill: ${props => props.theme.colors.placeholder};
-  stroke: ${props => props.theme.colors.placeholder};
+  fill: ${props => props.theme.colors.mainOrange};
+  stroke: ${props => props.theme.colors.mainOrange};
   margin-bottom: 15px;
   width: 50px;
   height: 45px;
 `;
 
-export { ArticleStyled, PStyled, MyButton, DivButtonStyled, WellDoneIcon };
+export { ArticleStyled, PStyled, MyButton, WellDoneIcon };

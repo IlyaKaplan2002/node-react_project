@@ -1,12 +1,12 @@
 import AppBar from 'components/AppBar';
 import React from 'react';
-import WellDone from 'components/WellDone';
+import Done from 'components/Done';
 
 const TrainingView = () => {
   return (
     <>
       <AppBar />
-      <WellDone></WellDone>
+      <Done></Done>
     </>
   );
 };
