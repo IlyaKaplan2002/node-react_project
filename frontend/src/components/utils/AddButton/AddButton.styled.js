@@ -9,7 +9,7 @@ const AddButtonStyled = styled.div`
   justify-content: center;
   background: ${props => props.theme.colors.mainOrange};
   position: fixed;
-  bottom: 53px;
+  bottom: 12px;
   left: 50%;
   transform: translateX(-50%);
 `;
