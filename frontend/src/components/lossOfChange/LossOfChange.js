@@ -7,7 +7,7 @@ import {
   DivButtonStyled,
 } from './LossOfChange.styled';
 
-const LossOfChange = ({ onCancelClick, onLeaveClick, onCloseModal }) => {
+const LossOfChange = ({ onCloseModal, onCancelClick, onLeaveClick }) => {
   return (
     <Modal onClick={onCloseModal}>
       <ArticleStyled>
