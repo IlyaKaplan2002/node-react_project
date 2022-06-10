@@ -8,7 +8,7 @@ import AddButton from 'components/utils/AddButton';
 import Button from 'components/utils/Button';
 import { routes } from 'constants';
 import { cardTypes } from 'constants';
-import { notifyError } from 'helpers';
+import { tryRefreshToken } from 'helpers';
 import React, { useCallback, useEffect, useState } from 'react';
 import Media from 'react-media';
 import { useDispatch, useSelector } from 'react-redux';
@@ -28,21 +28,26 @@ const Library = () => {
   const reading = useSelector(booksSelectors.getReading);
   const goingToread = useSelector(booksSelectors.getGoingToRead);
   const token = useSelector(authSelectors.getToken);
+  const refreshTokenValue = useSelector(authSelectors.getRefreshToken);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const fetchAllBooks = useCallback(async () => {
-    try {
-      const { books } = await getAllBooks(token);
+    const tryFunc = async tokenValue => {
+      const { books } = await getAllBooks(tokenValue);
       if (!books.length) {
         setAddModalOpened(true);
         setInstructionModalOpened(true);
       }
       dispatch(booksActions.init(books));
+    };
+
+    try {
+      await tryFunc(token);
     } catch (error) {
-      notifyError(error);
+      tryRefreshToken(error, refreshTokenValue, dispatch, tryFunc);
     }
-  }, [token, dispatch]);
+  }, [token, dispatch, refreshTokenValue]);
 
   useEffect(() => {
     fetchAllBooks();
