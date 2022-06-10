@@ -1,12 +1,15 @@
 import styled from 'styled-components';
 
 const ResultContainerStyled = styled.div`
+  margin: 0 auto;
   width: 280px;
   height: 340px;
   font-family: ${props => props.theme.fonts.families.montserrat};
   line-height: 1.21;
   background-color: ${props => props.theme.colors.mainWhite};
+  box-shadow: ${props => props.theme.shadows.header};
   padding: 20px;
+  margin-top: 40px;
 
   .formContainer {
     display: flex;
@@ -17,15 +20,76 @@ const ResultContainerStyled = styled.div`
       }
     }
   }
+  .input {
+    width: 110px;
+    height: 42px;
+    margin-top: 4px;
+    margin-bottom: 28px;
+    font-weight: ${props => props.theme.fonts.weights.regular};
+    font-size: 14px;
+    outline: none;
+    border: 1px solid ${props => props.theme.colors.placeholder};
+    background-color: ${props => props.theme.colors.mainBg};
+  }
 
   .button {
-    width: 100%;
+    width: 240px;
+    height: 42px;
     text-transform: none;
     margin-bottom: 24px;
   }
 
+  .icon {
+    fill: ${props => props.theme.colors.mainBlack};
+    width: 24px;
+    height: 12px;
+  }
+
   .changeWeight {
     font-weight: ${props => props.theme.fonts.weights.bold};
+    margin-bottom: 4px;
+  }
+
+  @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
+    width: 704px;
+    height: 309px;
+    padding: 29px 96px 32px 96px;
+
+    .form {
+      display: flex;
+      align-items: center;
+    }
+    .input {
+      margin-bottom: 20px;
+    }
+    .button {
+      margin-bottom: -3px;
+    }
+
+    .changeWeight {
+      text-align: left;
+      margin-bottom: 6px;
+    }
+  }
+
+  @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
+    width: 280px;
+    height: 340px;
+    padding: 20px;
+    .form {
+      display: block;
+    }
+    .input {
+      margin-bottom: 28px;
+    }
+    .button {
+      margin-bottom: 24px;
+    }
+
+    .changeWeight {
+      text-align: center;
+      margin-bottom: 4px;
+    }
   }
 `;
 const TextStyled = styled.p`
@@ -35,6 +99,14 @@ const TextStyled = styled.p`
   font-size: 12px;
   text-transform: uppercase;
   margin-bottom: 12px;
+
+  @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
+    margin-bottom: 27px;
+  }
+
+  @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
+    margin-bottom: 12px;
+  }
 `;
 
 const SpanStyled = styled.span`
@@ -53,6 +125,14 @@ const InputStyled = styled.input`
   outline: none;
   border: 1px solid ${props => props.theme.colors.placeholder};
   background-color: ${props => props.theme.colors.mainBg};
+
+  @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
+    margin-bottom: 20px;
+  }
+
+  @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
+    margin-bottom: 28px;
+  }
 `;
 
 const ListStyled = styled.ul`
@@ -63,6 +143,12 @@ const ListStyled = styled.ul`
 
   .chengeColor {
     color: ${props => props.theme.colors.secondary};
+  }
+  @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
+    width: 240px;
+  }
+  @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
+    width: auto;
   }
 `;
 export {

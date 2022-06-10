@@ -10,11 +10,11 @@ const LoginView = () => {
     <>
       <Container>
         <NonAuthHeader />
-        {/* <Wrapper>
+        <Wrapper>
           <LoginForm />
           <Quote />
-        </Wrapper> */}
-        <Result />
+        </Wrapper>
+        {/* <Result /> */}
       </Container>
     </>
   );

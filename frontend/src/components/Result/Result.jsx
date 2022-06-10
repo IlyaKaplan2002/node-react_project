@@ -1,71 +1,82 @@
 import React, { useState } from 'react';
 import Button from 'components/utils/Button';
-import moment from 'moment';
+import Datetime from 'react-datetime';
+import { format, subDays } from 'date-fns';
+import 'react-datetime/css/react-datetime.css';
+import notifyError from 'helpers/notifyError';
 import {
   ResultContainerStyled,
   TextStyled,
   SpanStyled,
-  InputStyled,
   ListStyled,
 } from './Result.styled';
+// import Icon from 'components/utils/Icon';
 
 const Result = () => {
   const [results, setResults] = useState([]);
-  const [dateValue, setDateValue] = useState('');
+  const [date, setDate] = useState();
   const [pages, setPages] = useState('');
 
-  const time = moment().format('kk:mm:ss');
+  const time = format(new Date(), 'kk:mm:ss');
 
-  const handlerResultChange = evt => {
-    const { name, value } = evt.target;
-
-    switch (name) {
-      case 'date':
-        setDateValue(value);
-        break;
-      case 'pages':
-        setPages(value);
-        break;
-      default:
-        return;
-    }
+  const handlerDateChange = evt => {
+    setDate(evt.format('DD.MM.YYYY'));
+  };
+  const handletInputChange = evt => {
+    const { value } = evt.target;
+    setPages(value);
   };
 
   const handleSubmit = evt => {
     evt.preventDefault();
-    if (!dateValue || !pages) {
-      console.log('date || pages === null');
+    if (!date || !pages) {
+      notifyError('Date and page must be filled');
+      return;
+    }
+    if (!Number(pages)) {
+      notifyError('Pages is a number');
       return;
     }
 
-    const date = dateValue.split('-').reverse().join('.');
     const array = { date, time, pages };
     setResults(prevState => [...prevState, array]);
 
-    setDateValue('');
+    setDate('');
     setPages('');
   };
+
+  const valid = function (current) {
+    const dayBefore = subDays(new Date(), 2);
+    return current.isAfter(dayBefore);
+  };
+
+  let inputProps = { className: 'input', name: 'date', autoComplete: 'false' };
 
   return (
     <ResultContainerStyled>
       <TextStyled>RESULT</TextStyled>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="form">
         <div className="formContainer">
           <label className="inputMargin">
             <SpanStyled>Date</SpanStyled>
-            <InputStyled
-              type="date"
-              name="date"
-              onChange={handlerResultChange}
-              value={dateValue}
+            <Datetime
+              isValidDate={valid}
+              inputProps={inputProps}
+              locale="en"
+              dateFormat="DD.MM.YYYY"
+              timeFormat={false}
+              onChange={handlerDateChange}
+              value={date}
+              closeOnSelect
             />
           </label>
           <label>
             <SpanStyled>Amount of pages</SpanStyled>
-            <InputStyled
+            <input
+              className="input"
               type="text"
               name="pages"
-              onChange={handlerResultChange}
+              onChange={handletInputChange}
               value={pages}
             />
           </label>
