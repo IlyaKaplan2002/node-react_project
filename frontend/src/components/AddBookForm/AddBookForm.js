@@ -5,7 +5,7 @@ import AddBookFormStyled from './AddBookForm.styled';
 import Button from 'components/utils/Button';
 import InputField from 'components/utils/InputField';
 import { useDispatch, useSelector } from 'react-redux';
-import { notifyError } from 'helpers';
+import { tryRefreshToken } from 'helpers';
 import { addBook } from 'api/books';
 import { authSelectors } from 'redux/auth';
 import { booksActions } from 'redux/books';
@@ -20,13 +20,18 @@ const initialValues = {
 const AddBookForm = ({ onClose = () => {} }) => {
   const dispatch = useDispatch();
   const token = useSelector(authSelectors.getToken);
+  const refreshTokenValue = useSelector(authSelectors.getRefreshToken);
 
   const onSubmit = async (values, { resetForm }) => {
-    try {
-      const { book } = await addBook(token, values);
+    const tryFunc = async tokenValue => {
+      const { book } = await addBook(tokenValue, values);
       dispatch(booksActions.add(book));
+    };
+
+    try {
+      await tryFunc(token, values);
     } catch (error) {
-      notifyError(error);
+      tryRefreshToken(error, refreshTokenValue, dispatch, tryFunc);
     }
     onClose();
     resetForm();
