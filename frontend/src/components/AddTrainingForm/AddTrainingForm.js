@@ -1,7 +1,7 @@
 import React from 'react';
 import 'react-datetime/css/react-datetime.css';
 import moment from 'moment';
-import { useFormik, Field, FormikProvider } from 'formik';
+import { useFormik } from 'formik';
 import { RiCalendar2Line } from 'react-icons/ri';
 import { GoTriangleDown } from 'react-icons/go';
 import Datetime from 'react-datetime';
@@ -16,18 +16,16 @@ import Selection from 'components/Selection';
 const initialValues = {
   start: null,
   finish: null,
-  book: '',
+  book: null,
 };
-const books = [
-  { name: 'aaaaaaaaa', id: '1' },
-  { name: 'hkbvjdsbvjbd', id: '2' },
-  { isDefault: true, name: ' Choose book from the library', id: '' },
-];
-const AddTrainingForm = () => {
+
+const placeholderBook = 
+  { isDefault: true, name: ' Choose book from the library', id: '' };
+
+const AddTrainingForm = ({books}) => {
   const formik = useFormik({
     initialValues,
     initialErrors: initialValues,
-    validationSchema: null, //todo
     validateOnBlur: true,
     onSubmit: values => console.log(values),
   });
@@ -78,7 +76,7 @@ const AddTrainingForm = () => {
           </DatePickerWrapper>
         </div>
         <div className="second-part">
-          <Selection data={{ options: books }} onChange={setSelectedBook} />
+          <Selection data={{ options: [...books, placeholderBook] }} onChange={setSelectedBook} />
           <Button className={'submit'} type="submit">
             Add
           </Button>
