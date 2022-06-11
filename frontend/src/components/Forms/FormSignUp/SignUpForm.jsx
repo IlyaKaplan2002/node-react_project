@@ -125,7 +125,7 @@ const SignUpForm = () => {
           />
         </div>
         <Button type="submit" filled className="button">
-          SignUp
+          Register
         </Button>
         <FormSpanStyled>
           Already with us? <LinkStyled to={routes.login.path}>Login</LinkStyled>
