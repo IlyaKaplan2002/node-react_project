@@ -29,7 +29,7 @@ const Selection = ({ data, onChange, wide, top }) => {
 
   const handleChange = e => {
     const newId = e.target.value;
-    const newValue = data.options.find(({ id }) => id == newId);
+    const newValue = data.options.find(({ id }) => id === newId);
     setCurrent(newValue);
     onChange(newValue);
     toggle();

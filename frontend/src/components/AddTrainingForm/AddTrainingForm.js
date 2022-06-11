@@ -1,6 +1,5 @@
 import React from 'react';
 import 'react-datetime/css/react-datetime.css';
-import moment from 'moment';
 import { useFormik } from 'formik';
 import { RiCalendar2Line } from 'react-icons/ri';
 import { GoTriangleDown } from 'react-icons/go';
@@ -53,7 +52,7 @@ const AddTrainingForm = ({books}) => {
               }}
               value={formik.values.start}
               onChange={dateFromValue => {
-                formik.setFieldValue('start', moment(dateFromValue).toDate());
+                formik.setFieldValue('start',dateFromValue._d);
               }}
             />
           </DatePickerWrapper>
@@ -70,7 +69,7 @@ const AddTrainingForm = ({books}) => {
               }}
               value={formik.values.finish}
               onChange={dateFromValue => {
-                formik.setFieldValue('finish', moment(dateFromValue).toDate());
+                formik.setFieldValue('finish', dateFromValue._d);
               }}
             />
           </DatePickerWrapper>
