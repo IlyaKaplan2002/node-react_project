@@ -32,11 +32,19 @@ const googleAuth = async (req, res) => {
   };
 
   const newToken = jwt.sign(payload, JWT_SECRET_KEY, { expiresIn: '1d' });
-  await userService.updateToken(newUser._id, newToken);
+  const newRefreshToken = jwt.sign(payload, JWT_SECRET_KEY, {
+    expiresIn: '365d',
+  });
+
+  await userService.update(newUser._id, {
+    token: newToken,
+    refreshToken: newRefreshToken,
+  });
 
   res.json(
     createResponse(200, {
       token: newToken,
+      refreshToken: newRefreshToken,
       user: { email, name },
     })
   );

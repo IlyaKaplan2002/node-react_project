@@ -7,7 +7,7 @@ import {
   ResumeBackdrop,
 } from './Resume.styled';
 import Button from 'components/utils/Button';
-import { notifyError } from 'helpers';
+import { tryRefreshToken } from 'helpers';
 import { addResume } from 'api/books';
 import { useDispatch, useSelector } from 'react-redux';
 import { authSelectors } from 'redux/auth';
@@ -20,12 +20,13 @@ const Resume = ({ onCloseModal, bookId, initBook }) => {
   const [rating, setRating] = useState(initBook.rating);
   const [value, setValue] = useState(initBook.review);
   const token = useSelector(authSelectors.getToken);
+  const refreshTokenValue = useSelector(authSelectors.getRefreshToken);
   const dispatch = useDispatch();
   const [addOnEscClose, removeOnEscClose] = useOnEscClose(onCloseModal);
 
   useEffect(() => {
     addOnEscClose();
-    disableBodyScroll(document.body);
+    disableBodyScroll(document.body, { reserveScrollBarGap: true });
 
     return () => {
       removeOnEscClose();
@@ -35,15 +36,19 @@ const Resume = ({ onCloseModal, bookId, initBook }) => {
 
   const onSaveModalButtonClick = async evt => {
     evt.preventDefault();
-    try {
-      const { book } = await addResume(token, bookId, {
+    const tryFunc = async tokenValue => {
+      const { book } = await addResume(tokenValue, bookId, {
         rating,
         review: value,
       });
 
       dispatch(booksActions.update(book));
+    };
+
+    try {
+      await tryFunc(token);
     } catch (error) {
-      notifyError(error);
+      tryRefreshToken(error, refreshTokenValue, dispatch, tryFunc);
     }
     onCloseModal();
   };
