@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import Button from 'components/utils/Button';
+import Button from 'components/reusableComponents/Button';
 import Datetime from 'react-datetime';
 import { format, subDays } from 'date-fns';
 import 'react-datetime/css/react-datetime.css';
-// import resultSchema from 'models/';
-// import notifyError from 'helpers/notifyError';
 import {
   ResultContainerStyled,
   TextStyled,
