@@ -418,7 +418,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AddUserStatisticsResponse"
+                  "$ref": "#/components/schemas/GetUserStatisticsResponse"
                 }
               }
             }
@@ -659,7 +659,7 @@
       "AddNewBookResponse": {
         "type": "object",
         "properties": {
-          "book": {
+          "books": {
             "type": "object",
             "properties": {
               "name": {
@@ -715,55 +715,50 @@
       "GetBookResponse": {
         "type": "object",
         "properties": {
-          "book": {
-            "type": "object",
-            "properties": {
-              "name": {
-                "type": "string",
-                "description": "Book title",
-                "example": "Scrum. The Art of Doing Twice the Work in Half the Time"
-              },
-              "author": {
-                "type": "string",
-                "description": "Book author",
-                "example": "Jeff Sutherland"
-              },
-              "year": {
-                "type": "number",
-                "description": "Published",
-                "example": 2015
-              },
-              "pages": {
-                "type": "number",
-                "description": "Book pages",
-                "example": 256
-              },
-              "owner": {
-                "type": "string",
-                "description": "Book owner",
-                "example": "629f0e7c725dda80525ea815"
-              },
-              "_id": {
-                "type": "string",
-                "description": "Book id",
-                "example": "629f0eea725dda80525ea81d"
-              },
-              "status": {
-                "type": "string",
-                "description": "Book status",
-                "example": "goingToRead"
-              },
-              "createdAt": {
-                "type": "string",
-                "description": "Time created",
-                "format": "date-time"
-              },
-              "updatedAt": {
-                "type": "string",
-                "description": "Time updated",
-                "format": "date-time"
-              }
-            }
+          "name": {
+            "type": "string",
+            "description": "Book title",
+            "example": "Scrum. The Art of Doing Twice the Work in Half the Time"
+          },
+          "author": {
+            "type": "string",
+            "description": "Book author",
+            "example": "Jeff Sutherland"
+          },
+          "year": {
+            "type": "number",
+            "description": "Published",
+            "example": 2015
+          },
+          "pages": {
+            "type": "number",
+            "description": "Book pages",
+            "example": 256
+          },
+          "owner": {
+            "type": "string",
+            "description": "Book owner",
+            "example": "629f0e7c725dda80525ea815"
+          },
+          "_id": {
+            "type": "string",
+            "description": "Book id",
+            "example": "629f0eea725dda80525ea81d"
+          },
+          "status": {
+            "type": "string",
+            "description": "Book status",
+            "example": "goingToRead"
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "Time created",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "Time updated",
+            "format": "date-time"
           }
         }
       },
@@ -889,6 +884,46 @@
           }
         }
       },
+      "GetUserStatisticsResponse": {
+        "type": "object",
+        "properties": {
+          "statistic": {
+            "type": "object",
+            "properties": {
+              "_id": {
+                "type": "string",
+                "description": "Statistics id",
+                "example": "62a4e2d8c1b6fc691ee01861"
+              },
+              "date": {
+                "type": "string",
+                "description": "Statistics date",
+                "format": "date"
+              },
+              "pages": {
+                "type": "number",
+                "description": "Number of pages read",
+                "example": 26
+              },
+              "owner": {
+                "type": "string",
+                "description": "Book owner",
+                "example": "629f0e7c725dda80525ea815"
+              },
+              "createdAt": {
+                "type": "string",
+                "description": "Time created",
+                "format": "date-time"
+              },
+              "updatedAt": {
+                "type": "string",
+                "description": "Time updated",
+                "format": "date-time"
+              }
+            }
+          }
+        }
+      },
       "AddNewTrainingRequest": {
         "type": "object",
         "required": ["start", "end", "books"],
@@ -906,14 +941,9 @@
           "books": {
             "type": "array",
             "items": {
-              "type": "object",
-              "properties": {
-                "_id": {
-                  "type": "string",
-                  "description": "Book id",
-                  "example": "629f0eea725dda80525ea81d"
-                }
-              }
+              "type": "string",
+              "description": "Book id",
+              "example": "629f0eea725dda80525ea81d"
             }
           }
         }
