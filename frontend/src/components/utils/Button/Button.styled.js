@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 
 const Button = styled.button`
+  position: relative;
+
   display: block;
-  text-transform: capitalize;
   padding: 12px;
   min-width: 80px;
   font-size: 16px;

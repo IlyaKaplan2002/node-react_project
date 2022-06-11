@@ -24,12 +24,14 @@ const login = async (req, res) => {
   };
 
   const token = jwt.sign(payload, JWT_SECRET_KEY, { expiresIn: '1d' });
+  const refreshToken = jwt.sign(payload, JWT_SECRET_KEY, { expiresIn: '365d' });
 
-  await userService.updateToken(user._id, token);
+  await userService.update(user._id, { token, refreshToken });
 
   res.json(
     createResponse(200, {
       token,
+      refreshToken,
       user: { email, name: user.name },
     })
   );
