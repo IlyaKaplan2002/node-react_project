@@ -15,9 +15,20 @@ const ResultContainerStyled = styled.div`
     display: flex;
 
     .inputMargin {
+      position: relative;
+
       &:first-child {
         margin-right: 20px;
       }
+    }
+
+    svg {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 2;
+      right: 10px;
+      fill: ${props => props.theme.colors.mainBlack};
     }
   }
   .input {
@@ -30,6 +41,7 @@ const ResultContainerStyled = styled.div`
     outline: none;
     border: 1px solid ${props => props.theme.colors.placeholder};
     background-color: ${props => props.theme.colors.mainBg};
+    padding-left: 13px;
   }
 
   .button {

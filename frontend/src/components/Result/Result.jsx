@@ -3,89 +3,92 @@ import Button from 'components/utils/Button';
 import Datetime from 'react-datetime';
 import { format, subDays } from 'date-fns';
 import 'react-datetime/css/react-datetime.css';
-import notifyError from 'helpers/notifyError';
+// import resultSchema from 'models/';
+// import notifyError from 'helpers/notifyError';
 import {
   ResultContainerStyled,
   TextStyled,
   SpanStyled,
   ListStyled,
 } from './Result.styled';
-// import Icon from 'components/utils/Icon';
+import { useFormik } from 'formik';
+import { GoTriangleDown } from 'react-icons/go';
+
+const initialValues = {
+  date: '',
+  pages: '',
+};
 
 const Result = () => {
   const [results, setResults] = useState([]);
-  const [date, setDate] = useState();
-  const [pages, setPages] = useState('');
 
-  const time = format(new Date(), 'kk:mm:ss');
+  const time = format(new Date(), 'kk:mm:ss'); // for example
 
-  const handlerDateChange = evt => {
-    setDate(evt.format('DD.MM.YYYY'));
-  };
-  const handletInputChange = evt => {
-    const { value } = evt.target;
-    setPages(value);
-  };
+  const onSubmit = values => {
+    const formatDate = format(values.date, 'dd.MM.yyyy');
 
-  const handleSubmit = evt => {
-    evt.preventDefault();
-    if (!date || !pages) {
-      notifyError('Date and page must be filled');
-      return;
-    }
-    if (!Number(pages)) {
-      notifyError('Pages is a number');
-      return;
-    }
+    const array = { date: formatDate, time, pages: values.pages };
 
-    const array = { date, time, pages };
     setResults(prevState => [...prevState, array]);
-
-    setDate('');
-    setPages('');
   };
+
+  const formik = useFormik({
+    initialValues,
+    initialErrors: initialValues,
+    validationSchema: null, //to do
+    validateOnBlur: true,
+    onSubmit,
+  });
 
   const valid = function (current) {
     const dayBefore = subDays(new Date(), 2);
-    return current.isAfter(dayBefore);
+    const dayAfter = new Date();
+
+    return current.isAfter(dayBefore) && current.isBefore(dayAfter);
   };
 
-  let inputProps = { className: 'input', name: 'date', autoComplete: 'false' };
+  let inputProps = { className: 'input', name: 'date' };
 
   return (
     <ResultContainerStyled>
       <TextStyled>RESULT</TextStyled>
-      <form onSubmit={handleSubmit} className="form">
+      <form onSubmit={formik.handleSubmit} className="form">
         <div className="formContainer">
-          <label className="inputMargin">
+          <div className="inputMargin">
             <SpanStyled>Date</SpanStyled>
             <Datetime
+              id="date"
+              name="date"
+              closeOnSelect
               isValidDate={valid}
               inputProps={inputProps}
-              locale="en"
               dateFormat="DD.MM.YYYY"
               timeFormat={false}
-              onChange={handlerDateChange}
-              value={date}
-              closeOnSelect
+              onChange={dateFromValue => {
+                formik.setFieldValue('date', dateFromValue._d);
+              }}
+              value={formik.values.date}
             />
-          </label>
-          <label>
+            <GoTriangleDown size={14} />
+          </div>
+          <div>
             <SpanStyled>Amount of pages</SpanStyled>
             <input
               className="input"
               type="text"
               name="pages"
-              onChange={handletInputChange}
-              value={pages}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.pages}
             />
-          </label>
+          </div>
         </div>
         <Button filled type="submit" className="button">
           Add result
         </Button>
       </form>
       <TextStyled className="changeWeight">STATISTICS</TextStyled>
+
       {results && (
         <ul>
           {results.map(result => (
