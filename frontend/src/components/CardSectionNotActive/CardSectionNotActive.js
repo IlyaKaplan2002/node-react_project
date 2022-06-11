@@ -5,7 +5,7 @@ import {
   ListOwerflow,
 } from './CardSectionNotActive.styled';
 import CardForStart from 'components/CardForStart';
-import Spliter from 'components/utils/Spliter';
+import Spliter from 'components/reusableComponents/Spliter';
 import { Container } from 'styles';
 import { trainingCardTypes } from 'constants';
 

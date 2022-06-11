@@ -8,15 +8,15 @@ import {
   FormSpanStyled,
   FormContainer,
 } from '../AuthForm.styled';
-import Button from 'components/utils/Button';
+import Button from 'components/reusableComponents/Button';
 import AuthGoogle from '../../GoogleReg/GoogleReg';
-import InputField from 'components/utils/InputField';
+import InputField from 'components/reusableComponents/InputField';
 import { login } from 'api/auth';
 import { notifyError } from 'helpers';
 import { useDispatch } from 'react-redux';
 import { authActions } from 'redux/auth';
 import { routes } from 'constants';
-import Loader from 'components/utils/Loader';
+import Loader from 'components/reusableComponents/Loader';
 
 const initialValues = {
   email: '',

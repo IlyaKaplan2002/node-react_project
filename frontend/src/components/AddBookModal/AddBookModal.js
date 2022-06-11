@@ -1,5 +1,5 @@
 import AddBookForm from 'components/AddBookForm';
-import GoBackButton from 'components/utils/GoBackButton';
+import GoBackButton from 'components/reusableComponents/GoBackButton';
 import { useOnEscClose } from 'hooks';
 import React, { useEffect } from 'react';
 import Media from 'react-media';

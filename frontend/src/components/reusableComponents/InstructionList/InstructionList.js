@@ -1,5 +1,5 @@
 import { InstructionListStyled } from './InstructionList.styled';
-import Icon from 'components/utils/Icon';
+import Icon from 'components/reusableComponents/Icon';
 
 const InstructionList = ({ className, title, bigIcon, instruction, text }) => {
   return (

@@ -8,9 +8,9 @@ import {
   FormSpanStyled,
   FormContainer,
 } from '../AuthForm.styled';
-import Button from 'components/utils/Button';
+import Button from 'components/reusableComponents/Button';
 import AuthGoogle from '../../GoogleReg/GoogleReg';
-import InputField from 'components/utils/InputField';
+import InputField from 'components/reusableComponents/InputField';
 import { login, signUp } from 'api/auth';
 import { notifyError } from 'helpers';
 import { useDispatch } from 'react-redux';
@@ -125,7 +125,7 @@ const SignUpForm = () => {
           />
         </div>
         <Button type="submit" filled className="button">
-          SignUp
+          Register
         </Button>
         <FormSpanStyled>
           Already with us? <LinkStyled to={routes.login.path}>Login</LinkStyled>

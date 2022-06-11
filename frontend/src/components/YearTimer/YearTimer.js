@@ -1,4 +1,4 @@
-import MyTimer from 'components/utils/Timer';
+import MyTimer from 'components/reusableComponents/Timer';
 import { getYear } from 'date-fns';
 
 const YearTimer = () => {

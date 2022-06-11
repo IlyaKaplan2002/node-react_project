@@ -10,9 +10,11 @@ const addStatistic = async (req, res) => {
   const { _id: userId } = req.user;
   const { pages } = req.body;
 
-  const { books } = await trainingService.getTraining(userId);
+  const training = await trainingService.getTraining(userId);
 
-  if (!books) throwError('Training does not exist', 404);
+  if (!training) throwError('Training does not exist', 404);
+
+  const { books } = training;
 
   let pagesLeft = pages;
 
