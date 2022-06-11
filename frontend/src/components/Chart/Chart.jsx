@@ -4,9 +4,10 @@ import Days from './Days';
 import options from './chartOptions';
 //import data from './chartDate';
 import { getStatistic } from 'api/statistics';
+import { getTrainings } from 'api/trainings';
 import { useDispatch, useSelector } from 'react-redux';
 import { authSelectors } from 'redux/auth';
-import { getDays } from './helpers';
+import { getAmountDays, getActPages } from './helpers';
 import { statisticsActions } from 'redux/statistics';
 
 import {
@@ -60,15 +61,36 @@ const Chart = () => {
   const token = useSelector(authSelectors.getToken);
   const dispatch = useDispatch();
 
-  const fetchAllDays = useCallback(async () => {
+  const fetchData = useCallback(async () => {
     try {
       const { statistic } = await getStatistic(token);
       dispatch(statisticsActions.init(statistic));
-      console.log(statistic);
-      const labels = getDays(statistic);
+      const labels = getAmountDays(statistic);
       setAmountDays(labels.length);
+      const act = getActPages(statistic);
+
       setData({
         labels: labels,
+        datasets: [
+          {
+            label: 'PLAN',
+            fill: false,
+            data: [0, 2, 43, 4, 76, 9, 9], //from back
+            borderColor: 'rgba(9, 30, 63, 1,)',
+            backgroundColor: 'rgba(9, 30, 63, 1)',
+            borderWidth: 2,
+            tension: 0.5,
+          },
+          {
+            label: 'ACT',
+            fill: false,
+            data: act,
+            borderColor: 'rgba(255, 107, 8, 1)',
+            backgroundColor: 'rgba(255, 107, 8, 1)',
+            borderWidth: 2,
+            tension: 0.5,
+          },
+        ],
       });
     } catch (error) {
       console.log(error);
@@ -76,13 +98,13 @@ const Chart = () => {
   }, [token, dispatch]);
 
   useEffect(() => {
-    fetchAllDays();
-  }, [fetchAllDays]);
+    fetchData();
+  }, [fetchData]);
 
   return (
     <>
       <ChartStyled>
-        <Days>{amountDays}</Days>
+        <Days> {amountDays}</Days>
         <Line data={data} options={options} />
       </ChartStyled>
     </>
