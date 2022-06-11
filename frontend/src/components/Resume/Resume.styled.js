@@ -1,5 +1,17 @@
 import styled from 'styled-components';
 
+export const ResumeBackdrop = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: ${props => props.theme.colors.backdrop};
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 const ResumeContainerStyled = styled.div`
   margin-left: auto;
   margin-right: auto;

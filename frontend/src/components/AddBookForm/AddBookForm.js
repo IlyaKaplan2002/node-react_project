@@ -4,6 +4,11 @@ import addBookSchema from 'models/addBookShema';
 import AddBookFormStyled from './AddBookForm.styled';
 import Button from 'components/utils/Button';
 import InputField from 'components/utils/InputField';
+import { useDispatch, useSelector } from 'react-redux';
+import { tryRefreshToken } from 'helpers';
+import { addBook } from 'api/books';
+import { authSelectors } from 'redux/auth';
+import { booksActions } from 'redux/books';
 
 const initialValues = {
   name: '',
@@ -12,13 +17,32 @@ const initialValues = {
   pages: '',
 };
 
-const AddBookForm = () => {
+const AddBookForm = ({ onClose = () => {} }) => {
+  const dispatch = useDispatch();
+  const token = useSelector(authSelectors.getToken);
+  const refreshTokenValue = useSelector(authSelectors.getRefreshToken);
+
+  const onSubmit = async (values, { resetForm }) => {
+    const tryFunc = async tokenValue => {
+      const { book } = await addBook(tokenValue, values);
+      dispatch(booksActions.add(book));
+    };
+
+    try {
+      await tryFunc(token, values);
+    } catch (error) {
+      tryRefreshToken(error, refreshTokenValue, dispatch, tryFunc);
+    }
+    onClose();
+    resetForm();
+  };
+
   const formik = useFormik({
     initialValues,
     initialErrors: initialValues,
     validationSchema: addBookSchema,
     validateOnBlur: true,
-    onSubmit: values => console.log(values),
+    onSubmit: onSubmit,
   });
 
   return (
@@ -35,54 +59,55 @@ const AddBookForm = () => {
           touched={formik.touched.name}
           error={formik.errors.name}
           classNames={{
-            field: 'label',
+            field: 'label name',
           }}
         />
+        <div className="dataWrapper">
+          <InputField
+            placeholder="..."
+            name="author"
+            type="text"
+            value={formik.values.author}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            label="Author"
+            touched={formik.touched.author}
+            error={formik.errors.author}
+            classNames={{
+              field: 'label',
+            }}
+          />
 
-        <InputField
-          placeholder="..."
-          name="author"
-          type="text"
-          value={formik.values.author}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          label="Author"
-          touched={formik.touched.author}
-          error={formik.errors.author}
-          classNames={{
-            field: 'label',
-          }}
-        />
+          <InputField
+            placeholder="..."
+            name="year"
+            type="text"
+            value={formik.values.year}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            label="Publication date"
+            touched={formik.touched.year}
+            error={formik.errors.year}
+            classNames={{
+              field: 'label',
+            }}
+          />
 
-        <InputField
-          placeholder="..."
-          name="year"
-          type="text"
-          value={formik.values.year}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          label="Publication date"
-          touched={formik.touched.year}
-          error={formik.errors.year}
-          classNames={{
-            field: 'label',
-          }}
-        />
-
-        <InputField
-          placeholder="..."
-          name="pages"
-          type="text"
-          value={formik.values.pages}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          label="Amount of pages"
-          touched={formik.touched.pages}
-          error={formik.errors.pages}
-          classNames={{
-            field: 'label',
-          }}
-        />
+          <InputField
+            placeholder="..."
+            name="pages"
+            type="text"
+            value={formik.values.pages}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            label="Amount of pages"
+            touched={formik.touched.pages}
+            error={formik.errors.pages}
+            classNames={{
+              field: 'label',
+            }}
+          />
+        </div>
       </div>
 
       <Button className="button" type="submit">
