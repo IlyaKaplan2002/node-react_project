@@ -1,50 +1,48 @@
 import styled from 'styled-components';
 
 const ArticleStyled = styled.article`
-  margin: 0px;
-  padding: 0px;
   width: 280px;
-  height: 256px;
+  height: 220px;
   margin: 0 auto;
   font-size: 16px;
-  text-align: center;
-
   font-family: ${props => props.theme.fonts.families.montserrat};
   font-weight: ${props => props.theme.fonts.weights.medium};
-  line-height: 1.4;
+  line-height: 1.25;
   background-color: ${props => props.theme.colors.mainWhite};
   color: ${props => props.theme.colors.mainBlack};
-  padding: 42px 26px 40px 27px;
+  padding: 48px 21px 48px 22px;
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     width: 394px;
-    height: 256px;
-    padding: 42px 84px 40px 83px;
+    height: 204px;
+    padding: 48px 32px 48px 33px;
   }
 
   .button {
-    width: 130px;
-    height: 40px;
     font-size: 14px;
-    text-align: center;
-    margin: 0 auto;
+    width: calc((100% - 16px) / 2);
+    @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
+      width: calc((100% - 30px) / 2);
+    }
   }
 `;
 
 const PStyled = styled.p`
-  margin: 0 auto;
-  width: 100%;
-  margin-bottom: 14px;
+  text-align: center;
+  margin-bottom: 20px;
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     margin-bottom: 24px;
   }
 `;
 
-const WellDoneIcon = styled.svg`
-  fill: ${props => props.theme.colors.mainOrange};
-  stroke: ${props => props.theme.colors.mainOrange};
-  margin-bottom: 15px;
-  width: 50px;
-  height: 45px;
+const DivButtonStyled = styled.div`
+  display: flex;
+  padding-left: 12px;
+  padding-right: 12px;
+  justify-content: space-between;
+  @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
+    padding-left: 19px;
+    padding-right: 19px;
+  }
 `;
 
-export { ArticleStyled, PStyled, WellDoneIcon };
+export { ArticleStyled, PStyled, DivButtonStyled };

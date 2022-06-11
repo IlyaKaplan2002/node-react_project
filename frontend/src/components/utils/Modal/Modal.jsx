@@ -1,20 +1,21 @@
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
+import { useOnEscClose } from 'hooks';
 import React, { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { OverlayStyled, ModalStyled } from './Model.styled';
 const modalRoot = document.querySelector('#modal-root');
 
-const Modal = ({ onCloseModal, children }) => {
+const Modal = ({ onCloseModal = () => {}, children }) => {
+  const [addOnEsc, removeOnEsc] = useOnEscClose(onCloseModal);
+
   useEffect(() => {
-    window.addEventListener('keydown', onCloseModalClick);
+    addOnEsc();
+    disableBodyScroll(document.body, { reserveScrollBarGap: true });
     return () => {
-      window.removeEventListener('keydown', onCloseModalClick);
+      removeOnEsc();
+      enableBodyScroll(document.body);
     };
   });
-  const onCloseModalClick = evt => {
-    if (evt.code === 'Escape') {
-      onCloseModal();
-    }
-  };
 
   const onBackdropClick = evt => {
     if (evt.target === evt.currentTarget) {

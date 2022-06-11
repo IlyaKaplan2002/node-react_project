@@ -1,14 +1,16 @@
 import React from 'react';
 import Modal from 'components/utils/Modal';
-import sprite from 'assets/icons/sprite.svg';
-import { ArticleStyled, PStyled, MyButton, WellDoneIcon } from './Done.styled';
+import { ArticleStyled, PStyled, WellDoneIcon } from './Done.styled';
+import Icon from 'components/utils/Icon';
+import Button from 'components/utils/Button';
 
-const Done = ({ onCloseModal, onDoneClick }) => {
+const Done = ({ onCloseModal }) => {
   return (
-    <Modal onClick={onCloseModal}>
+    <Modal onCloseModal={onCloseModal}>
       <ArticleStyled>
         <WellDoneIcon>
-          <use xlinkHref={`${sprite}#welldone`}></use>
+          {/* <use xlinkHref={`${sprite}#welldone`}></use> */}
+          <Icon iconId="welldone" />
         </WellDoneIcon>
 
         <PStyled>
@@ -16,9 +18,9 @@ const Done = ({ onCloseModal, onDoneClick }) => {
           <br />
           Another book read.
         </PStyled>
-        <MyButton label={'Done'} onClick={onDoneClick}>
+        <Button type="button" className="button" filled onClick={onCloseModal}>
           Done
-        </MyButton>
+        </Button>
       </ArticleStyled>
     </Modal>
   );

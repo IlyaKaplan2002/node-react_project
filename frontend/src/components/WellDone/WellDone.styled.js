@@ -20,6 +20,22 @@ const ArticleStyled = styled.article`
     height: 286px;
     padding: 42px 29px 48px 29px;
   }
+
+  .button {
+    width: 152px;
+    height: 40px;
+    font-size: 14px;
+  }
+
+  .button:not(:last-child) {
+    margin-bottom: 20px;
+  }
+
+  @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
+    .button:not(:last-child) {
+      margin-bottom: 0;
+    }
+  }
 `;
 
 const PStyled = styled.p`
@@ -31,42 +47,6 @@ const PStyled = styled.p`
   }
 `;
 
-const MyButton = styled.button`
-  position: relative;
-  display: block;
-  width: 152px;
-  height: 40px;
-  font-size: 14px;
-  text-align: center;
-  font-family: ${props => props.theme.fonts.families.montserrat};
-  font-weight: ${props => props.theme.fonts.weights.semiBold};
-  line-height: 2;
-  border: ${props =>
-    props.filled
-      ? props.theme.borders.transparent
-      : props.theme.borders.button};
-  background-color: ${props =>
-    props.filled ? props.theme.colors.mainOrange : 'transparent'};
-  color: ${props =>
-    props.filled ? props.theme.colors.mainWhite : props.theme.colors.mainBlack};
-
-  transition-property: background-color, color, border;
-  transition-duration: 500ms;
-
-  &:hover {
-    cursor: pointer;
-    background-color: ${props => props.theme.colors.mainOrange};
-    color: ${props => props.theme.colors.mainWhite};
-    border: none;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
-  }
-  @media screen and (max-width: ${props => props.theme.breakpoints.tablet}) {
-    &:not(last-child) {
-      margin-bottom: 20px;
-    }
-  }
-`;
-
 const DivButtonStyled = styled.div`
   justify-content: space-between;
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
@@ -74,11 +54,14 @@ const DivButtonStyled = styled.div`
   }
 `;
 const WellDoneIcon = styled.svg`
-  fill: ${props => props.theme.colors.placeholder};
-  stroke: ${props => props.theme.colors.placeholder};
-  margin-bottom: 15px;
   width: 50px;
   height: 45px;
+  margin-bottom: 15px;
+
+  .icon {
+    fill: ${props => props.theme.colors.placeholder};
+    stroke: ${props => props.theme.colors.placeholder};
+  }
 `;
 
-export { ArticleStyled, PStyled, MyButton, DivButtonStyled, WellDoneIcon };
+export { ArticleStyled, PStyled, DivButtonStyled, WellDoneIcon };

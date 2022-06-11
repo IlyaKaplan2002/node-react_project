@@ -1,20 +1,20 @@
 import React from 'react';
 import Modal from 'components/utils/Modal';
-import sprite from 'assets/icons/sprite.svg';
 import {
   ArticleStyled,
   PStyled,
-  MyButton,
   DivButtonStyled,
   WellDoneIcon,
 } from './WellDone.styled';
+import Icon from 'components/utils/Icon';
+import Button from 'components/utils/Button';
 
-const WellDone = ({ onCloseModal, onNewTrainingClick, onBackClick }) => {
+const WellDone = ({ onCloseModal, onNewTrainingClick }) => {
   return (
-    <Modal onClick={onCloseModal}>
+    <Modal onCloseModal={onCloseModal}>
       <ArticleStyled>
         <WellDoneIcon>
-          <use xlinkHref={`${sprite}#welldone`}></use>
+          <Icon className="icon" iconId="welldone" />
         </WellDoneIcon>
 
         <PStyled>
@@ -23,16 +23,17 @@ const WellDone = ({ onCloseModal, onNewTrainingClick, onBackClick }) => {
           You can do it)
         </PStyled>
         <DivButtonStyled>
-          <MyButton label={'New training'} onClick={onNewTrainingClick}>
-            New training
-          </MyButton>
-          <MyButton
-            className={'resume-card-button'}
-            label={'Back'}
-            onClick={onBackClick}
+          <Button
+            className="button"
+            type="button"
+            filled
+            onClick={onNewTrainingClick}
           >
+            New training
+          </Button>
+          <Button className="button" type="button" onClick={onCloseModal}>
             Back
-          </MyButton>
+          </Button>
         </DivButtonStyled>
       </ArticleStyled>
     </Modal>
