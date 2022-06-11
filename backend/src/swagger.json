@@ -193,6 +193,30 @@
         }
       }
     },
+    "/api/auth/refresh": {
+      "get": {
+        "tags": ["Auth"],
+        "summary": "Refreshes current user's token",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthentificationResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No token provided or token is invalid",
+            "content": {}
+          }
+        }
+      }
+    },
 
     "/api/books/": {
       "post": {
@@ -236,7 +260,19 @@
         "tags": ["Books"],
         "summary": "Get current user library",
         "parameters": [],
-        "security": [{ "Bearer": [] }]
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetBooksResponse"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/api/books/{bookId}/review": {
@@ -282,6 +318,53 @@
           "401": {
             "description": "Unauthorized",
             "content": {}
+          },
+          "404": {
+            "description": "Book not found",
+            "content": {}
+          }
+        }
+      }
+    },
+    
+    "/api/books/{bookId}": {
+      "delete": {
+        "tags": ["Books"],
+        "summary": "Delete book",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "bookId",
+            "required": true,
+            "description": "Book id",
+            "type": "string"
+          }
+        ],
+        "requestBody": {
+          "description": "Book review object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddBookReviewRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddBookReviewResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Book not found",
+            "content": {}
           }
         }
       }
@@ -321,6 +404,24 @@
           "500": {
             "description": "Invalid token",
             "content": {}
+          }
+        }
+      },
+      "get": {
+        "tags": ["Statistics"],
+        "summary": "Get current user statistic",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUserStatisticsResponse"
+                }
+              }
+            }
           }
         }
       }
@@ -467,6 +568,11 @@
             "description": "User's token",
             "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOWEwMjczNzM3MGFlMGI0NjEyZmUxYSIsImlhdCI6MTY1NDI2MDM0OCwiZXhwIjoxNjU0MzQ2NzQ4fQ.5SdH_3w3weMg6caqx9fAJd79AFRmVjcNz3Ugre0WxgI"
           },
+          "refreshToken": {
+            "type": "string",
+            "description": "User's refresh token",
+            "example": "eyJpZCI6IjYyOWZhNWQ3N2NjMDg2NWQyMTUyNjdlOSIsImlhdCI6MTY1NDk0OTAyNywiZXhwIjoxNjg2NDg1MDI3fQ.Cqc-zJjA1zh5yB80t2IDz0leR3WGam_B31SqSHvAhJs"
+          },
           "user": {
             "type": "object",
             "properties": {
@@ -489,7 +595,7 @@
         "properties": {
           "message": {
             "type": "string",
-            "example": "successfull"
+            "example": "Logged out successfully"
           }
         }
       },
@@ -553,7 +659,7 @@
       "AddNewBookResponse": {
         "type": "object",
         "properties": {
-          "book": {
+          "books": {
             "type": "object",
             "properties": {
               "name": {
@@ -597,6 +703,62 @@
                 "format": "date-time"
               }
             }
+          }
+        }
+      },
+      "GetBooksResponse": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/GetBookResponse"
+        }
+      },
+      "GetBookResponse": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Book title",
+            "example": "Scrum. The Art of Doing Twice the Work in Half the Time"
+          },
+          "author": {
+            "type": "string",
+            "description": "Book author",
+            "example": "Jeff Sutherland"
+          },
+          "year": {
+            "type": "number",
+            "description": "Published",
+            "example": 2015
+          },
+          "pages": {
+            "type": "number",
+            "description": "Book pages",
+            "example": 256
+          },
+          "owner": {
+            "type": "string",
+            "description": "Book owner",
+            "example": "629f0e7c725dda80525ea815"
+          },
+          "_id": {
+            "type": "string",
+            "description": "Book id",
+            "example": "629f0eea725dda80525ea81d"
+          },
+          "status": {
+            "type": "string",
+            "description": "Book status",
+            "example": "goingToRead"
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "Time created",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "Time updated",
+            "format": "date-time"
           }
         }
       },
@@ -722,6 +884,46 @@
           }
         }
       },
+      "GetUserStatisticsResponse": {
+        "type": "object",
+        "properties": {
+          "statistic": {
+            "type": "object",
+            "properties": {
+              "_id": {
+                "type": "string",
+                "description": "Statistics id",
+                "example": "62a4e2d8c1b6fc691ee01861"
+              },
+              "date": {
+                "type": "string",
+                "description": "Statistics date",
+                "format": "date"
+              },
+              "pages": {
+                "type": "number",
+                "description": "Number of pages read",
+                "example": 26
+              },
+              "owner": {
+                "type": "string",
+                "description": "Book owner",
+                "example": "629f0e7c725dda80525ea815"
+              },
+              "createdAt": {
+                "type": "string",
+                "description": "Time created",
+                "format": "date-time"
+              },
+              "updatedAt": {
+                "type": "string",
+                "description": "Time updated",
+                "format": "date-time"
+              }
+            }
+          }
+        }
+      },
       "AddNewTrainingRequest": {
         "type": "object",
         "required": ["start", "end", "books"],
@@ -739,14 +941,9 @@
           "books": {
             "type": "array",
             "items": {
-              "type": "object",
-              "properties": {
-                "_id": {
-                  "type": "string",
-                  "description": "Book id",
-                  "example": "629f0eea725dda80525ea81d"
-                }
-              }
+              "type": "string",
+              "description": "Book id",
+              "example": "629f0eea725dda80525ea81d"
             }
           }
         }
