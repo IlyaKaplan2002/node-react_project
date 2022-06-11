@@ -1,4 +1,5 @@
 import { isBefore } from 'date-fns';
+import { array } from 'yup';
 
 const getAmountDays = array => {
   const data = array.map(item => item.date.slice(0, -14));
@@ -30,4 +31,18 @@ const getActPages = array => {
     .map(result => result.pages);
 };
 
-export { getAmountDays, getActPages };
+function getNumberOfDays(start, end) {
+  const date1 = new Date(start);
+  const date2 = new Date(end);
+  const oneDay = 1000 * 60 * 60 * 24;
+  const diffInTime = date2.getTime() - date1.getTime();
+  const diffInDays = Math.round(diffInTime / oneDay);
+  return diffInDays;
+}
+
+const getPlanDays = object => {
+  const amounDays = getNumberOfDays(object.start, object.end);
+  return amounDays;
+};
+
+export { getAmountDays, getActPages, getPlanDays };

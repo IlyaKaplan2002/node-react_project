@@ -7,7 +7,7 @@ import { getStatistic } from 'api/statistics';
 import { getTrainings } from 'api/trainings';
 import { useDispatch, useSelector } from 'react-redux';
 import { authSelectors } from 'redux/auth';
-import { getAmountDays, getActPages } from './helpers';
+import { getAmountDays, getActPages, getPlanDays } from './helpers';
 import { statisticsActions } from 'redux/statistics';
 
 import {
@@ -68,6 +68,11 @@ const Chart = () => {
       const labels = getAmountDays(statistic);
       setAmountDays(labels.length);
       const act = getActPages(statistic);
+
+      const { training } = await getTrainings(token);
+      console.log(training);
+      const plan = getPlanDays(training);
+      console.log(plan);
 
       setData({
         labels: labels,
