@@ -6,7 +6,8 @@ const SelectionList = ({ data, current }) => {
 
   return (
     <SelectionListWrapper className={'list'}>
-      {data.options.map(({ name, id, isDefault }) => (
+      {data.options.map(
+        ({ name, id, isDefault }) =>
           !isDefault && (
             <li key={id} className={'item'}>
               <label className={getClassName(id)} htmlFor={id}>
@@ -14,7 +15,7 @@ const SelectionList = ({ data, current }) => {
               </label>
             </li>
           )
-      ))}
+      )}
     </SelectionListWrapper>
   );
 };

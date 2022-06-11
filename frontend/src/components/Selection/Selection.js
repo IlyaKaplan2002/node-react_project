@@ -5,7 +5,9 @@ import classNames from 'classnames';
 import { SelectionWrapper } from './Selection.styled';
 
 const Selection = ({ data, onChange, wide, top }) => {
-  const [current, setCurrent] = useState(data.options.find(({ isDefault }) => isDefault));
+  const [current, setCurrent] = useState(
+    data.options.find(({ isDefault }) => isDefault)
+  );
   const [isOpen, setIsOpen] = useState(false);
 
   const selectionRef = useRef(null);
@@ -42,16 +44,18 @@ const Selection = ({ data, onChange, wide, top }) => {
         'wrapper',
         wide ? 'wide' : '',
         top ? 'top' : '',
-        isOpen ? 'open' : '',
+        isOpen ? 'open' : ''
       )}
     >
       <div className={'buttonWrapper'}>
         <button type="button" className={'button'} onClick={toggle}>
           <span className={'current'}>
-            {data?.showTitle && <span className={'title'}>{data?.title}: </span>}
+            {data?.showTitle && (
+              <span className={'title'}>{data?.title}: </span>
+            )}
             {current?.name}
           </span>
-            <GoTriangleDown size={13} />
+          <GoTriangleDown size={13} />
         </button>
       </div>
       {data.options.map(({ type, id }) => (

@@ -9,7 +9,7 @@ import {
   AddTrainingFormStyled,
   DatePickerWrapper,
 } from './AddTrainingForm.styled';
-import Button from 'components/utils/Button';
+import Button from 'components/reusableComponents/Button';
 import Selection from 'components/Selection';
 
 const initialValues = {
@@ -18,10 +18,13 @@ const initialValues = {
   book: null,
 };
 
-const placeholderBook = 
-  { isDefault: true, name: ' Choose book from the library', id: '' };
+const placeholderBook = {
+  isDefault: true,
+  name: 'Choose book from the library',
+  id: '...',
+};
 
-const AddTrainingForm = ({books}) => {
+const AddTrainingForm = ({ books }) => {
   const formik = useFormik({
     initialValues,
     initialErrors: initialValues,
@@ -46,13 +49,15 @@ const AddTrainingForm = ({books}) => {
               id="start"
               name="start"
               closeOnSelect
+              dateFormat="DD.MM.yyyy"
               inputProps={{
                 placeholder: 'Start',
                 className: 'date-input',
               }}
+              timeFormat={false}
               value={formik.values.start}
               onChange={dateFromValue => {
-                formik.setFieldValue('start',dateFromValue._d);
+                formik.setFieldValue('start', dateFromValue._d);
               }}
             />
           </DatePickerWrapper>
@@ -67,6 +72,8 @@ const AddTrainingForm = ({books}) => {
                 placeholder: 'Finish',
                 className: 'date-input',
               }}
+              dateFormat="DD.MM.yyyy"
+              timeFormat={false}
               value={formik.values.finish}
               onChange={dateFromValue => {
                 formik.setFieldValue('finish', dateFromValue._d);
@@ -75,7 +82,10 @@ const AddTrainingForm = ({books}) => {
           </DatePickerWrapper>
         </div>
         <div className="second-part">
-          <Selection data={{ options: [...books, placeholderBook] }} onChange={setSelectedBook} />
+          <Selection
+            data={{ options: [...books, placeholderBook] }}
+            onChange={setSelectedBook}
+          />
           <Button className={'submit'} type="submit">
             Add
           </Button>
