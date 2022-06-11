@@ -8,7 +8,7 @@ import { GlobalStyles } from 'styles';
 import App from 'components/App';
 import { ThemeProvider } from 'styled-components';
 import { theme } from 'styles';
-import Loader from 'components/utils/Loader';
+import Loader from 'components/reusableComponents/Loader';
 
 ReactDOM.render(
   <React.StrictMode>

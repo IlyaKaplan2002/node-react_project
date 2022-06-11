@@ -1,6 +1,6 @@
 import React from 'react';
-import InfoList from 'components/utils/InfoList';
-import InfoTitle from 'components/utils/InfoTitle';
+import InfoList from 'components/reusableComponents/InfoList';
+import InfoTitle from 'components/reusableComponents/InfoTitle';
 import { BookInfoContainerStyled } from './BookInfo.styled';
 
 const BookInfo = () => {

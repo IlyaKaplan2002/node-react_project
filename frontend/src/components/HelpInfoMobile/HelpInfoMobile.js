@@ -1,11 +1,11 @@
-import InfoList from 'components/utils/InfoList';
-import InfoTitle from 'components/utils/InfoTitle';
+import InfoList from 'components/reusableComponents/InfoList';
+import InfoTitle from 'components/reusableComponents/InfoTitle';
 import { routes } from 'constants';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Container } from 'styles';
 import HelpInfoMobileStyled from './HelpInfoMobile.styled';
-import Button from '../utils/Button';
+import Button from '../reusableComponents/Button';
 
 const HelpInfoMobile = () => {
   return (
