@@ -1,7 +1,7 @@
 import React from 'react';
 import { MdMenuBook } from 'react-icons/md';
 import { AiOutlineStar, AiFillStar } from 'react-icons/ai';
-import Button from 'components/utils/Button';
+import Button from 'components/reusableComponents/Button';
 import {
   CardStyled,
   BookIcon,

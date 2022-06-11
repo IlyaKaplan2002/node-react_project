@@ -1,7 +1,7 @@
 import React from 'react';
-import Modal from 'components/utils/Modal';
+import Modal from 'components/reusableComponents/Modal';
 import { ArticleStyled, PStyled, DivButtonStyled } from './LossOfChange.styled';
-import Button from 'components/utils/Button';
+import Button from 'components/reusableComponents/Button';
 import Media from 'react-media';
 
 const LossOfChange = ({ onCloseModal, onLeaveClick }) => {

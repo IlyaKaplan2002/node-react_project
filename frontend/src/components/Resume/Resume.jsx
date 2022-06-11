@@ -6,7 +6,7 @@ import {
   TextAreaStyled,
   ResumeBackdrop,
 } from './Resume.styled';
-import Button from 'components/utils/Button';
+import Button from 'components/reusableComponents/Button';
 import { tryRefreshToken } from 'helpers';
 import { addResume } from 'api/books';
 import { useDispatch, useSelector } from 'react-redux';

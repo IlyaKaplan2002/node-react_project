@@ -1,4 +1,4 @@
-import MyTimer from 'components/utils/Timer';
+import MyTimer from 'components/reusableComponents/Timer';
 
 const GoalsTimer = () => {
   const year = new Date('Jun 10, 2022');

@@ -1,13 +1,13 @@
 import React from 'react';
-import Modal from 'components/utils/Modal';
+import Modal from 'components/reusableComponents/Modal';
 import {
   ArticleStyled,
   PStyled,
   DivButtonStyled,
   WellDoneIcon,
 } from './WellDone.styled';
-import Icon from 'components/utils/Icon';
-import Button from 'components/utils/Button';
+import Icon from 'components/reusableComponents/Icon';
+import Button from 'components/reusableComponents/Button';
 
 const WellDone = ({ onCloseModal, onNewTrainingClick }) => {
   return (
