@@ -93,7 +93,12 @@ const ResultContainerStyled = styled.div`
       margin-bottom: 20px;
     }
     .button {
-      margin-bottom: -3px;
+      margin-bottom: 0;
+      margin-left: 32px;
+    }
+
+    .list {
+      width: fit-content;
     }
 
     .changeWeight {

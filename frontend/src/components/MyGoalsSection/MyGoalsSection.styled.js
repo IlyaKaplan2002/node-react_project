@@ -9,7 +9,7 @@ const GoalsSectionStyled = styled.div`
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     display: flex;
     justify-content: space-between;
-    max-width: 704px;
+    width: 704px;
     padding: 20px 42px 28px;
   }
 

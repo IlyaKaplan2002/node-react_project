@@ -7,6 +7,16 @@ const TrainingStyled = styled.div`
   flex-direction: column;
   align-items: center;
 
+  @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
+    .timersWrapper {
+      padding-left: 78px;
+      padding-right: 78px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
   .goalsWrapper {
     margin-bottom: 32px;
   }

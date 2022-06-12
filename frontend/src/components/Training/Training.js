@@ -18,6 +18,7 @@ import { tryRefreshToken } from 'helpers';
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { useCallback } from 'react';
+import Media from 'react-media';
 import { useDispatch, useSelector } from 'react-redux';
 import { authSelectors } from 'redux/auth';
 import { statisticsActions } from 'redux/statistics';
@@ -86,71 +87,80 @@ const Training = () => {
   };
 
   return (
-    <Container>
-      <AppBar />
-      {addModalOpened ? (
-        <TrainingFormModal onCloseModal={toggleAddModal} />
-      ) : (
-        <TrainingStyled isCurrent={isCurrent}>
-          {isCurrent && (
-            <>
-              <YearTimer className="yearTimer" />
-              <GoalsTimer
-                date={training.end}
-                className="goalsTimer"
-                onEnd={toggleWellDone}
-              />
-            </>
+    <Media
+      queries={{
+        small: '(max-width: 767px)',
+        large: '(min-width: 768px)',
+      }}
+    >
+      {matches => (
+        <Container>
+          <AppBar />
+          {addModalOpened && !matches.large ? (
+            <TrainingFormModal onCloseModal={toggleAddModal} />
+          ) : (
+            <TrainingStyled isCurrent={isCurrent}>
+              {isCurrent && (
+                <div className="timersWrapper">
+                  <YearTimer className="yearTimer" />
+                  <GoalsTimer
+                    date={training.end}
+                    className="goalsTimer"
+                    onEnd={toggleWellDone}
+                  />
+                </div>
+              )}
+              <div className="goalsWrapper">
+                <MyGoalsSection />
+              </div>
+              <div className="cardsWrapper">
+                {!Boolean(selectedTraining?.books.length) && !isCurrent && (
+                  <CardSectionNotActive
+                    cardType={trainingCardTypes.withoutDelEmpty}
+                  />
+                )}
+
+                {Boolean(selectedTraining?.books.length) && (
+                  <CardSectionNotActive
+                    cardType={trainingCardTypes.withDel}
+                    books={selectedTraining.books}
+                  />
+                )}
+
+                {isCurrent && (
+                  <CardSectionNotActive
+                    cardType={trainingCardTypes.started}
+                    books={training.books}
+                  />
+                )}
+              </div>
+
+              {Boolean(selectedTraining?.books.length) && (
+                <Button filled className="button" onClick={addTraining}>
+                  Start traininig
+                </Button>
+              )}
+
+              <Chart />
+
+              {isCurrent && <Result openWellDone={toggleDone} />}
+
+              {!isCurrent && <AddButton onClick={toggleAddModal} />}
+            </TrainingStyled>
           )}
-          <div className="goalsWrapper">
-            <MyGoalsSection />
-          </div>
-          <div className="cardsWrapper">
-            {!Boolean(selectedTraining?.books.length) && !isCurrent && (
-              <CardSectionNotActive
-                cardType={trainingCardTypes.withoutDelEmpty}
-              />
-            )}
-
-            {Boolean(selectedTraining?.books.length) && (
-              <CardSectionNotActive
-                cardType={trainingCardTypes.withDel}
-                books={selectedTraining.books}
-              />
-            )}
-
-            {isCurrent && (
-              <CardSectionNotActive
-                cardType={trainingCardTypes.started}
-                books={training.books}
-              />
-            )}
-          </div>
-
-          {Boolean(selectedTraining?.books.length) && (
-            <Button filled className="button" onClick={addTraining}>
-              Start traininig
-            </Button>
+          {done && <Done onCloseModal={toggleDone} />}
+          {wellDone && (
+            <WellDone
+              onCloseModal={toggleWellDone}
+              onNewTrainingClick={() => {
+                toggleWellDone();
+                toggleAddModal();
+              }}
+            />
           )}
-
-          <Chart />
-
-          {isCurrent && <Result openWellDone={toggleDone} />}
-
-          {!isCurrent && <AddButton onClick={toggleAddModal} />}
-        </TrainingStyled>
+        </Container>
       )}
-      {done && <Done onCloseModal={toggleDone} />}
-      {wellDone && (
-        <WellDone
-          onCloseModal={toggleWellDone}
-          onNewTrainingClick={() => {
-            toggleWellDone();
-            toggleAddModal();
-          }}
-        />
-      )}
-    </Container>
+    </Media>
   );
 };
 
