@@ -20,6 +20,7 @@ import {
   Legend,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
+import { isAfter, isBefore } from 'date-fns';
 
 ChartJS.register(
   CategoryScale,
@@ -39,7 +40,7 @@ const Chart = () => {
       {
         label: 'PLAN',
         fill: false,
-        data: [0, 2, 3, 4, 5, 6, 5, 4], //from back
+        data: [1],
         borderColor: 'rgba(9, 30, 63, 1,)',
         backgroundColor: 'rgba(9, 30, 63, 1)',
         borderWidth: 2,
@@ -48,7 +49,7 @@ const Chart = () => {
       {
         label: 'ACT',
         fill: false,
-        data: [1, 2, 6, 8, 5, 6, 3, 2], //from back
+        data: [3], //from back
         borderColor: 'rgba(255, 107, 8, 1)',
         backgroundColor: 'rgba(255, 107, 8, 1)',
         borderWidth: 2,
@@ -62,15 +63,42 @@ const Chart = () => {
 
   const fetchData = useCallback(async () => {
     try {
-      const { statistic } = await getStatistic(token);
-      dispatch(statisticsActions.init(statistic));
-      const labels = getAmountDays(statistic);
-      setAmountDays(labels.length);
-      const act = getActPages(statistic);
-
       const { training } = await getTrainings(token);
 
-      const plan = getPlanPages(statistic, training);
+      const { statistic } = await getStatistic(token);
+      dispatch(
+        statisticsActions.init(
+          statistic.filter(
+            item =>
+              isBefore(new Date(item.date), new Date(training.end)) &&
+              isAfter(new Date(item.date), new Date(training.start))
+          )
+        )
+      );
+      const labels = getAmountDays(
+        statistic.filter(
+          item =>
+            isBefore(new Date(item.date), new Date(training.end)) &&
+            isAfter(new Date(item.date), new Date(training.start))
+        )
+      );
+      setAmountDays(labels.length);
+      const act = getActPages(
+        statistic.filter(
+          item =>
+            isBefore(new Date(item.date), new Date(training.end)) &&
+            isAfter(new Date(item.date), new Date(training.start))
+        )
+      );
+
+      const plan = getPlanPages(
+        statistic.filter(
+          item =>
+            isBefore(new Date(item.date), new Date(training.end)) &&
+            isAfter(new Date(item.date), new Date(training.start))
+        ),
+        training
+      );
 
       setData({
         labels: labels,
