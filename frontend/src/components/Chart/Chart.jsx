@@ -2,12 +2,11 @@ import React, { useEffect, useCallback, useState } from 'react';
 import ChartStyled from './Chart.styled';
 import Days from './Days';
 import options from './chartOptions';
-//import data from './chartDate';
 import { getStatistic } from 'api/statistics';
 import { getTrainings } from 'api/trainings';
 import { useDispatch, useSelector } from 'react-redux';
 import { authSelectors } from 'redux/auth';
-import { getAmountDays, getActPages, getPlanDays } from './helpers';
+import { getAmountDays, getActPages, getPlanPages } from './helpers';
 import { statisticsActions } from 'redux/statistics';
 
 import {
@@ -70,9 +69,8 @@ const Chart = () => {
       const act = getActPages(statistic);
 
       const { training } = await getTrainings(token);
-      console.log(training);
-      const plan = getPlanDays(training);
-      console.log(plan);
+
+      const plan = getPlanPages(statistic, training);
 
       setData({
         labels: labels,
@@ -80,7 +78,7 @@ const Chart = () => {
           {
             label: 'PLAN',
             fill: false,
-            data: [0, 2, 43, 4, 76, 9, 9], //from back
+            data: plan,
             borderColor: 'rgba(9, 30, 63, 1,)',
             backgroundColor: 'rgba(9, 30, 63, 1)',
             borderWidth: 2,
