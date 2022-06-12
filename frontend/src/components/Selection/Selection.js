@@ -3,12 +3,13 @@ import { GoTriangleDown } from 'react-icons/go';
 import SelectionList from './SelectionList';
 import classNames from 'classnames';
 import { SelectionWrapper } from './Selection.styled';
+import { useDispatch } from 'react-redux';
+import { trainingsActions } from 'redux/trainings';
 
-const Selection = ({ data, onChange, wide, top }) => {
-  const [current, setCurrent] = useState(
-    data.options.find(({ isDefault }) => isDefault)
-  );
+const Selection = ({ books, wide, top, current }) => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const dispatch = useDispatch();
 
   const selectionRef = useRef(null);
 
@@ -29,11 +30,8 @@ const Selection = ({ data, onChange, wide, top }) => {
 
   const toggle = () => setIsOpen(prev => !prev);
 
-  const handleChange = e => {
-    const newId = e.target.value;
-    const newValue = data.options.find(({ id }) => id === newId);
-    setCurrent(newValue);
-    onChange(newValue);
+  const onItemClick = book => {
+    dispatch(trainingsActions.addSelectedBook(book));
     toggle();
   };
 
@@ -50,27 +48,17 @@ const Selection = ({ data, onChange, wide, top }) => {
       <div className={'buttonWrapper'}>
         <button type="button" className={'button'} onClick={toggle}>
           <span className={'current'}>
-            {data?.showTitle && (
-              <span className={'title'}>{data?.title}: </span>
-            )}
-            {current?.name}
+            {!books.length
+              ? 'You do not have books in library'
+              : 'Choose books from the library'}
           </span>
           <GoTriangleDown size={13} />
         </button>
       </div>
-      {data.options.map(({ type, id }) => (
-        <input
-          type="radio"
-          id={id}
-          name={type}
-          key={id}
-          value={id}
-          onChange={handleChange}
-          checked={current?.id === id}
-          className={'input'}
-        />
-      ))}
-      {isOpen && <SelectionList data={data} current={current} />}
+
+      {isOpen && (
+        <SelectionList books={books} onClick={onItemClick} current={current} />
+      )}
     </SelectionWrapper>
   );
 };

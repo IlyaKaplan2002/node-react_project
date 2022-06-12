@@ -15,7 +15,7 @@ const InputField = ({
 }) => {
   return (
     <InputFieldStyled className={classNames.field}>
-      <span className={classNames.labelText + ' labelText'}>{label}</span>
+      <span className={'labelText ' + classNames.labelText}>{label}</span>
       <input
         type={type}
         className={classNames.input + ' input'}

@@ -12,8 +12,7 @@ import { trainingCardTypes } from 'constants';
 const CardSectionNotActive = ({ cardType, books = [] }) => {
   const withoutDelEmpty = cardType === trainingCardTypes.withoutDelEmpty;
   const withDel = cardType === trainingCardTypes.withDel;
-  const notChecked = cardType === trainingCardTypes.notChecked;
-  const checked = cardType === trainingCardTypes.checked;
+  const started = cardType === trainingCardTypes.started;
 
   return (
     <Container>
@@ -37,22 +36,24 @@ const CardSectionNotActive = ({ cardType, books = [] }) => {
             <Spliter></Spliter>
           </>
         )}
-        {(withDel || notChecked || checked) && (
+        {(withDel || started) && (
           <ListOwerflow>
-            {books.map(({ name, author, year, pages, _id }) => (
-              <>
-                <CardForStart
-                  key={_id ?? name}
-                  id={_id}
-                  cardType={cardType}
-                  name={name}
-                  author={author}
-                  year={year}
-                  pages={pages}
-                />
-                <Spliter></Spliter>
-              </>
-            ))}
+            {books.map(({ name, author, year, pages, status, _id }) => {
+              return (
+                <div key={_id}>
+                  <CardForStart
+                    id={_id}
+                    cardType={cardType}
+                    status={status}
+                    name={name}
+                    author={author}
+                    year={year}
+                    pages={pages}
+                  />
+                  <Spliter></Spliter>
+                </div>
+              );
+            })}
           </ListOwerflow>
         )}
       </CardSectionStyled>

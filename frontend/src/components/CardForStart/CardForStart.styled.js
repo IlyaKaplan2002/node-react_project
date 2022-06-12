@@ -67,7 +67,7 @@ const BookIcon = styled.span`
   top: 20px;
   left: 0px;
   color: ${props =>
-    props.reading
+    props.isRead
       ? props.theme.colors.mainOrange
       : props.theme.colors.secondary};
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {

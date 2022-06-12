@@ -11,6 +11,24 @@ const ResultContainerStyled = styled.div`
   padding: 20px;
   margin-top: 40px;
 
+  .labelText {
+    margin-bottom: 0 !important;
+  }
+
+  .list {
+    overflow: scroll;
+    max-height: 100px;
+  }
+
+  .error {
+    position: absolute;
+    bottom: 0;
+    font-family: ${props => props.theme.fonts.families.montserrat};
+    color: ${props => props.theme.colors.error};
+    font-weight: ${props => props.theme.fonts.weights.medium};
+    font-size: 12px;
+  }
+
   .formContainer {
     display: flex;
 
@@ -45,7 +63,7 @@ const ResultContainerStyled = styled.div`
   }
 
   .button {
-    width: 240px;
+    width: 240px !important;
     height: 42px;
     text-transform: none;
     margin-bottom: 24px;

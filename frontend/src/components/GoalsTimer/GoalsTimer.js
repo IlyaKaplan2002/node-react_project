@@ -1,8 +1,12 @@
 import MyTimer from 'components/reusableComponents/Timer';
 
-const GoalsTimer = () => {
-  const year = new Date('Jun 10, 2022');
-  return <MyTimer expiryTimestamp={year} title="Goals countdown" />;
+const GoalsTimer = ({ date, className, onEnd }) => {
+  const year = new Date(date);
+  return (
+    <div className={className}>
+      <MyTimer onEnd={onEnd} expiryTimestamp={year} title="Goals countdown" />
+    </div>
+  );
 };
 
 export default GoalsTimer;

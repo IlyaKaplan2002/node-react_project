@@ -86,6 +86,7 @@ const addStatistic = async (req, res) => {
   const statistic = await statisticService.addStatistic({
     ...req.body,
     owner: userId,
+    training: training._id,
   });
 
   res.status(201).json(createResponse(201, { statistic }));
