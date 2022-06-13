@@ -5,18 +5,19 @@ import {
   ListOwerflow,
 } from './CardSectionNotActive.styled';
 import CardForStart from 'components/CardForStart';
-import Spliter from 'components/utils/Spliter';
+import Spliter from 'components/reusableComponents/Spliter';
 import { Container } from 'styles';
 import { trainingCardTypes } from 'constants';
+import Media from 'react-media';
+import ScrollContainer from 'react-indiana-drag-scroll';
 
 const CardSectionNotActive = ({ cardType, books = [] }) => {
   const withoutDelEmpty = cardType === trainingCardTypes.withoutDelEmpty;
   const withDel = cardType === trainingCardTypes.withDel;
-  const notChecked = cardType === trainingCardTypes.notChecked;
-  const checked = cardType === trainingCardTypes.checked;
+  const started = cardType === trainingCardTypes.started;
 
   return (
-    <Container>
+    <Container className="container">
       <CardSectionStyled>
         <Spliter></Spliter>
         <CardsNameList>
@@ -25,36 +26,57 @@ const CardSectionNotActive = ({ cardType, books = [] }) => {
           <li>Year</li>
           <li>Pages</li>
         </CardsNameList>
-        {withoutDelEmpty && (
-          <>
-            <CardForStart
-              name={'...'}
-              author={'...'}
-              year={'...'}
-              pages={'...'}
-              cardType={cardType}
+        <ScrollContainer className="booksContainer" hideScrollbars={false}>
+          {withoutDelEmpty && (
+            <>
+              <CardForStart
+                name={'...'}
+                author={''}
+                year={''}
+                pages={''}
+                cardType={cardType}
+              />
+              <Spliter></Spliter>
+            </>
+          )}
+          {(withDel || started) && (
+            <ListOwerflow>
+              {books.map(({ name, author, year, pages, status, _id }) => {
+                return (
+                  <div key={_id}>
+                    <CardForStart
+                      id={_id}
+                      cardType={cardType}
+                      status={status}
+                      name={name}
+                      author={author}
+                      year={year}
+                      pages={pages}
+                    />
+                    <Spliter></Spliter>
+                  </div>
+                );
+              })}
+            </ListOwerflow>
+          )}
+          {withDel && (
+            <Media
+              query="(min-width:768px)"
+              render={() => (
+                <>
+                  <CardForStart
+                    name={'...'}
+                    author={''}
+                    year={''}
+                    pages={''}
+                    cardType={trainingCardTypes.withoutDelEmpty}
+                  />
+                  <Spliter></Spliter>
+                </>
+              )}
             />
-            <Spliter></Spliter>
-          </>
-        )}
-        {(withDel || notChecked || checked) && (
-          <ListOwerflow>
-            {books.map(({ name, author, year, pages, _id }) => (
-              <>
-                <CardForStart
-                  key={_id ?? name}
-                  id={_id}
-                  cardType={cardType}
-                  name={name}
-                  author={author}
-                  year={year}
-                  pages={pages}
-                />
-                <Spliter></Spliter>
-              </>
-            ))}
-          </ListOwerflow>
-        )}
+          )}
+        </ScrollContainer>
       </CardSectionStyled>
     </Container>
   );

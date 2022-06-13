@@ -9,17 +9,19 @@ const tryRefreshToken = async (
   callback,
   ...args
 ) => {
-  const message = error.response.data.message;
+  const message = error?.response?.data?.message || 'Error';
 
   try {
     if (message === 'jwt expired') {
       const data = await refreshToken(refreshTokenValue);
       dispatch(authActions.login(data));
       await callback(data.token, ...args);
-    } else notifyError(error);
+    } else {
+      notifyError(error);
+      dispatch(authActions.logout());
+    }
   } catch (error) {
     notifyError(error);
-    dispatch(authActions.logout());
   }
 };
 

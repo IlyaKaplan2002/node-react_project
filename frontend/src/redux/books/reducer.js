@@ -25,7 +25,7 @@ const reducer = createReducer(initialState, {
       [cardTypes.alreadyRead]: [...newAlreadyRead],
       [cardTypes.reading]: [...newReading],
       [cardTypes.goingToRead]: [...newGoingToRead],
-    };
+    };  
   },
   [actions.update]: (state, action) => {
     const { status, _id: bookId } = action.payload;
@@ -39,7 +39,7 @@ const reducer = createReducer(initialState, {
   },
   [actions.add]: (state, action) => {
     const status = action.payload.status;
-    return { ...state, [status]: [...state[status], action.payload] };
+    return { ...state, [status]: [action.payload, ...state[status] ] };
   },
 });
 

@@ -15,7 +15,7 @@ const removeBook = async (req, res) => {
     throwError('Forbidden', 403);
   }
 
-  res.json(createResponse(204, { message: 'contact deleted' }));
+  res.json(createResponse(204, { message: 'Book deleted' }));
 };
 
 module.exports = removeBook;

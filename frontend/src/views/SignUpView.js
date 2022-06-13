@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Container } from 'styles';
+// import { Container } from 'styles';
 import NonAuthHeader from 'components/NonAuthHeader';
 import FormSignUp from 'components/Forms/FormSignUp';
 import BookInfo from 'components/BookInfo';
@@ -11,13 +11,16 @@ const SignUpView = () => {
   }, []);
 
   return (
-    <Container>
+    <>
+      {/* <Container> */}
       <NonAuthHeader />
       <Wrapper>
         <FormSignUp />
         <BookInfo />
       </Wrapper>
-    </Container>
+
+      {/* </Container> */}
+    </>
   );
 };
 
