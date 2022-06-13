@@ -4,6 +4,10 @@ const { createResponse } = require('../../helpers');
 const getStatistic = async (req, res) => {
   const { _id } = req.user;
   const training = await trainingService.getTraining(_id);
+  if (!training) {
+    res.status(200).json(createResponse(200, { statistic: [] }));
+    return;
+  }
   const statistic = await statisticService.findStatistic({
     owner: _id,
     training: training._id,
