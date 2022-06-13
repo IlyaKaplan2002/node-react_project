@@ -1,16 +1,12 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import backgroundImgMobile from 'assets/img/pic.jpg';
-import backgroundImgTablet from 'assets/img/pic@2x.jpg';
-import backgroundDesktop from 'assets/img/pic@3x.jpg';
+import mobileInImg from 'assets/img/mobileIn.jpg';
+import mobileUpImg from 'assets/img/mobileUp.jpg';
+import tabletInImg from 'assets/img/tabletIn.jpg';
+import tabletUpImg from 'assets/img/tabletUp.jpg';
+import desktopImg from 'assets/img/desktop.jpg';
 
 const FormContainer = styled.div`
-  ${props =>
-    props.signup
-      ? `min-height: calc(100vh - 60px);
-  display: flex;
-  align-items: center;`
-      : ''}
   padding-top: 32px;
   padding-bottom: 32px;
   text-align: center;
@@ -21,8 +17,22 @@ const FormContainer = styled.div`
       rgba(9, 30, 63, 0.8),
       rgba(9, 30, 63, 0.8)
     ),
-    url(${backgroundImgMobile});
+    url(${mobileInImg});
+  background-position: 100% 100%;
   box-shadow: ${props => props.theme.shadows.hero};
+
+  ${props =>
+    props.signup
+      ? `min-height: calc(100vh - 60px);
+  display: flex;
+  align-items: center;
+  background-image: linear-gradient(
+      to right,
+      rgba(9, 30, 63, 0.8),
+      rgba(9, 30, 63, 0.8)
+    ),
+    url(${mobileUpImg});`
+      : ''}
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     padding-top: 65px;
@@ -32,8 +42,19 @@ const FormContainer = styled.div`
         rgba(9, 30, 63, 0.8),
         rgba(9, 30, 63, 0.8)
       ),
-      url(${backgroundImgTablet});
+      url(${tabletInImg});
+
+    ${props =>
+      props.signup
+        ? ` background-image: linear-gradient(
+      to right,
+      rgba(9, 30, 63, 0.8),
+      rgba(9, 30, 63, 0.8)
+    ),
+    url(${tabletUpImg});`
+        : ''}
   }
+
   @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
     padding: 50px 75px;
     min-height: calc(100vh - 60px);
@@ -44,7 +65,7 @@ const FormContainer = styled.div`
         rgba(9, 30, 63, 0.8),
         rgba(9, 30, 63, 0.8)
       ),
-      url(${backgroundDesktop});
+      url(${desktopImg});
   }
 
   .button {
@@ -67,8 +88,15 @@ const AuthFormStyled = styled.form`
   text-align: left;
   width: 280px;
 
-  .wrapper {
+  .wrapperSignIn {
     margin-bottom: 20px;
+  }
+
+  .wrapperSignUp {
+    margin-bottom: 20px;
+  }
+  .input {
+    background-color: ${props => props.theme.colors.mainWhite};
   }
 
   .label:not(:last-child) {
@@ -83,15 +111,25 @@ const AuthFormStyled = styled.form`
     padding-top: 40px;
     padding-bottom: 40px;
 
-    .wrapper {
+    .input {
+      background-color: ${props => props.theme.colors.iconActiveBg};
+    }
+
+    .wrapperSignIn {
       margin-bottom: 32px;
+    }
+
+    .wrapperSignUp {
+      margin-bottom: 35px;
     }
   }
 `;
 
 const FormSpanStarStyled = styled.span`
   color: ${props => props.theme.colors.mainOrange};
+  margin-left: 4px;
 `;
+
 const FormSpanStyled = styled.div`
   text-align: center;
   color: ${props => props.theme.colors.secondary};

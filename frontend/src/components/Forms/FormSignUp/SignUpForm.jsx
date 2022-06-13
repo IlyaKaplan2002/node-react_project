@@ -55,7 +55,7 @@ const SignUpForm = () => {
     <FormContainer className="signUp" signup>
       <AuthFormStyled onSubmit={formik.handleSubmit}>
         <AuthGoogle type="button" className="googleButton" />
-        <div className="wrapper">
+        <div className="wrapperSignUp">
           <InputField
             type="text"
             placeholder="..."
@@ -65,13 +65,17 @@ const SignUpForm = () => {
             onBlur={formik.handleBlur}
             label={
               <div>
-                Name <FormSpanStarStyled>*</FormSpanStarStyled>
+                Name
+                {formik.touched.name && (
+                  <FormSpanStarStyled>*</FormSpanStarStyled>
+                )}
               </div>
             }
             touched={formik.touched.name}
             error={formik.errors.name}
             classNames={{
               field: 'label',
+              input: 'input',
             }}
           />
           <InputField
@@ -83,13 +87,17 @@ const SignUpForm = () => {
             onBlur={formik.handleBlur}
             label={
               <div>
-                Email <FormSpanStarStyled>*</FormSpanStarStyled>
+                Email
+                {formik.touched.email && (
+                  <FormSpanStarStyled>*</FormSpanStarStyled>
+                )}
               </div>
             }
             touched={formik.touched.email}
             error={formik.errors.email}
             classNames={{
               field: 'label',
+              input: 'input',
             }}
           />
           <InputField
@@ -101,13 +109,17 @@ const SignUpForm = () => {
             onBlur={formik.handleBlur}
             label={
               <div>
-                Password <FormSpanStarStyled>*</FormSpanStarStyled>
+                Password
+                {formik.touched.password && (
+                  <FormSpanStarStyled>*</FormSpanStarStyled>
+                )}
               </div>
             }
             touched={formik.touched.password}
             error={formik.errors.password}
             classNames={{
               field: 'label',
+              input: 'input',
             }}
           />
           <InputField
@@ -119,17 +131,21 @@ const SignUpForm = () => {
             onBlur={formik.handleBlur}
             label={
               <div>
-                Confirm password <FormSpanStarStyled>*</FormSpanStarStyled>
+                Confirm password
+                {formik.touched.confirmPassword && (
+                  <FormSpanStarStyled>*</FormSpanStarStyled>
+                )}
               </div>
             }
             touched={formik.touched.confirmPassword}
             error={formik.errors.confirmPassword}
             classNames={{
               field: 'label',
+              input: 'input',
             }}
           />
         </div>
-        <Button type="submit" filled className="button">
+        <Button type="submit" filled className="button signUpForm">
           Register
           {isLoading && <Loader button width={30} height={30} />}
         </Button>
