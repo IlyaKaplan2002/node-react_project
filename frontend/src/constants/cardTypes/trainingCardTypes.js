@@ -1,8 +1,7 @@
 const trainingCardTypes = {
   withDel: 'withDel',
   withoutDelEmpty: 'withoutDelEmpty',
-  notChecked: 'notChecked',
-  checked: 'checked',
+  started: 'started',
 };
 
 export default trainingCardTypes;

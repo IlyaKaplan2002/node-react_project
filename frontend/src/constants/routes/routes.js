@@ -5,7 +5,6 @@ const LoginView = lazy(() => import('views/LoginView'));
 const SignUpView = lazy(() => import('views/SignUpView'));
 const LibraryView = lazy(() => import('views/LibraryView'));
 const TrainingView = lazy(() => import('views/TrainingView'));
-const StatisticsView = lazy(() => import('views/StatisticsView'));
 
 const paths = {
   home: '/',
@@ -13,7 +12,6 @@ const paths = {
   signUp: '/signup',
   library: '/library',
   training: '/training',
-  statistics: '/statistics',
 };
 
 const routes = {
@@ -44,12 +42,6 @@ const routes = {
   training: {
     path: paths.training,
     component: TrainingView,
-    isPrivate: true,
-    redirect: paths.home,
-  },
-  statistics: {
-    path: paths.statistics,
-    component: StatisticsView,
     isPrivate: true,
     redirect: paths.home,
   },

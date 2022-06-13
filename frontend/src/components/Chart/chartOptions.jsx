@@ -1,6 +1,5 @@
 const fn = value => {
   if (value < 768) {
-    console.log(value);
     return false;
   }
   return true;

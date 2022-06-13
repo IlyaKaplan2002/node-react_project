@@ -31,6 +31,7 @@ const theme = {
     darkGray: '#6D7A8D',
     backdrop: 'rgba(43, 43, 43, 0.1)',
     timer: '#091E3F',
+    scrollBar: '#B1B5C2',
   },
   borders: {
     input: '1px solid #a6abb9',

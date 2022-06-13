@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import 'react-datetime/css/react-datetime.css';
 import { useFormik } from 'formik';
 import { RiCalendar2Line } from 'react-icons/ri';
@@ -11,30 +11,50 @@ import {
 } from './AddTrainingForm.styled';
 import Button from 'components/reusableComponents/Button';
 import Selection from 'components/Selection';
+import { useDispatch, useSelector } from 'react-redux';
+import { trainingsActions, trainingsSelectors } from 'redux/trainings';
+import { format, isAfter, isFuture, isSameDay, isValid } from 'date-fns';
+import { notifyError } from 'helpers';
 
-const initialValues = {
-  start: null,
-  finish: null,
-  book: null,
-};
+const AddTrainingForm = ({ books, closeModal = () => {}, desktop }) => {
+  const selectedTraining = useSelector(trainingsSelectors.getSelectedTraining);
+  const selectedBooks = useSelector(trainingsSelectors.getSelectedBooks);
+  const dispatch = useDispatch();
+  const [currentBook, setCurrentBook] = useState(null);
 
-const placeholderBook = {
-  isDefault: true,
-  name: 'Choose book from the library',
-  id: '...',
-};
+  const initialValues = {
+    start: selectedTraining?.start ? new Date(selectedTraining.start) : null,
+    end: selectedTraining?.end ? new Date(selectedTraining.end) : null,
+  };
 
-const AddTrainingForm = ({ books }) => {
+  const onSubmit = values => {
+    if (!selectedBooks.length && !currentBook) {
+      notifyError('You should select at least one book!');
+      return;
+    }
+
+    if (currentBook) {
+      dispatch(trainingsActions.addSelectedBook(currentBook));
+      setCurrentBook(null);
+    }
+
+    if (selectedBooks?.start && selectedBooks?.end) {
+      dispatch(
+        trainingsActions.setSelectedDates({
+          start: format(new Date(values.start), 'MM.dd.yyyy'),
+          end: format(new Date(values.end), 'MM.dd.yyyy'),
+        })
+      );
+    }
+    closeModal();
+  };
+
   const formik = useFormik({
     initialValues,
     initialErrors: initialValues,
     validateOnBlur: true,
-    onSubmit: values => console.log(values),
+    onSubmit,
   });
-
-  const setSelectedBook = book => {
-    formik.setFieldValue('book', book);
-  };
 
   return (
     <TrainingFormSection>
@@ -54,37 +74,81 @@ const AddTrainingForm = ({ books }) => {
                 placeholder: 'Start',
                 className: 'date-input',
               }}
+              isValidDate={val =>
+                isFuture(new Date(val)) || isSameDay(new Date(), new Date(val))
+              }
               timeFormat={false}
-              value={formik.values.start}
+              value={formik.values.start ? formik.values.start : ''}
               onChange={dateFromValue => {
                 formik.setFieldValue('start', dateFromValue._d);
+                dispatch(
+                  trainingsActions.setSelectedDates({
+                    start: isValid(new Date(dateFromValue._d))
+                      ? format(new Date(dateFromValue._d), 'MM.dd.yyyy')
+                      : null,
+                  })
+                );
               }}
+              renderInput={props => (
+                <input
+                  {...props}
+                  value={
+                    formik.values.start
+                      ? format(formik.values.start, 'dd.MM.yyyy')
+                      : ''
+                  }
+                />
+              )}
             />
           </DatePickerWrapper>
           <DatePickerWrapper>
             <RiCalendar2Line className="calendar" size={22} />
             <GoTriangleDown size={13} />
             <Datetime
-              id="finish"
-              name="finish"
+              id="end"
+              name="end"
               closeOnSelect
               inputProps={{
                 placeholder: 'Finish',
                 className: 'date-input',
               }}
+              isValidDate={val => {
+                if (!formik.values.start) return isFuture(new Date(val));
+                return isAfter(new Date(val), new Date(formik.values.start));
+              }}
               dateFormat="DD.MM.yyyy"
               timeFormat={false}
-              value={formik.values.finish}
+              value={formik.values.end ? formik.values.end : ''}
               onChange={dateFromValue => {
-                formik.setFieldValue('finish', dateFromValue._d);
+                formik.setFieldValue('end', dateFromValue._d);
+                dispatch(
+                  trainingsActions.setSelectedDates({
+                    end: isValid(new Date(dateFromValue._d))
+                      ? format(new Date(dateFromValue._d), 'MM.dd.yyyy')
+                      : null,
+                  })
+                );
               }}
+              renderInput={props => (
+                <input
+                  {...props}
+                  value={
+                    formik.values.end
+                      ? format(formik.values.end, 'dd.MM.yyyy')
+                      : ''
+                  }
+                />
+              )}
             />
           </DatePickerWrapper>
         </div>
         <div className="second-part">
           <Selection
-            data={{ options: [...books, placeholderBook] }}
-            onChange={setSelectedBook}
+            books={books}
+            current={selectedBooks}
+            desktop={desktop}
+            currentBook={currentBook}
+            setCurrentBook={setCurrentBook}
           />
           <Button className={'submit'} type="submit">
             Add
