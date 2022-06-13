@@ -17,7 +17,7 @@ const CardSectionNotActive = ({ cardType, books = [] }) => {
   const started = cardType === trainingCardTypes.started;
 
   return (
-    <Container>
+    <Container className="container">
       <CardSectionStyled>
         <Spliter></Spliter>
         <CardsNameList>
@@ -26,7 +26,7 @@ const CardSectionNotActive = ({ cardType, books = [] }) => {
           <li>Year</li>
           <li>Pages</li>
         </CardsNameList>
-        <ScrollContainer className="booksContainer">
+        <ScrollContainer className="booksContainer" hideScrollbars={false}>
           {withoutDelEmpty && (
             <>
               <CardForStart

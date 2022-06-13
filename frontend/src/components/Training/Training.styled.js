@@ -46,6 +46,45 @@ const TrainingStyled = styled.div`
       margin-bottom: 40px;
     }
   }
+  @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
+    .topWrapper {
+      width: 100%;
+      padding-right: 16px;
+      padding-left: 16px;
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+    }
+
+    .timersWrapper {
+      padding-left: 137px;
+      padding-right: 169px;
+    }
+
+    .goalsWrapper {
+      margin-top: 0;
+    }
+
+    .cardsWrapper {
+      margin-top: -120px;
+      width: 100%;
+      padding-left: 16px;
+      display: flex;
+      align-items: start;
+
+      & .container {
+        width: fit-content;
+        margin-left: 0;
+      }
+    }
+
+    .bottomWrapper {
+      display: flex;
+      padding-right: 16px;
+      justify-content: space-between;
+      width: 100%;
+    }
+  }
 `;
 
 export default TrainingStyled;

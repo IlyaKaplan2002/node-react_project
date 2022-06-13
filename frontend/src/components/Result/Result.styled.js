@@ -108,9 +108,12 @@ const ResultContainerStyled = styled.div`
   }
 
   @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
-    width: 280px;
+    width: 288px;
     height: 340px;
     padding: 20px;
+    margin-top: 0;
+    margin-right: 0;
+
     .form {
       display: block;
     }
@@ -119,6 +122,11 @@ const ResultContainerStyled = styled.div`
     }
     .button {
       margin-bottom: 24px;
+      margin-left: 0;
+    }
+
+    .list {
+      width: 100%;
     }
 
     .changeWeight {

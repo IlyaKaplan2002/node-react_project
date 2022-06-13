@@ -159,30 +159,35 @@ const Training = () => {
             <TrainingFormModal onCloseModal={toggleAddModal} />
           ) : (
             <TrainingStyled isCurrent={isCurrent}>
-              {isCurrent ? (
-                <div className="timersWrapper">
-                  <YearTimer className="yearTimer" />
-                  <GoalsTimer
-                    date={training.end}
-                    className="goalsTimer"
-                    onEnd={toggleWellDone}
-                  />
-                </div>
-              ) : (
-                <>
-                  {matches.large && (
-                    <AddTrainingForm
-                      desktop
-                      books={[
-                        ...reading.map(book => ({ ...book, id: book._id })),
-                        ...goingToRead.map(book => ({ ...book, id: book._id })),
-                      ]}
+              <div className="topWrapper">
+                {isCurrent ? (
+                  <div className="timersWrapper">
+                    <YearTimer className="yearTimer" />
+                    <GoalsTimer
+                      date={training.end}
+                      className="goalsTimer"
+                      onEnd={toggleWellDone}
                     />
-                  )}
-                </>
-              )}
-              <div className="goalsWrapper">
-                <MyGoalsSection />
+                  </div>
+                ) : (
+                  <>
+                    {matches.large && (
+                      <AddTrainingForm
+                        desktop
+                        books={[
+                          ...reading.map(book => ({ ...book, id: book._id })),
+                          ...goingToRead.map(book => ({
+                            ...book,
+                            id: book._id,
+                          })),
+                        ]}
+                      />
+                    )}
+                  </>
+                )}
+                <div className="goalsWrapper">
+                  <MyGoalsSection />
+                </div>
               </div>
               <div className="cardsWrapper">
                 {!Boolean(selectedTraining?.books?.length) && !isCurrent && (
@@ -214,9 +219,11 @@ const Training = () => {
                   </Button>
                 )}
 
-              <Chart />
+              <div className="bottomWrapper">
+                <Chart />
 
-              {isCurrent && <Result openWellDone={toggleDone} />}
+                {isCurrent && <Result openWellDone={toggleDone} />}
+              </div>
 
               {!isCurrent && matches.small && (
                 <AddButton onClick={toggleAddModal} />

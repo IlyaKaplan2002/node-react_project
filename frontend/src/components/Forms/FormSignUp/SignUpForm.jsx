@@ -16,6 +16,8 @@ import { notifyError } from 'helpers';
 import { useDispatch } from 'react-redux';
 import { authActions } from 'redux/auth';
 import { routes } from 'constants';
+import { useState } from 'react';
+import Loader from 'components/reusableComponents/Loader';
 
 const initialValues = {
   name: '',
@@ -26,9 +28,11 @@ const initialValues = {
 
 const SignUpForm = () => {
   const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(false);
 
   const onSubmit = async values => {
     try {
+      setIsLoading(true);
       const { email, password } = values;
       await signUp(values);
       const data = await login({ email, password });
@@ -36,6 +40,7 @@ const SignUpForm = () => {
     } catch (error) {
       notifyError(error);
     }
+    setIsLoading(false);
   };
 
   const formik = useFormik({
@@ -126,6 +131,7 @@ const SignUpForm = () => {
         </div>
         <Button type="submit" filled className="button">
           Register
+          {isLoading && <Loader button width={30} height={30} />}
         </Button>
         <FormSpanStyled>
           Already with us? <LinkStyled to={routes.login.path}>Login</LinkStyled>

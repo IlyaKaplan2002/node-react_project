@@ -145,7 +145,7 @@ const Result = ({ openWellDone }) => {
       <TextStyled className="changeWeight">STATISTICS</TextStyled>
 
       {Boolean(results.length) && (
-        <ScrollContainer component="ul" className="list">
+        <ScrollContainer component="ul" hideScrollbars={false} className="list">
           {[...results].reverse().map(result => (
             <li key={result.createdAt}>
               <ListStyled>

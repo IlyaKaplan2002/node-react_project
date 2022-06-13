@@ -12,7 +12,7 @@ const CardSectionStyled = styled.div`
     }
   }
   @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
-    max-width: 928px;
+    width: 928px;
     border-bottom: 1px solid #e0e5eb;
   }
 `;
