@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 const ChartStyled = styled.div`
-  position: absolute;
   width: 290px;
   height: 280px;
   padding: 22px 25px 22px 20px;

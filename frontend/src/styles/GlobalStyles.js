@@ -41,6 +41,27 @@ const GlobalStyles = createGlobalStyle`
     a {
       text-decoration: none;
     }
+    @media screen and (max-width: 428px) {
+      ::-webkit-scrollbar {
+        display: none;
+      }
+    
+      ::-webkit-scrollbar-track {
+        display: none;
+      }
+    
+      ::-webkit-scrollbar-thumb {
+        display: none;
+      }
+    }
+
+    ::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: ${props => props.theme.colors.scrollBar};
+    }
 `;
 
 export default GlobalStyles;

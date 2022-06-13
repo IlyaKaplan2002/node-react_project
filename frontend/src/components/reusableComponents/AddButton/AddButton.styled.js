@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const AddButtonStyled = styled.div`
+const AddButtonStyled = styled.button`
   width: 52px;
   height: 52px;
   border-radius: 50%;
@@ -12,6 +12,9 @@ const AddButtonStyled = styled.div`
   bottom: 12px;
   left: 50%;
   transform: translateX(-50%);
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export default AddButtonStyled;

@@ -5,7 +5,7 @@ const CardStyled = styled.div`
   padding: 20px 20px 30px 54px;
   margin: 0 auto;
   width: 100%;
-  max-width: 280px;
+  /* max-width: 280px; */
   font-size: 12px;
   font-family: ${props => props.theme.fonts.families.montserrat};
   font-weight: ${props => props.theme.fonts.weights.medium};
@@ -21,7 +21,8 @@ const CardStyled = styled.div`
     padding: 14px 20px 14px 60px;
     height: 62px;
     font-size: 14px;
-    max-width: 704px;
+    min-width: 704px;
+    width: 100%;
     padding-right: 60px;
   }
 
@@ -67,7 +68,7 @@ const BookIcon = styled.span`
   top: 20px;
   left: 0px;
   color: ${props =>
-    props.reading
+    props.isRead
       ? props.theme.colors.mainOrange
       : props.theme.colors.secondary};
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
