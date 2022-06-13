@@ -1,24 +1,23 @@
 import styled from 'styled-components';
 
 const SelectionWrapper = styled.div`
-.wrapper {
+  .wrapper {
     position: relative;
     width: 100%;
   }
-  
+
   .wide {
     width: 100%;
   }
 
   .buttonWrapper {
     @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
-            width: 483px;
-        }
-    
-        @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
-            width: 715px;
-        }
-      }
+      width: 483px;
+    }
+
+    @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
+      width: 715px;
+    }
   }
 
   .button {
@@ -33,7 +32,7 @@ const SelectionWrapper = styled.div`
     box-shadow: ${props => props.theme.shadows.input};
     font-family: ${props => props.theme.fonts.families.montserrat};
   }
-  
+
   .current {
     font-weight: ${props => props.theme.fonts.weights.medium};
     font-size: 14px;
@@ -44,11 +43,10 @@ const SelectionWrapper = styled.div`
   .button svg {
     fill: ${props => props.theme.colors.mainBlack};
   }
-  
+
   .input {
     display: none;
   }
-}
 `;
 
 export { SelectionWrapper };

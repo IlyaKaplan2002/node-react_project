@@ -11,6 +11,24 @@ const ResultContainerStyled = styled.div`
   padding: 20px;
   margin-top: 40px;
 
+  .labelText {
+    margin-bottom: 0 !important;
+  }
+
+  .list {
+    overflow: scroll;
+    max-height: 100px;
+  }
+
+  .error {
+    position: absolute;
+    bottom: 0;
+    font-family: ${props => props.theme.fonts.families.montserrat};
+    color: ${props => props.theme.colors.error};
+    font-weight: ${props => props.theme.fonts.weights.medium};
+    font-size: 12px;
+  }
+
   .formContainer {
     display: flex;
 
@@ -45,7 +63,7 @@ const ResultContainerStyled = styled.div`
   }
 
   .button {
-    width: 240px;
+    width: 240px !important;
     height: 42px;
     text-transform: none;
     margin-bottom: 24px;
@@ -75,7 +93,12 @@ const ResultContainerStyled = styled.div`
       margin-bottom: 20px;
     }
     .button {
-      margin-bottom: -3px;
+      margin-bottom: 0;
+      margin-left: 32px;
+    }
+
+    .list {
+      width: fit-content;
     }
 
     .changeWeight {
@@ -85,9 +108,12 @@ const ResultContainerStyled = styled.div`
   }
 
   @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
-    width: 280px;
+    width: 288px;
     height: 340px;
     padding: 20px;
+    margin-top: 0;
+    margin-right: 0;
+
     .form {
       display: block;
     }
@@ -96,6 +122,11 @@ const ResultContainerStyled = styled.div`
     }
     .button {
       margin-bottom: 24px;
+      margin-left: 0;
+    }
+
+    .list {
+      width: 100%;
     }
 
     .changeWeight {

@@ -8,7 +8,7 @@ const addBookSchema = object().shape({
     .positive('Year should be positive')
     .required('Year is required'),
   pages: number()
-    .typeError('Year should be a number')
+    .typeError('Pages should be a number')
     .positive('Pages should be positive')
     .required('Pages is required'),
 });

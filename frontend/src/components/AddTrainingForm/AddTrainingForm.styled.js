@@ -53,11 +53,17 @@ const AddTrainingFormStyled = styled.form`
     }
   }
 
-  .date-label, .date-input, .second-part, .first-part, .book-input, .book-label{
+  .date-label,
+  .date-input,
+  .second-part,
+  .first-part,
+  .book-input,
+  .book-label {
     width: 100%;
   }
 
-  .book-input, .book-label{
+  .book-input,
+  .book-label {
   }
 
   .date-input,
@@ -73,7 +79,7 @@ const AddTrainingFormStyled = styled.form`
     outline: none;
     border: none;
     background: ${props => props.theme.colors.mainBg};
-    border: 1px solid #A6ABB9;;
+    border: 1px solid #a6abb9;
     color: ${props => props.theme.colors.mainBlack};
     padding: 12px 40px;
   }
@@ -83,31 +89,29 @@ const AddTrainingFormStyled = styled.form`
     left: 50%;
     top: 110%;
     transform: translateX(-50%);
-}
+  }
 
-  .second-part{
+  .second-part {
     margin-top: 20px;
-    
+
     @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
-    margin-top: 24px;
-    display: flex;
+      margin-top: 24px;
+      display: flex;
     }
   }
 
-  
-  .first-part{
+  .first-part {
     @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
-    display: flex;
-    padding-right: 163px;
-    justify-content: space-between;
+      display: flex;
+      padding-right: 163px;
+      justify-content: space-between;
     }
 
     @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
       justify-content: center;
       padding: 0;
-      }
+    }
   }
-}
 `;
 
 const DatePickerWrapper = styled.div`
@@ -134,7 +138,7 @@ const DatePickerWrapper = styled.div`
       width: 250px;
       margin-top: 0;
     }
-    
+
     @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
       margin-left: 44px;
     }

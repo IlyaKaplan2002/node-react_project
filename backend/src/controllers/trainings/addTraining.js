@@ -25,7 +25,8 @@ const addTraining = async (req, res) => {
       owner: _id,
     });
   } else {
-    training = await trainingService.updateTraining({ owner: _id }, req.body);
+    await trainingService.removeTraining(oldTraining._id);
+    training = await trainingService.addTraining({ owner: _id, ...req.body });
   }
 
   res.status(201).json(createResponse(201, { training }));

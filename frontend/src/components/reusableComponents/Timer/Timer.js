@@ -5,10 +5,12 @@ function pad(value) {
   return String(value).padStart(2, '0');
 }
 
-function MyTimer({ expiryTimestamp, title }) {
+function MyTimer({ expiryTimestamp, title, onEnd = () => {} }) {
   const { seconds, minutes, hours, days } = useTimer({
     expiryTimestamp,
-    onExpire: () => console.log('onExpire called'),
+    onExpire: () => {
+      onEnd();
+    },
   });
 
   return (
