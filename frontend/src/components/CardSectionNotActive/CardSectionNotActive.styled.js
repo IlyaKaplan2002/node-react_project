@@ -6,6 +6,10 @@ const CardSectionStyled = styled.div`
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     width: 704px;
+    .booksContainer {
+      max-height: 224px;
+      overflow-y: scroll;
+    }
   }
   @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
     max-width: 928px;

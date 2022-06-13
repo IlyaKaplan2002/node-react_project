@@ -8,6 +8,8 @@ import CardForStart from 'components/CardForStart';
 import Spliter from 'components/reusableComponents/Spliter';
 import { Container } from 'styles';
 import { trainingCardTypes } from 'constants';
+import Media from 'react-media';
+import ScrollContainer from 'react-indiana-drag-scroll';
 
 const CardSectionNotActive = ({ cardType, books = [] }) => {
   const withoutDelEmpty = cardType === trainingCardTypes.withoutDelEmpty;
@@ -24,38 +26,57 @@ const CardSectionNotActive = ({ cardType, books = [] }) => {
           <li>Year</li>
           <li>Pages</li>
         </CardsNameList>
-        {withoutDelEmpty && (
-          <>
-            <CardForStart
-              name={'...'}
-              author={'...'}
-              year={'...'}
-              pages={'...'}
-              cardType={cardType}
-            />
-            <Spliter></Spliter>
-          </>
-        )}
-        {(withDel || started) && (
-          <ListOwerflow>
-            {books.map(({ name, author, year, pages, status, _id }) => {
-              return (
-                <div key={_id}>
+        <ScrollContainer className="booksContainer">
+          {withoutDelEmpty && (
+            <>
+              <CardForStart
+                name={'...'}
+                author={''}
+                year={''}
+                pages={''}
+                cardType={cardType}
+              />
+              <Spliter></Spliter>
+            </>
+          )}
+          {(withDel || started) && (
+            <ListOwerflow>
+              {books.map(({ name, author, year, pages, status, _id }) => {
+                return (
+                  <div key={_id}>
+                    <CardForStart
+                      id={_id}
+                      cardType={cardType}
+                      status={status}
+                      name={name}
+                      author={author}
+                      year={year}
+                      pages={pages}
+                    />
+                    <Spliter></Spliter>
+                  </div>
+                );
+              })}
+            </ListOwerflow>
+          )}
+          {withDel && (
+            <Media
+              query="(min-width:768px)"
+              render={() => (
+                <>
                   <CardForStart
-                    id={_id}
-                    cardType={cardType}
-                    status={status}
-                    name={name}
-                    author={author}
-                    year={year}
-                    pages={pages}
+                    name={'...'}
+                    author={''}
+                    year={''}
+                    pages={''}
+                    cardType={trainingCardTypes.withoutDelEmpty}
                   />
                   <Spliter></Spliter>
-                </div>
-              );
-            })}
-          </ListOwerflow>
-        )}
+                </>
+              )}
+            />
+          )}
+        </ScrollContainer>
       </CardSectionStyled>
     </Container>
   );

@@ -1,9 +1,12 @@
 import React from 'react';
 import { SelectionListWrapper } from './SelectionList.styled';
 
-const SelectionList = ({ books, current, onClick }) => {
+const SelectionList = ({ books, currentBook, current, onClick }) => {
   const getClassName = id =>
-    current.find(book => book._id === id) ? 'labelActive' : 'label';
+    current.find(book => book._id === id) ||
+    (currentBook && currentBook._id === id)
+      ? 'labelActive'
+      : 'label';
 
   return (
     <SelectionListWrapper className={'list'}>

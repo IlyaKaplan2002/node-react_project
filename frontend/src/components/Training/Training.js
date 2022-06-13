@@ -1,6 +1,8 @@
+import { getAllBooks } from 'api/books';
 import { getStatistics } from 'api/statistics';
 import { getCurrentTraining } from 'api/trainings';
 import postTraining from 'api/trainings/postTraining';
+import AddTrainingForm from 'components/AddTrainingForm';
 import AppBar from 'components/AppBar';
 import CardSectionNotActive from 'components/CardSectionNotActive';
 import Chart from 'components/Chart';
@@ -14,13 +16,22 @@ import TrainingFormModal from 'components/TrainingFormModal';
 import WellDone from 'components/WellDone';
 import YearTimer from 'components/YearTimer';
 import { trainingCardTypes } from 'constants';
-import { tryRefreshToken } from 'helpers';
+import {
+  eachDayOfInterval,
+  isAfter,
+  isFuture,
+  isSameDay,
+  isValid,
+} from 'date-fns';
+import { notifyError, tryRefreshToken } from 'helpers';
+import { Notify } from 'notiflix';
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { useCallback } from 'react';
 import Media from 'react-media';
 import { useDispatch, useSelector } from 'react-redux';
 import { authSelectors } from 'redux/auth';
+import { booksActions, booksSelectors } from 'redux/books';
 import { statisticsActions } from 'redux/statistics';
 import { trainingsActions, trainingsSelectors } from 'redux/trainings';
 import { Container } from 'styles';
@@ -32,6 +43,8 @@ const Training = () => {
   const selectedTraining = useSelector(trainingsSelectors.getSelectedTraining);
   const training = useSelector(trainingsSelectors.getTraining);
   const isCurrent = useSelector(trainingsSelectors.getIsCurrent);
+  const reading = useSelector(booksSelectors.getReading);
+  const goingToRead = useSelector(booksSelectors.getGoingToRead);
   const dispatch = useDispatch();
   const [addModalOpened, setAddModalOpened] = useState(false);
   const [done, setDone] = useState(false);
@@ -39,6 +52,8 @@ const Training = () => {
 
   const onLoad = useCallback(async () => {
     const tryFunc = async tokenValue => {
+      const { books } = await getAllBooks(tokenValue);
+      dispatch(booksActions.init(books));
       const { training } = await getCurrentTraining(tokenValue);
       dispatch(trainingsActions.init(training));
       const { statistic } = await getStatistics(tokenValue);
@@ -61,6 +76,48 @@ const Training = () => {
   const toggleWellDone = () => setWellDone(prev => !prev);
 
   const addTraining = async () => {
+    if (!selectedTraining?.start) {
+      notifyError('Start date is required');
+      return;
+    }
+    if (!selectedTraining?.end) {
+      notifyError('End date is required');
+      return;
+    }
+
+    if (
+      !(
+        isFuture(new Date(selectedTraining.start)) ||
+        isSameDay(new Date(), new Date(selectedTraining.start))
+      )
+    ) {
+      notifyError('Please select start day today or future');
+      return;
+    }
+
+    if (
+      !isAfter(new Date(selectedTraining.end), new Date(selectedTraining.start))
+    ) {
+      notifyError('Please select end day later than start');
+      return;
+    }
+
+    const getDaysAmount = () => {
+      if (
+        selectedTraining?.start &&
+        isValid(new Date(selectedTraining.start)) &&
+        selectedTraining?.end &&
+        isValid(new Date(selectedTraining.end))
+      ) {
+        return eachDayOfInterval({
+          start: new Date(),
+          end: new Date(selectedTraining.start),
+        }).reduce(acc => acc + 1, 0);
+      } else {
+        return 0;
+      }
+    };
+
     const tryFunc = async tokenValue => {
       await postTraining(tokenValue, {
         ...selectedTraining,
@@ -81,6 +138,8 @@ const Training = () => {
 
     try {
       await tryFunc(token);
+      if (getDaysAmount())
+        Notify.success(`Your training will start in ${getDaysAmount()} days`);
     } catch (error) {
       tryRefreshToken(error, refreshToken, dispatch, tryFunc);
     }
@@ -100,7 +159,7 @@ const Training = () => {
             <TrainingFormModal onCloseModal={toggleAddModal} />
           ) : (
             <TrainingStyled isCurrent={isCurrent}>
-              {isCurrent && (
+              {isCurrent ? (
                 <div className="timersWrapper">
                   <YearTimer className="yearTimer" />
                   <GoalsTimer
@@ -109,18 +168,30 @@ const Training = () => {
                     onEnd={toggleWellDone}
                   />
                 </div>
+              ) : (
+                <>
+                  {matches.large && (
+                    <AddTrainingForm
+                      desktop
+                      books={[
+                        ...reading.map(book => ({ ...book, id: book._id })),
+                        ...goingToRead.map(book => ({ ...book, id: book._id })),
+                      ]}
+                    />
+                  )}
+                </>
               )}
               <div className="goalsWrapper">
                 <MyGoalsSection />
               </div>
               <div className="cardsWrapper">
-                {!Boolean(selectedTraining?.books.length) && !isCurrent && (
+                {!Boolean(selectedTraining?.books?.length) && !isCurrent && (
                   <CardSectionNotActive
                     cardType={trainingCardTypes.withoutDelEmpty}
                   />
                 )}
 
-                {Boolean(selectedTraining?.books.length) && (
+                {Boolean(selectedTraining?.books?.length) && (
                   <CardSectionNotActive
                     cardType={trainingCardTypes.withDel}
                     books={selectedTraining.books}
@@ -135,17 +206,21 @@ const Training = () => {
                 )}
               </div>
 
-              {Boolean(selectedTraining?.books.length) && (
-                <Button filled className="button" onClick={addTraining}>
-                  Start traininig
-                </Button>
-              )}
+              {Boolean(selectedTraining?.books?.length) &&
+                Boolean(selectedTraining?.start) &&
+                Boolean(selectedTraining?.end) && (
+                  <Button filled className="startButton" onClick={addTraining}>
+                    Start traininig
+                  </Button>
+                )}
 
               <Chart />
 
               {isCurrent && <Result openWellDone={toggleDone} />}
 
-              {!isCurrent && <AddButton onClick={toggleAddModal} />}
+              {!isCurrent && matches.small && (
+                <AddButton onClick={toggleAddModal} />
+              )}
             </TrainingStyled>
           )}
           {done && <Done onCloseModal={toggleDone} />}

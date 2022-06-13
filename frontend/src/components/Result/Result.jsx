@@ -21,6 +21,7 @@ import { notifyError, tryRefreshToken } from 'helpers';
 import { getCurrentTraining } from 'api/trainings';
 import { trainingsActions, trainingsSelectors } from 'redux/trainings';
 import { cardTypes } from 'constants';
+import ScrollContainer from 'react-indiana-drag-scroll';
 
 const initialValues = {
   date: null,
@@ -41,7 +42,6 @@ const Result = ({ openWellDone }) => {
     }, 0);
 
   const onSubmit = async values => {
-    console.log(formik.errors);
     if (formik.errors.date) {
       notifyError(formik.errors.date);
       return;
@@ -145,7 +145,7 @@ const Result = ({ openWellDone }) => {
       <TextStyled className="changeWeight">STATISTICS</TextStyled>
 
       {Boolean(results.length) && (
-        <ul className="list">
+        <ScrollContainer component="ul" className="list">
           {[...results].reverse().map(result => (
             <li key={result.createdAt}>
               <ListStyled>
@@ -163,7 +163,7 @@ const Result = ({ openWellDone }) => {
               </ListStyled>
             </li>
           ))}
-        </ul>
+        </ScrollContainer>
       )}
     </ResultContainerStyled>
   );

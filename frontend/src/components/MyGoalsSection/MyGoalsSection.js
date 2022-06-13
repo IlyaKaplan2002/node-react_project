@@ -8,7 +8,7 @@ import {
 import Button from 'components/reusableComponents/Button';
 import { useSelector } from 'react-redux';
 import { trainingsSelectors } from 'redux/trainings';
-import { eachDayOfInterval } from 'date-fns';
+import { eachDayOfInterval, isValid } from 'date-fns';
 import { cardTypes } from 'constants';
 
 const MyGoalsSection = () => {
@@ -18,7 +18,7 @@ const MyGoalsSection = () => {
 
   const getBooksAmount = () => {
     if (training && isCurrent) return training.books.reduce(acc => acc + 1, 0);
-    if (selectedTraining)
+    if (selectedTraining && selectedTraining?.books)
       return selectedTraining.books.reduce(acc => acc + 1, 0);
     else return 0;
   };
@@ -28,12 +28,17 @@ const MyGoalsSection = () => {
         start: new Date(training.start),
         end: new Date(training.end),
       }).reduce(acc => acc + 1, 0);
-    if (selectedTraining)
+    if (
+      selectedTraining?.start &&
+      isValid(new Date(selectedTraining.start)) &&
+      selectedTraining?.end &&
+      isValid(new Date(selectedTraining.end))
+    ) {
       return eachDayOfInterval({
         start: new Date(selectedTraining.start),
         end: new Date(selectedTraining.end),
       }).reduce(acc => acc + 1, 0);
-    else return 0;
+    } else return 0;
   };
 
   const getAmountBooksLeft = () => {

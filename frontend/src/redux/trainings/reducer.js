@@ -1,6 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { cardTypes } from 'constants';
-import { isAfter, isBefore } from 'date-fns';
+import { isAfter, isBefore, isSameDay } from 'date-fns';
 import actions from './actions';
 
 const initialState = {
@@ -16,8 +16,10 @@ const reducer = createReducer(initialState, {
     if (!training) return state;
 
     const isCurrent =
-      isBefore(new Date(), new Date(training.end)) &&
-      isAfter(new Date(), new Date(training.start)) &&
+      (isBefore(new Date(), new Date(training.end)) ||
+        isSameDay(new Date(), new Date(training.end))) &&
+      (isAfter(new Date(), new Date(training.start)) ||
+        isSameDay(new Date(), new Date(training.start))) &&
       Boolean(
         training.books.find(
           book =>
@@ -64,8 +66,8 @@ const reducer = createReducer(initialState, {
     ...state,
     selectedTraining: {
       ...state.selectedTraining,
-      start: action.payload.start,
-      end: action.payload.end,
+      start: action.payload?.start || state.selectedTraining?.start || null,
+      end: action.payload?.end || state.selectedTraining?.end || null,
     },
   }),
 });

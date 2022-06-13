@@ -6,7 +6,15 @@ import { SelectionWrapper } from './Selection.styled';
 import { useDispatch } from 'react-redux';
 import { trainingsActions } from 'redux/trainings';
 
-const Selection = ({ books, wide, top, current }) => {
+const Selection = ({
+  books,
+  wide,
+  top,
+  current,
+  desktop,
+  currentBook,
+  setCurrentBook,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const dispatch = useDispatch();
@@ -31,7 +39,12 @@ const Selection = ({ books, wide, top, current }) => {
   const toggle = () => setIsOpen(prev => !prev);
 
   const onItemClick = book => {
-    dispatch(trainingsActions.addSelectedBook(book));
+    if (!desktop) {
+      dispatch(trainingsActions.addSelectedBook(book));
+      toggle();
+      return;
+    }
+    setCurrentBook(book);
     toggle();
   };
 
@@ -50,6 +63,8 @@ const Selection = ({ books, wide, top, current }) => {
           <span className={'current'}>
             {!books.length
               ? 'You do not have books in library'
+              : currentBook
+              ? currentBook.name
               : 'Choose books from the library'}
           </span>
           <GoTriangleDown size={13} />
@@ -57,7 +72,12 @@ const Selection = ({ books, wide, top, current }) => {
       </div>
 
       {isOpen && (
-        <SelectionList books={books} onClick={onItemClick} current={current} />
+        <SelectionList
+          books={books}
+          currentBook={currentBook}
+          onClick={onItemClick}
+          current={current}
+        />
       )}
     </SelectionWrapper>
   );
