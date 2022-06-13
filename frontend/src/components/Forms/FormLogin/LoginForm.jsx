@@ -8,15 +8,15 @@ import {
   FormSpanStyled,
   FormContainer,
 } from '../AuthForm.styled';
-import Button from 'components/utils/Button';
+import Button from 'components/reusableComponents/Button';
 import AuthGoogle from '../../GoogleReg/GoogleReg';
-import InputField from 'components/utils/InputField';
+import InputField from 'components/reusableComponents/InputField';
 import { login } from 'api/auth';
 import { notifyError } from 'helpers';
 import { useDispatch } from 'react-redux';
 import { authActions } from 'redux/auth';
 import { routes } from 'constants';
-import Loader from 'components/utils/Loader';
+import Loader from 'components/reusableComponents/Loader';
 
 const initialValues = {
   email: '',
@@ -50,7 +50,7 @@ const LoginForm = () => {
     <FormContainer>
       <AuthFormStyled onSubmit={formik.handleSubmit}>
         <AuthGoogle type="button" className="googleButton" />
-        <div className="wrapper">
+        <div className="wrapperSignIn">
           <InputField
             type="email"
             placeholder="your@email.com"
@@ -60,13 +60,17 @@ const LoginForm = () => {
             onBlur={formik.handleBlur}
             label={
               <div>
-                Email <FormSpanStarStyled>*</FormSpanStarStyled>
+                Email
+                {formik.touched.email && (
+                  <FormSpanStarStyled>*</FormSpanStarStyled>
+                )}
               </div>
             }
             touched={formik.touched.email}
             error={formik.errors.email}
             classNames={{
               field: 'label',
+              input: 'input',
             }}
           />
           <InputField
@@ -78,13 +82,17 @@ const LoginForm = () => {
             onBlur={formik.handleBlur}
             label={
               <div>
-                Password <FormSpanStarStyled>*</FormSpanStarStyled>
+                Password
+                {formik.touched.password && (
+                  <FormSpanStarStyled>*</FormSpanStarStyled>
+                )}
               </div>
             }
             touched={formik.touched.password}
             error={formik.errors.password}
             classNames={{
               field: 'label',
+              input: 'input',
             }}
           />
         </div>

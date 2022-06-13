@@ -28,6 +28,6 @@ router.get('/info', auth, ctrlWrapper(ctrl.info));
 
 router.get('/logout', auth, ctrlWrapper(ctrl.logout));
 
-router.get('/library', auth);
+router.get('/refresh', ctrlWrapper(ctrl.refresh));
 
 module.exports = router;

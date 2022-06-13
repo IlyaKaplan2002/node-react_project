@@ -13,6 +13,12 @@ const statisticSchema = Schema(
     owner: {
       type: Schema.Types.ObjectId,
       ref: 'user',
+      required: true,
+    },
+    training: {
+      type: Schema.Types.ObjectId,
+      ref: 'training',
+      required: true,
     },
   },
   { versionKey: false, timestamps: true }

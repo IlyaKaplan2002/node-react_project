@@ -2,8 +2,8 @@ import { MdMenuBook, MdOutlineOutlinedFlag } from 'react-icons/md';
 import Media from 'react-media';
 import { Container } from 'styles';
 import { Wrapper, WrapperStyled } from './InstructionModal.styled';
-import InstructionList from 'components/utils/InstructionList';
-import Button from 'components/utils/Button';
+import InstructionList from 'components/reusableComponents/InstructionList';
+import Button from 'components/reusableComponents/Button';
 import { useOnEscClose } from 'hooks';
 import { useEffect } from 'react';
 

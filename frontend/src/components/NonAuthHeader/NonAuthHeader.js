@@ -1,4 +1,4 @@
-import Logo from 'components/utils/Logo';
+import Logo from 'components/reusableComponents/Logo';
 import React from 'react';
 import NonAuthHeaderStyled from './NonAuthHeader.styled';
 

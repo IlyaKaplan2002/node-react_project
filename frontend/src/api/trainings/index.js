@@ -1,1 +1,1 @@
-export { default as getTrainings } from './getTrainings';
+export { default as getCurrentTraining } from './getCurrentTraining';

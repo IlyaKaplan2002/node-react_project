@@ -1,5 +1,5 @@
 import getInfo from 'api/auth/getInfo';
-import { notifyError } from 'helpers';
+import { tryRefreshToken } from 'helpers';
 import React, { useCallback, useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,17 +9,21 @@ import Chart from './Chart';
 
 const App = () => {
   const token = useSelector(authSelectors.getToken);
+  const refreshTokenValue = useSelector(authSelectors.getRefreshToken);
   const dispatch = useDispatch();
 
   const getUserData = useCallback(async () => {
-    try {
-      const data = await getInfo(token);
+    const tryFunc = async tokenValue => {
+      const data = await getInfo(tokenValue);
       dispatch(authActions.info(data));
+    };
+
+    try {
+      await tryFunc(token);
     } catch (error) {
-      dispatch(authActions.logout());
-      notifyError(error);
+      tryRefreshToken(error, refreshTokenValue, dispatch, tryFunc);
     }
-  }, [token, dispatch]);
+  }, [token, dispatch, refreshTokenValue]);
 
   useEffect(() => {
     if (token) {

@@ -9,14 +9,14 @@ import { trainingsReducer } from './trainings';
 const authPersistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['token'],
+  whitelist: ['token', 'refreshToken'],
 };
 
 const rootReducer = combineReducers({
   auth: persistReducer(authPersistConfig, authReducer),
   books: booksReducer,
-  statistics: statisticsReducer,
   trainings: trainingsReducer,
+  statistics: statisticsReducer,
 });
 
 export default rootReducer;

@@ -1,29 +1,43 @@
 import { logout } from 'api/auth';
-import { notifyError } from 'helpers';
-import React from 'react';
+import LossOfChange from 'components/LossOfChange';
+import { tryRefreshToken } from 'helpers';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { authActions, authSelectors } from 'redux/auth';
 import LogoutStyled from './Logout.styled';
 
 const Logout = () => {
+  const [logoutModal, setLogoutModal] = useState(false);
   const dispatch = useDispatch();
   const token = useSelector(authSelectors.getToken);
+  const refreshTokenValue = useSelector(authSelectors.getRefreshToken);
 
   const onLogout = async () => {
-    try {
-      await logout(token);
+    const tryFunc = async tokenValue => {
+      await logout(tokenValue);
       dispatch(authActions.logout());
+    };
+
+    try {
+      await tryFunc(token);
     } catch (error) {
-      notifyError(error);
+      await tryRefreshToken(error, refreshTokenValue, dispatch, tryFunc);
     }
   };
 
+  const toggleLogout = () => setLogoutModal(prev => !prev);
+
   return (
-    <LogoutStyled>
-      <button className="button" type="button" onClick={onLogout}>
-        Logout
-      </button>
-    </LogoutStyled>
+    <>
+      <LogoutStyled>
+        <button className="button" type="button" onClick={toggleLogout}>
+          Logout
+        </button>
+      </LogoutStyled>
+      {logoutModal && (
+        <LossOfChange onCloseModal={toggleLogout} onLeaveClick={onLogout} />
+      )}
+    </>
   );
 };
 

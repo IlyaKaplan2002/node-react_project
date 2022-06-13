@@ -1,1 +1,2 @@
-export { default as getStatistic } from './getStatistic';
+export { default as getStatistics } from './getStatistics';
+export { default as addStatistics } from './addStatistics';
