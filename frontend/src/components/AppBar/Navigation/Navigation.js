@@ -8,10 +8,10 @@ import { NavLink } from 'react-router-dom';
 const Navigation = () => {
   return (
     <NavigationStyled>
-      <NavLink to={routes.library.path} className="link">
+      <NavLink to={routes.training.path} className="link">
         <MdMenuBook className="icon" />
       </NavLink>
-      <NavLink to={routes.home.path} className="link">
+      <NavLink to={routes.library.path} className="link">
         <VscHome className="icon" />
       </NavLink>
       {/* <NavLink to={routes.training.path} className="link">

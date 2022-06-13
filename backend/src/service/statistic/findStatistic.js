@@ -1,5 +1,5 @@
 const { Statistic } = require('../schemas');
 
-const findStatistic = async userId => Statistic.find({ owner: userId });
+const findStatistic = async query => Statistic.find(query);
 
 module.exports = findStatistic;

@@ -3,13 +3,13 @@ import styled from 'styled-components';
 const GoalsSectionStyled = styled.div`
   background-color: white;
   width: 100%;
-  max-width: 280px;
+  width: 280px;
   box-shadow: ${props => props.theme.shadows.header};
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     display: flex;
     justify-content: space-between;
-    max-width: 704px;
+    width: 704px;
     padding: 20px 42px 28px;
   }
 
