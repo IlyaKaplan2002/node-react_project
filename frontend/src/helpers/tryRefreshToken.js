@@ -9,7 +9,7 @@ const tryRefreshToken = async (
   callback,
   ...args
 ) => {
-  const message = error.response.data.message;
+  const message = error?.response?.data?.message || 'Error';
 
   try {
     if (message === 'jwt expired') {

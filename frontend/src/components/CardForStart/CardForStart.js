@@ -15,29 +15,32 @@ import {
 } from './CardForStart.styled';
 import { cardTypes } from 'constants';
 import { trainingCardTypes } from 'constants';
+import { useDispatch } from 'react-redux';
+import { trainingsActions } from 'redux/trainings';
 
-const CardForStart = ({ name, author, year, pages, cardType }) => {
-  const isReading = cardType === cardTypes.reading;
-  const isRead = cardType === cardTypes.alreadyRead;
+const CardForStart = ({ name, author, year, pages, id, cardType, status }) => {
+  const dispatch = useDispatch();
+  const isReading = status === cardTypes.reading;
+  const isRead = status === cardTypes.alreadyRead;
+  const goingToRead = status === cardTypes.goingToRead;
 
   const withoutDelEmpty = cardType === trainingCardTypes.withoutDelEmpty;
   const withDel = cardType === trainingCardTypes.withDel;
-  const notChecked = cardType === trainingCardTypes.notChecked;
-  const checked = cardType === trainingCardTypes.checked;
+  const started = cardType === trainingCardTypes.started;
 
   return (
     <CardStyled read={isRead}>
       {(withoutDelEmpty || withDel) && (
-        <BookIcon reading={isReading}>
+        <BookIcon>
           <MdMenuBook size={21} />
         </BookIcon>
       )}
-      {checked && (
-        <BookIcon reading={checked}>
+      {started && isRead && (
+        <BookIcon isRead>
           <BiCheckSquare size={21} />
         </BookIcon>
       )}
-      {notChecked && (
+      {started && (isReading || goingToRead) && (
         <BookIcon>
           <MdCheckBoxOutlineBlank size={21} />
         </BookIcon>
@@ -47,7 +50,10 @@ const CardForStart = ({ name, author, year, pages, cardType }) => {
       </CardNameWrapper>
 
       {withDel && (
-        <DellIcon reading={withDel}>
+        <DellIcon
+          onClick={() => dispatch(trainingsActions.removeSelectedBook(id))}
+          reading={withDel}
+        >
           <MdOutlineDelete size={21} />
         </DellIcon>
       )}

@@ -1,12 +1,8 @@
-import AppBar from 'components/AppBar';
+import Training from 'components/Training';
 import React from 'react';
 
 const TrainingView = () => {
-  return (
-    <>
-      <AppBar />
-    </>
-  );
+  return <Training />;
 };
 
 export default TrainingView;

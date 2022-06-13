@@ -3,6 +3,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { routes } from 'constants';
 import { useSelector } from 'react-redux';
 import { authSelectors } from 'redux/auth';
+import NotFoundView from 'views/NotFoundView';
 
 const Router = () => {
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
@@ -29,6 +30,8 @@ const Router = () => {
 
         return <Route key={path} path={path} element={<Component />} />;
       })}
+
+      <Route path="*" element={<NotFoundView />} />
     </Routes>
   );
 };

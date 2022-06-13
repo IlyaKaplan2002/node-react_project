@@ -1,21 +1,25 @@
 import React from 'react';
 import { SelectionListWrapper } from './SelectionList.styled';
 
-const SelectionList = ({ data, current }) => {
-  const getClassName = id => (id === current?.id ? 'labelActive' : 'label');
+const SelectionList = ({ books, currentBook, current, onClick }) => {
+  const getClassName = id =>
+    current.find(book => book._id === id) ||
+    (currentBook && currentBook._id === id)
+      ? 'labelActive'
+      : 'label';
 
   return (
     <SelectionListWrapper className={'list'}>
-      {data.options.map(
-        ({ name, id, isDefault }) =>
-          !isDefault && (
-            <li key={id} className={'item'}>
-              <label className={getClassName(id)} htmlFor={id}>
-                {name}
-              </label>
-            </li>
-          )
-      )}
+      {books.map(book => (
+        <li key={book._id} className={'item'}>
+          <label
+            className={getClassName(book._id)}
+            onClick={() => onClick(book)}
+          >
+            {book.name}
+          </label>
+        </li>
+      ))}
     </SelectionListWrapper>
   );
 };
