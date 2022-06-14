@@ -1,7 +1,7 @@
 import React from 'react';
 import ChartStyled from './Chart.styled';
 import Days from './Days';
-import options from './chartOptions';
+import getOptions from './chartOptions';
 import { useSelector } from 'react-redux';
 import {
   getActData,
@@ -23,6 +23,7 @@ import {
 import { Line } from 'react-chartjs-2';
 import { trainingsSelectors } from 'redux/trainings';
 import { statisticsSelectors } from 'redux/statistics';
+import { useForceUpdate } from 'hooks';
 
 ChartJS.register(
   CategoryScale,
@@ -38,6 +39,7 @@ const Chart = () => {
   const training = useSelector(trainingsSelectors.getTraining);
   const isCurrent = useSelector(trainingsSelectors.getIsCurrent);
   const statistics = useSelector(statisticsSelectors.getItems);
+  const forceUpdate = useForceUpdate();
 
   const labels = getLabels(training, isCurrent);
   const actualData = getActData(training, isCurrent, statistics);
@@ -71,7 +73,7 @@ const Chart = () => {
     <>
       <ChartStyled>
         <Days>{getDaysAmount(training, isCurrent)}</Days>
-        <Line data={data} options={options} />
+        <Line data={data} options={getOptions(forceUpdate)} />
       </ChartStyled>
     </>
   );
