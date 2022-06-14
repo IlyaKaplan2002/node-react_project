@@ -42,8 +42,12 @@ const TrainingStyled = styled.div`
     }
 
     .goalsWrapper {
-      margin-top: 40px;
+      margin-top: ${props => (props.isCurrent ? '40px' : 0)};
       margin-bottom: 40px;
+    }
+
+    .cardsWrapper {
+      margin-top: ${props => (props.isCurrent ? 0 : '40px')};
     }
   }
   @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
@@ -52,6 +56,7 @@ const TrainingStyled = styled.div`
       padding-right: 16px;
       padding-left: 16px;
       display: flex;
+      flex-direction: ${props => (props.isCurrent ? 'row' : 'row-reverse')};
       align-items: start;
       justify-content: space-between;
     }

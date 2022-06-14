@@ -177,6 +177,11 @@ const Training = () => {
           ) : (
             <TrainingStyled isCurrent={isCurrent}>
               <div className="topWrapper">
+                {!isCurrent && (
+                  <div className="goalsWrapper">
+                    <MyGoalsSection />
+                  </div>
+                )}
                 {isCurrent ? (
                   <div className="timersWrapper">
                     <YearTimer className="yearTimer" />
@@ -202,9 +207,11 @@ const Training = () => {
                     )}
                   </>
                 )}
-                <div className="goalsWrapper">
-                  <MyGoalsSection />
-                </div>
+                {isCurrent && (
+                  <div className="goalsWrapper">
+                    <MyGoalsSection />
+                  </div>
+                )}
               </div>
               <div className="cardsWrapper">
                 {!Boolean(selectedTraining?.books?.length) && !isCurrent && (
