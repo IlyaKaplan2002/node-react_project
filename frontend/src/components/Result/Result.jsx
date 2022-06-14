@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from 'components/reusableComponents/Button';
 import Datetime from 'react-datetime';
-import { format, subDays } from 'date-fns';
+import { format, isAfter, isBefore, isSameDay } from 'date-fns';
 import 'react-datetime/css/react-datetime.css';
 import {
   ResultContainerStyled,
@@ -33,6 +33,7 @@ const Result = ({ openWellDone }) => {
   const token = useSelector(authSelectors.getToken);
   const refreshToken = useSelector(authSelectors.getRefreshToken);
   const currentTraining = useSelector(trainingsSelectors.getTraining);
+  const isCurrent = useSelector(trainingsSelectors.getIsCurrent);
   const dispatch = useDispatch();
 
   const getReadBooks = books =>
@@ -48,6 +49,20 @@ const Result = ({ openWellDone }) => {
     }
     if (formik.errors.pages) {
       notifyError(formik.errors.pages);
+      return;
+    }
+
+    if (!isCurrent) return;
+
+    if (
+      !(
+        (isBefore(new Date(values.date), new Date(currentTraining.end)) ||
+          isSameDay(new Date(values.date), new Date(currentTraining.end))) &&
+        (isAfter(new Date(values.date), new Date(currentTraining.start)) ||
+          isSameDay(new Date(values.date), new Date(currentTraining.start)))
+      )
+    ) {
+      notifyError('Your training does not contain this date');
       return;
     }
 
@@ -82,10 +97,13 @@ const Result = ({ openWellDone }) => {
   });
 
   const valid = function (current) {
-    const dayBefore = subDays(new Date(), 2);
-    const dayAfter = new Date();
-
-    return current.isAfter(dayBefore) && current.isBefore(dayAfter);
+    return (
+      (isAfter(new Date(current), new Date(currentTraining.start)) ||
+        isSameDay(new Date(current), new Date(currentTraining.start))) &&
+      (isBefore(new Date(current), new Date(currentTraining.end)) ||
+        isSameDay(new Date(current), new Date(currentTraining.end))) &&
+      isBefore(new Date(current), new Date())
+    );
   };
 
   let inputProps = { className: 'input', name: 'date' };
