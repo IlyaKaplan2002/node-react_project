@@ -35,7 +35,9 @@ export const getUniqStats = stats => {
   let result = [];
 
   stats.forEach(stat => {
-    const same = result.find(item => item.date === stat.date);
+    const same = result.find(item =>
+      isSameDay(new Date(item.date), new Date(stat.date))
+    );
     if (same) {
       const pages = same.pages + stat.pages;
       result = result.map(item => {
