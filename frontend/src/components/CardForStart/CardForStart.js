@@ -48,7 +48,7 @@ const CardForStart = ({ name, author, year, pages, id, cardType, status }) => {
       )}
       <CardNameWrapper>
         <CardName>
-          <EllipsisText text={name} length={10} />
+          <EllipsisText text={name} length={40} />
         </CardName>
       </CardNameWrapper>
 
@@ -65,7 +65,7 @@ const CardForStart = ({ name, author, year, pages, id, cardType, status }) => {
           <ListItemStyled>
             <ListItemName>Author:</ListItemName>
             <span>
-              <EllipsisText text={author} length={10} />
+              <EllipsisText text={author} length={40} />
             </span>
           </ListItemStyled>
           <ListItemStyled className="year">

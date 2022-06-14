@@ -65,7 +65,7 @@ const Selection = ({
             {!books.length ? (
               'You do not have books in library'
             ) : currentBook ? (
-              <EllipsisText text={currentBook.name} length={10} />
+              <EllipsisText text={currentBook.name} length={40} />
             ) : (
               'Choose books from the library'
             )}
