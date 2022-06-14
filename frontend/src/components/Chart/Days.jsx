@@ -1,9 +1,9 @@
 import DaysStyled from './Days.styled';
 
-const Days = () => {
+const Days = props => {
   return (
     <DaysStyled>
-      <p>6</p>
+      <p> {props.children}</p>
     </DaysStyled>
   );
 };

@@ -22,6 +22,7 @@ const tryRefreshToken = async (
     }
   } catch (error) {
     notifyError(error);
+    dispatch(authActions.logout());
   }
 };
 

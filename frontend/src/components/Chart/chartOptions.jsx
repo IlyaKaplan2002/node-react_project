@@ -5,7 +5,7 @@ const fn = value => {
   return true;
 };
 
-const options = {
+const getOptions = forceUpdate => ({
   plugins: {
     title: {
       display: true,
@@ -39,6 +39,7 @@ const options = {
 
   responsive: true,
   maintainAspectRatio: false,
+  onResize: () => forceUpdate(),
 
   scales: {
     x: {
@@ -75,6 +76,6 @@ const options = {
       },
     },
   },
-};
+});
 
-export default options;
+export default getOptions;
