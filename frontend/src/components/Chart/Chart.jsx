@@ -71,7 +71,7 @@ const Chart = () => {
     <>
       <ChartStyled>
         <Days>{getDaysAmount(training, isCurrent)}</Days>
-        <Line data={data} options={options} />
+        <Line redraw={true} data={data} options={options} />
       </ChartStyled>
     </>
   );
