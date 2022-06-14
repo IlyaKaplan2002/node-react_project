@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
-// import { Container } from 'styles';
+import { Container } from 'styles';
 import NonAuthHeader from 'components/NonAuthHeader';
 import FormSignUp from 'components/Forms/FormSignUp';
 import BookInfo from 'components/BookInfo';
 import { Wrapper } from 'components/Forms/AuthForm.styled';
+import { Helmet } from 'react-helmet';
 
 const SignUpView = () => {
   useEffect(() => {
@@ -12,14 +13,16 @@ const SignUpView = () => {
 
   return (
     <>
-      {/* <Container> */}
-      <NonAuthHeader />
-      <Wrapper>
-        <FormSignUp />
-        <BookInfo />
-      </Wrapper>
-
-      {/* </Container> */}
+      <Helmet>
+        <title>Sign Up</title>
+      </Helmet>
+      <Container>
+        <NonAuthHeader />
+        <Wrapper>
+          <FormSignUp />
+          <BookInfo />
+        </Wrapper>
+      </Container>
     </>
   );
 };
