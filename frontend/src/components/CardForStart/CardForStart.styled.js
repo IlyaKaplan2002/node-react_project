@@ -16,7 +16,7 @@ const CardStyled = styled.div`
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     display: inline-grid;
     grid-template-columns: ${props =>
-      props.read ? '0.8fr 3fr 0.2fr' : '0.5fr 1.15fr'};
+      props.read ? '1.2fr 3fr' : '0.45fr 1.1fr'};
     column-gap: 30px;
     padding: 14px 20px 14px 60px;
     height: 62px;
@@ -24,11 +24,9 @@ const CardStyled = styled.div`
     min-width: 704px;
     width: 100%;
     padding-right: 60px;
-    .year {
-      margin-right: 24px;
-    }
-    .page {
-      margin-right: 28px;
+    @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
+      grid-template-columns: ${props =>
+        props.read ? '1.45fr 3fr' : '0.54fr 1.1fr'};
     }
   }
 
@@ -101,13 +99,13 @@ const ListStyled = styled.div`
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     display: inline-grid;
     grid-template-columns: ${props =>
-      props.read ? '1fr  0.5fr 0.2fr 1fr' : '2fr 0.5fr 0.2fr'};
+      props.read ? '1fr  0.25fr 0.1fr' : '2fr 0.5fr 0.2fr'};
     column-gap: 30px;
   }
 
   @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
     grid-template-columns: ${props =>
-      props.read ? '1.8fr  0.7fr 0.7fr 1fr' : '2fr 0.6fr 0.4fr'};
+      props.read ? '3.8fr  1.1fr 0.4fr' : '2fr 0.6fr 0.2fr'};
     max-width: 1248px;
   }
 `;
