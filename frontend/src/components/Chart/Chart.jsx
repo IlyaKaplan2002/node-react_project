@@ -40,7 +40,6 @@ const Chart = () => {
   const isCurrent = useSelector(trainingsSelectors.getIsCurrent);
   const statistics = useSelector(statisticsSelectors.getItems);
   const forceUpdate = useForceUpdate();
-  console.log('rerender');
 
   const labels = getLabels(training, isCurrent);
   const actualData = getActData(training, isCurrent, statistics);
