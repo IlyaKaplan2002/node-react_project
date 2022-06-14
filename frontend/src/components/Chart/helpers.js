@@ -108,7 +108,6 @@ export const getPlannedData = (stats, training, isCurrent) => {
       continue;
     }
     if (i >= latestDays) {
-      console.log(latestDays);
       const result =
         (sumOfPages - getSumOfLatestDays(allDatesStat.length, allDatesStat)) /
         (daysAmount - latestDays);
