@@ -9,6 +9,7 @@ const resultSchema = yup.object().shape({
     .number()
     .typeError('Pages should be a number')
     .positive('Pages should be positive')
+    .integer('Pages should be integer')
     .required('Pages is required'),
 });
 
