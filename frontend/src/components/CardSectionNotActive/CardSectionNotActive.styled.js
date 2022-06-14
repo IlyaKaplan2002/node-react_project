@@ -8,6 +8,7 @@ const CardSectionStyled = styled.div`
     width: 704px;
     .booksContainer {
       max-height: 224px;
+      overflow-x: hidden;
       overflow-y: scroll;
     }
   }
