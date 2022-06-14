@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ChartStyled from './Chart.styled';
 import Days from './Days';
 import getOptions from './chartOptions';
@@ -38,10 +38,15 @@ const Chart = () => {
   const training = useSelector(trainingsSelectors.getTraining);
   const isCurrent = useSelector(trainingsSelectors.getIsCurrent);
   const statistics = useSelector(statisticsSelectors.getItems);
+  const [labels, setLabels] = useState([]);
+  const [actualData, setActualData] = useState([]);
+  const [plannedData, setPlannedData] = useState([]);
 
-  const labels = getLabels(training, isCurrent);
-  const actualData = getActData(training, isCurrent, statistics);
-  const plannedData = getPlannedData(statistics, training, isCurrent);
+  useEffect(() => {
+    setLabels(getLabels(training, isCurrent));
+    setActualData(getActData(training, isCurrent, statistics));
+    setPlannedData(getPlannedData(statistics, training, isCurrent));
+  }, [training, isCurrent, statistics]);
 
   const data = {
     labels,

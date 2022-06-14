@@ -22,6 +22,8 @@ import { getCurrentTraining } from 'api/trainings';
 import { trainingsActions, trainingsSelectors } from 'redux/trainings';
 import { cardTypes } from 'constants';
 import ScrollContainer from 'react-indiana-drag-scroll';
+import { getAllBooks } from 'api/books';
+import { booksActions } from 'redux/books';
 
 const initialValues = {
   date: null,
@@ -77,6 +79,10 @@ const Result = ({ openWellDone }) => {
         openWellDone();
 
       dispatch(trainingsActions.init(training));
+
+      const { books } = await getAllBooks(tokenValue);
+
+      dispatch(booksActions.init(books));
     };
 
     try {

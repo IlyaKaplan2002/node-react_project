@@ -124,7 +124,8 @@ const Training = () => {
         selectedTraining?.start &&
         isValid(new Date(selectedTraining.start)) &&
         selectedTraining?.end &&
-        isValid(new Date(selectedTraining.end))
+        isValid(new Date(selectedTraining.end)) &&
+        isFuture(new Date(selectedTraining.start))
       ) {
         return eachDayOfInterval({
           start: new Date(),
