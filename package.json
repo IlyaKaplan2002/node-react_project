@@ -23,8 +23,5 @@
   "homepage": "https://github.com/IlyaKaplan2002/node-react_project#readme",
   "devDependencies": {
     "concurrently": "^7.2.1"
-  },
-  "dependencies": {
-    "js-joda": "^1.11.0"
   }
 }

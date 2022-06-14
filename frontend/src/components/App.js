@@ -5,7 +5,6 @@ import React, { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { authActions, authSelectors } from 'redux/auth';
 import Router from './Router';
-import Chart from './Chart';
 
 const App = () => {
   const token = useSelector(authSelectors.getToken);
@@ -31,12 +30,7 @@ const App = () => {
     }
   }, [token, getUserData]);
 
-  return (
-    <>
-      <Router />
-      <Chart />
-    </>
-  );
+  return <Router />;
 };
 
 export default App;
