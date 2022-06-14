@@ -1,7 +1,7 @@
 import { getAllBooks } from 'api/books';
 import { getStatistics } from 'api/statistics';
 import { getCurrentTraining } from 'api/trainings';
-import postTraining from 'api/trainings/postTraining';
+import { postTraining } from 'api/trainings';
 import AddTrainingForm from 'components/AddTrainingForm';
 import AppBar from 'components/AppBar';
 import CardSectionNotActive from 'components/CardSectionNotActive';
