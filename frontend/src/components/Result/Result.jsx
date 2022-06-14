@@ -123,22 +123,27 @@ const Result = ({ openWellDone }) => {
               inputProps={inputProps}
               dateFormat="DD.MM.YYYY"
               timeFormat={false}
+              formik={formik}
               onChange={dateFromValue => {
                 formik.setFieldValue('date', dateFromValue._d);
               }}
               value={formik.values.date ? formik.values.date : ''}
-              renderInput={props => (
-                <input
-                  {...props}
-                  value={
-                    formik.values.date
-                      ? format(formik.values.date, 'dd.MM.yyyy')
-                      : ''
-                  }
-                />
-              )}
+              renderInput={props => {
+                return (
+                  <label className="dateLabel">
+                    <input
+                      {...props}
+                      value={
+                        formik.values.date
+                          ? format(formik.values.date, 'dd.MM.yyyy')
+                          : ''
+                      }
+                    />
+                    <GoTriangleDown className="arrowIcon" size={14} />
+                  </label>
+                );
+              }}
             />
-            <GoTriangleDown size={14} />
             <p className="error">{formik.touched.date && formik.errors.date}</p>
           </div>
           <div>

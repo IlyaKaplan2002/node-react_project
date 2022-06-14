@@ -17,8 +17,10 @@ import WellDone from 'components/WellDone';
 import YearTimer from 'components/YearTimer';
 import { trainingCardTypes } from 'constants';
 import {
+  addDays,
   eachDayOfInterval,
   isAfter,
+  isBefore,
   isFuture,
   isSameDay,
   isValid,
@@ -96,9 +98,24 @@ const Training = () => {
     }
 
     if (
-      !isAfter(new Date(selectedTraining.end), new Date(selectedTraining.start))
+      !isAfter(
+        new Date(selectedTraining.end),
+        new Date(selectedTraining.start)
+      ) &&
+      !(
+        isSameDay(
+          addDays(new Date(selectedTraining.start), 31),
+          new Date(selectedTraining.end)
+        ) ||
+        isBefore(
+          new Date(selectedTraining.end),
+          addDays(new Date(selectedTraining.start), 31)
+        )
+      )
     ) {
-      notifyError('Please select end day later than start');
+      notifyError(
+        'Please select end day later than start and not later than 31 day from start'
+      );
       return;
     }
 

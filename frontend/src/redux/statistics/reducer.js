@@ -1,10 +1,13 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { isAfter, isBefore, isSameDay } from 'date-fns';
+import { authActions } from 'redux/auth';
 import actions from './actions';
 
 const initialState = { items: [] };
 
 const reducer = createReducer(initialState, {
+  [authActions.logout]: () => initialState,
+
   [actions.init]: (state, action) => {
     const { training, statistics } = action.payload;
 
