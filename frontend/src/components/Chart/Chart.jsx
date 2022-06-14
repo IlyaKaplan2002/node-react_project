@@ -1,7 +1,7 @@
 import React from 'react';
 import ChartStyled from './Chart.styled';
 import Days from './Days';
-import options from './chartOptions';
+import getOptions from './chartOptions';
 import { useSelector } from 'react-redux';
 import {
   getActData,
@@ -71,7 +71,7 @@ const Chart = () => {
     <>
       <ChartStyled>
         <Days>{getDaysAmount(training, isCurrent)}</Days>
-        <Line redraw={true} data={data} options={options} />
+        <Line redraw={true} data={data} options={getOptions()} />
       </ChartStyled>
     </>
   );
