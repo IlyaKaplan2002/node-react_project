@@ -3,8 +3,8 @@ import { GoTriangleDown } from 'react-icons/go';
 import SelectionList from './SelectionList';
 import classNames from 'classnames';
 import { SelectionWrapper } from './Selection.styled';
-import { useDispatch } from 'react-redux';
-import { trainingsActions } from 'redux/trainings';
+import { useDispatch, useSelector } from 'react-redux';
+import { trainingsActions, trainingsSelectors } from 'redux/trainings';
 
 const Selection = ({
   books,
@@ -16,6 +16,7 @@ const Selection = ({
   setCurrentBook,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const selectedBooks = useSelector(trainingsSelectors.getSelectedBooks);
 
   const dispatch = useDispatch();
 
@@ -39,6 +40,7 @@ const Selection = ({
   const toggle = () => setIsOpen(prev => !prev);
 
   const onItemClick = book => {
+    if (selectedBooks.find(item => item._id === book._id)) return;
     if (!desktop) {
       dispatch(trainingsActions.addSelectedBook(book));
       toggle();
