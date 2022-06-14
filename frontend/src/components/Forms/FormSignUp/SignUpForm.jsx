@@ -29,6 +29,7 @@ const SignUpForm = () => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const [buttonVisual, setButtonVisual] = useState(true);
+  const [showPassword, setShowPassword] = useState(false);
 
   const onSubmit = async values => {
     try {
@@ -41,6 +42,10 @@ const SignUpForm = () => {
       notifyError(error);
     }
     setIsLoading(false);
+  };
+
+  const onHadleShowPassword = () => {
+    setShowPassword(!showPassword);
   };
 
   const formik = useFormik({
@@ -136,7 +141,9 @@ const SignUpForm = () => {
             }}
           />
           <InputField
-            type="password"
+            onShowPassword={onHadleShowPassword}
+            variant={showPassword}
+            type={showPassword ? 'text' : 'password'}
             placeholder="..."
             name="password"
             value={formik.values.password}
@@ -158,7 +165,9 @@ const SignUpForm = () => {
             }}
           />
           <InputField
-            type="password"
+            onShowPassword={onHadleShowPassword}
+            variant={showPassword}
+            type={showPassword ? 'text' : 'password'}
             placeholder="..."
             name="confirmPassword"
             value={formik.values.confirmPassword}
