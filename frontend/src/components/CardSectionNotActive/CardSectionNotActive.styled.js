@@ -38,10 +38,16 @@ const CardsNameList = styled.ul`
     font-weight: ${props => props.theme.fonts.weights.medium};
     grid-template-columns: ${props =>
       props.read
-        ? '1.5fr 1.5fr 1fr 0.8fr 2.8fr'
-        : '1.85fr 1.75fr 0.65fr 0.4fr'};
+        ? '1.5fr 1.9fr 1.0fr 0.6fr 2.8fr'
+        : '1.85fr 2.05fr 0.65fr 0.2fr'};
     margin-bottom: 8px;
     padding-right: 60px;
+  }
+  @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
+    grid-template-columns: ${props =>
+      props.read
+        ? '1.5fr 1.8fr 1.1fr 0.8fr 2.8fr'
+        : '1.85fr 1.95fr 0.75fr 0.2fr'};
   }
 `;
 
