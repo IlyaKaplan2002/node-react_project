@@ -55,9 +55,13 @@ const SignUpForm = () => {
     const handlerDisableButton = () => {
       if (
         formik.values.name === '' ||
+        (formik.touched.name && formik.errors.name) ||
         formik.values.email === '' ||
+        (formik.touched.email && formik.errors.email) ||
         formik.values.password === '' ||
-        formik.values.confirmPassword === ''
+        (formik.touched.password && formik.errors.password) ||
+        formik.values.confirmPassword === '' ||
+        (formik.touched.confirmPassword && formik.errors.confirmPassword)
       ) {
         setButtonVisual(true);
         return;
@@ -72,6 +76,14 @@ const SignUpForm = () => {
     formik.values.email,
     formik.values.name,
     formik.values.password,
+    formik.touched.name,
+    formik.errors.name,
+    formik.touched.email,
+    formik.errors.email,
+    formik.touched.password,
+    formik.errors.password,
+    formik.touched.confirmPassword,
+    formik.errors.confirmPassword,
   ]);
 
   return (
@@ -89,7 +101,7 @@ const SignUpForm = () => {
             label={
               <div>
                 Name
-                {formik.errors.name && (
+                {formik.touched.name && formik.errors.name && (
                   <FormSpanStarStyled>*</FormSpanStarStyled>
                 )}
               </div>
@@ -111,7 +123,7 @@ const SignUpForm = () => {
             label={
               <div>
                 Email
-                {formik.errors.email && (
+                {formik.touched.email && formik.errors.email && (
                   <FormSpanStarStyled>*</FormSpanStarStyled>
                 )}
               </div>
@@ -133,7 +145,7 @@ const SignUpForm = () => {
             label={
               <div>
                 Password
-                {formik.errors.password && (
+                {formik.touched.password && formik.errors.password && (
                   <FormSpanStarStyled>*</FormSpanStarStyled>
                 )}
               </div>
@@ -155,9 +167,10 @@ const SignUpForm = () => {
             label={
               <div>
                 Confirm password
-                {formik.errors.confirmPassword && (
-                  <FormSpanStarStyled>*</FormSpanStarStyled>
-                )}
+                {formik.touched.confirmPassword &&
+                  formik.errors.confirmPassword && (
+                    <FormSpanStarStyled>*</FormSpanStarStyled>
+                  )}
               </div>
             }
             touched={formik.touched.confirmPassword}

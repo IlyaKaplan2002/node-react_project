@@ -49,7 +49,12 @@ const LoginForm = () => {
 
   useEffect(() => {
     const handlerDisableButton = () => {
-      if (formik.values.password === '' || formik.values.email === '') {
+      if (
+        formik.values.password === '' ||
+        (formik.touched.password && formik.errors.password) ||
+        formik.values.email === '' ||
+        (formik.touched.email && formik.errors.email)
+      ) {
         setButtonVisual(true);
         return;
       } else {
@@ -58,7 +63,14 @@ const LoginForm = () => {
       }
     };
     handlerDisableButton();
-  }, [formik.values.email, formik.values.password]);
+  }, [
+    formik.values.email,
+    formik.values.password,
+    formik.touched.password,
+    formik.errors.password,
+    formik.touched.email,
+    formik.errors.email,
+  ]);
 
   return (
     <FormContainer>
@@ -75,7 +87,7 @@ const LoginForm = () => {
             label={
               <div>
                 Email
-                {formik.errors.email && (
+                {formik.touched.email && formik.errors.email && (
                   <FormSpanStarStyled>*</FormSpanStarStyled>
                 )}
               </div>
@@ -97,7 +109,7 @@ const LoginForm = () => {
             label={
               <div>
                 Password
-                {formik.errors.password && (
+                {formik.touched.password && formik.errors.password && (
                   <FormSpanStarStyled>*</FormSpanStarStyled>
                 )}
               </div>
