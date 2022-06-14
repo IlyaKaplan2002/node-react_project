@@ -1,6 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { cardTypes } from 'constants';
 import { isAfter, isBefore, isSameDay } from 'date-fns';
+import { authActions } from 'redux/auth';
 import actions from './actions';
 
 const initialState = {
@@ -10,6 +11,8 @@ const initialState = {
 };
 
 const reducer = createReducer(initialState, {
+  [authActions.logout]: () => initialState,
+
   [actions.init]: (state, action) => {
     const training = action.payload;
 
