@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useFormik } from 'formik';
 import signUpShema from 'models/signUpShema';
 import {
@@ -16,7 +16,6 @@ import { notifyError } from 'helpers';
 import { useDispatch } from 'react-redux';
 import { authActions } from 'redux/auth';
 import { routes } from 'constants';
-import { useState } from 'react';
 import Loader from 'components/reusableComponents/Loader';
 
 const initialValues = {
@@ -29,6 +28,7 @@ const initialValues = {
 const SignUpForm = () => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
+  const [buttonVisual, setButtonVisual] = useState(true);
 
   const onSubmit = async values => {
     try {
@@ -51,6 +51,41 @@ const SignUpForm = () => {
     onSubmit,
   });
 
+  useEffect(() => {
+    const handlerDisableButton = () => {
+      if (
+        formik.values.name === '' ||
+        (formik.touched.name && formik.errors.name) ||
+        formik.values.email === '' ||
+        (formik.touched.email && formik.errors.email) ||
+        formik.values.password === '' ||
+        (formik.touched.password && formik.errors.password) ||
+        formik.values.confirmPassword === '' ||
+        (formik.touched.confirmPassword && formik.errors.confirmPassword)
+      ) {
+        setButtonVisual(true);
+        return;
+      } else {
+        setButtonVisual(false);
+        return;
+      }
+    };
+    handlerDisableButton();
+  }, [
+    formik.values.confirmPassword,
+    formik.values.email,
+    formik.values.name,
+    formik.values.password,
+    formik.touched.name,
+    formik.errors.name,
+    formik.touched.email,
+    formik.errors.email,
+    formik.touched.password,
+    formik.errors.password,
+    formik.touched.confirmPassword,
+    formik.errors.confirmPassword,
+  ]);
+
   return (
     <FormContainer className="signUp" signup>
       <AuthFormStyled onSubmit={formik.handleSubmit}>
@@ -66,7 +101,7 @@ const SignUpForm = () => {
             label={
               <div>
                 Name
-                {formik.touched.name && (
+                {formik.touched.name && formik.errors.name && (
                   <FormSpanStarStyled>*</FormSpanStarStyled>
                 )}
               </div>
@@ -88,7 +123,7 @@ const SignUpForm = () => {
             label={
               <div>
                 Email
-                {formik.touched.email && (
+                {formik.touched.email && formik.errors.email && (
                   <FormSpanStarStyled>*</FormSpanStarStyled>
                 )}
               </div>
@@ -110,7 +145,7 @@ const SignUpForm = () => {
             label={
               <div>
                 Password
-                {formik.touched.password && (
+                {formik.touched.password && formik.errors.password && (
                   <FormSpanStarStyled>*</FormSpanStarStyled>
                 )}
               </div>
@@ -132,9 +167,10 @@ const SignUpForm = () => {
             label={
               <div>
                 Confirm password
-                {formik.touched.confirmPassword && (
-                  <FormSpanStarStyled>*</FormSpanStarStyled>
-                )}
+                {formik.touched.confirmPassword &&
+                  formik.errors.confirmPassword && (
+                    <FormSpanStarStyled>*</FormSpanStarStyled>
+                  )}
               </div>
             }
             touched={formik.touched.confirmPassword}
@@ -145,7 +181,12 @@ const SignUpForm = () => {
             }}
           />
         </div>
-        <Button type="submit" filled className="button signUpForm">
+        <Button
+          type="submit"
+          filled
+          className="button signUpForm"
+          disabled={buttonVisual}
+        >
           Register
           {isLoading && <Loader button width={30} height={30} />}
         </Button>
