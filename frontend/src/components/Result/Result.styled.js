@@ -42,7 +42,7 @@ const ResultContainerStyled = styled.div`
 
     svg {
       position: absolute;
-      top: 50%;
+      top: 49%;
       transform: translateY(-50%);
       z-index: 2;
       right: 10px;
