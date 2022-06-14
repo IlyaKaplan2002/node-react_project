@@ -2,6 +2,7 @@ import React from 'react';
 import { MdMenuBook } from 'react-icons/md';
 import { AiOutlineStar, AiFillStar } from 'react-icons/ai';
 import Button from 'components/reusableComponents/Button';
+import EllipsisText from 'react-ellipsis-text';
 import {
   CardStyled,
   BookIcon,
@@ -39,12 +40,16 @@ const Card = ({
         <MdMenuBook size={21} />
       </BookIcon>
       <CardNameWrapper>
-        <CardName>{name}</CardName>
+        <CardName>
+          <EllipsisText text={name} length={20} />
+        </CardName>
       </CardNameWrapper>
       <ListStyled read={isRead}>
         <ListItemStyled>
           <ListItemName>Author:</ListItemName>
-          <span>{author}</span>
+          <span>
+            <EllipsisText text={author} length={20} />
+          </span>
         </ListItemStyled>
         <ListItemStyled>
           <ListItemName>Year:</ListItemName>

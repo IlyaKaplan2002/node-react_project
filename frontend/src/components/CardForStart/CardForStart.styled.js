@@ -24,6 +24,12 @@ const CardStyled = styled.div`
     min-width: 704px;
     width: 100%;
     padding-right: 60px;
+    .year {
+      margin-right: 24px;
+    }
+    .page {
+      margin-right: 28px;
+    }
   }
 
   & + & {

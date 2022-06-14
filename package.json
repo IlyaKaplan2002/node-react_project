@@ -23,5 +23,8 @@
   "homepage": "https://github.com/IlyaKaplan2002/node-react_project#readme",
   "devDependencies": {
     "concurrently": "^7.2.1"
+  },
+  "dependencies": {
+    "react-ellipsis-text": "^1.2.1"
   }
 }

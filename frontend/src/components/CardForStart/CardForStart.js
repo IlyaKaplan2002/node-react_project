@@ -17,6 +17,7 @@ import { cardTypes } from 'constants';
 import { trainingCardTypes } from 'constants';
 import { useDispatch } from 'react-redux';
 import { trainingsActions } from 'redux/trainings';
+import EllipsisText from 'react-ellipsis-text';
 
 const CardForStart = ({ name, author, year, pages, id, cardType, status }) => {
   const dispatch = useDispatch();
@@ -46,7 +47,9 @@ const CardForStart = ({ name, author, year, pages, id, cardType, status }) => {
         </BookIcon>
       )}
       <CardNameWrapper>
-        <CardName>{name}</CardName>
+        <CardName>
+          <EllipsisText text={name} length={10} />
+        </CardName>
       </CardNameWrapper>
 
       {withDel && (
@@ -61,13 +64,15 @@ const CardForStart = ({ name, author, year, pages, id, cardType, status }) => {
         <ListStyled read={isRead}>
           <ListItemStyled>
             <ListItemName>Author:</ListItemName>
-            <span>{author}</span>
+            <span>
+              <EllipsisText text={author} length={10} />
+            </span>
           </ListItemStyled>
-          <ListItemStyled>
+          <ListItemStyled className="year">
             <ListItemName>Year:</ListItemName>
             <span>{year}</span>
           </ListItemStyled>
-          <ListItemStyled>
+          <ListItemStyled className="page">
             <ListItemName>Pages:</ListItemName>
             <span>{pages}</span>
           </ListItemStyled>
