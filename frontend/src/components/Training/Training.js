@@ -104,17 +104,17 @@ const Training = () => {
       ) &&
       !(
         isSameDay(
-          addDays(new Date(selectedTraining.start), 31),
+          addDays(new Date(selectedTraining.start), 30),
           new Date(selectedTraining.end)
         ) ||
         isBefore(
           new Date(selectedTraining.end),
-          addDays(new Date(selectedTraining.start), 31)
+          addDays(new Date(selectedTraining.start), 30)
         )
       )
     ) {
       notifyError(
-        'Please select end day later than start and not later than 31 day from start'
+        'Please select end day later than start and not later than 30 day from start'
       );
       return;
     }
