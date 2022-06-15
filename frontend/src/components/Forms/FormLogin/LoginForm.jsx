@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useFormik } from 'formik';
 import loginSchema from 'models/loginSchema';
 import {
@@ -26,6 +26,7 @@ const initialValues = {
 const LoginForm = () => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
+  const [buttonVisual, setButtonVisual] = useState(true);
 
   const onSubmit = async values => {
     try {
@@ -46,6 +47,31 @@ const LoginForm = () => {
     onSubmit,
   });
 
+  useEffect(() => {
+    const handlerDisableButton = () => {
+      if (
+        formik.values.password === '' ||
+        (formik.touched.password && formik.errors.password) ||
+        formik.values.email === '' ||
+        (formik.touched.email && formik.errors.email)
+      ) {
+        setButtonVisual(true);
+        return;
+      } else {
+        setButtonVisual(false);
+        return;
+      }
+    };
+    handlerDisableButton();
+  }, [
+    formik.values.email,
+    formik.values.password,
+    formik.touched.password,
+    formik.errors.password,
+    formik.touched.email,
+    formik.errors.email,
+  ]);
+
   return (
     <FormContainer>
       <AuthFormStyled onSubmit={formik.handleSubmit}>
@@ -61,7 +87,7 @@ const LoginForm = () => {
             label={
               <div>
                 Email
-                {formik.touched.email && (
+                {formik.touched.email && formik.errors.email && (
                   <FormSpanStarStyled>*</FormSpanStarStyled>
                 )}
               </div>
@@ -83,7 +109,7 @@ const LoginForm = () => {
             label={
               <div>
                 Password
-                {formik.touched.password && (
+                {formik.touched.password && formik.errors.password && (
                   <FormSpanStarStyled>*</FormSpanStarStyled>
                 )}
               </div>
@@ -97,7 +123,7 @@ const LoginForm = () => {
           />
         </div>
 
-        <Button className="button" disabled={isLoading} type="submit" filled>
+        <Button className="button" disabled={buttonVisual} type="submit" filled>
           Login
           {isLoading && <Loader button width={30} height={30} />}
         </Button>

@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from 'components/reusableComponents/Button';
 import Datetime from 'react-datetime';
-import { format, subDays } from 'date-fns';
+import { format, isAfter, isBefore, isSameDay } from 'date-fns';
 import 'react-datetime/css/react-datetime.css';
 import {
   ResultContainerStyled,
@@ -22,6 +22,8 @@ import { getCurrentTraining } from 'api/trainings';
 import { trainingsActions, trainingsSelectors } from 'redux/trainings';
 import { cardTypes } from 'constants';
 import ScrollContainer from 'react-indiana-drag-scroll';
+import { getAllBooks } from 'api/books';
+import { booksActions } from 'redux/books';
 
 const initialValues = {
   date: null,
@@ -33,6 +35,7 @@ const Result = ({ openWellDone }) => {
   const token = useSelector(authSelectors.getToken);
   const refreshToken = useSelector(authSelectors.getRefreshToken);
   const currentTraining = useSelector(trainingsSelectors.getTraining);
+  const isCurrent = useSelector(trainingsSelectors.getIsCurrent);
   const dispatch = useDispatch();
 
   const getReadBooks = books =>
@@ -51,6 +54,20 @@ const Result = ({ openWellDone }) => {
       return;
     }
 
+    if (!isCurrent) return;
+
+    if (
+      !(
+        (isBefore(new Date(values.date), new Date(currentTraining.end)) ||
+          isSameDay(new Date(values.date), new Date(currentTraining.end))) &&
+        (isAfter(new Date(values.date), new Date(currentTraining.start)) ||
+          isSameDay(new Date(values.date), new Date(currentTraining.start)))
+      )
+    ) {
+      notifyError('Your training does not contain this date');
+      return;
+    }
+
     const formatDate = format(values.date, 'MM.dd.yyyy');
     const value = { date: formatDate, pages: values.pages };
 
@@ -62,6 +79,10 @@ const Result = ({ openWellDone }) => {
         openWellDone();
 
       dispatch(trainingsActions.init(training));
+
+      const { books } = await getAllBooks(tokenValue);
+
+      dispatch(booksActions.init(books));
     };
 
     try {
@@ -82,10 +103,13 @@ const Result = ({ openWellDone }) => {
   });
 
   const valid = function (current) {
-    const dayBefore = subDays(new Date(), 2);
-    const dayAfter = new Date();
-
-    return current.isAfter(dayBefore) && current.isBefore(dayAfter);
+    return (
+      (isAfter(new Date(current), new Date(currentTraining.start)) ||
+        isSameDay(new Date(current), new Date(currentTraining.start))) &&
+      (isBefore(new Date(current), new Date(currentTraining.end)) ||
+        isSameDay(new Date(current), new Date(currentTraining.end))) &&
+      isBefore(new Date(current), new Date())
+    );
   };
 
   let inputProps = { className: 'input', name: 'date' };
@@ -105,22 +129,27 @@ const Result = ({ openWellDone }) => {
               inputProps={inputProps}
               dateFormat="DD.MM.YYYY"
               timeFormat={false}
+              formik={formik}
               onChange={dateFromValue => {
                 formik.setFieldValue('date', dateFromValue._d);
               }}
               value={formik.values.date ? formik.values.date : ''}
-              renderInput={props => (
-                <input
-                  {...props}
-                  value={
-                    formik.values.date
-                      ? format(formik.values.date, 'dd.MM.yyyy')
-                      : ''
-                  }
-                />
-              )}
+              renderInput={props => {
+                return (
+                  <label className="dateLabel">
+                    <input
+                      {...props}
+                      value={
+                        formik.values.date
+                          ? format(formik.values.date, 'dd.MM.yyyy')
+                          : ''
+                      }
+                    />
+                    <GoTriangleDown className="arrowIcon" size={14} />
+                  </label>
+                );
+              }}
             />
-            <GoTriangleDown size={14} />
             <p className="error">{formik.touched.date && formik.errors.date}</p>
           </div>
           <div>

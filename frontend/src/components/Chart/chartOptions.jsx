@@ -5,7 +5,7 @@ const fn = value => {
   return true;
 };
 
-const options = {
+const getOptions = () => ({
   plugins: {
     title: {
       display: true,
@@ -75,6 +75,6 @@ const options = {
       },
     },
   },
-};
+});
 
-export default options;
+export default getOptions;

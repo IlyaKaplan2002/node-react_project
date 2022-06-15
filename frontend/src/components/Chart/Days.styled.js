@@ -1,10 +1,9 @@
 import styled from 'styled-components';
 
 const DaysStyled = styled.div`
-  color: red;
-  position: relative;
-  top: 30px;
-  left: 165px;
+  position: absolute;
+  top: 27px;
+  left: 180px;
   font-size: 12px;
   font-weight: 600;
   line-height: 1.2;
@@ -14,6 +13,16 @@ const DaysStyled = styled.div`
   height: 25px;
   text-align: center;
   padding-top: 5px;
+
+  @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
+    top: 38px;
+    left: 210px;
+  }
+
+  @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
+    left: 200px;
+    top: 39px;
+  }
 `;
 
 export default DaysStyled;
