@@ -2,6 +2,7 @@ import React from 'react';
 import { MdMenuBook } from 'react-icons/md';
 import { AiOutlineStar, AiFillStar } from 'react-icons/ai';
 import Button from 'components/reusableComponents/Button';
+import EllipsisText from 'react-ellipsis-text';
 import {
   CardStyled,
   BookIcon,
@@ -13,6 +14,7 @@ import {
   CardNameWrapper,
 } from './Card.styled';
 import { cardTypes } from 'constants';
+import Media from 'react-media';
 
 const Card = ({
   name,
@@ -33,18 +35,44 @@ const Card = ({
   const isReading = cardType === cardTypes.reading;
   const isRead = cardType === cardTypes.alreadyRead;
 
+  const getLength = matches => {
+    if (matches.mobile) {
+      return 16;
+    }
+    if (matches.tablet) {
+      return 16;
+    }
+    if (matches.desktop) {
+      return 30;
+    }
+  };
+
   return (
     <CardStyled read={isRead}>
       <BookIcon reading={isReading}>
         <MdMenuBook size={21} />
       </BookIcon>
       <CardNameWrapper>
-        <CardName>{name}</CardName>
+        <CardName>
+          <Media
+            queries={{
+              mobile: '(max-width: 767px)',
+              tablet: '(min-width: 768px) and (max-width: 1279px)',
+              desktop: '(min-width: 1280px)',
+            }}
+          >
+            {matches => (
+              <EllipsisText text={name} length={getLength(matches)} />
+            )}
+          </Media>
+        </CardName>
       </CardNameWrapper>
       <ListStyled read={isRead}>
         <ListItemStyled>
           <ListItemName>Author:</ListItemName>
-          <span>{author}</span>
+          <span>
+            <EllipsisText text={author} length={12} />
+          </span>
         </ListItemStyled>
         <ListItemStyled>
           <ListItemName>Year:</ListItemName>

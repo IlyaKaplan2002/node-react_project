@@ -24,9 +24,10 @@ const CardStyled = styled.div`
     min-width: 704px;
     width: 100%;
     padding-right: 60px;
-    @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {      
+    @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
       grid-template-columns: ${props =>
         props.read ? '1.45fr 3fr' : '0.54fr 1.1fr'};
+    }
   }
 
   & + & {
@@ -112,9 +113,11 @@ const ListStyled = styled.div`
 const ListItemStyled = styled.div`
   display: grid;
   grid-template-columns: 1fr 1.5fr;
+
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     display: flex;
     align-self: center;
+    min-width: 30px;
   }
 `;
 
@@ -132,10 +135,12 @@ const CardName = styled.p`
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
+
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     margin: 0px;
     max-height: 34px;
     overflow: hidden;
+
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 2;

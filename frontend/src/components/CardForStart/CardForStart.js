@@ -17,6 +17,8 @@ import { cardTypes } from 'constants';
 import { trainingCardTypes } from 'constants';
 import { useDispatch } from 'react-redux';
 import { trainingsActions } from 'redux/trainings';
+import EllipsisText from 'react-ellipsis-text';
+import Media from 'react-media';
 
 const CardForStart = ({ name, author, year, pages, id, cardType, status }) => {
   const dispatch = useDispatch();
@@ -27,6 +29,18 @@ const CardForStart = ({ name, author, year, pages, id, cardType, status }) => {
   const withoutDelEmpty = cardType === trainingCardTypes.withoutDelEmpty;
   const withDel = cardType === trainingCardTypes.withDel;
   const started = cardType === trainingCardTypes.started;
+
+  const getLength = matches => {
+    if (matches.mobile) {
+      return 16;
+    }
+    if (matches.tablet) {
+      return 16;
+    }
+    if (matches.desktop) {
+      return 26;
+    }
+  };
 
   return (
     <CardStyled read={isRead}>
@@ -46,7 +60,19 @@ const CardForStart = ({ name, author, year, pages, id, cardType, status }) => {
         </BookIcon>
       )}
       <CardNameWrapper>
-        <CardName>{name}</CardName>
+        <CardName>
+          <Media
+            queries={{
+              mobile: '(max-width: 767px)',
+              tablet: '(min-width: 768px) and (max-width: 1279px)',
+              desktop: '(min-width: 1280px)',
+            }}
+          >
+            {matches => (
+              <EllipsisText text={name} length={getLength(matches)} />
+            )}
+          </Media>
+        </CardName>
       </CardNameWrapper>
 
       {withDel && (
@@ -61,13 +87,25 @@ const CardForStart = ({ name, author, year, pages, id, cardType, status }) => {
         <ListStyled read={isRead}>
           <ListItemStyled>
             <ListItemName>Author:</ListItemName>
-            <span>{author}</span>
+            <span>
+              <Media
+                queries={{
+                  mobile: '(max-width: 767px)',
+                  tablet: '(min-width: 768px) and (max-width: 1279px)',
+                  desktop: '(min-width: 1280px)',
+                }}
+              >
+                {matches => (
+                  <EllipsisText text={author} length={getLength(matches)} />
+                )}
+              </Media>
+            </span>
           </ListItemStyled>
-          <ListItemStyled>
+          <ListItemStyled className="year">
             <ListItemName>Year:</ListItemName>
             <span>{year}</span>
           </ListItemStyled>
-          <ListItemStyled>
+          <ListItemStyled className="page">
             <ListItemName>Pages:</ListItemName>
             <span>{pages}</span>
           </ListItemStyled>

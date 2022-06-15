@@ -1,5 +1,6 @@
 import React from 'react';
 import { SelectionListWrapper } from './SelectionList.styled';
+import EllipsisText from 'react-ellipsis-text';
 
 const SelectionList = ({ books, currentBook, current, onClick }) => {
   const getClassName = id =>
@@ -16,7 +17,7 @@ const SelectionList = ({ books, currentBook, current, onClick }) => {
             className={getClassName(book._id)}
             onClick={() => onClick(book)}
           >
-            {book.name}
+            <EllipsisText text={book.name} length={10} />
           </label>
         </li>
       ))}
