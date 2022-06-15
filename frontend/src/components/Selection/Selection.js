@@ -3,8 +3,9 @@ import { GoTriangleDown } from 'react-icons/go';
 import SelectionList from './SelectionList';
 import classNames from 'classnames';
 import { SelectionWrapper } from './Selection.styled';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { trainingsActions, trainingsSelectors } from 'redux/trainings';
+import EllipsisText from 'react-ellipsis-text';
 
 const Selection = ({
   books,
@@ -63,11 +64,13 @@ const Selection = ({
       <div className={'buttonWrapper'}>
         <button type="button" className={'button'} onClick={toggle}>
           <span className={'current'}>
-            {!books.length
-              ? 'You do not have books in library'
-              : currentBook
-              ? currentBook.name
-              : 'Choose books from the library'}
+            {!books.length ? (
+              'You do not have books in library'
+            ) : currentBook ? (
+              <EllipsisText text={currentBook.name} length={40} />
+            ) : (
+              'Choose books from the library'
+            )}
           </span>
           <GoTriangleDown size={13} />
         </button>
