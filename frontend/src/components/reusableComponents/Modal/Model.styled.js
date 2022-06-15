@@ -4,8 +4,8 @@ const OverlayStyled = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,8 +14,8 @@ const OverlayStyled = styled.div`
 `;
 
 const ModalStyled = styled.div`
-  max-width: calc(100vw - 48px);
-  max-height: calc(100vh - 24px);
+  max-width: calc(100% - 48px);
+  max-height: calc(100% - 24px);
 `;
 
 export { OverlayStyled, ModalStyled };
