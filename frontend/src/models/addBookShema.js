@@ -20,7 +20,7 @@ const addBookSchema = object().shape({
     .positive('Year should be positive')
     .required('Year is required')
     .max(currentYear, `Year should be less than ${currentYear}`)
-    .min(1457, 'Year should be more than 1457'),
+    .min(1000, 'Year should be more than 1000'),
   pages: number()
     .typeError('Pages should be a number')
     .positive('Pages should be positive')
