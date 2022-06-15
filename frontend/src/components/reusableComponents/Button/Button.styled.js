@@ -21,7 +21,11 @@ const Button = styled.button`
 
   &:hover {
     cursor: pointer;
+
+    box-shadow: 0 0.5em 0.5em -0.4em rgba(109, 122, 141);
+    transform: translateY(-0.25em);
   }
+
   &:disabled {
     color: ${props => props.theme.colors.mainBlack};
     background-color: ${props => props.theme.colors.secondary};
