@@ -110,6 +110,7 @@ const AddTrainingForm = ({ books, closeModal = () => {}, desktop }) => {
               timeFormat={false}
               value={formik.values.start ? formik.values.start : ''}
               onChange={dateFromValue => {
+                console.log('onStartChange', dateFromValue);
                 formik.setFieldValue('start', dateFromValue._d);
                 dispatch(
                   trainingsActions.setSelectedDates({
@@ -160,6 +161,7 @@ const AddTrainingForm = ({ books, closeModal = () => {}, desktop }) => {
               timeFormat={false}
               value={formik.values.end ? formik.values.end : ''}
               onChange={dateFromValue => {
+                console.log('onEndChange', dateFromValue);
                 formik.setFieldValue('end', dateFromValue._d);
                 dispatch(
                   trainingsActions.setSelectedDates({
