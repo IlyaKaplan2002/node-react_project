@@ -21,6 +21,8 @@ const tryRefreshToken = async (
       if (error.code === 401) dispatch(authActions.logout());
     }
   } catch (newError) {
+    console.log(error);
+    console.log(newError);
     notifyError(newError);
     if (newError.code === 401) dispatch(authActions.logout());
   }
