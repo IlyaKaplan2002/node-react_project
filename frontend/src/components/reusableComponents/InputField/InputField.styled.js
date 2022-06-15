@@ -53,6 +53,8 @@ const InputFieldStyled = styled.label`
 
   .iconLabel {
     position: relative;
+    width: 100%;
+    height: fit-content;
     .icon {
       position: absolute;
       top: 58%;
