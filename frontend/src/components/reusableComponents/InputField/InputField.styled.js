@@ -55,8 +55,7 @@ const InputFieldStyled = styled.label`
     position: relative;
     .icon {
       position: absolute;
-      top: 70%;
-      transform: translateY(-50%);
+      top: 58%;
       z-index: 2;
       right: 10px;
       fill: ${props => props.theme.colors.mainBlack};
