@@ -21,8 +21,7 @@ const Button = styled.button`
 
   &:hover {
     cursor: pointer;
-
-    box-shadow: 0 0.5em 0.5em -0.4em rgba(109, 122, 141);
+    box-shadow: ${props => props.theme.shadows.hero};
     transform: translateY(-0.25em);
   }
 
