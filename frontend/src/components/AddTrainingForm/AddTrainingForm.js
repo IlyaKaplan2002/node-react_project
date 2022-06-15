@@ -24,7 +24,6 @@ import {
   sub,
 } from 'date-fns';
 import { notifyError } from 'helpers';
-import { Notify } from 'notiflix';
 
 const AddTrainingForm = ({ books, closeModal = () => {}, desktop }) => {
   const selectedTraining = useSelector(trainingsSelectors.getSelectedTraining);
@@ -119,7 +118,6 @@ const AddTrainingForm = ({ books, closeModal = () => {}, desktop }) => {
                       : null,
                   })
                 );
-                Notify.info('Added to state');
               }}
               renderInput={props => (
                 <input
@@ -170,7 +168,6 @@ const AddTrainingForm = ({ books, closeModal = () => {}, desktop }) => {
                       : null,
                   })
                 );
-                Notify.info('Added to state');
               }}
               renderInput={props => (
                 <input
