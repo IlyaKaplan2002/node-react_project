@@ -6,7 +6,7 @@ const YearTimer = ({ className }) => {
   const year = new Date(`Jan 01, ${currentYear + 1}`);
   return (
     <div className={className}>
-      <MyTimer expiryTimestamp={year} title="Year countdown" />
+      <MyTimer expiryTimestamp={year} title="Years countdown" />
     </div>
   );
 };

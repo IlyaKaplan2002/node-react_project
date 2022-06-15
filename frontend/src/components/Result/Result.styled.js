@@ -40,7 +40,11 @@ const ResultContainerStyled = styled.div`
       }
     }
 
-    svg {
+    .dateLabel {
+      position: relative;
+    }
+
+    .arrowIcon {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);

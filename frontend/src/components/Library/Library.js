@@ -114,14 +114,16 @@ const Library = () => {
                     )}
                   </>
                 )}
-                <Button
-                  type="button"
-                  onClick={goToTraining}
-                  filled
-                  className="training"
-                >
-                  My training
-                </Button>
+                {(Boolean(goingToread.length) || Boolean(reading.length)) && (
+                  <Button
+                    type="button"
+                    onClick={goToTraining}
+                    filled
+                    className="training"
+                  >
+                    My training
+                  </Button>
+                )}
               </LibraryStyled>
 
               {matches.small && <AddButton onClick={toggleAddBookModal} />}

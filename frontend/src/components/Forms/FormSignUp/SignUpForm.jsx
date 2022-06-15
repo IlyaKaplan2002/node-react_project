@@ -29,6 +29,8 @@ const SignUpForm = () => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const [buttonVisual, setButtonVisual] = useState(true);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const onSubmit = async values => {
     try {
@@ -42,6 +44,10 @@ const SignUpForm = () => {
     }
     setIsLoading(false);
   };
+
+  const onHadleShowPassword = () => setShowPassword(prev => !prev);
+  const onHadleShowConfirmPassword = () =>
+    setShowConfirmPassword(prev => !prev);
 
   const formik = useFormik({
     initialValues,
@@ -136,7 +142,9 @@ const SignUpForm = () => {
             }}
           />
           <InputField
-            type="password"
+            onShowPassword={onHadleShowPassword}
+            variant={showPassword}
+            type={showPassword ? 'text' : 'password'}
             placeholder="..."
             name="password"
             value={formik.values.password}
@@ -158,7 +166,9 @@ const SignUpForm = () => {
             }}
           />
           <InputField
-            type="password"
+            onShowPassword={onHadleShowConfirmPassword}
+            variant={showConfirmPassword}
+            type={showConfirmPassword ? 'text' : 'password'}
             placeholder="..."
             name="confirmPassword"
             value={formik.values.confirmPassword}
@@ -191,7 +201,8 @@ const SignUpForm = () => {
           {isLoading && <Loader button width={30} height={30} />}
         </Button>
         <FormSpanStyled>
-          Already with us? <LinkStyled to={routes.login.path}>Login</LinkStyled>
+          Already with us?{' '}
+          <LinkStyled to={routes.login.path}>Log in</LinkStyled>
         </FormSpanStyled>
       </AuthFormStyled>
     </FormContainer>
