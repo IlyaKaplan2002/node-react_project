@@ -18,11 +18,11 @@ const tryRefreshToken = async (
       await callback(data.token, ...args);
     } else {
       notifyError(error);
-      if (error.status === 401) dispatch(authActions.logout());
+      if (error.code === 401) dispatch(authActions.logout());
     }
   } catch (newError) {
     notifyError(newError);
-    if (newError.status === 401) dispatch(authActions.logout());
+    if (newError.code === 401) dispatch(authActions.logout());
   }
 };
 
