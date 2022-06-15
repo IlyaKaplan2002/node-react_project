@@ -12,6 +12,10 @@ const tryRefreshToken = async (
   const message = error?.response?.data?.message || 'Error';
 
   try {
+    if (message === 'Token is invalid') {
+      notifyError('You have started another session, this session was expired');
+      dispatch(authActions.logout());
+    }
     if (message === 'jwt expired') {
       const data = await refreshToken(refreshTokenValue);
       dispatch(authActions.login(data));
