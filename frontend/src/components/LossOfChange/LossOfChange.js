@@ -13,12 +13,16 @@ const LossOfChange = ({ onCloseModal, onLeaveClick }) => {
           application
         </PStyled>
         <DivButtonStyled>
-          <Button className="button" type="button" onClick={onCloseModal}>
+          <Button
+            className="button btnWhite"
+            type="button"
+            onClick={onCloseModal}
+          >
             Cancel
           </Button>
           <Button
             filled
-            className="button"
+            className="button btnOrange"
             type="button"
             onClick={onLeaveClick}
           >

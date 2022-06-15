@@ -21,8 +21,6 @@ const Button = styled.button`
 
   &:hover {
     cursor: pointer;
-    box-shadow: ${props => props.theme.shadows.hero};
-    transform: translateY(-0.25em);
   }
 
   &:disabled {

@@ -32,10 +32,13 @@ const theme = {
     backdrop: 'rgba(43, 43, 43, 0.1)',
     timer: '#091E3F',
     scrollBar: '#B1B5C2',
+    buttonHoverOrange: '#D15807',
+    buttonHoverGray: '#47566F',
   },
   borders: {
     input: '1px solid #a6abb9',
     button: '1px solid #242A37',
+    buttonHover: '1px solid #F25137',
     transparent: '1px solid transparent',
   },
   shadows: {

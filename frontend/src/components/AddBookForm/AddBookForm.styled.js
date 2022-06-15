@@ -67,6 +67,14 @@ const AddBookFormStyled = styled.form`
       margin-left: 48px;
     }
   }
+
+  .btnWhite:hover {
+    transform: translateY(-0.25em);
+    border: ${props =>
+      props.filled
+        ? props.theme.borders.transparent
+        : props.theme.borders.buttonHover};
+  }
 `;
 
 export default AddBookFormStyled;

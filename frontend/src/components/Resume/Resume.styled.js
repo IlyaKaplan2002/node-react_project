@@ -46,6 +46,17 @@ const ResumeContainerStyled = styled.div`
     font-size: 14px;
     font-weight: ${props => props.theme.fonts.weights.medium};
   }
+  .btnWhite:hover {
+    transform: translateY(-0.25em);
+    border: ${props =>
+      props.filled
+        ? props.theme.borders.transparent
+        : props.theme.borders.buttonHover};
+  }
+  .btnOrange:hover {
+    transform: translateY(-0.25em);
+    background-color: ${props => props.theme.colors.buttonHoverOrange};
+  }
   .form {
     margin-top: 20px;
   }

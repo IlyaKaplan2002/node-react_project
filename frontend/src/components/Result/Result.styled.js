@@ -71,6 +71,11 @@ const ResultContainerStyled = styled.div`
     height: 42px;
     text-transform: none;
     margin-bottom: 24px;
+
+    &:hover {
+      transform: translateY(-0.25em);
+      background-color: ${props => props.theme.colors.buttonHoverOrange};
+    }
   }
 
   .icon {

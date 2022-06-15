@@ -29,8 +29,7 @@ const CardStyled = styled.div`
     grid-template-columns: ${props =>
       props.read ? '1.25fr 3fr 0.84fr' : '1fr 1.3fr'};
     max-width: 1248px;
-    column-gap: ${props =>
-        props.read ? '30px' : '110px'};
+    column-gap: ${props => (props.read ? '30px' : '110px')};
   }
 
   & + & {
@@ -57,15 +56,20 @@ const CardStyled = styled.div`
     margin-top: 20px;
     margin-left: 20px;
 
+    &:hover {
+      transform: translateY(-0.25em);
+      background-color: ${props => props.theme.colors.buttonHoverGray};
+    }
+
     @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
       margin: 0;
       padding: 12px 0;
       height: fit-content;
     }
 
-    @media screen and  (min-width: ${props => props.theme.breakpoints.desktop}){
+    @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
       padding: 10px 36px;
-      width:130px;
+      width: 130px;
     }
   }
 `;
@@ -154,5 +158,5 @@ export {
   BookIcon,
   RatingIcon,
   CardName,
-  CardNameWrapper
+  CardNameWrapper,
 };

@@ -20,6 +20,11 @@ const TrainingStyled = styled.div`
     font-size: 14px;
     margin-bottom: 32px;
     width: 171px;
+
+    &:hover {
+      transform: translateY(-0.25em);
+      background-color: ${props => props.theme.colors.buttonHoverOrange};
+    }
   }
 
   .yearTimer {
