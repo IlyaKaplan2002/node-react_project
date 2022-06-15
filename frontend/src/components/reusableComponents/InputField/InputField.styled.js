@@ -50,6 +50,18 @@ const InputFieldStyled = styled.label`
     color: ${props => props.theme.colors.error};
     font-size: 12px;
   }
+
+  .iconLabel {
+    position: relative;
+    .icon {
+      position: absolute;
+      top: 70%;
+      transform: translateY(-50%);
+      z-index: 2;
+      right: 10px;
+      fill: ${props => props.theme.colors.mainBlack};
+    }
+  }
 `;
 
 export default InputFieldStyled;

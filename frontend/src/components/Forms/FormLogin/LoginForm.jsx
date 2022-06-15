@@ -27,6 +27,7 @@ const LoginForm = () => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const [buttonVisual, setButtonVisual] = useState(true);
+  const [showPassword, setShowPassword] = useState(false);
 
   const onSubmit = async values => {
     try {
@@ -37,6 +38,10 @@ const LoginForm = () => {
       notifyError(error);
     }
     setIsLoading(false);
+  };
+
+  const onHadleShowPassword = () => {
+    setShowPassword(!showPassword);
   };
 
   const formik = useFormik({
@@ -100,7 +105,9 @@ const LoginForm = () => {
             }}
           />
           <InputField
-            type="password"
+            onShowPassword={onHadleShowPassword}
+            variant={showPassword}
+            type={showPassword ? 'text' : 'password'}
             placeholder="Password"
             name="password"
             value={formik.values.password}
