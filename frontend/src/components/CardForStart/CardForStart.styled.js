@@ -113,10 +113,7 @@ const ListStyled = styled.div`
 const ListItemStyled = styled.div`
   display: grid;
   grid-template-columns: 1fr 1.5fr;
-  @media screen and (min-width: ${props => props.theme.breakpoints.mobile}) {
-    word-break: break-all;
-    max-width: 180px;
-  }
+
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     display: flex;
     align-self: center;
@@ -138,15 +135,12 @@ const CardName = styled.p`
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
-  @media screen and (min-width: ${props => props.theme.breakpoints.mobile}) {
-    word-break: break-all;
-    width: 150px;
-  }
+
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     margin: 0px;
     max-height: 34px;
     overflow: hidden;
-    word-break: break-all;
+
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 2;
