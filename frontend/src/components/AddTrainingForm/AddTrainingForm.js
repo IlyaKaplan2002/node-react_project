@@ -24,6 +24,7 @@ import {
   sub,
 } from 'date-fns';
 import { notifyError } from 'helpers';
+import { Notify } from 'notiflix';
 
 const AddTrainingForm = ({ books, closeModal = () => {}, desktop }) => {
   const selectedTraining = useSelector(trainingsSelectors.getSelectedTraining);
@@ -98,12 +99,12 @@ const AddTrainingForm = ({ books, closeModal = () => {}, desktop }) => {
                     isSameDay(new Date(), new Date(val))) &&
                   isBefore(new Date(val), new Date(formik.values.end)) &&
                   (isSameDay(
-                    sub(new Date(formik.values.end), { days: 31 }),
+                    sub(new Date(formik.values.end), { days: 30 }),
                     new Date(val)
                   ) ||
                     isAfter(
                       new Date(val),
-                      sub(new Date(formik.values.end), { days: 31 })
+                      sub(new Date(formik.values.end), { days: 30 })
                     ))
                 );
               }}
@@ -118,6 +119,7 @@ const AddTrainingForm = ({ books, closeModal = () => {}, desktop }) => {
                       : null,
                   })
                 );
+                Notify.info('Added to state');
               }}
               renderInput={props => (
                 <input
@@ -147,12 +149,12 @@ const AddTrainingForm = ({ books, closeModal = () => {}, desktop }) => {
                 return (
                   isAfter(new Date(val), new Date(formik.values.start)) &&
                   (isSameDay(
-                    addDays(new Date(formik.values.start), 31),
+                    addDays(new Date(formik.values.start), 30),
                     new Date(val)
                   ) ||
                     isBefore(
                       new Date(val),
-                      addDays(new Date(formik.values.start), 31)
+                      addDays(new Date(formik.values.start), 30)
                     ))
                 );
               }}
@@ -168,6 +170,7 @@ const AddTrainingForm = ({ books, closeModal = () => {}, desktop }) => {
                       : null,
                   })
                 );
+                Notify.info('Added to state');
               }}
               renderInput={props => (
                 <input
