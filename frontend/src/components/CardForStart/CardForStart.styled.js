@@ -64,6 +64,14 @@ const CardStyled = styled.div`
       padding: 10px 36px;
       width: 130px;
     }
+
+    /* &:hover {
+      transform: translateY(-0.25em);
+      border: ${props =>
+      props.filled
+        ? props.theme.borders.transparent
+        : props.theme.borders.buttonHover};
+    } */
   }
 `;
 

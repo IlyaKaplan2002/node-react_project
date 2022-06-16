@@ -20,7 +20,7 @@ const TrainingStyled = styled.div`
     font-size: 14px;
     margin-bottom: 32px;
     width: 171px;
-    transition: 0.2s;
+    transition: 0.2s linear;
 
     &:hover {
       transform: translateY(-0.25em);

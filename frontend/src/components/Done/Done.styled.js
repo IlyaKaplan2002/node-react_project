@@ -27,6 +27,12 @@ const ArticleStyled = styled.article`
     font-size: 14px;
     text-align: center;
     margin: 0 auto;
+    transition: 0.2s linear;
+
+    &:hover {
+      transform: translateY(-0.25em);
+      background-color: ${props => props.theme.colors.buttonHoverOrange};
+    }
   }
 `;
 

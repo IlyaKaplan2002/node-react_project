@@ -62,15 +62,14 @@ const AddBookFormStyled = styled.form`
     margin: 0 auto;
     font-size: 14px;
     line-height: 17px;
-    :hover {
-      transition: 0.2s linear;
-    }
+
     @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
       margin-left: 48px;
     }
   }
 
   .btnWhite:hover {
+    transition: 0.2s linear;
     transform: translateY(-0.25em);
     border: ${props =>
       props.filled
