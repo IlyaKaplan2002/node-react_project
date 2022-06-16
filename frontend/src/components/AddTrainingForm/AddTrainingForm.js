@@ -127,6 +127,7 @@ const AddTrainingForm = ({ books, closeModal = () => {}, desktop }) => {
               renderInput={props => (
                 <input
                   {...props}
+                  autoComplete="off"
                   value={
                     formik.values.start
                       ? format(formik.values.start, 'dd.MM.yyyy')
@@ -179,6 +180,7 @@ const AddTrainingForm = ({ books, closeModal = () => {}, desktop }) => {
               renderInput={props => (
                 <input
                   {...props}
+                  autoComplete="off"
                   value={
                     formik.values.end
                       ? format(formik.values.end, 'dd.MM.yyyy')

@@ -22,6 +22,7 @@ const InputField = ({
         <label className="iconLabel">
           <span className={'labelText ' + classNames.labelText}>{label}</span>
           <input
+            autoComplete="off"
             type={type}
             className={classNames.input + ' input'}
             placeholder={placeholder}
@@ -58,6 +59,7 @@ const InputField = ({
       <span className={'labelText ' + classNames.labelText}>{label}</span>
       <input
         type={type}
+        autoComplete="off"
         className={classNames.input + ' input'}
         placeholder={placeholder}
         name={name}

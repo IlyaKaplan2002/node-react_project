@@ -41,6 +41,14 @@ const GlobalStyles = createGlobalStyle`
     a {
       text-decoration: none;
     }
+
+    input::-webkit-contacts-auto-fill-button, 
+    input::-webkit-credentials-auto-fill-button {
+      visibility: hidden;
+      position: absolute;
+      right: 0;
+    }
+
     @media screen and (max-width: 428px) {
       ::-webkit-scrollbar {
         display: none;

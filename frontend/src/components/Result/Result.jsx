@@ -139,6 +139,7 @@ const Result = ({ openWellDone }) => {
                   <label className="dateLabel">
                     <input
                       {...props}
+                      autoComplete="off"
                       value={
                         formik.values.date
                           ? format(formik.values.date, 'dd.MM.yyyy')
