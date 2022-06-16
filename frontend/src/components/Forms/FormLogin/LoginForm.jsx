@@ -79,7 +79,7 @@ const LoginForm = () => {
 
   return (
     <FormContainer>
-      <AuthFormStyled onSubmit={formik.handleSubmit}>
+      <AuthFormStyled autoComplete="off" onSubmit={formik.handleSubmit}>
         <AuthGoogle type="button" className="googleButton" />
         <div className="wrapperSignIn">
           <InputField

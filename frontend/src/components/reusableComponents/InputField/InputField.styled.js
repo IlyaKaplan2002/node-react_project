@@ -52,6 +52,7 @@ const InputFieldStyled = styled.label`
   }
 
   .iconLabel {
+    display: block;
     position: relative;
     width: 280px;
     height: 68px;
