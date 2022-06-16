@@ -94,6 +94,8 @@ const Training = () => {
       isSameDay(new Date(), new Date(selectedTraining.start))
     );
 
+    console.log('date', new Date(selectedTraining.start));
+
     if (
       !(
         isFuture(new Date(selectedTraining.start)) ||
