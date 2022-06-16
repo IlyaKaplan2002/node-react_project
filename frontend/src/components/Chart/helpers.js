@@ -59,11 +59,12 @@ export const getAllDatesStat = (training, isCurrent, stats) => {
   const uniq = getUniqStats(stats);
   const dates = getLabels(training, isCurrent);
   const allDatesStat = dates.map(date => {
-    const stat = uniq.find(item =>
-      isSameDay(new Date(item.date), new Date(date))
-    );
-    if (stat) return { ...stat, pages: stat.pages };
-    return { date, pages: 0 };
+    const stat = uniq.find(item => {
+      return isSameDay(new Date(item.date), new Date(date));
+    });
+
+    if (!stat) return { date, pages: 0 };
+    return { ...stat, pages: stat.pages };
   });
 
   return allDatesStat;
@@ -76,10 +77,20 @@ export const getActData = (training, isCurrent, stats) => {
       0,
       getLatestDaysAmount(training, isCurrent) + 1
     );
-    return lastDaysStat.map(item => item.pages);
+
+    return lastDaysStat.map(item => {
+      return item.pages;
+    });
   }
 
   return [1];
+};
+
+export const getPagesTodayRead = stats => {
+  const uniq = getUniqStats(stats);
+  const today = uniq.find(stat => isSameDay(new Date(), new Date(stat.date)));
+  if (today) return today.pages;
+  return 0;
 };
 
 export const getSumOfLatestDays = (number, allDaysStat) => {
@@ -106,20 +117,20 @@ export const getPlannedData = (stats, training, isCurrent) => {
   for (let i = 0; i < daysAmount; i++) {
     if (i === 0) {
       const result = sumOfPages / daysAmount;
-      data.push(result);
+      data.push(Math.round(result));
       continue;
     }
     if (i >= latestDays) {
       const result =
         (sumOfPages - getSumOfLatestDays(allDatesStat.length, allDatesStat)) /
         (daysAmount - latestDays);
-      data.push(result);
+      data.push(Math.round(result));
       continue;
     }
     const result =
       (sumOfPages - getSumOfLatestDays(i, allDatesStat)) / (daysAmount - i);
 
-    data.push(result);
+    data.push(Math.round(result));
   }
 
   return data;
