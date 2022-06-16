@@ -24,7 +24,7 @@ const addBookSchema = object().shape({
   pages: number()
     .typeError('Pages should be a number')
     .positive('Pages should be positive')
-    .max(99999, 'Must be no more than 5 characters')
+    .max(9999, 'Must be no more than 4 characters')
     .required('Pages is required'),
 });
 
