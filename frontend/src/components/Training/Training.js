@@ -88,6 +88,12 @@ const Training = () => {
       return;
     }
 
+    console.log('isFuture', isFuture(new Date(selectedTraining.start)));
+    console.log(
+      'isSame',
+      isSameDay(new Date(), new Date(selectedTraining.start))
+    );
+
     if (
       !(
         isFuture(new Date(selectedTraining.start)) ||
