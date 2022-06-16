@@ -68,7 +68,7 @@ const Result = ({ openWellDone }) => {
       return;
     }
 
-    const formatDate = format(values.date, 'MM.dd.yyyy');
+    const formatDate = format(values.date, 'MM/dd/yyyy');
     const value = { date: formatDate, pages: values.pages };
 
     const tryFunc = async tokenValue => {
