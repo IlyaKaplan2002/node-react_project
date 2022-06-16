@@ -98,19 +98,24 @@ const AddTrainingForm = ({ books, closeModal = () => {}, desktop }) => {
                     isSameDay(new Date(), new Date(val))) &&
                   isBefore(new Date(val), new Date(formik.values.end)) &&
                   (isSameDay(
-                    sub(new Date(formik.values.end), { days: 31 }),
+                    sub(new Date(formik.values.end), { days: 30 }),
                     new Date(val)
                   ) ||
                     isAfter(
                       new Date(val),
-                      sub(new Date(formik.values.end), { days: 31 })
+                      sub(new Date(formik.values.end), { days: 30 })
                     ))
                 );
               }}
               timeFormat={false}
               value={formik.values.start ? formik.values.start : ''}
               onChange={dateFromValue => {
+                console.log('onStartChange', dateFromValue._d);
                 formik.setFieldValue('start', dateFromValue._d);
+                console.log(
+                  'isValidStart',
+                  isValid(new Date(dateFromValue._d))
+                );
                 dispatch(
                   trainingsActions.setSelectedDates({
                     start: isValid(new Date(dateFromValue._d))
@@ -147,12 +152,12 @@ const AddTrainingForm = ({ books, closeModal = () => {}, desktop }) => {
                 return (
                   isAfter(new Date(val), new Date(formik.values.start)) &&
                   (isSameDay(
-                    addDays(new Date(formik.values.start), 31),
+                    addDays(new Date(formik.values.start), 30),
                     new Date(val)
                   ) ||
                     isBefore(
                       new Date(val),
-                      addDays(new Date(formik.values.start), 31)
+                      addDays(new Date(formik.values.start), 30)
                     ))
                 );
               }}
@@ -160,7 +165,9 @@ const AddTrainingForm = ({ books, closeModal = () => {}, desktop }) => {
               timeFormat={false}
               value={formik.values.end ? formik.values.end : ''}
               onChange={dateFromValue => {
+                console.log('onEndChange', dateFromValue._d);
                 formik.setFieldValue('end', dateFromValue._d);
+                console.log('isValidEnd', isValid(new Date(dateFromValue._d)));
                 dispatch(
                   trainingsActions.setSelectedDates({
                     end: isValid(new Date(dateFromValue._d))

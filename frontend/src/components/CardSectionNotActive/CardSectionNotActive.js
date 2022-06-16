@@ -30,7 +30,6 @@ const CardSectionNotActive = ({ cardType, books = [] }) => {
           {withoutDelEmpty && (
             <Media queries={{ small: '(max-width:767px)' }}>
               {matches => {
-                console.log(matches);
                 return (
                   <>
                     <CardForStart
