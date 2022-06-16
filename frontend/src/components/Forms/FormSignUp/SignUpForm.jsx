@@ -201,7 +201,7 @@ const SignUpForm = () => {
           {isLoading && <Loader button width={30} height={30} />}
         </Button>
         <FormSpanStyled>
-          Already with us?{' '}
+          Already have an account?{' '}
           <LinkStyled to={routes.login.path}>Log in</LinkStyled>
         </FormSpanStyled>
       </AuthFormStyled>
