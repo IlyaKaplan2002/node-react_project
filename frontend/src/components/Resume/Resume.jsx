@@ -7,7 +7,7 @@ import {
   ResumeBackdrop,
 } from './Resume.styled';
 import Button from 'components/reusableComponents/Button';
-import { tryRefreshToken } from 'helpers';
+import { notifyError, tryRefreshToken } from 'helpers';
 import { addResume } from 'api/books';
 import { useDispatch, useSelector } from 'react-redux';
 import { authSelectors } from 'redux/auth';
@@ -19,6 +19,7 @@ import { enableBodyScroll } from 'body-scroll-lock';
 const Resume = ({ onCloseModal, bookId, initBook }) => {
   const [rating, setRating] = useState(initBook.rating);
   const [value, setValue] = useState(initBook.review);
+  const [error, setError] = useState('');
   const token = useSelector(authSelectors.getToken);
   const refreshTokenValue = useSelector(authSelectors.getRefreshToken);
   const dispatch = useDispatch();
@@ -36,6 +37,12 @@ const Resume = ({ onCloseModal, bookId, initBook }) => {
 
   const onSaveModalButtonClick = async evt => {
     evt.preventDefault();
+
+    if (!rating) {
+      notifyError('Rating is required');
+      return;
+    }
+
     const tryFunc = async tokenValue => {
       const { book } = await addResume(tokenValue, bookId, {
         rating,
@@ -54,7 +61,13 @@ const Resume = ({ onCloseModal, bookId, initBook }) => {
   };
 
   const onChangeValue = evt => {
-    setValue(evt.target.value);
+    const { value } = evt.target;
+    if (value.length > 1000) {
+      setError('Resume should not be more than 1000');
+      return;
+    }
+    setError('');
+    setValue(value);
   };
 
   const changeRating = newRating => {
@@ -79,7 +92,7 @@ const Resume = ({ onCloseModal, bookId, initBook }) => {
           starSpacing="2px"
         />
         <form className="form" onSubmit={onSaveModalButtonClick}>
-          <label>
+          <label className="label">
             <span>Resume</span>
             <TextAreaStyled
               name="textArea"
@@ -88,6 +101,7 @@ const Resume = ({ onCloseModal, bookId, initBook }) => {
               value={value}
               onChange={onChangeValue}
             />
+            <p className="error">{error}</p>
           </label>
           <div className="buttonContainer">
             <Button type="button" className="button" onClick={onCloseModal}>

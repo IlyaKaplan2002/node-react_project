@@ -10,6 +10,18 @@ export const ResumeBackdrop = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  .label {
+    position: relative;
+  }
+
+  .error {
+    position: absolute;
+    bottom: 0;
+    transform: translateY(100%);
+    color: ${props => props.theme.colors.error};
+    font-size: 12px;
+  }
 `;
 
 const ResumeContainerStyled = styled.div`

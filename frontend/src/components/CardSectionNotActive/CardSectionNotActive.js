@@ -28,16 +28,22 @@ const CardSectionNotActive = ({ cardType, books = [] }) => {
         </CardsNameList>
         <ScrollContainer className="booksContainer" hideScrollbars={false}>
           {withoutDelEmpty && (
-            <>
-              <CardForStart
-                name={'...'}
-                author={''}
-                year={''}
-                pages={''}
-                cardType={cardType}
-              />
-              <Spliter></Spliter>
-            </>
+            <Media queries={{ small: '(max-width:767px)' }}>
+              {matches => {
+                return (
+                  <>
+                    <CardForStart
+                      name={'...'}
+                      author={matches.small ? '...' : ''}
+                      year={matches.small ? '...' : ''}
+                      pages={matches.small ? '...' : ''}
+                      cardType={cardType}
+                    />
+                    <Spliter></Spliter>
+                  </>
+                );
+              }}
+            </Media>
           )}
           {(withDel || started) && (
             <ListOwerflow>

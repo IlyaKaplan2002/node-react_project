@@ -12,16 +12,21 @@ const tryRefreshToken = async (
   const message = error?.response?.data?.message || 'Error';
 
   try {
+    if (message === 'Token is invalid') {
+      notifyError('You have started another session, this session was expired');
+      dispatch(authActions.logout());
+    }
     if (message === 'jwt expired') {
       const data = await refreshToken(refreshTokenValue);
       dispatch(authActions.login(data));
       await callback(data.token, ...args);
     } else {
       notifyError(error);
-      dispatch(authActions.logout());
+      if (error.code === 401) dispatch(authActions.logout());
     }
-  } catch (error) {
-    notifyError(error);
+  } catch (newError) {
+    notifyError(newError);
+    if (newError.code === 401) dispatch(authActions.logout());
   }
 };
 

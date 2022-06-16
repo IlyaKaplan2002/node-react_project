@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useFormik } from 'formik';
 import signUpShema from 'models/signUpShema';
 import {
@@ -16,7 +16,6 @@ import { notifyError } from 'helpers';
 import { useDispatch } from 'react-redux';
 import { authActions } from 'redux/auth';
 import { routes } from 'constants';
-import { useState } from 'react';
 import Loader from 'components/reusableComponents/Loader';
 
 const initialValues = {
@@ -29,6 +28,9 @@ const initialValues = {
 const SignUpForm = () => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
+  const [buttonVisual, setButtonVisual] = useState(true);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const onSubmit = async values => {
     try {
@@ -43,6 +45,10 @@ const SignUpForm = () => {
     setIsLoading(false);
   };
 
+  const onHadleShowPassword = () => setShowPassword(prev => !prev);
+  const onHadleShowConfirmPassword = () =>
+    setShowConfirmPassword(prev => !prev);
+
   const formik = useFormik({
     initialValues,
     initialErrors: initialValues,
@@ -51,9 +57,44 @@ const SignUpForm = () => {
     onSubmit,
   });
 
+  useEffect(() => {
+    const handlerDisableButton = () => {
+      if (
+        formik.values.name === '' ||
+        (formik.touched.name && formik.errors.name) ||
+        formik.values.email === '' ||
+        (formik.touched.email && formik.errors.email) ||
+        formik.values.password === '' ||
+        (formik.touched.password && formik.errors.password) ||
+        formik.values.confirmPassword === '' ||
+        (formik.touched.confirmPassword && formik.errors.confirmPassword)
+      ) {
+        setButtonVisual(true);
+        return;
+      } else {
+        setButtonVisual(false);
+        return;
+      }
+    };
+    handlerDisableButton();
+  }, [
+    formik.values.confirmPassword,
+    formik.values.email,
+    formik.values.name,
+    formik.values.password,
+    formik.touched.name,
+    formik.errors.name,
+    formik.touched.email,
+    formik.errors.email,
+    formik.touched.password,
+    formik.errors.password,
+    formik.touched.confirmPassword,
+    formik.errors.confirmPassword,
+  ]);
+
   return (
     <FormContainer className="signUp" signup>
-      <AuthFormStyled onSubmit={formik.handleSubmit}>
+      <AuthFormStyled autoComplete="off" onSubmit={formik.handleSubmit}>
         <AuthGoogle type="button" className="googleButton" />
         <div className="wrapperSignUp">
           <InputField
@@ -66,7 +107,7 @@ const SignUpForm = () => {
             label={
               <div>
                 Name
-                {formik.touched.name && (
+                {formik.touched.name && formik.errors.name && (
                   <FormSpanStarStyled>*</FormSpanStarStyled>
                 )}
               </div>
@@ -88,7 +129,7 @@ const SignUpForm = () => {
             label={
               <div>
                 Email
-                {formik.touched.email && (
+                {formik.touched.email && formik.errors.email && (
                   <FormSpanStarStyled>*</FormSpanStarStyled>
                 )}
               </div>
@@ -101,7 +142,9 @@ const SignUpForm = () => {
             }}
           />
           <InputField
-            type="password"
+            onShowPassword={onHadleShowPassword}
+            variant={showPassword}
+            type={showPassword ? 'text' : 'password'}
             placeholder="..."
             name="password"
             value={formik.values.password}
@@ -110,7 +153,7 @@ const SignUpForm = () => {
             label={
               <div>
                 Password
-                {formik.touched.password && (
+                {formik.touched.password && formik.errors.password && (
                   <FormSpanStarStyled>*</FormSpanStarStyled>
                 )}
               </div>
@@ -123,7 +166,9 @@ const SignUpForm = () => {
             }}
           />
           <InputField
-            type="password"
+            onShowPassword={onHadleShowConfirmPassword}
+            variant={showConfirmPassword}
+            type={showConfirmPassword ? 'text' : 'password'}
             placeholder="..."
             name="confirmPassword"
             value={formik.values.confirmPassword}
@@ -132,9 +177,10 @@ const SignUpForm = () => {
             label={
               <div>
                 Confirm password
-                {formik.touched.confirmPassword && (
-                  <FormSpanStarStyled>*</FormSpanStarStyled>
-                )}
+                {formik.touched.confirmPassword &&
+                  formik.errors.confirmPassword && (
+                    <FormSpanStarStyled>*</FormSpanStarStyled>
+                  )}
               </div>
             }
             touched={formik.touched.confirmPassword}
@@ -145,12 +191,18 @@ const SignUpForm = () => {
             }}
           />
         </div>
-        <Button type="submit" filled className="button signUpForm">
+        <Button
+          type="submit"
+          filled
+          className="button signUpForm"
+          disabled={buttonVisual}
+        >
           Register
           {isLoading && <Loader button width={30} height={30} />}
         </Button>
         <FormSpanStyled>
-          Already with us? <LinkStyled to={routes.login.path}>Login</LinkStyled>
+          Already have an account?{' '}
+          <LinkStyled to={routes.login.path}>Log in</LinkStyled>
         </FormSpanStyled>
       </AuthFormStyled>
     </FormContainer>

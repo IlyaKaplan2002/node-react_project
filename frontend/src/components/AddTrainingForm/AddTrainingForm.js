@@ -13,7 +13,16 @@ import Button from 'components/reusableComponents/Button';
 import Selection from 'components/Selection';
 import { useDispatch, useSelector } from 'react-redux';
 import { trainingsActions, trainingsSelectors } from 'redux/trainings';
-import { format, isAfter, isFuture, isSameDay, isValid } from 'date-fns';
+import {
+  addDays,
+  format,
+  isAfter,
+  isBefore,
+  isFuture,
+  isSameDay,
+  isValid,
+  sub,
+} from 'date-fns';
 import { notifyError } from 'helpers';
 
 const AddTrainingForm = ({ books, closeModal = () => {}, desktop }) => {
@@ -34,6 +43,9 @@ const AddTrainingForm = ({ books, closeModal = () => {}, desktop }) => {
     }
 
     if (currentBook) {
+      if (selectedBooks.find(book => book._id === currentBook._id)) {
+        return;
+      }
       dispatch(trainingsActions.addSelectedBook(currentBook));
       setCurrentBook(null);
     }
@@ -74,13 +86,36 @@ const AddTrainingForm = ({ books, closeModal = () => {}, desktop }) => {
                 placeholder: 'Start',
                 className: 'date-input',
               }}
-              isValidDate={val =>
-                isFuture(new Date(val)) || isSameDay(new Date(), new Date(val))
-              }
+              isValidDate={val => {
+                if (!formik.values.end) {
+                  return (
+                    isFuture(new Date(val)) ||
+                    isSameDay(new Date(), new Date(val))
+                  );
+                }
+                return (
+                  (isFuture(new Date(val)) ||
+                    isSameDay(new Date(), new Date(val))) &&
+                  isBefore(new Date(val), new Date(formik.values.end)) &&
+                  (isSameDay(
+                    sub(new Date(formik.values.end), { days: 30 }),
+                    new Date(val)
+                  ) ||
+                    isAfter(
+                      new Date(val),
+                      sub(new Date(formik.values.end), { days: 30 })
+                    ))
+                );
+              }}
               timeFormat={false}
               value={formik.values.start ? formik.values.start : ''}
               onChange={dateFromValue => {
+                console.log('onStartChange', dateFromValue._d);
                 formik.setFieldValue('start', dateFromValue._d);
+                console.log(
+                  'isValidStart',
+                  isValid(new Date(dateFromValue._d))
+                );
                 dispatch(
                   trainingsActions.setSelectedDates({
                     start: isValid(new Date(dateFromValue._d))
@@ -92,6 +127,7 @@ const AddTrainingForm = ({ books, closeModal = () => {}, desktop }) => {
               renderInput={props => (
                 <input
                   {...props}
+                  autoComplete="off"
                   value={
                     formik.values.start
                       ? format(formik.values.start, 'dd.MM.yyyy')
@@ -114,13 +150,25 @@ const AddTrainingForm = ({ books, closeModal = () => {}, desktop }) => {
               }}
               isValidDate={val => {
                 if (!formik.values.start) return isFuture(new Date(val));
-                return isAfter(new Date(val), new Date(formik.values.start));
+                return (
+                  isAfter(new Date(val), new Date(formik.values.start)) &&
+                  (isSameDay(
+                    addDays(new Date(formik.values.start), 30),
+                    new Date(val)
+                  ) ||
+                    isBefore(
+                      new Date(val),
+                      addDays(new Date(formik.values.start), 30)
+                    ))
+                );
               }}
               dateFormat="DD.MM.yyyy"
               timeFormat={false}
               value={formik.values.end ? formik.values.end : ''}
               onChange={dateFromValue => {
+                console.log('onEndChange', dateFromValue._d);
                 formik.setFieldValue('end', dateFromValue._d);
+                console.log('isValidEnd', isValid(new Date(dateFromValue._d)));
                 dispatch(
                   trainingsActions.setSelectedDates({
                     end: isValid(new Date(dateFromValue._d))
@@ -132,6 +180,7 @@ const AddTrainingForm = ({ books, closeModal = () => {}, desktop }) => {
               renderInput={props => (
                 <input
                   {...props}
+                  autoComplete="off"
                   value={
                     formik.values.end
                       ? format(formik.values.end, 'dd.MM.yyyy')

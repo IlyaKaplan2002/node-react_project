@@ -1,6 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit';
 import actions from './actions';
 import { cardTypes } from 'constants';
+import { authActions } from 'redux/auth';
 
 const initialState = {
   [cardTypes.alreadyRead]: [],
@@ -9,6 +10,7 @@ const initialState = {
 };
 
 const reducer = createReducer(initialState, {
+  [authActions.logout]: () => initialState,
   [actions.init]: (state, action) => {
     const newBooks = action.payload;
     const newAlreadyRead = [];
@@ -25,7 +27,7 @@ const reducer = createReducer(initialState, {
       [cardTypes.alreadyRead]: [...newAlreadyRead],
       [cardTypes.reading]: [...newReading],
       [cardTypes.goingToRead]: [...newGoingToRead],
-    };  
+    };
   },
   [actions.update]: (state, action) => {
     const { status, _id: bookId } = action.payload;
@@ -39,7 +41,7 @@ const reducer = createReducer(initialState, {
   },
   [actions.add]: (state, action) => {
     const status = action.payload.status;
-    return { ...state, [status]: [action.payload, ...state[status] ] };
+    return { ...state, [status]: [action.payload, ...state[status]] };
   },
 });
 

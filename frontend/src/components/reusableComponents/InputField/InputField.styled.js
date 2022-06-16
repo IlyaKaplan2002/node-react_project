@@ -50,6 +50,26 @@ const InputFieldStyled = styled.label`
     color: ${props => props.theme.colors.error};
     font-size: 12px;
   }
+
+  .iconLabel {
+    display: block;
+    position: relative;
+    width: 280px;
+    height: 68px;
+
+    @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
+      width: 320px;
+      height: 68px;
+    }
+
+    .icon {
+      position: absolute;
+      top: 58%;
+      z-index: 2;
+      right: 10px;
+      fill: ${props => props.theme.colors.mainBlack};
+    }
+  }
 `;
 
 export default InputFieldStyled;
