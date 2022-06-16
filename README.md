@@ -5,7 +5,6 @@ You can run installation of all packages both backend and frontend from root dir
 
 To run in dev mode both backend and frontend you can use in the root directory this command:
 `npm run start:dev`
-git
 
 ## Backend
 

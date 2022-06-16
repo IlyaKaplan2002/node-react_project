@@ -45,6 +45,7 @@ const ResumeContainerStyled = styled.div`
   .button {
     font-size: 14px;
     font-weight: ${props => props.theme.fonts.weights.medium};
+    transition: 0.2s;
   }
   .btnWhite:hover {
     transform: translateY(-0.25em);

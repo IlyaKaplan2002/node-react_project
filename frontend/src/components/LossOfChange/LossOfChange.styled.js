@@ -23,6 +23,7 @@ const ArticleStyled = styled.article`
     @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
       width: calc((100% - 30px) / 2);
     }
+    transition: 0.2s;
   }
 
   .btnWhite:hover {

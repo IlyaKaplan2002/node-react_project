@@ -71,6 +71,7 @@ const ResultContainerStyled = styled.div`
     height: 42px;
     text-transform: none;
     margin-bottom: 24px;
+    transition: 0.2s;
 
     &:hover {
       transform: translateY(-0.25em);

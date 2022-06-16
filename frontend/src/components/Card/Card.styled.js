@@ -58,7 +58,7 @@ const CardStyled = styled.div`
     margin-left: 20px;
     :hover {
       background-color: ${props => props.theme.colors.mainOrange};
-      transition: 0.6s linear;
+      transition: 0.2s linear;
     }
 
     &:hover {

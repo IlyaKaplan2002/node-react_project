@@ -63,9 +63,7 @@ const AddBookFormStyled = styled.form`
     font-size: 14px;
     line-height: 17px;
     :hover {
-      background-color: ${props => props.theme.colors.mainOrange};
-      border-color: ${props => props.theme.colors.mainOrange};
-      transition: 0.6s linear;
+      transition: 0.2s linear;
     }
     @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
       margin-left: 48px;
