@@ -51,10 +51,15 @@ const CardStyled = styled.div`
     border: none;
     background-color: ${props => props.theme.colors.darkGray};
     color: ${props => props.theme.colors.mainWhite};
+
     padding: 12px 34px;
     text-align: center;
     margin-top: 20px;
     margin-left: 20px;
+    :hover {
+      background-color: ${props => props.theme.colors.mainOrange};
+      transition: 0.6s linear;
+    }
 
     &:hover {
       transform: translateY(-0.25em);

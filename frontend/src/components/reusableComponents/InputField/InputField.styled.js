@@ -53,6 +53,14 @@ const InputFieldStyled = styled.label`
 
   .iconLabel {
     position: relative;
+    width: 280px;
+    height: 68px;
+
+    @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
+      width: 320px;
+      height: 68px;
+    }
+
     .icon {
       position: absolute;
       top: 58%;

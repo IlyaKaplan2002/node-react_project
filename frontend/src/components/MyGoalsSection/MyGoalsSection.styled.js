@@ -22,7 +22,7 @@ const GoalsSectionStyled = styled.div`
   .goals-button {
     width: 100%;
     padding: 18px 0;
-
+    cursor: default;
     font-weight: 600;
     font-size: 20px;
     line-height: 1.2;
