@@ -78,6 +78,7 @@ const Training = () => {
   const toggleWellDone = () => setWellDone(prev => !prev);
 
   const addTraining = async () => {
+    console.log(selectedTraining);
     if (!selectedTraining?.start) {
       notifyError('Start date is required');
       return;
