@@ -86,6 +86,7 @@ const DellIcon = styled.span`
   top: 20px;
   right: 5px;
   color: ${props => props.theme.colors.secondary};
+  cursor: pointer;
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     top: 50%;
     transform: translateY(-50%);

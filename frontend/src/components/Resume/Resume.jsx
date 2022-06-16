@@ -62,8 +62,11 @@ const Resume = ({ onCloseModal, bookId, initBook }) => {
 
   const onChangeValue = evt => {
     const { value } = evt.target;
-    if (value.length > 1000) setError('Resume should not be more than 1000');
-    else setError('');
+    if (value.length > 1000) {
+      setError('Resume should not be more than 1000');
+      return;
+    }
+    setError('');
     setValue(value);
   };
 
