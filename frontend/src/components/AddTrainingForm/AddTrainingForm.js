@@ -53,8 +53,8 @@ const AddTrainingForm = ({ books, closeModal = () => {}, desktop }) => {
     if (selectedBooks?.start && selectedBooks?.end) {
       dispatch(
         trainingsActions.setSelectedDates({
-          start: format(new Date(values.start), 'MM.dd.yyyy'),
-          end: format(new Date(values.end), 'MM.dd.yyyy'),
+          start: format(new Date(values.start), 'MM/dd/yyyy'),
+          end: format(new Date(values.end), 'MM/dd/yyyy'),
         })
       );
     }
@@ -119,7 +119,7 @@ const AddTrainingForm = ({ books, closeModal = () => {}, desktop }) => {
                 dispatch(
                   trainingsActions.setSelectedDates({
                     start: isValid(new Date(dateFromValue._d))
-                      ? format(new Date(dateFromValue._d), 'MM.dd.yyyy')
+                      ? format(new Date(dateFromValue._d), 'MM/dd/yyyy')
                       : null,
                   })
                 );
@@ -172,7 +172,7 @@ const AddTrainingForm = ({ books, closeModal = () => {}, desktop }) => {
                 dispatch(
                   trainingsActions.setSelectedDates({
                     end: isValid(new Date(dateFromValue._d))
-                      ? format(new Date(dateFromValue._d), 'MM.dd.yyyy')
+                      ? format(new Date(dateFromValue._d), 'MM/dd/yyyy')
                       : null,
                   })
                 );

@@ -17,9 +17,18 @@ const reducer = createReducer(initialState, {
     const newReading = [];
     const newGoingToRead = [];
     newBooks.forEach(book => {
-      if (book.status === cardTypes.alreadyRead) newAlreadyRead.push(book);
-      if (book.status === cardTypes.reading) newReading.push(book);
-      if (book.status === cardTypes.goingToRead) newGoingToRead.push(book);
+      if (book.status === cardTypes.alreadyRead) {
+        newAlreadyRead.push(book);
+        return;
+      }
+      if (book.status === cardTypes.reading) {
+        newReading.push(book);
+        return;
+      }
+      if (book.status === cardTypes.goingToRead) {
+        newGoingToRead.push(book);
+        return;
+      }
     });
 
     return {

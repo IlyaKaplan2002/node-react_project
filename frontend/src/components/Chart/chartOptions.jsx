@@ -9,7 +9,7 @@ const getOptions = () => ({
   plugins: {
     title: {
       display: true,
-      text: ` ${'Amount of pages / DA'.toUpperCase()}`,
+      text: ` ${'Amount of pages / D'.toUpperCase()}`,
       align: 'start',
       color: 'rgba(36, 42, 55, 1)',
       font: {
@@ -65,6 +65,8 @@ const getOptions = () => ({
     },
 
     y: {
+      min: 0,
+      // max: 9999,
       display: true,
       ticks: {
         display: false,

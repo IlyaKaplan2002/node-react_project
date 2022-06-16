@@ -16,7 +16,7 @@ import { statisticsActions, statisticsSelectors } from 'redux/statistics';
 import resultSchema from 'models/resultSchema';
 import InputField from 'components/reusableComponents/InputField';
 import { authSelectors } from 'redux/auth';
-import { addStatistics } from 'api/statistics';
+import { addStatistics, getStatistics } from 'api/statistics';
 import { notifyError, tryRefreshToken } from 'helpers';
 import { getCurrentTraining } from 'api/trainings';
 import { trainingsActions, trainingsSelectors } from 'redux/trainings';
@@ -68,16 +68,19 @@ const Result = ({ openWellDone }) => {
       return;
     }
 
-    const formatDate = format(values.date, 'MM.dd.yyyy');
+    const formatDate = format(values.date, 'MM/dd/yyyy');
     const value = { date: formatDate, pages: values.pages };
 
     const tryFunc = async tokenValue => {
-      const { statistic } = await addStatistics(tokenValue, value);
-      dispatch(statisticsActions.add(statistic));
+      await addStatistics(tokenValue, value);
+
       const { training } = await getCurrentTraining(tokenValue);
       if (getReadBooks(training.books) !== getReadBooks(currentTraining.books))
         openWellDone();
 
+      const { statistic: newStatistic } = await getStatistics(tokenValue);
+
+      dispatch(statisticsActions.init({ statistics: newStatistic, training }));
       dispatch(trainingsActions.init(training));
 
       const { books } = await getAllBooks(tokenValue);
