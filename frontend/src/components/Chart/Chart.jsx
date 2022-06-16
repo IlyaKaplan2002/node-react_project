@@ -96,7 +96,7 @@ const Chart = () => {
   return (
     <>
       <ChartStyled>
-        <Days>{getPagesTodayRead(statistics)}</Days>
+        <Days>{getPagesTodayRead(training, isCurrent, statistics)}</Days>
         <Line data={data} options={getOptions()} />
       </ChartStyled>
     </>

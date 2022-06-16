@@ -1,3 +1,4 @@
+import { cardTypes } from 'constants';
 import { isBefore, eachDayOfInterval, isSameDay } from 'date-fns';
 
 export const getLabels = (training, isCurrent) => {
@@ -86,10 +87,16 @@ export const getActData = (training, isCurrent, stats) => {
   return [1];
 };
 
-export const getPagesTodayRead = stats => {
-  const uniq = getUniqStats(stats);
-  const today = uniq.find(stat => isSameDay(new Date(), new Date(stat.date)));
-  if (today) return today.pages;
+export const getPagesTodayRead = (training, isCurrent, stats) => {
+  if (isCurrent) {
+    const { books } = training;
+    const notRead = books.find(book => book.status !== cardTypes.alreadyRead);
+    if (!notRead) return 0;
+    const uniq = getUniqStats(stats);
+
+    const today = uniq.find(stat => isSameDay(new Date(), new Date(stat.date)));
+    if (today) return today.pages;
+  }
   return 0;
 };
 
