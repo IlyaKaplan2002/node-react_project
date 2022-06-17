@@ -32,6 +32,7 @@ import { useState } from 'react';
 import { useCallback } from 'react';
 import Media from 'react-media';
 import { useDispatch, useSelector } from 'react-redux';
+import { CSSTransition } from 'react-transition-group';
 import { authSelectors } from 'redux/auth';
 import { booksActions, booksSelectors } from 'redux/books';
 import { statisticsActions } from 'redux/statistics';
@@ -255,8 +256,22 @@ const Training = () => {
               )}
             </TrainingStyled>
           )}
-          {done && <Done onCloseModal={toggleDone} />}
-          {wellDone && (
+
+          <CSSTransition
+            in={done}
+            unmountOnExit
+            classNames="modal"
+            timeout={300}
+          >
+            <Done onCloseModal={toggleDone} />
+          </CSSTransition>
+
+          <CSSTransition
+            in={wellDone}
+            unmountOnExit
+            classNames="modal"
+            timeout={300}
+          >
             <WellDone
               onCloseModal={toggleWellDone}
               onNewTrainingClick={() => {
@@ -264,7 +279,7 @@ const Training = () => {
                 toggleAddModal();
               }}
             />
-          )}
+          </CSSTransition>
         </Container>
       )}
     </Media>

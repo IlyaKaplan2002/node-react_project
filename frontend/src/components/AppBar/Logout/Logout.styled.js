@@ -5,6 +5,7 @@ export const LogoutStyled = styled.div`
   align-items: center;
   justify-content: space-between;
   margin-left: 8px;
+
   .button {
     font-family: ${props => props.theme.fonts.families.montserrat};
     font-weight: ${props => props.theme.fonts.weights.light};
