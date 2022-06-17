@@ -33,18 +33,22 @@ const WellDone = ({ onCloseModal, onNewTrainingClick }) => {
         <PStyled>
           Well done!
           <br /> but you need to be a little bit faster. <br />
-          You can do it)
+          You can do it
         </PStyled>
         <DivButtonStyled>
           <Button
-            className="button"
+            className="button btnOrange"
             type="button"
             filled
             onClick={onNewTrainingClick}
           >
             New training
           </Button>
-          <Button className="button" type="button" onClick={onCloseModal}>
+          <Button
+            className="button btnWhite"
+            type="button"
+            onClick={onCloseModal}
+          >
             Back
           </Button>
         </DivButtonStyled>

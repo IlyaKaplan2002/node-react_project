@@ -22,6 +22,11 @@ const ModalStyled = styled.div`
     top: 0;
     left: 0;
     stroke: ${props => props.theme.colors.mainOrange};
+
+    &:hover {
+      cursor: pointer;
+      stroke: ${props => props.theme.colors.buttonHoverOrange};
+    }
   }
 `;
 

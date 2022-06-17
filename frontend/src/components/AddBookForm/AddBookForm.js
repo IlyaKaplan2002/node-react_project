@@ -110,7 +110,7 @@ const AddBookForm = ({ onClose = () => {} }) => {
         </div>
       </div>
 
-      <Button className="button" type="submit">
+      <Button className="button btnWhite" type="submit">
         Add
       </Button>
     </AddBookFormStyled>

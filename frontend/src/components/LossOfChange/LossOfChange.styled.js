@@ -23,6 +23,20 @@ const ArticleStyled = styled.article`
     @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
       width: calc((100% - 30px) / 2);
     }
+    transition: 0.2s linear;
+  }
+
+  .btnWhite:hover {
+    transform: translateY(-0.25em);
+    border: ${props =>
+      props.filled
+        ? props.theme.borders.transparent
+        : props.theme.borders.buttonHover};
+  }
+
+  .btnOrange:hover {
+    transform: translateY(-0.25em);
+    background-color: ${props => props.theme.colors.buttonHoverOrange};
   }
 `;
 

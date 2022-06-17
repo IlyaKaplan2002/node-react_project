@@ -25,6 +25,20 @@ const ArticleStyled = styled.article`
     width: 152px;
     height: 40px;
     font-size: 14px;
+    transition: 0.2s linear;
+  }
+
+  .btnWhite:hover {
+    transform: translateY(-0.25em);
+    border: ${props =>
+      props.filled
+        ? props.theme.borders.transparent
+        : props.theme.borders.buttonHover};
+  }
+
+  .btnOrange:hover {
+    transform: translateY(-0.25em);
+    background-color: ${props => props.theme.colors.buttonHoverOrange};
   }
 
   .button:not(:last-child) {

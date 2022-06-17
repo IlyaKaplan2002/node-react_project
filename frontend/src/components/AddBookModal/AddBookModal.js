@@ -1,9 +1,9 @@
 import AddBookForm from 'components/AddBookForm';
-import GoBackButton from 'components/reusableComponents/GoBackButton';
 import { useOnEscClose } from 'hooks';
 import React, { useEffect } from 'react';
 import Media from 'react-media';
 import AddBookModalStyled from './AddBookModal.styled';
+import { HiOutlineArrowNarrowLeft } from 'react-icons/hi';
 
 const AddBookModal = ({ onClose, isInstructionModalOpened, modal }) => {
   const [addOnEscClose, removeOnEscClose] = useOnEscClose(onClose);
@@ -20,7 +20,13 @@ const AddBookModal = ({ onClose, isInstructionModalOpened, modal }) => {
     <AddBookModalStyled>
       <Media
         query="(max-width:767px)"
-        render={() => <GoBackButton className="back" onClick={onClose} />}
+        render={() => (
+          <HiOutlineArrowNarrowLeft
+            onClick={onClose}
+            className="back"
+            size={24}
+          />
+        )}
       />
       <AddBookForm onClose={onClose} />
     </AddBookModalStyled>

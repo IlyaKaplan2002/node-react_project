@@ -104,10 +104,14 @@ const Resume = ({ onCloseModal, bookId, initBook }) => {
             <p className="error">{error}</p>
           </label>
           <div className="buttonContainer">
-            <Button type="button" className="button" onClick={onCloseModal}>
+            <Button
+              type="button"
+              className="button btnWhite"
+              onClick={onCloseModal}
+            >
               Back
             </Button>
-            <Button type="submit" filled className="button">
+            <Button type="submit" filled className="button btnOrange">
               Save
             </Button>
           </div>
