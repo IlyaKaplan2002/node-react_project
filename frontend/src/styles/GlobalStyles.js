@@ -70,6 +70,23 @@ const GlobalStyles = createGlobalStyle`
     ::-webkit-scrollbar-thumb {
       background: ${props => props.theme.colors.scrollBar};
     }
+
+    /* transitions */
+
+    .modal-enter {
+      opacity: 0;
+    }
+    .modal-enter-active {
+      opacity: 1;
+      transition: opacity 300ms linear;
+    }
+    .modal-exit {
+      opacity: 1;
+    }
+    .modal-exit-active {
+      opacity: 0;
+      transition: opacity 300ms linear;
+    }
 `;
 
 export default GlobalStyles;
