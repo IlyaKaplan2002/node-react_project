@@ -37,6 +37,7 @@ const ResumeContainerStyled = styled.div`
   color: ${props => props.theme.colors.mainBlack};
   font-size: 16px;
   line-height: 1.2;
+
   .buttonContainer {
     display: flex;
     justify-content: space-evenly;
@@ -61,6 +62,18 @@ const ResumeContainerStyled = styled.div`
   .form {
     margin-top: 20px;
   }
+
+  .residue {
+    font-size: 12px;
+    text-align: right;
+    color: ${props => props.theme.colors.secondary};
+    font-weight: ${props => props.theme.fonts.weights.regular};
+  }
+
+  .residueError {
+    color: ${props => props.theme.colors.error};
+  }
+
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     width: 608px;
     height: 399px;

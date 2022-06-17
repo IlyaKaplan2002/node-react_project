@@ -24,6 +24,7 @@ const Resume = ({ onCloseModal, bookId, initBook }) => {
   const refreshTokenValue = useSelector(authSelectors.getRefreshToken);
   const dispatch = useDispatch();
   const [addOnEscClose, removeOnEscClose] = useOnEscClose(onCloseModal);
+  const [buttonVisual, setButtonVisual] = useState(false);
 
   useEffect(() => {
     addOnEscClose();
@@ -63,9 +64,11 @@ const Resume = ({ onCloseModal, bookId, initBook }) => {
   const onChangeValue = evt => {
     const { value } = evt.target;
     if (value.length > 1000) {
+      setButtonVisual(true);
       setError('Resume should not be more than 1000');
       return;
     }
+    setButtonVisual(false);
     setError('');
     setValue(value);
   };
@@ -103,6 +106,11 @@ const Resume = ({ onCloseModal, bookId, initBook }) => {
             />
             <p className="error">{error}</p>
           </label>
+          {error ? (
+            <p className="residue residueError">value.length</p>
+          ) : (
+            <p className="residue">{value.length}/1000</p>
+          )}
           <div className="buttonContainer">
             <Button
               type="button"
@@ -111,7 +119,12 @@ const Resume = ({ onCloseModal, bookId, initBook }) => {
             >
               Back
             </Button>
-            <Button type="submit" filled className="button btnOrange">
+            <Button
+              type="submit"
+              filled
+              className="button btnOrange"
+              disabled={buttonVisual}
+            >
               Save
             </Button>
           </div>
