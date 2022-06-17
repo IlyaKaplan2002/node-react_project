@@ -78,7 +78,6 @@ const Training = () => {
   const toggleWellDone = () => setWellDone(prev => !prev);
 
   const addTraining = async () => {
-    console.log(selectedTraining);
     if (!selectedTraining?.start) {
       notifyError('Start date is required');
       return;
@@ -87,14 +86,6 @@ const Training = () => {
       notifyError('End date is required');
       return;
     }
-
-    console.log('isFuture', isFuture(new Date(selectedTraining.start)));
-    console.log(
-      'isSame',
-      isSameDay(new Date(), new Date(selectedTraining.start))
-    );
-
-    console.log('date', new Date(selectedTraining.start));
 
     if (
       !(

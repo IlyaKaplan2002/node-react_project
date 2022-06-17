@@ -58,7 +58,12 @@ const CardStyled = styled.div`
     margin-left: 20px;
     :hover {
       background-color: ${props => props.theme.colors.mainOrange};
-      transition: 0.6s linear;
+      transition: 0.2s linear;
+    }
+
+    &:hover {
+      transform: translateY(-0.25em);
+      background-color: ${props => props.theme.colors.buttonHoverGray};
     }
 
     @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {

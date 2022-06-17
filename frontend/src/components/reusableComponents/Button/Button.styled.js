@@ -22,6 +22,7 @@ const Button = styled.button`
   &:hover {
     cursor: pointer;
   }
+
   &:disabled {
     color: ${props => props.theme.colors.mainBlack};
     background-color: ${props => props.theme.colors.secondary};

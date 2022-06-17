@@ -44,12 +44,22 @@ const AddTrainingFormStyled = styled.form`
   .submit {
     width: 170px;
     margin: 32px auto 0;
+    transition: 0.2s linear;
+
     @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
       margin: 0 auto 0 50px;
     }
     @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
       width: 180px;
       margin: 0 auto 0 32px;
+    }
+
+    &:hover {
+      transform: translateY(-0.25em);
+      border: ${props =>
+        props.filled
+          ? props.theme.borders.transparent
+          : props.theme.borders.buttonHover};
     }
   }
 

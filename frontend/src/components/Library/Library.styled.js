@@ -22,6 +22,12 @@ const LibraryStyled = styled.div`
     @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
       margin-top: 40px;
     }
+
+    &:hover {
+      transition: 0.2s linear;
+      transform: translateY(-0.25em);
+      background-color: ${props => props.theme.colors.buttonHoverOrange};
+    }
   }
 
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
