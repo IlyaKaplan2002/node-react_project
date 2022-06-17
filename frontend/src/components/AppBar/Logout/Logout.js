@@ -3,6 +3,7 @@ import LossOfChange from 'components/LossOfChange';
 import { tryRefreshToken } from 'helpers';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { CSSTransition } from 'react-transition-group';
 import { authActions, authSelectors } from 'redux/auth';
 import LogoutStyled from './Logout.styled';
 
@@ -34,9 +35,14 @@ const Logout = () => {
           Logout
         </button>
       </LogoutStyled>
-      {logoutModal && (
+      <CSSTransition
+        in={logoutModal}
+        unmountOnExit
+        classNames="modal"
+        timeout={300}
+      >
         <LossOfChange onCloseModal={toggleLogout} onLeaveClick={onLogout} />
-      )}
+      </CSSTransition>
     </>
   );
 };
