@@ -25,8 +25,13 @@ const tryRefreshToken = async (
       if (error.code === 401) dispatch(authActions.logout());
     }
   } catch (newError) {
-    notifyError(newError);
+    const newMessage = error?.response?.data?.message || 'Error';
     if (newError.code === 401) dispatch(authActions.logout());
+    if (newMessage === 'Token is invalid') {
+      notifyError('You have started another session, this session was expired');
+      dispatch(authActions.logout());
+    }
+    notifyError(newError);
   }
 };
 

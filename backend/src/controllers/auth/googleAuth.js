@@ -13,7 +13,7 @@ const googleAuth = async (req, res) => {
   try {
     userData = jwtDecode(token);
   } catch (error) {
-    throwError('Invalid token', 400);
+    throwError('Invalid token', 401);
   }
 
   const { name, email } = userData;
