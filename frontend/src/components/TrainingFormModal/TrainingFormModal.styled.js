@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const OverlayStyled = styled.div`
-  width: 100vw;
+  width: 100%;
   padding: 16px 20px 20px;
   display: flex;
   justify-content: center;

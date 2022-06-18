@@ -130,13 +130,16 @@ const Library = () => {
               {matches.small && <AddButton onClick={toggleAddBookModal} />}
             </>
           )}
-          {instructionModalOpened && (
-            <>
-              {matches.small && (
-                <InstructionModal onClose={closeInstructionModal} />
-              )}
-            </>
-          )}
+
+          <CSSTransition
+            in={instructionModalOpened && matches.small}
+            unmountOnExit
+            classNames="modal"
+            timeout={300}
+          >
+            <InstructionModal onClose={closeInstructionModal} />
+          </CSSTransition>
+
           <CSSTransition
             in={resumeModalOpened}
             unmountOnExit
