@@ -1,6 +1,7 @@
 import React from 'react';
 import { MdMenuBook } from 'react-icons/md';
 import { AiOutlineStar, AiFillStar } from 'react-icons/ai';
+import { MdOutlineDelete } from 'react-icons/md';
 import Button from 'components/reusableComponents/Button';
 import EllipsisText from 'react-ellipsis-text';
 import {
@@ -12,6 +13,7 @@ import {
   ListItemName,
   RatingIcon,
   CardNameWrapper,
+  DellIcon
 } from './Card.styled';
 import { cardTypes } from 'constants';
 import Media from 'react-media';
@@ -67,6 +69,12 @@ const Card = ({
           </Media>
         </CardName>
       </CardNameWrapper>
+      <DellIcon
+          // onClick={() => dispatch(trainingsActions.removeSelectedBook(id))}
+          // reading={withDel}
+        >
+          <MdOutlineDelete size={21} />
+        </DellIcon>
       <ListStyled read={isRead}>
         <ListItemStyled>
           <ListItemName>Author:</ListItemName>
