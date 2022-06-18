@@ -110,12 +110,12 @@ const Resume = ({ onCloseModal, bookId, initBook }) => {
               value={value}
               onChange={onChangeValue}
             />
-            <p className="error">{error}</p>
+            {/* <p className="error">{error}</p> */}
           </label>
           {error ? (
-            <p className="residue residueError">{value.length}</p>
+            <p className="residue residueError">{value?.length || 0}</p>
           ) : (
-            <p className="residue">{value.length}/1000</p>
+            <p className="residue">{value?.length || 0}/1000</p>
           )}
           <div className="buttonContainer">
             <Button

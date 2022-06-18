@@ -13,6 +13,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import Media from 'react-media';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { CSSTransition } from 'react-transition-group';
 import { authSelectors } from 'redux/auth';
 import { booksActions, booksSelectors } from 'redux/books';
 import { Container } from 'styles';
@@ -136,13 +137,18 @@ const Library = () => {
               )}
             </>
           )}
-          {resumeModalOpened && (
+          <CSSTransition
+            in={resumeModalOpened}
+            unmountOnExit
+            classNames="modal"
+            timeout={300}
+          >
             <Resume
               onCloseModal={toggleResumeModal}
               bookId={resumeBookId}
               initBook={alreadyRead.find(book => book._id === resumeBookId)}
             />
-          )}
+          </CSSTransition>
         </Container>
       )}
     </Media>
