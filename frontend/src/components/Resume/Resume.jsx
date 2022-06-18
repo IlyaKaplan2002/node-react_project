@@ -44,6 +44,11 @@ const Resume = ({ onCloseModal, bookId, initBook }) => {
       return;
     }
 
+    if (value.length > 1000) {
+      notifyError('Resume should not be more than 1000');
+      return;
+    }
+
     const tryFunc = async tokenValue => {
       const { book } = await addResume(tokenValue, bookId, {
         rating,
@@ -66,10 +71,11 @@ const Resume = ({ onCloseModal, bookId, initBook }) => {
     if (value.length > 1000) {
       setButtonVisual(true);
       setError('Resume should not be more than 1000');
-      return;
+    } else {
+      setButtonVisual(false);
+      setError('');
     }
-    setButtonVisual(false);
-    setError('');
+
     setValue(value);
   };
 
@@ -107,7 +113,7 @@ const Resume = ({ onCloseModal, bookId, initBook }) => {
             <p className="error">{error}</p>
           </label>
           {error ? (
-            <p className="residue residueError">value.length</p>
+            <p className="residue residueError">{value.length}</p>
           ) : (
             <p className="residue">{value.length}/1000</p>
           )}

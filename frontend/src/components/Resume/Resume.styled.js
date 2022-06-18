@@ -55,7 +55,7 @@ const ResumeContainerStyled = styled.div`
         ? props.theme.borders.transparent
         : props.theme.borders.buttonHover};
   }
-  .btnOrange:hover {
+  .btnOrange:not(:disabled):hover {
     transform: translateY(-0.25em);
     background-color: ${props => props.theme.colors.buttonHoverOrange};
   }
