@@ -5,7 +5,7 @@ const ArticleStyled = styled.article`
   padding: 0px;
   width: 280px;
   height: 256px;
-  margin: 0 auto;
+  /* margin: 0 auto; */
   font-size: 16px;
   text-align: center;
 
