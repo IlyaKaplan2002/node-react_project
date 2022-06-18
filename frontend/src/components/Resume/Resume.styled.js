@@ -25,8 +25,8 @@ export const ResumeBackdrop = styled.div`
 `;
 
 const ResumeContainerStyled = styled.div`
-  margin-left: auto;
-  margin-right: auto;
+  /* margin-left: auto;
+  margin-right: auto; */
   width: 280px;
   height: 395px;
   padding: 20px;
