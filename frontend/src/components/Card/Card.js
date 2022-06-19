@@ -17,6 +17,7 @@ import {
 } from './Card.styled';
 import { cardTypes } from 'constants';
 import Media from 'react-media';
+import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { authSelectors } from 'redux/auth';
 import deleteBook from 'api/books/deleteBook';
@@ -35,6 +36,7 @@ const Card = ({
   id,
   setResumeBookId,
 }) => {
+  const { t } = useTranslation('translation', { keyPrefix: 'card' });
   const [delDisabled, setDelDisabled] = useState(false);
   const token = useSelector(authSelectors.getToken);
   const refreshToken = useSelector(authSelectors.getRefreshToken);
@@ -100,22 +102,22 @@ const Card = ({
       </DellIcon>
       <ListStyled read={isRead}>
         <ListItemStyled>
-          <ListItemName>Author:</ListItemName>
+          <ListItemName>{t('author')}:</ListItemName>
           <span>
             <EllipsisText text={author} length={12} />
           </span>
         </ListItemStyled>
         <ListItemStyled>
-          <ListItemName>Year:</ListItemName>
+          <ListItemName>{t('year')}:</ListItemName>
           <span>{year}</span>
         </ListItemStyled>
         <ListItemStyled>
-          <ListItemName>Pages:</ListItemName>
+          <ListItemName>{t('pages')}:</ListItemName>
           <span>{pages}</span>
         </ListItemStyled>
         {isRead && (
           <ListItemStyled>
-            <ListItemName>Rating:</ListItemName>
+            <ListItemName>{t('rating')}:</ListItemName>
             <RatingIcon>
               {Array(rating)
                 .fill(null)
@@ -137,7 +139,7 @@ const Card = ({
       {isRead && (
         <Button
           className={'resume-card-button'}
-          label={'Resume'}
+          label={t('resume')}
           onClick={onResumeButtonClick}
         />
       )}

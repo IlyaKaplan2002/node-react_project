@@ -9,6 +9,7 @@ import { tryRefreshToken } from 'helpers';
 import { addBook } from 'api/books';
 import { authSelectors } from 'redux/auth';
 import { booksActions } from 'redux/books';
+import { useTranslation } from 'react-i18next';
 
 const initialValues = {
   name: '',
@@ -18,6 +19,7 @@ const initialValues = {
 };
 
 const AddBookForm = ({ onClose = () => {} }) => {
+  const { t } = useTranslation('translation', { keyPrefix: 'addBookForm' });
   const dispatch = useDispatch();
   const token = useSelector(authSelectors.getToken);
   const refreshTokenValue = useSelector(authSelectors.getRefreshToken);
@@ -55,7 +57,7 @@ const AddBookForm = ({ onClose = () => {} }) => {
           value={formik.values.name}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          label="Book title"
+          label={t('name')}
           touched={formik.touched.name}
           error={formik.errors.name}
           classNames={{
@@ -70,7 +72,7 @@ const AddBookForm = ({ onClose = () => {} }) => {
             value={formik.values.author}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            label="Author"
+            label={t('author')}
             touched={formik.touched.author}
             error={formik.errors.author}
             classNames={{
@@ -85,7 +87,7 @@ const AddBookForm = ({ onClose = () => {} }) => {
             value={formik.values.year}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            label="Publication date"
+            label={t('year')}
             touched={formik.touched.year}
             error={formik.errors.year}
             classNames={{
@@ -100,7 +102,7 @@ const AddBookForm = ({ onClose = () => {} }) => {
             value={formik.values.pages}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            label="Amount of pages"
+            label={t('pages')}
             touched={formik.touched.pages}
             error={formik.errors.pages}
             classNames={{
@@ -111,7 +113,7 @@ const AddBookForm = ({ onClose = () => {} }) => {
       </div>
 
       <Button className="button btnWhite" type="submit">
-        Add
+        {t('add')}
       </Button>
     </AddBookFormStyled>
   );

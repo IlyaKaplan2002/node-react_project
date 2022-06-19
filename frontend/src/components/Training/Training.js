@@ -30,6 +30,7 @@ import { Notify } from 'notiflix';
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import Media from 'react-media';
 import { useDispatch, useSelector } from 'react-redux';
 import { CSSTransition } from 'react-transition-group';
@@ -52,6 +53,8 @@ const Training = () => {
   const [addModalOpened, setAddModalOpened] = useState(false);
   const [done, setDone] = useState(false);
   const [wellDone, setWellDone] = useState(false);
+
+  const { t } = useTranslation();
 
   const onLoad = useCallback(async () => {
     const tryFunc = async tokenValue => {
@@ -241,7 +244,7 @@ const Training = () => {
                 Boolean(selectedTraining?.start) &&
                 Boolean(selectedTraining?.end) && (
                   <Button filled className="startButton" onClick={addTraining}>
-                    Start traininig
+                    {t('startTraining')}
                   </Button>
                 )}
 

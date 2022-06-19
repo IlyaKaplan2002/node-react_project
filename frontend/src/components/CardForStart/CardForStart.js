@@ -19,8 +19,11 @@ import { useDispatch } from 'react-redux';
 import { trainingsActions } from 'redux/trainings';
 import EllipsisText from 'react-ellipsis-text';
 import Media from 'react-media';
+import { useTranslation } from 'react-i18next';
 
 const CardForStart = ({ name, author, year, pages, id, cardType, status }) => {
+  const { t } = useTranslation('translation', { keyPrefix: 'card' });
+
   const dispatch = useDispatch();
   const isReading = status === cardTypes.reading;
   const isRead = status === cardTypes.alreadyRead;
@@ -86,7 +89,7 @@ const CardForStart = ({ name, author, year, pages, id, cardType, status }) => {
       {
         <ListStyled read={isRead}>
           <ListItemStyled>
-            <ListItemName>Author:</ListItemName>
+            <ListItemName>{t('author')}:</ListItemName>
             <span>
               <Media
                 queries={{
@@ -102,11 +105,11 @@ const CardForStart = ({ name, author, year, pages, id, cardType, status }) => {
             </span>
           </ListItemStyled>
           <ListItemStyled className="year">
-            <ListItemName>Year:</ListItemName>
+            <ListItemName>{t('year')}:</ListItemName>
             <span>{year}</span>
           </ListItemStyled>
           <ListItemStyled className="page">
-            <ListItemName>Pages:</ListItemName>
+            <ListItemName>{t('pages')}:</ListItemName>
             <span>{pages}</span>
           </ListItemStyled>
         </ListStyled>

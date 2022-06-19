@@ -6,9 +6,11 @@ import InstructionList from 'components/reusableComponents/InstructionList';
 import Button from 'components/reusableComponents/Button';
 import { useOnEscClose } from 'hooks';
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const InstructionModal = ({ onClose }) => {
   const [addOnEscClose, removeOnEscClose] = useOnEscClose(onClose);
+  const { t } = useTranslation('translation', { keyPrefix: 'instructions' });
 
   useEffect(() => {
     addOnEscClose();
@@ -29,17 +31,17 @@ const InstructionModal = ({ onClose }) => {
         <Wrapper>
           <InstructionList
             className="fisrtStepWrapper"
-            title="Step 1."
+            title={t('first.title')}
             bigIcon={<MdMenuBook className="reactIcon" />}
-            instruction="Create your own library"
-            text="Add there books which you are going to read."
+            instruction={t('first.instruction')}
+            text={t('first.text')}
           />
           <InstructionList
             className="secondStepWrapper"
-            title="Step 2."
+            title={t('second.title')}
             bigIcon={<MdOutlineOutlinedFlag className="reactIcon" />}
-            instruction="Create your first training"
-            text="Set a goal, choose period, start training."
+            instruction={t('second.instruction')}
+            text={t('second.text')}
           />
 
           <Media

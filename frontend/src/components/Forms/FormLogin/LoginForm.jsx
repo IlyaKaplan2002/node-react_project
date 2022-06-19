@@ -17,6 +17,7 @@ import { useDispatch } from 'react-redux';
 import { authActions } from 'redux/auth';
 import { routes } from 'constants';
 import Loader from 'components/reusableComponents/Loader';
+import { useTranslation } from 'react-i18next';
 
 const initialValues = {
   email: '',
@@ -28,6 +29,7 @@ const LoginForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [buttonVisual, setButtonVisual] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
+  const { t } = useTranslation('translation', { keyPrefix: 'loginForm' });
 
   const onSubmit = async values => {
     try {
@@ -91,7 +93,7 @@ const LoginForm = () => {
             onBlur={formik.handleBlur}
             label={
               <div>
-                Email
+                {t('email')}
                 {formik.touched.email && formik.errors.email && (
                   <FormSpanStarStyled>*</FormSpanStarStyled>
                 )}
@@ -108,14 +110,14 @@ const LoginForm = () => {
             onShowPassword={onHadleShowPassword}
             variant={showPassword}
             type={showPassword ? 'text' : 'password'}
-            placeholder="Password"
+            placeholder={t('password')}
             name="password"
             value={formik.values.password}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             label={
               <div>
-                Password
+                {t('password')}
                 {formik.touched.password && formik.errors.password && (
                   <FormSpanStarStyled>*</FormSpanStarStyled>
                 )}
@@ -131,11 +133,11 @@ const LoginForm = () => {
         </div>
 
         <Button className="button" disabled={buttonVisual} type="submit" filled>
-          Login
+          {t('login')}
           {isLoading && <Loader button width={30} height={30} />}
         </Button>
         <FormSpanStyled>
-          <LinkStyled to={routes.signUp.path}>Register</LinkStyled>
+          <LinkStyled to={routes.signUp.path}>{t('register')}</LinkStyled>
         </FormSpanStyled>
       </AuthFormStyled>
     </FormContainer>

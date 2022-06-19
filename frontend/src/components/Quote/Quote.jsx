@@ -1,13 +1,14 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { QuoteContainer, QuoteText, QuoteAuthor } from './Quote.styled';
 const Quote = () => {
+  const { t } = useTranslation('translation', { keyPrefix: 'quote' });
+
   return (
     <QuoteContainer>
       <div className="quote">“</div>
-      <QuoteText>
-        Books are the ships of thoughts, wandering through the waves of time.
-      </QuoteText>
-      <QuoteAuthor>Francis Bacon</QuoteAuthor>
+      <QuoteText>{t('text')}</QuoteText>
+      <QuoteAuthor>{t('author')}</QuoteAuthor>
     </QuoteContainer>
   );
 };

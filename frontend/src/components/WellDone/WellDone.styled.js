@@ -14,7 +14,7 @@ const ArticleStyled = styled.article`
   line-height: 1.4;
   background-color: ${props => props.theme.colors.mainWhite};
   color: ${props => props.theme.colors.mainBlack};
-  padding: 46px 63px 44px 63px;
+  padding: 46px 21px 44px 22px;
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     width: 394px;
     height: 286px;
@@ -22,8 +22,10 @@ const ArticleStyled = styled.article`
   }
 
   .button {
+    margin: 0 auto;
     width: 152px;
     height: 40px;
+    padding: 0;
     font-size: 14px;
     transition: 0.2s linear;
   }
