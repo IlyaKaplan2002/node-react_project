@@ -47,7 +47,7 @@ const Resume = ({ onCloseModal, bookId, initBook }) => {
       return;
     }
 
-    if (value.length > 1000) {
+    if (value?.length > 1000) {
       notifyError('Resume should not be more than 1000');
       return;
     }

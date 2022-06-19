@@ -1,6 +1,20 @@
 import styled from 'styled-components';
 
-const ArticleStyled = styled.article`
+const Backdrop = styled.div`
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  background-color: ${props => props.theme.colors.backdrop};
+  z-index: 3;
+`;
+
+const ArticleStyled = styled.div`
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   width: 280px;
   height: 220px;
   /* margin: 0 auto; */
@@ -59,4 +73,4 @@ const DivButtonStyled = styled.div`
   }
 `;
 
-export { ArticleStyled, PStyled, DivButtonStyled };
+export { Backdrop, ArticleStyled, PStyled, DivButtonStyled };

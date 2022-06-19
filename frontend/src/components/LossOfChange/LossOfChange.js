@@ -1,15 +1,29 @@
 import React from 'react';
 import Modal from 'components/reusableComponents/Modal';
-import { ArticleStyled, PStyled, DivButtonStyled } from './LossOfChange.styled';
+import {
+  ArticleStyled,
+  PStyled,
+  DivButtonStyled,
+  Backdrop,
+} from './LossOfChange.styled';
 import Button from 'components/reusableComponents/Button';
 import Media from 'react-media';
 import { useTranslation } from 'react-i18next';
+import { useOnEscClose } from 'hooks';
+import { useEffect } from 'react';
 
 const LossOfChange = ({ onCloseModal, onLeaveClick }) => {
   const { t } = useTranslation('translation', { keyPrefix: 'lossOfChange' });
+  const [addEsc, removeEsc] = useOnEscClose(onCloseModal);
+
+  useEffect(() => {
+    addEsc();
+    return () => removeEsc();
+  });
 
   return (
-    <Modal onCloseModal={onCloseModal}>
+    // <Modal onCloseModal={onCloseModal} className="modal">
+    <Backdrop>
       <ArticleStyled>
         <PStyled>{t('text')}</PStyled>
         <DivButtonStyled>
@@ -31,7 +45,8 @@ const LossOfChange = ({ onCloseModal, onLeaveClick }) => {
           </Button>
         </DivButtonStyled>
       </ArticleStyled>
-    </Modal>
+    </Backdrop>
+    // </Modal>
   );
 };
 

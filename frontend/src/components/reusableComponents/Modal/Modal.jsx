@@ -5,7 +5,7 @@ import React, { useEffect } from 'react';
 import { OverlayStyled, ModalStyled } from './Model.styled';
 // const modalRoot = document.querySelector('#modal-root');
 
-const Modal = ({ onCloseModal = () => {}, children }) => {
+const Modal = ({ onCloseModal = () => {}, children, className }) => {
   const [addOnEsc, removeOnEsc] = useOnEscClose(onCloseModal);
 
   useEffect(() => {
@@ -25,7 +25,7 @@ const Modal = ({ onCloseModal = () => {}, children }) => {
 
   return (
     <OverlayStyled onClick={onBackdropClick}>
-      <ModalStyled>{children}</ModalStyled>
+      <ModalStyled className={className}>{children}</ModalStyled>
     </OverlayStyled>
   );
 };
