@@ -4,7 +4,7 @@ const signUpShema = yup.object({
   name: yup
     .string()
     .matches(
-      /^[a-zA-Zа-яА-Я0-9]+(([' -][a-zA-Zа-яА-Я0-9 ])?[a-zA-Zа-яА-Я0-9]*)*$/,
+      /^[a-zA-Zа-яґєіїА-ЯҐЄІЇ0-9]+(([' -][a-zA-Zа-яґєіїА-ЯҐЄІЇ0-9 ])?[a-zA-Zа-яґєіїА-ЯҐЄІЇ0-9]*)*$/,
       'Please enter valid name'
     )
     .min(3)
@@ -23,7 +23,7 @@ const signUpShema = yup.object({
   password: yup
     .string()
     .matches(
-      /^[a-zA-Zа-яА-Я0-9+!@#$%^&*_]+[a-zA-Zа-яА-Я0-9+!@#$%^&*_.-]+[a-zA-Zа-яА-Я0-9+!@#$%^&*_]$/,
+      /^[a-zA-Zа-яґєіїА-ЯҐЄІЇ0-9+!@#$%^&*_]+[a-zA-Zа-яґєіїА-ЯҐЄІЇ0-9+!@#$%^&*_.-]+[a-zA-Zа-яґєіїА-ЯҐЄІЇ0-9+!@#$%^&*_]$/,
       'Please enter valid password'
     )
     .min(6)
