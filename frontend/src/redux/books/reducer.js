@@ -52,6 +52,17 @@ const reducer = createReducer(initialState, {
     const status = action.payload.status;
     return { ...state, [status]: [action.payload, ...state[status]] };
   },
+  [actions.remove]: (state, action) => ({
+    [cardTypes.alreadyRead]: state[cardTypes.alreadyRead].filter(
+      item => item._id !== action.payload
+    ),
+    [cardTypes.reading]: state[cardTypes.reading].filter(
+      item => item._id !== action.payload
+    ),
+    [cardTypes.goingToRead]: state[cardTypes.goingToRead].filter(
+      item => item._id !== action.payload
+    ),
+  }),
 });
 
 export default reducer;
