@@ -189,10 +189,11 @@ const InputStyled = styled.input`
 `;
 
 const ListStyled = styled.ul`
-  display: flex;
   justify-content: space-between;
   font-weight: ${props => props.theme.fonts.weights.regular};
   font-size: 14px;
+  display: grid;
+  grid-auto-flow: column;
 
   .chengeColor {
     color: ${props => props.theme.colors.secondary};
@@ -202,6 +203,24 @@ const ListStyled = styled.ul`
   }
   @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
     width: auto;
+  }
+
+  .resultDate {
+    width: 64px;
+  }
+
+  .resultTime {
+    width: 51px;
+  }
+
+  .resultPages {
+    display: inline-flex;
+    justify-content: flex-end;
+    width: 68px;
+  }
+
+  .resultPagesText {
+    margin-left: 3px;
   }
 `;
 export {
