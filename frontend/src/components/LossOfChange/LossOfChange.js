@@ -10,7 +10,7 @@ import Media from 'react-media';
 import { useTranslation } from 'react-i18next';
 import { useOnEscClose } from 'hooks';
 import { useEffect } from 'react';
-// import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 
 const LossOfChange = ({ onCloseModal, onLeaveClick }) => {
   const { t } = useTranslation('translation', { keyPrefix: 'lossOfChange' });
@@ -23,10 +23,10 @@ const LossOfChange = ({ onCloseModal, onLeaveClick }) => {
 
   useEffect(() => {
     addEsc();
-    // disableBodyScroll(document.body);
+    disableBodyScroll(document.getElementById('root'));
     return () => {
       removeEsc();
-      // enableBodyScroll(document.body);
+      enableBodyScroll(document.getElementById('root'));
     };
   }, [addEsc, removeEsc]);
 
