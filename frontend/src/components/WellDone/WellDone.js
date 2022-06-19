@@ -10,9 +10,12 @@ import Icon from 'components/reusableComponents/Icon';
 import Button from 'components/reusableComponents/Button';
 import { useOnEscClose } from 'hooks';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
+import { useTranslation } from 'react-i18next';
 
 const WellDone = ({ onCloseModal, onNewTrainingClick }) => {
   const [addEsc, removeEsc] = useOnEscClose(onCloseModal);
+
+  const { t } = useTranslation('translation', { keyPrefix: 'wellDone' });
 
   useEffect(() => {
     addEsc();
@@ -31,9 +34,11 @@ const WellDone = ({ onCloseModal, onNewTrainingClick }) => {
         </WellDoneIcon>
 
         <PStyled>
-          Well done!
-          <br /> but you need to be a little bit faster. <br />
-          You can do it
+          {t('title')}
+          <br />
+          {t('faster')}
+          <br />
+          {t('can')}
         </PStyled>
         <DivButtonStyled>
           <Button
@@ -42,14 +47,14 @@ const WellDone = ({ onCloseModal, onNewTrainingClick }) => {
             filled
             onClick={onNewTrainingClick}
           >
-            New training
+            {t('new')}
           </Button>
           <Button
             className="button btnWhite"
             type="button"
             onClick={onCloseModal}
           >
-            Back
+            {t('back')}
           </Button>
         </DivButtonStyled>
       </ArticleStyled>

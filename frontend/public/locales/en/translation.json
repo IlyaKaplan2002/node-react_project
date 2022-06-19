@@ -84,5 +84,54 @@
       "instruction": "Create your first training",
       "text": "Set a goal, choose period, start training."
     }
-  }
+  },
+  "trainingBtn": "My training",
+  "lossOfChange": {
+    "text": "The changes you made will be lost if you navigate away from this application",
+    "cancel": "Cancel",
+    "leave": "Leave",
+    "app": "this app"
+  },
+  "goals": {
+    "title": "My goals",
+    "allBooks": "Amount of books",
+    "allDays": "Amount of days",
+    "booksLeft": "Books lefts"
+  },
+  "quote": {
+    "text": "Books are the ships of thoughts, wandering through the waves of time.",
+    "author": "Francis Bacon"
+  },
+  "result": {
+    "title": "RESULT",
+    "date": "Date",
+    "pages": "Amount of pages",
+    "sbm": "Add result",
+    "stats": "STATISTICS"
+  },
+  "resume": {
+    "rating": "Choose rating of the book",
+    "resume": "Resume",
+    "back": "Back",
+    "save": "Save"
+  },
+  "timer": {
+    "days": "days",
+    "hours": "hrs",
+    "minutes": "mins",
+    "seconds": "secs"
+  },
+  "selection": {
+    "choose": "Choose books from the library",
+    "noBooks": "You do not have books in library"
+  },
+  "startTraining": "Start traininig",
+  "wellDone": {
+    "title": "Well done!",
+    "faster": "but you need to be a little bit faster.",
+    "can": "You can do it",
+    "new": "New training",
+    "back": "Back"
+  },
+  "yearsTimer": "Years countdown"
 }

@@ -10,6 +10,7 @@ import { routes } from 'constants';
 import { cardTypes } from 'constants';
 import { tryRefreshToken } from 'helpers';
 import React, { useCallback, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import Media from 'react-media';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -24,6 +25,8 @@ const Library = () => {
   const [instructionModalOpened, setInstructionModalOpened] = useState(false);
   const [resumeModalOpened, setResumeModalOpened] = useState(false);
   const [resumeBookId, setResumeBookId] = useState('');
+
+  const { t } = useTranslation();
 
   const alreadyRead = useSelector(booksSelectors.getAlreadyRead);
   const reading = useSelector(booksSelectors.getReading);
@@ -122,7 +125,7 @@ const Library = () => {
                     filled
                     className="training"
                   >
-                    My training
+                    {t('trainingBtn')}
                   </Button>
                 )}
               </LibraryStyled>
