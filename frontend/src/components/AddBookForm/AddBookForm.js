@@ -19,7 +19,7 @@ const initialValues = {
 };
 
 const AddBookForm = ({ onClose = () => {} }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('translation', { keyPrefix: 'addBookForm' });
   const dispatch = useDispatch();
   const token = useSelector(authSelectors.getToken);
   const refreshTokenValue = useSelector(authSelectors.getRefreshToken);
@@ -57,7 +57,7 @@ const AddBookForm = ({ onClose = () => {} }) => {
           value={formik.values.name}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          label={t('addBookForm.name')}
+          label={t('name')}
           touched={formik.touched.name}
           error={formik.errors.name}
           classNames={{
@@ -72,7 +72,7 @@ const AddBookForm = ({ onClose = () => {} }) => {
             value={formik.values.author}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            label={t('addBookForm.author')}
+            label={t('author')}
             touched={formik.touched.author}
             error={formik.errors.author}
             classNames={{
@@ -87,7 +87,7 @@ const AddBookForm = ({ onClose = () => {} }) => {
             value={formik.values.year}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            label={t('addBookForm.year')}
+            label={t('year')}
             touched={formik.touched.year}
             error={formik.errors.year}
             classNames={{
@@ -102,7 +102,7 @@ const AddBookForm = ({ onClose = () => {} }) => {
             value={formik.values.pages}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            label={t('addBookForm.pages')}
+            label={t('pages')}
             touched={formik.touched.pages}
             error={formik.errors.pages}
             classNames={{

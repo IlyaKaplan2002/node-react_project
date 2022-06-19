@@ -31,7 +31,7 @@ const AddTrainingForm = ({ books, closeModal = () => {}, desktop }) => {
   const selectedBooks = useSelector(trainingsSelectors.getSelectedBooks);
   const dispatch = useDispatch();
   const [currentBook, setCurrentBook] = useState(null);
-  const { t } = useTranslation();
+  const { t } = useTranslation('translation', { keyPrefix: 'addTrainingForm' });
 
   const initialValues = {
     start: selectedTraining?.start ? new Date(selectedTraining.start) : null,
@@ -72,7 +72,7 @@ const AddTrainingForm = ({ books, closeModal = () => {}, desktop }) => {
 
   return (
     <TrainingFormSection>
-      <Button className="training-button">{t('addTrainingForm.title')}</Button>
+      <Button className="training-button">{t('title')}</Button>
 
       <AddTrainingFormStyled onSubmit={formik.handleSubmit}>
         <div className="first-part">
@@ -85,7 +85,7 @@ const AddTrainingForm = ({ books, closeModal = () => {}, desktop }) => {
               closeOnSelect
               dateFormat="DD.MM.yyyy"
               inputProps={{
-                placeholder: t('addTrainingForm.start'),
+                placeholder: t('start'),
                 className: 'date-input',
               }}
               isValidDate={val => {
@@ -143,7 +143,7 @@ const AddTrainingForm = ({ books, closeModal = () => {}, desktop }) => {
               name="end"
               closeOnSelect
               inputProps={{
-                placeholder: t('addTrainingForm.finish'),
+                placeholder: t('finish'),
                 className: 'date-input',
               }}
               isValidDate={val => {

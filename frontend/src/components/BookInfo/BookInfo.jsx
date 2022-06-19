@@ -2,26 +2,29 @@ import React from 'react';
 import InfoList from 'components/reusableComponents/InfoList';
 import InfoTitle from 'components/reusableComponents/InfoTitle';
 import { BookInfoContainerStyled } from './BookInfo.styled';
+import { useTranslation } from 'react-i18next';
 
 const BookInfo = () => {
+  const { t } = useTranslation('translation', { keyPrefix: 'bookInfo' });
+
   return (
     <BookInfoContainerStyled>
       <InfoTitle title="Books Reading" className="title" />
       <InfoList
-        title="Will help you to"
+        title={t('first.title')}
         items={[
-          'Create your goal faster and proceed to read',
-          'Divide process proportionally for each day',
-          'Track your success',
+          t('first.items.first'),
+          t('first.items.second'),
+          t('first.items.third'),
         ]}
         className="list"
       />
       <InfoList
-        title="You may also"
+        title={t('second.title')}
         items={[
-          'Pose your own independent point of view',
-          'Improve your professional skills according to new knowledge',
-          'Become an interesting interlocutor',
+          t('second.items.first'),
+          t('second.items.second'),
+          t('second.items.third'),
         ]}
         className="list"
       />

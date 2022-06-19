@@ -23,6 +23,7 @@ import {
 import { Line } from 'react-chartjs-2';
 import { trainingsSelectors } from 'redux/trainings';
 import { statisticsSelectors } from 'redux/statistics';
+import { useTranslation } from 'react-i18next';
 
 ChartJS.register(
   CategoryScale,
@@ -38,11 +39,12 @@ const Chart = () => {
   const training = useSelector(trainingsSelectors.getTraining);
   const isCurrent = useSelector(trainingsSelectors.getIsCurrent);
   const statistics = useSelector(statisticsSelectors.getItems);
+  const { t } = useTranslation('translation', { keyPrefix: 'chart' });
   const [data, setData] = useState({
     labels: [],
     datasets: [
       {
-        label: 'ACT',
+        label: t('fact').toUpperCase(),
         fill: false,
         data: [],
         borderColor: 'rgba(255, 107, 8, 1)',
@@ -51,7 +53,7 @@ const Chart = () => {
         tension: 0.5,
       },
       {
-        label: 'PLAN',
+        label: t('plan').toUpperCase(),
         fill: false,
         data: [],
         borderColor: 'rgba(9, 30, 63, 1,)',
@@ -70,7 +72,7 @@ const Chart = () => {
       labels,
       datasets: [
         {
-          label: 'ACT',
+          label: t('fact').toUpperCase(),
           fill: false,
           data: act,
           borderColor: 'rgba(255, 107, 8, 1)',
@@ -79,7 +81,7 @@ const Chart = () => {
           tension: 0.5,
         },
         {
-          label: 'PLAN',
+          label: t('plan').toUpperCase(),
           fill: false,
           data: plan,
           borderColor: 'rgba(9, 30, 63, 1,)',
@@ -91,13 +93,13 @@ const Chart = () => {
     };
 
     setData(data);
-  }, [training, isCurrent, statistics]);
+  }, [training, isCurrent, statistics, t]);
 
   return (
     <>
       <ChartStyled>
         <Days>{getPagesTodayRead(training, isCurrent, statistics)}</Days>
-        <Line data={data} options={getOptions()} />
+        <Line data={data} options={getOptions(t('yLabel'), t('xLabel'))} />
       </ChartStyled>
     </>
   );

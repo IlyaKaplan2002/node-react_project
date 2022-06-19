@@ -3,23 +3,25 @@ import Modal from 'components/reusableComponents/Modal';
 import { ArticleStyled, PStyled, WellDoneIcon } from './Done.styled';
 import Icon from 'components/reusableComponents/Icon';
 import Button from 'components/reusableComponents/Button';
+import { useTranslation } from 'react-i18next';
 
 const Done = ({ onCloseModal }) => {
+  const { t } = useTranslation('translation', { keyPrefix: 'done' });
+
   return (
     <Modal onCloseModal={onCloseModal}>
       <ArticleStyled>
         <WellDoneIcon>
-          {/* <use xlinkHref={`${sprite}#welldone`}></use> */}
           <Icon iconId="welldone" />
         </WellDoneIcon>
 
         <PStyled>
-          Congratulations!
+          {t('congrats')}
           <br />
-          Another book read.
+          {t('another')}
         </PStyled>
         <Button type="button" className="button" filled onClick={onCloseModal}>
-          Done
+          {t('done')}
         </Button>
       </ArticleStyled>
     </Modal>

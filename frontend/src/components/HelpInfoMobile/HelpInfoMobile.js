@@ -6,27 +6,30 @@ import { Link } from 'react-router-dom';
 import { Container } from 'styles';
 import HelpInfoMobileStyled from './HelpInfoMobile.styled';
 import Button from '../reusableComponents/Button';
+import { useTranslation } from 'react-i18next';
 
 const HelpInfoMobile = () => {
+  const { t } = useTranslation('translation', { keyPrefix: 'bookInfo' });
+
   return (
     <Container>
       <HelpInfoMobileStyled>
         <InfoTitle title="Books Reading" className="title" />
         <InfoList
-          title="Will help you to"
+          title={t('first.title')}
           items={[
-            'Create your goal faster and proceed to read',
-            'Divide process proportionally for each day',
-            'Track your success',
+            t('first.items.first'),
+            t('first.items.second'),
+            t('first.items.third'),
           ]}
           className="list1"
         />
         <InfoList
-          title="You may also"
+          title={t('second.title')}
           items={[
-            'Pose your own independent point of view',
-            'Improve your professional skills according to new knowledge',
-            'Become an interesting interlocutor',
+            t('second.items.first'),
+            t('second.items.second'),
+            t('second.items.third'),
           ]}
           className="list2"
         />
@@ -34,13 +37,13 @@ const HelpInfoMobile = () => {
         <div className="buttonsWrapper">
           <Button className="button">
             <Link to={routes.login.path} className="link">
-              Log in
+              {t('login')}
             </Link>
           </Button>
 
           <Button filled className="button">
             <Link to={routes.signUp.path} className="link filled">
-              Register
+              {t('register')}
             </Link>
           </Button>
         </div>

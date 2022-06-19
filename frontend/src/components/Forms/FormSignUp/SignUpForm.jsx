@@ -17,6 +17,7 @@ import { useDispatch } from 'react-redux';
 import { authActions } from 'redux/auth';
 import { routes } from 'constants';
 import Loader from 'components/reusableComponents/Loader';
+import { useTranslation } from 'react-i18next';
 
 const initialValues = {
   name: '',
@@ -31,6 +32,7 @@ const SignUpForm = () => {
   const [buttonVisual, setButtonVisual] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const { t } = useTranslation('translation', { keyPrefix: 'registerForm' });
 
   const onSubmit = async values => {
     try {
@@ -106,7 +108,7 @@ const SignUpForm = () => {
             onBlur={formik.handleBlur}
             label={
               <div>
-                Name
+                {t('name')}
                 {formik.touched.name && formik.errors.name && (
                   <FormSpanStarStyled>*</FormSpanStarStyled>
                 )}
@@ -128,7 +130,7 @@ const SignUpForm = () => {
             onBlur={formik.handleBlur}
             label={
               <div>
-                Email
+                {t('email')}
                 {formik.touched.email && formik.errors.email && (
                   <FormSpanStarStyled>*</FormSpanStarStyled>
                 )}
@@ -152,7 +154,7 @@ const SignUpForm = () => {
             onBlur={formik.handleBlur}
             label={
               <div>
-                Password
+                {t('password')}
                 {formik.touched.password && formik.errors.password && (
                   <FormSpanStarStyled>*</FormSpanStarStyled>
                 )}
@@ -176,7 +178,7 @@ const SignUpForm = () => {
             onBlur={formik.handleBlur}
             label={
               <div>
-                Confirm password
+                {t('confirm')}
                 {formik.touched.confirmPassword &&
                   formik.errors.confirmPassword && (
                     <FormSpanStarStyled>*</FormSpanStarStyled>
@@ -197,12 +199,12 @@ const SignUpForm = () => {
           className="button signUpForm"
           disabled={buttonVisual}
         >
-          Register
+          {t('register')}
           {isLoading && <Loader button width={30} height={30} />}
         </Button>
         <FormSpanStyled>
-          Already have an account?{' '}
-          <LinkStyled to={routes.login.path}>Log in</LinkStyled>
+          {t('have')}{' '}
+          <LinkStyled to={routes.login.path}>{t('login')}</LinkStyled>
         </FormSpanStyled>
       </AuthFormStyled>
     </FormContainer>

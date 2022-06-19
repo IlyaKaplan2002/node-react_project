@@ -1,15 +1,88 @@
 {
-  "add": "Add",
   "addBookForm": {
     "name": "Book title",
     "author": "Author",
     "year": "Publication date",
-    "pages": "Amount of pages"
+    "pages": "Amount of pages",
+    "add": "Add"
   },
   "addTrainingForm": {
     "title": "My training",
     "start": "Start",
-    "finish": "Finish"
+    "finish": "Finish",
+    "add": "Add"
   },
-  "logout": "Logout"
+  "logout": "Logout",
+  "bookInfo": {
+    "login": "Log in",
+    "register": "Register",
+    "first": {
+      "title": "Will help you to",
+      "items": {
+        "first": "Create your goal faster and proceed to read",
+        "second": "Divide process proportionally for each day",
+        "third": "Track your success"
+      }
+    },
+    "second": {
+      "title": "You may also",
+      "items": {
+        "first": "Pose your own independent point of view",
+        "second": "Improve your professional skills according to new knowledge",
+        "third": "Become an interesting interlocutor"
+      }
+    }
+  },
+  "card": {
+    "status": {
+      "alreadyRead": "Already read",
+      "goingToRead": "Going to read",
+      "reading": "Reading now"
+    },
+    "title": "Book title",
+    "author": "Author",
+    "year": "Year",
+    "pages": "Pages",
+    "rating": "Rating",
+    "resume": "Resume"
+  },
+  "chart": {
+    "yLabel": "Amount of pages / D",
+    "xLabel": "time",
+    "plan": "plan",
+    "fact": "act"
+  },
+  "done": {
+    "congrats": "Congratulations!",
+    "another": "Another book read.",
+    "done": "Done"
+  },
+  "loginForm": {
+    "email": "Email",
+    "password": "Password",
+    "login": "Login",
+    "register": "Register"
+  },
+  "registerForm": {
+    "name": "Name",
+    "email": "Email",
+    "password": "Password",
+    "confirm": "Confirm password",
+    "register": "Register",
+    "have": "Already have an account?",
+    "login": "Log in"
+  },
+  "goalsTimer": "Goals countdown",
+  "instructions": {
+    "first": {
+      "title": "Step 1.",
+      "instruction": "Create your own library",
+      "text": "Add there books which you are going to read."
+    },
+    "second": {
+      "title": "Step 2.",
+      "instruction": "Create your first training",
+      "text": "Set a goal, choose period, start training."
+    }
+  }
 }

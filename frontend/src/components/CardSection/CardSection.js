@@ -8,6 +8,7 @@ import { Card } from 'components/Card';
 import { cardTypes } from 'constants';
 import { Container } from 'styles';
 import Media from 'react-media';
+import { useTranslation } from 'react-i18next';
 
 const CardSection = ({
   cardType,
@@ -20,30 +21,38 @@ const CardSection = ({
   const isRead = cardType === cardTypes.alreadyRead;
   const isGoingToRead = cardType === cardTypes.goingToRead;
 
+  const { t } = useTranslation('translation', { keyPrefix: 'card' });
+
   return (
     <>
       {Boolean(books.length) && (
         <Container className={className}>
           <CardSectionStyled>
             {isRead && (
-              <CardSectionNameStyled>Already read</CardSectionNameStyled>
+              <CardSectionNameStyled>
+                {t('status.alreadyRead')}
+              </CardSectionNameStyled>
             )}
             {isGoingToRead && (
-              <CardSectionNameStyled>Going to read</CardSectionNameStyled>
+              <CardSectionNameStyled>
+                {t('status.goingToRead')}
+              </CardSectionNameStyled>
             )}
             {isReading && (
-              <CardSectionNameStyled>Reading now</CardSectionNameStyled>
+              <CardSectionNameStyled>
+                {t('status.reading')}
+              </CardSectionNameStyled>
             )}
             <Media
               query="(min-width: 768px)"
               render={() => (
                 <>
                   <CardsNameList read={isRead}>
-                    <li>Book title</li>
-                    <li>Author</li>
-                    <li>Year</li>
-                    <li>Pages</li>
-                    {isRead && <li>Rating</li>}
+                    <li>{t('title')}</li>
+                    <li>{t('author')}</li>
+                    <li>{t('year')}</li>
+                    <li>{t('pages')}</li>
+                    {isRead && <li>{t('rating')}</li>}
                   </CardsNameList>
                 </>
               )}
