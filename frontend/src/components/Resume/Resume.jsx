@@ -13,8 +13,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { authSelectors } from 'redux/auth';
 import { booksActions } from 'redux/books';
 import { useOnEscClose } from 'hooks';
-import { disableBodyScroll } from 'body-scroll-lock';
-import { enableBodyScroll } from 'body-scroll-lock';
 import { useTranslation } from 'react-i18next';
 
 const Resume = ({ onCloseModal, bookId, initBook }) => {
@@ -31,11 +29,9 @@ const Resume = ({ onCloseModal, bookId, initBook }) => {
 
   useEffect(() => {
     addOnEscClose();
-    disableBodyScroll(document.body, { reserveScrollBarGap: true });
 
     return () => {
       removeOnEscClose();
-      enableBodyScroll(document.body);
     };
   }, [addOnEscClose, removeOnEscClose]);
 

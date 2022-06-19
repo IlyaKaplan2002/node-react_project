@@ -4,7 +4,6 @@ import Icon from 'components/reusableComponents/Icon';
 import Button from 'components/reusableComponents/Button';
 import { useTranslation } from 'react-i18next';
 import { useOnEscClose } from 'hooks';
-import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 
 const Done = ({ onCloseModal }) => {
   const { t } = useTranslation('translation', { keyPrefix: 'done' });
@@ -12,10 +11,8 @@ const Done = ({ onCloseModal }) => {
 
   useEffect(() => {
     addEsc();
-    disableBodyScroll(document.body, { reserveScrollBarGap: true });
     return () => {
       removeEsc();
-      enableBodyScroll(document.body);
     };
   }, [addEsc, removeEsc]);
 

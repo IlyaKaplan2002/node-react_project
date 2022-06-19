@@ -9,7 +9,6 @@ import {
 import Icon from 'components/reusableComponents/Icon';
 import Button from 'components/reusableComponents/Button';
 import { useOnEscClose } from 'hooks';
-import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import { useTranslation } from 'react-i18next';
 
 const WellDone = ({ onCloseModal, onNewTrainingClick }) => {
@@ -24,10 +23,8 @@ const WellDone = ({ onCloseModal, onNewTrainingClick }) => {
 
   useEffect(() => {
     addEsc();
-    disableBodyScroll(document.body, { reserveScrollBarGap: true });
     return () => {
       removeEsc();
-      enableBodyScroll(document.body);
     };
   }, [addEsc, removeEsc]);
 
