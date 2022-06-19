@@ -14,7 +14,7 @@ const loginSchema = yup.object().shape({
   password: yup
     .string()
     .matches(
-      /^[a-zA-Zа-яА-Я0-9+!@#$%^&*_]+[a-zA-Zа-яА-Я0-9+!@#$%^&*_.-]+[a-zA-Zа-яА-Я0-9+!@#$%^&*_]$/,
+      /^[a-zA-Zа-яґєіїА-ЯҐЄІЇ0-9+!@#$%^&*_]+[a-zA-Zа-яґєіїА-ЯҐЄІЇ0-9+!@#$%^&*_.-]+[a-zA-Zа-яґєіїА-ЯҐЄІЇ0-9+!@#$%^&*_]$/,
       'Please enter valid password'
     )
     .min(6)
