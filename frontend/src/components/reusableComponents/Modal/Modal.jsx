@@ -10,7 +10,7 @@ const Modal = ({ onCloseModal = () => {}, children }) => {
 
   useEffect(() => {
     addOnEsc();
-    disableBodyScroll(document.body, { reserveScrollBarGap: true });
+    disableBodyScroll(document.body);
     return () => {
       removeOnEsc();
       enableBodyScroll(document.body);
