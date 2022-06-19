@@ -10,19 +10,28 @@ import Media from 'react-media';
 import { useTranslation } from 'react-i18next';
 import { useOnEscClose } from 'hooks';
 import { useEffect } from 'react';
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 
 const LossOfChange = ({ onCloseModal, onLeaveClick }) => {
   const { t } = useTranslation('translation', { keyPrefix: 'lossOfChange' });
   const [addEsc, removeEsc] = useOnEscClose(onCloseModal);
 
+  const onBackdropClick = e => {
+    if (e.target !== e.currentTarget) return;
+    onCloseModal();
+  };
+
   useEffect(() => {
     addEsc();
-    return () => removeEsc();
-  });
+    disableBodyScroll(document.body, { reserveScrollBarGap: true });
+    return () => {
+      removeEsc();
+      enableBodyScroll(document.body);
+    };
+  }, [addEsc, removeEsc]);
 
   return (
-    // <Modal onCloseModal={onCloseModal} className="modal">
-    <Backdrop>
+    <Backdrop onClick={onBackdropClick}>
       <ArticleStyled>
         <PStyled>{t('text')}</PStyled>
         <DivButtonStyled>
@@ -45,7 +54,6 @@ const LossOfChange = ({ onCloseModal, onLeaveClick }) => {
         </DivButtonStyled>
       </ArticleStyled>
     </Backdrop>
-    // </Modal>
   );
 };
 

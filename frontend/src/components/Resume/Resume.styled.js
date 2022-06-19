@@ -7,9 +7,6 @@ export const ResumeBackdrop = styled.div`
   background: ${props => props.theme.colors.backdrop};
   width: 100%;
   height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 
   .label {
     position: relative;
@@ -25,8 +22,10 @@ export const ResumeBackdrop = styled.div`
 `;
 
 const ResumeContainerStyled = styled.div`
-  /* margin-left: auto;
-  margin-right: auto; */
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   width: 280px;
   height: 395px;
   padding: 20px;

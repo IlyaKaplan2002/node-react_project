@@ -1,6 +1,20 @@
 import styled from 'styled-components';
 
-const ArticleStyled = styled.article`
+const Backdrop = styled.div`
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: ${props => props.theme.colors.backdrop};
+  z-index: 3;
+`;
+
+const ArticleStyled = styled.div`
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   margin: 0px;
   padding: 0px;
   width: 280px;
@@ -53,4 +67,4 @@ const WellDoneIcon = styled.svg`
   height: 45px;
 `;
 
-export { ArticleStyled, PStyled, WellDoneIcon };
+export { Backdrop, ArticleStyled, PStyled, WellDoneIcon };

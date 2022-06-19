@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import Modal from 'components/reusableComponents/Modal';
 import {
   ArticleStyled,
   PStyled,
   DivButtonStyled,
   WellDoneIcon,
+  Backdrop,
 } from './WellDone.styled';
 import Icon from 'components/reusableComponents/Icon';
 import Button from 'components/reusableComponents/Button';
@@ -17,9 +17,14 @@ const WellDone = ({ onCloseModal, onNewTrainingClick }) => {
 
   const { t } = useTranslation('translation', { keyPrefix: 'wellDone' });
 
+  const onBackdrop = e => {
+    if (e.target !== e.currentTarget) return;
+    onCloseModal();
+  };
+
   useEffect(() => {
     addEsc();
-    disableBodyScroll(document.body);
+    disableBodyScroll(document.body, { reserveScrollBarGap: true });
     return () => {
       removeEsc();
       enableBodyScroll(document.body);
@@ -27,7 +32,7 @@ const WellDone = ({ onCloseModal, onNewTrainingClick }) => {
   }, [addEsc, removeEsc]);
 
   return (
-    <Modal onCloseModal={onCloseModal}>
+    <Backdrop onClick={onBackdrop}>
       <ArticleStyled>
         <WellDoneIcon>
           <Icon className="icon" iconId="welldone" />
@@ -58,7 +63,7 @@ const WellDone = ({ onCloseModal, onNewTrainingClick }) => {
           </Button>
         </DivButtonStyled>
       </ArticleStyled>
-    </Modal>
+    </Backdrop>
   );
 };
 

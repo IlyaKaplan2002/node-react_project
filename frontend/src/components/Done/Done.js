@@ -1,15 +1,31 @@
-import React from 'react';
-import Modal from 'components/reusableComponents/Modal';
-import { ArticleStyled, PStyled, WellDoneIcon } from './Done.styled';
+import React, { useEffect } from 'react';
+import { ArticleStyled, Backdrop, PStyled, WellDoneIcon } from './Done.styled';
 import Icon from 'components/reusableComponents/Icon';
 import Button from 'components/reusableComponents/Button';
 import { useTranslation } from 'react-i18next';
+import { useOnEscClose } from 'hooks';
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 
 const Done = ({ onCloseModal }) => {
   const { t } = useTranslation('translation', { keyPrefix: 'done' });
+  const [addEsc, removeEsc] = useOnEscClose(onCloseModal);
+
+  useEffect(() => {
+    addEsc();
+    disableBodyScroll(document.body, { reserveScrollBarGap: true });
+    return () => {
+      removeEsc();
+      enableBodyScroll(document.body);
+    };
+  }, [addEsc, removeEsc]);
+
+  const onBackdrop = e => {
+    if (e.target !== e.currentTarget) return;
+    onCloseModal();
+  };
 
   return (
-    <Modal onCloseModal={onCloseModal}>
+    <Backdrop onClick={onBackdrop}>
       <ArticleStyled>
         <WellDoneIcon>
           <Icon iconId="welldone" />
@@ -24,7 +40,7 @@ const Done = ({ onCloseModal }) => {
           {t('done')}
         </Button>
       </ArticleStyled>
-    </Modal>
+    </Backdrop>
   );
 };
 

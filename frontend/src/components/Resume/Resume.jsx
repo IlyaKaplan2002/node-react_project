@@ -31,7 +31,7 @@ const Resume = ({ onCloseModal, bookId, initBook }) => {
 
   useEffect(() => {
     addOnEscClose();
-    disableBodyScroll(document.body);
+    disableBodyScroll(document.body, { reserveScrollBarGap: true });
 
     return () => {
       removeOnEscClose();
