@@ -187,16 +187,17 @@ const Result = ({ openWellDone }) => {
           {[...results].reverse().map(result => (
             <li key={result.createdAt}>
               <ListStyled>
-                <li className="table">
+                <li className="table resultDate">
                   {format(new Date(result.date), 'dd.MM.yyyy')}
                 </li>
-                <li className="table">
+                <li className="table resultTime">
                   <span className="chengeColor">
                     {format(new Date(result.createdAt), 'kk:mm:ss')}
                   </span>
                 </li>
-                <li className="table">
-                  {result.pages} <span className="chengeColor">pages</span>
+                <li className="table resultPages">
+                  {result.pages}{' '}
+                  <span className="chengeColor resultPagesText">pages</span>
                 </li>
               </ListStyled>
             </li>
