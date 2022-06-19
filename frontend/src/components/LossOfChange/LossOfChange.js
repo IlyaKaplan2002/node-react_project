@@ -23,10 +23,10 @@ const LossOfChange = ({ onCloseModal, onLeaveClick }) => {
 
   useEffect(() => {
     addEsc();
-    disableBodyScroll(document.body);
+    // disableBodyScroll(document.body);
     return () => {
       removeEsc();
-      enableBodyScroll(document.body);
+      // enableBodyScroll(document.body);
     };
   }, [addEsc, removeEsc]);
 
