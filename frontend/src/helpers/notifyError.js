@@ -5,7 +5,6 @@ const notifyError = error => {
   else {
     const message = error?.response?.data?.message;
     if (!message) {
-      console.log(error);
       return;
     }
     Notify.failure(message);
