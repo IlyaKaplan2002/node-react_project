@@ -155,7 +155,7 @@ const CardNameWrapper = styled.div`
   }
 `;
 
-const DellIcon = styled.span`
+const DellIcon = styled.button`
   position: absolute;
   top: 20px;
   right: 5px;
@@ -176,5 +176,5 @@ export {
   RatingIcon,
   CardName,
   CardNameWrapper,
-  DellIcon
+  DellIcon,
 };

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { MdMenuBook } from 'react-icons/md';
 import { AiOutlineStar, AiFillStar } from 'react-icons/ai';
 import { MdOutlineDelete } from 'react-icons/md';
@@ -13,10 +13,16 @@ import {
   ListItemName,
   RatingIcon,
   CardNameWrapper,
-  DellIcon
+  DellIcon,
 } from './Card.styled';
 import { cardTypes } from 'constants';
 import Media from 'react-media';
+import { useSelector } from 'react-redux';
+import { authSelectors } from 'redux/auth';
+import deleteBook from 'api/books/deleteBook';
+import { useDispatch } from 'react-redux';
+import { booksActions } from 'redux/books';
+import { tryRefreshToken } from 'helpers';
 
 const Card = ({
   name,
@@ -29,6 +35,11 @@ const Card = ({
   id,
   setResumeBookId,
 }) => {
+  const [delDisabled, setDelDisabled] = useState(false);
+  const token = useSelector(authSelectors.getToken);
+  const refreshToken = useSelector(authSelectors.getRefreshToken);
+  const dispatch = useDispatch();
+
   const onResumeButtonClick = () => {
     setResumeBookId(id);
     onResumeClick();
@@ -47,6 +58,21 @@ const Card = ({
     if (matches.desktop) {
       return 30;
     }
+  };
+
+  const onDelete = async () => {
+    const tryFunc = async tokenValue => {
+      await deleteBook(id, tokenValue);
+      dispatch(booksActions.remove(id));
+    };
+
+    try {
+      setDelDisabled(true);
+      await tryFunc(token);
+    } catch (error) {
+      tryRefreshToken(error, refreshToken, dispatch, tryFunc);
+    }
+    setDelDisabled(false);
   };
 
   return (
@@ -69,12 +95,9 @@ const Card = ({
           </Media>
         </CardName>
       </CardNameWrapper>
-      <DellIcon
-          // onClick={() => dispatch(trainingsActions.removeSelectedBook(id))}
-          // reading={withDel}
-        >
-          <MdOutlineDelete size={21} />
-        </DellIcon>
+      <DellIcon disabled={delDisabled} onClick={onDelete}>
+        <MdOutlineDelete size={21} />
+      </DellIcon>
       <ListStyled read={isRead}>
         <ListItemStyled>
           <ListItemName>Author:</ListItemName>
