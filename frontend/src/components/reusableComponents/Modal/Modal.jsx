@@ -1,9 +1,9 @@
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import { useOnEscClose } from 'hooks';
 import React, { useEffect } from 'react';
-import { createPortal } from 'react-dom';
+// import { createPortal } from 'react-dom';
 import { OverlayStyled, ModalStyled } from './Model.styled';
-const modalRoot = document.querySelector('#modal-root');
+// const modalRoot = document.querySelector('#modal-root');
 
 const Modal = ({ onCloseModal = () => {}, children }) => {
   const [addOnEsc, removeOnEsc] = useOnEscClose(onCloseModal);
@@ -23,11 +23,10 @@ const Modal = ({ onCloseModal = () => {}, children }) => {
     }
   };
 
-  return createPortal(
+  return (
     <OverlayStyled onClick={onBackdropClick}>
       <ModalStyled>{children}</ModalStyled>
-    </OverlayStyled>,
-    modalRoot
+    </OverlayStyled>
   );
 };
 
