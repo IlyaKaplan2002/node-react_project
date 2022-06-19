@@ -12,7 +12,7 @@ import { addResume } from 'api/books';
 import { useDispatch, useSelector } from 'react-redux';
 import { authSelectors } from 'redux/auth';
 import { booksActions } from 'redux/books';
-import { useOnEscClose } from 'hooks';
+import { useBodyScroll, useOnEscClose } from 'hooks';
 import { useTranslation } from 'react-i18next';
 
 const Resume = ({ onCloseModal, bookId, initBook }) => {
@@ -26,14 +26,17 @@ const Resume = ({ onCloseModal, bookId, initBook }) => {
   const [buttonVisual, setButtonVisual] = useState(false);
 
   const { t } = useTranslation('translation', { keyPrefix: 'resume' });
+  const [enable, disable] = useBodyScroll();
 
   useEffect(() => {
     addOnEscClose();
+    enable();
 
     return () => {
       removeOnEscClose();
+      disable();
     };
-  }, [addOnEscClose, removeOnEscClose]);
+  }, [addOnEscClose, removeOnEscClose, enable, disable]);
 
   const onSaveModalButtonClick = async evt => {
     evt.preventDefault();

@@ -8,11 +8,12 @@ import {
 } from './WellDone.styled';
 import Icon from 'components/reusableComponents/Icon';
 import Button from 'components/reusableComponents/Button';
-import { useOnEscClose } from 'hooks';
+import { useBodyScroll, useOnEscClose } from 'hooks';
 import { useTranslation } from 'react-i18next';
 
 const WellDone = ({ onCloseModal, onNewTrainingClick }) => {
   const [addEsc, removeEsc] = useOnEscClose(onCloseModal);
+  const [enable, disable] = useBodyScroll();
 
   const { t } = useTranslation('translation', { keyPrefix: 'wellDone' });
 
@@ -23,10 +24,12 @@ const WellDone = ({ onCloseModal, onNewTrainingClick }) => {
 
   useEffect(() => {
     addEsc();
+    enable();
     return () => {
       removeEsc();
+      disable();
     };
-  }, [addEsc, removeEsc]);
+  }, [addEsc, removeEsc, enable, disable]);
 
   return (
     <Backdrop onClick={onBackdrop}>

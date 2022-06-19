@@ -8,12 +8,13 @@ import {
 import Button from 'components/reusableComponents/Button';
 import Media from 'react-media';
 import { useTranslation } from 'react-i18next';
-import { useOnEscClose } from 'hooks';
+import { useBodyScroll, useOnEscClose } from 'hooks';
 import { useEffect } from 'react';
 
 const LossOfChange = ({ onCloseModal, onLeaveClick }) => {
   const { t } = useTranslation('translation', { keyPrefix: 'lossOfChange' });
   const [addEsc, removeEsc] = useOnEscClose(onCloseModal);
+  const [enable, disable] = useBodyScroll();
 
   const onBackdropClick = e => {
     if (e.target !== e.currentTarget) return;
@@ -22,12 +23,12 @@ const LossOfChange = ({ onCloseModal, onLeaveClick }) => {
 
   useEffect(() => {
     addEsc();
-    document.body.style.overflow = 'hidden';
+    enable();
     return () => {
       removeEsc();
-      document.body.style.overflow = 'visible';
+      disable();
     };
-  }, [addEsc, removeEsc]);
+  }, [addEsc, removeEsc, enable, disable]);
 
   return (
     <Backdrop onClick={onBackdropClick}>

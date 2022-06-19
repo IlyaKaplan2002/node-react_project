@@ -3,18 +3,21 @@ import { ArticleStyled, Backdrop, PStyled, WellDoneIcon } from './Done.styled';
 import Icon from 'components/reusableComponents/Icon';
 import Button from 'components/reusableComponents/Button';
 import { useTranslation } from 'react-i18next';
-import { useOnEscClose } from 'hooks';
+import { useBodyScroll, useOnEscClose } from 'hooks';
 
 const Done = ({ onCloseModal }) => {
   const { t } = useTranslation('translation', { keyPrefix: 'done' });
   const [addEsc, removeEsc] = useOnEscClose(onCloseModal);
+  const [enable, disable] = useBodyScroll();
 
   useEffect(() => {
     addEsc();
+    enable();
     return () => {
       removeEsc();
+      disable();
     };
-  }, [addEsc, removeEsc]);
+  }, [addEsc, removeEsc, enable, disable]);
 
   const onBackdrop = e => {
     if (e.target !== e.currentTarget) return;
