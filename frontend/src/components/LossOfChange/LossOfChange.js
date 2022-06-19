@@ -22,8 +22,10 @@ const LossOfChange = ({ onCloseModal, onLeaveClick }) => {
 
   useEffect(() => {
     addEsc();
+    document.body.style.overflow = 'hidden';
     return () => {
       removeEsc();
+      document.body.style.overflow = 'visible';
     };
   }, [addEsc, removeEsc]);
 
