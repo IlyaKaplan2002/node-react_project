@@ -24,12 +24,14 @@ import {
   sub,
 } from 'date-fns';
 import { notifyError } from 'helpers';
+import { useTranslation } from 'react-i18next';
 
 const AddTrainingForm = ({ books, closeModal = () => {}, desktop }) => {
   const selectedTraining = useSelector(trainingsSelectors.getSelectedTraining);
   const selectedBooks = useSelector(trainingsSelectors.getSelectedBooks);
   const dispatch = useDispatch();
   const [currentBook, setCurrentBook] = useState(null);
+  const { t } = useTranslation();
 
   const initialValues = {
     start: selectedTraining?.start ? new Date(selectedTraining.start) : null,
@@ -70,7 +72,7 @@ const AddTrainingForm = ({ books, closeModal = () => {}, desktop }) => {
 
   return (
     <TrainingFormSection>
-      <Button className="training-button">My training</Button>
+      <Button className="training-button">{t('addTrainingForm.title')}</Button>
 
       <AddTrainingFormStyled onSubmit={formik.handleSubmit}>
         <div className="first-part">
@@ -83,7 +85,7 @@ const AddTrainingForm = ({ books, closeModal = () => {}, desktop }) => {
               closeOnSelect
               dateFormat="DD.MM.yyyy"
               inputProps={{
-                placeholder: 'Start',
+                placeholder: t('addTrainingForm.start'),
                 className: 'date-input',
               }}
               isValidDate={val => {
@@ -141,7 +143,7 @@ const AddTrainingForm = ({ books, closeModal = () => {}, desktop }) => {
               name="end"
               closeOnSelect
               inputProps={{
-                placeholder: 'Finish',
+                placeholder: t('addTrainingForm.finish'),
                 className: 'date-input',
               }}
               isValidDate={val => {
@@ -194,7 +196,7 @@ const AddTrainingForm = ({ books, closeModal = () => {}, desktop }) => {
             setCurrentBook={setCurrentBook}
           />
           <Button className={'submit'} type="submit">
-            Add
+            {t('add')}
           </Button>
         </div>
       </AddTrainingFormStyled>

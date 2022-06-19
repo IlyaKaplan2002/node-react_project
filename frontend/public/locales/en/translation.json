@@ -1,0 +1,15 @@
+{
+  "add": "Add",
+  "addBookForm": {
+    "name": "Book title",
+    "author": "Author",
+    "year": "Publication date",
+    "pages": "Amount of pages"
+  },
+  "addTrainingForm": {
+    "title": "My training",
+    "start": "Start",
+    "finish": "Finish"
+  },
+  "logout": "Logout"
+}
