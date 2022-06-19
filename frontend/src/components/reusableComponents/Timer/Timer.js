@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useTimer } from 'react-timer-hook';
 import { TimerWrapper } from './Timer.styled';
 
@@ -6,6 +7,8 @@ function pad(value) {
 }
 
 function MyTimer({ expiryTimestamp, title, onEnd = () => {} }) {
+  const { t } = useTranslation('translation', { keyPrefix: 'timer' });
+
   const { seconds, minutes, hours, days } = useTimer({
     expiryTimestamp,
     onExpire: () => {
@@ -19,25 +22,25 @@ function MyTimer({ expiryTimestamp, title, onEnd = () => {} }) {
       <div className="container">
         <div className="field">
           <span className="value">{pad(days)}</span>
-          <span className="label">DAYS</span>
+          <span className="label">{t('days').toUpperCase()}</span>
         </div>
         <span className="puncMark">:</span>
 
         <div className="field">
           <span className="value">{pad(hours)}</span>
-          <span className="label">HRS</span>
+          <span className="label">{t('hours').toUpperCase()}</span>
         </div>
         <span className="puncMark">:</span>
 
         <div className="field">
           <span className="value">{pad(minutes)}</span>
-          <span className="label">MINS</span>
+          <span className="label">{t('minutes').toUpperCase()}</span>
         </div>
         <span className="puncMark">:</span>
 
         <div className="field">
           <span className="value">{pad(seconds)}</span>
-          <span className="label">SECS</span>
+          <span className="label">{t('seconds').toUpperCase()}</span>
         </div>
       </div>
     </TimerWrapper>

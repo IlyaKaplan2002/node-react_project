@@ -10,21 +10,24 @@ import { Container } from 'styles';
 import { trainingCardTypes } from 'constants';
 import Media from 'react-media';
 import ScrollContainer from 'react-indiana-drag-scroll';
+import { useTranslation } from 'react-i18next';
 
 const CardSectionNotActive = ({ cardType, books = [] }) => {
   const withoutDelEmpty = cardType === trainingCardTypes.withoutDelEmpty;
   const withDel = cardType === trainingCardTypes.withDel;
   const started = cardType === trainingCardTypes.started;
 
+  const { t } = useTranslation('translation', { keyPrefix: 'card' });
+
   return (
     <Container className="container">
       <CardSectionStyled>
         <Spliter></Spliter>
         <CardsNameList>
-          <li>Book title</li>
-          <li>Author</li>
-          <li>Year</li>
-          <li>Pages</li>
+          <li>{t('title')}</li>
+          <li>{t('author')}</li>
+          <li>{t('year')}</li>
+          <li>{t('pages')}</li>
         </CardsNameList>
         <ScrollContainer className="booksContainer" hideScrollbars={false}>
           {withoutDelEmpty && (

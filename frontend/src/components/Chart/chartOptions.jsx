@@ -5,11 +5,11 @@ const fn = value => {
   return true;
 };
 
-const getOptions = () => ({
+const getOptions = (yLabel, xLabel) => ({
   plugins: {
     title: {
       display: true,
-      text: ` ${'Amount of pages / D'.toUpperCase()}`,
+      text: yLabel.toUpperCase(),
       align: 'start',
       color: 'rgba(36, 42, 55, 1)',
       font: {
@@ -49,7 +49,7 @@ const getOptions = () => ({
 
       title: {
         display: true,
-        text: `${'time'.toUpperCase()}`,
+        text: xLabel.toUpperCase(),
         color: 'rgba(36, 42, 55, 1)',
         align: 'end',
         font: {

@@ -10,11 +10,14 @@ import { useSelector } from 'react-redux';
 import { trainingsSelectors } from 'redux/trainings';
 import { eachDayOfInterval, isValid } from 'date-fns';
 import { cardTypes } from 'constants';
+import { useTranslation } from 'react-i18next';
 
 const MyGoalsSection = () => {
   const training = useSelector(trainingsSelectors.getTraining);
   const selectedTraining = useSelector(trainingsSelectors.getSelectedTraining);
   const isCurrent = useSelector(trainingsSelectors.getIsCurrent);
+
+  const { t } = useTranslation('translation', { keyPrefix: 'goals' });
 
   const getBooksAmount = () => {
     if (training && isCurrent) return training.books.reduce(acc => acc + 1, 0);
@@ -52,26 +55,26 @@ const MyGoalsSection = () => {
 
   return (
     <GoalsSectionStyled active={isCurrent}>
-      <Button className="goals-button">My goals</Button>
+      <Button className="goals-button">{t('title')}</Button>
       <GoalsCardWrapperStyled active={isCurrent}>
         <GoalsAmount active={isCurrent}>
           <GoalsAmountCard active={isCurrent}>
             {getBooksAmount()}
           </GoalsAmountCard>
-          Amount of books
+          {t('allBooks')}
         </GoalsAmount>
         <GoalsAmount active={isCurrent}>
           <GoalsAmountCard active={isCurrent}>
             {getDaysAmount()}
           </GoalsAmountCard>
-          Amount of days
+          {t('allDays')}
         </GoalsAmount>
         {isCurrent && (
           <GoalsAmount active={isCurrent}>
             <GoalsAmountCard className="orange" active={isCurrent}>
               {getAmountBooksLeft()}
             </GoalsAmountCard>
-            Books lefts
+            {t('booksLeft')}
           </GoalsAmount>
         )}
       </GoalsCardWrapperStyled>

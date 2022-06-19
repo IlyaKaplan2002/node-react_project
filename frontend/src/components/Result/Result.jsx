@@ -24,6 +24,7 @@ import { cardTypes } from 'constants';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import { getAllBooks } from 'api/books';
 import { booksActions } from 'redux/books';
+import { useTranslation } from 'react-i18next';
 
 const initialValues = {
   date: null,
@@ -37,6 +38,8 @@ const Result = ({ openWellDone }) => {
   const currentTraining = useSelector(trainingsSelectors.getTraining);
   const isCurrent = useSelector(trainingsSelectors.getIsCurrent);
   const dispatch = useDispatch();
+
+  const { t } = useTranslation('translation', { keyPrefix: 'result' });
 
   const getReadBooks = books =>
     books.reduce((acc, book) => {
@@ -119,11 +122,11 @@ const Result = ({ openWellDone }) => {
 
   return (
     <ResultContainerStyled>
-      <TextStyled>RESULT</TextStyled>
+      <TextStyled>{t('title').toUpperCase()}</TextStyled>
       <form onSubmit={formik.handleSubmit} className="form">
         <div className="formContainer">
           <div className="inputMargin">
-            <SpanStyled>Date</SpanStyled>
+            <SpanStyled>{t('date')}</SpanStyled>
             <Datetime
               id="date"
               name="date"
@@ -157,7 +160,7 @@ const Result = ({ openWellDone }) => {
             <p className="error">{formik.touched.date && formik.errors.date}</p>
           </div>
           <div>
-            <SpanStyled>Amount of pages</SpanStyled>
+            <SpanStyled>{t('pages')}</SpanStyled>
 
             <InputField
               value={formik.values.pages}
@@ -172,10 +175,12 @@ const Result = ({ openWellDone }) => {
           </div>
         </div>
         <Button filled type="submit" className="button">
-          Add result
+          {t('sbm')}
         </Button>
       </form>
-      <TextStyled className="changeWeight">STATISTICS</TextStyled>
+      <TextStyled className="changeWeight">
+        {t('stats').toUpperCase()}
+      </TextStyled>
 
       {Boolean(results.length) && (
         <ScrollContainer component="ul" hideScrollbars={false} className="list">

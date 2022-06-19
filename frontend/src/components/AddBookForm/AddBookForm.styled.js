@@ -44,6 +44,11 @@ const AddBookFormStyled = styled.form`
       .label:not(:last-child) {
         margin-right: 16px;
       }
+
+      .label {
+        min-width: 134px;
+      }
+
       .label:first-child {
         min-width: 250px;
       }

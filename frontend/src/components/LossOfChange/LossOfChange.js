@@ -3,22 +3,22 @@ import Modal from 'components/reusableComponents/Modal';
 import { ArticleStyled, PStyled, DivButtonStyled } from './LossOfChange.styled';
 import Button from 'components/reusableComponents/Button';
 import Media from 'react-media';
+import { useTranslation } from 'react-i18next';
 
 const LossOfChange = ({ onCloseModal, onLeaveClick }) => {
+  const { t } = useTranslation('translation', { keyPrefix: 'lossOfChange' });
+
   return (
     <Modal onCloseModal={onCloseModal}>
       <ArticleStyled>
-        <PStyled>
-          The changes you made will be lost if you navigate away from this
-          application
-        </PStyled>
+        <PStyled>{t('text')}</PStyled>
         <DivButtonStyled>
           <Button
             className="button btnWhite"
             type="button"
             onClick={onCloseModal}
           >
-            Cancel
+            {t('cancel')}
           </Button>
           <Button
             filled
@@ -26,8 +26,8 @@ const LossOfChange = ({ onCloseModal, onLeaveClick }) => {
             type="button"
             onClick={onLeaveClick}
           >
-            Leave{' '}
-            <Media query="(min-width:768px)" render={() => <>this app</>} />
+            {t('leave')}{' '}
+            <Media query="(min-width:768px)" render={() => <>{t('app')}</>} />
           </Button>
         </DivButtonStyled>
       </ArticleStyled>

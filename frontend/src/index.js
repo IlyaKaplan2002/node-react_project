@@ -9,6 +9,7 @@ import App from 'components/App';
 import { ThemeProvider } from 'styled-components';
 import { theme } from 'styles';
 import Loader from 'components/reusableComponents/Loader';
+import './i18n';
 
 ReactDOM.render(
   <React.StrictMode>

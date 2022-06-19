@@ -5,6 +5,7 @@ import Logo from 'components/reusableComponents/Logo';
 import Navigation from './Navigation';
 import UserMenu from './UserMenu';
 import Logout from './Logout';
+import LanguageSelector from 'components/LanguageSelector';
 
 class AppBar extends React.Component {
   render() {
@@ -16,6 +17,7 @@ class AppBar extends React.Component {
               <AppBarContainer>
                 <Logo />
                 <div className="containerNavMob">
+                  <LanguageSelector />
                   <Navigation />
                   <UserMenu />
                   <Logout />
@@ -24,6 +26,7 @@ class AppBar extends React.Component {
             ) : (
               <AppBarContainer>
                 <Logo />
+                <LanguageSelector />
                 <UserMenu />
                 <div className="containerNavTablDesc">
                   <Navigation />

@@ -15,6 +15,7 @@ import { booksActions } from 'redux/books';
 import { useOnEscClose } from 'hooks';
 import { disableBodyScroll } from 'body-scroll-lock';
 import { enableBodyScroll } from 'body-scroll-lock';
+import { useTranslation } from 'react-i18next';
 
 const Resume = ({ onCloseModal, bookId, initBook }) => {
   const [rating, setRating] = useState(initBook.rating);
@@ -25,6 +26,8 @@ const Resume = ({ onCloseModal, bookId, initBook }) => {
   const dispatch = useDispatch();
   const [addOnEscClose, removeOnEscClose] = useOnEscClose(onCloseModal);
   const [buttonVisual, setButtonVisual] = useState(false);
+
+  const { t } = useTranslation('translation', { keyPrefix: 'resume' });
 
   useEffect(() => {
     addOnEscClose();
@@ -91,7 +94,7 @@ const Resume = ({ onCloseModal, bookId, initBook }) => {
   return (
     <ResumeBackdrop onClick={onBackdropClick}>
       <ResumeContainerStyled>
-        <TextStyled>Choose rating of the book</TextStyled>
+        <TextStyled>{t('rating')}</TextStyled>
         <StarRatings
           rating={rating}
           starRatedColor="orange"
@@ -102,7 +105,7 @@ const Resume = ({ onCloseModal, bookId, initBook }) => {
         />
         <form className="form" onSubmit={onSaveModalButtonClick}>
           <label className="label">
-            <span>Resume</span>
+            <span>{t('resume')}</span>
             <TextAreaStyled
               name="textArea"
               type="text"
@@ -123,7 +126,7 @@ const Resume = ({ onCloseModal, bookId, initBook }) => {
               className="button btnWhite"
               onClick={onCloseModal}
             >
-              Back
+              {t('back')}
             </Button>
             <Button
               type="submit"
@@ -131,7 +134,7 @@ const Resume = ({ onCloseModal, bookId, initBook }) => {
               className="button btnOrange"
               disabled={buttonVisual}
             >
-              Save
+              {t('save')}
             </Button>
           </div>
         </form>
