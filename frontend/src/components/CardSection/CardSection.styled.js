@@ -43,7 +43,7 @@ const CardsNameList = styled.ul`
     grid-template-columns: ${props =>
       props.read
         ? '2.6fr 1.5fr 1fr 0.8fr 2.8fr'
-        : '2.95fr 1.75fr 0.65fr 0.4fr'};
+        : '2.95fr 1.75fr 0.65fr 0.4fr 0.4fr'};
     margin-bottom: 8px;
   }
   @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
