@@ -1,5 +1,4 @@
 import React from 'react';
-import Modal from 'components/reusableComponents/Modal';
 import {
   ArticleStyled,
   PStyled,
