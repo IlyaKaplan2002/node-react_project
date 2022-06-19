@@ -7,7 +7,6 @@ const removeBook = async (req, res) => {
   const { bookId } = req.params;
 
   const book = await bookService.getBookById(bookId);
-  console.log(book);
 
   if (!book) {
     throwError('Not found', 404);
