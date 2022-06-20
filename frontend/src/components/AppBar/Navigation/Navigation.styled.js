@@ -16,17 +16,17 @@ export const NavigationStyled = styled.div`
       background: ${props => props.theme.colors.input};
       border-radius: 50%;
     }
+    &:hover .icon {
+      fill: ${props => props.theme.colors.mainOrange};
+    }
+    &:focus .icon {
+      fill: ${props => props.theme.colors.mainOrange};
+    }
   }
   .icon {
     display: block;
     margin: auto;
     align-items: center;
     fill: ${props => props.theme.colors.placeholder};
-    :hover {
-      fill: ${props => props.theme.colors.mainOrange};
-    }
-    :focus {
-      fill: ${props => props.theme.colors.mainOrange};
-    }
   }
 `;
