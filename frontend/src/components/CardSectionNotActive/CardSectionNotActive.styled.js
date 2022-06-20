@@ -52,12 +52,4 @@ const CardsNameList = styled.ul`
   }
 `;
 
-const ListOwerflow = styled.div`
-  /* height: 480px;
-  overflow: auto;
-  @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
-    height: 200px;
-  } */
-`;
-
-export { CardSectionStyled, CardsItemName, CardsNameList, ListOwerflow };
+export { CardSectionStyled, CardsItemName, CardsNameList };

@@ -66,7 +66,6 @@ const getOptions = (yLabel, xLabel) => ({
 
     y: {
       min: 0,
-      // max: 9999,
       display: true,
       ticks: {
         display: false,

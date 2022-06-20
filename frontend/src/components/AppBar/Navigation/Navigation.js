@@ -14,9 +14,6 @@ const Navigation = () => {
       <NavLink to={routes.library.path} className="link">
         <VscHome className="icon" />
       </NavLink>
-      {/* <NavLink to={routes.training.path} className="link">
-        <MdLibraryAdd className="icon" />
-      </NavLink> */}
     </NavigationStyled>
   );
 };

@@ -17,7 +17,6 @@ const ArticleStyled = styled.div`
   transform: translate(-50%, -50%);
   width: 280px;
   height: 220px;
-  /* margin: 0 auto; */
   font-size: 16px;
   font-family: ${props => props.theme.fonts.families.montserrat};
   font-weight: ${props => props.theme.fonts.weights.medium};
