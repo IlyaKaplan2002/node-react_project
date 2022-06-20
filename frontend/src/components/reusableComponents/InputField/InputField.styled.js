@@ -48,7 +48,11 @@ const InputFieldStyled = styled.label`
     bottom: 0;
     transform: translateY(100%);
     color: ${props => props.theme.colors.error};
-    font-size: 12px;
+    font-size: 12px;    
+  }
+
+  .error:first-letter {
+    text-transform: capitalize;
   }
 
   .iconLabel {
