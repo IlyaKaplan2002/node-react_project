@@ -16,6 +16,8 @@ const CardSection = ({
   className,
   onResumeClick,
   setResumeBookId,
+  toggleDelModal,
+  setDelBookId,
 }) => {
   const isReading = cardType === cardTypes.reading;
   const isRead = cardType === cardTypes.alreadyRead;
@@ -69,6 +71,8 @@ const CardSection = ({
                 rating={rating}
                 onResumeClick={onResumeClick}
                 setResumeBookId={setResumeBookId}
+                toggleModal={toggleDelModal}
+                setDelBookId={setDelBookId}
               />
             ))}
           </CardSectionStyled>

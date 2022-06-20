@@ -18,6 +18,8 @@ import AddButton from 'components/reusableComponents/AddButton';
 import Button from 'components/reusableComponents/Button';
 import { Container } from 'styles';
 import LibraryStyled from './Library.styled';
+import ConfirmDelModal from 'components/ConfirmDelModal';
+import deleteBook from 'api/books/deleteBook';
 
 const Library = () => {
   const [addModalOpened, setAddModalOpened] = useState(false);
@@ -34,6 +36,30 @@ const Library = () => {
   const refreshTokenValue = useSelector(authSelectors.getRefreshToken);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [delModalOpened, setDelModalOpened] = useState(false);
+  const [delBookId, setDelBookId] = useState('');
+  const [delButtonDisabled, setDelButtonDisabled] = useState(false);
+
+  const toggleDelModal = () => setDelModalOpened(prev => !prev);
+
+  const onDelete = async () => {
+    const tryFunc = async tokenValue => {
+      await deleteBook(delBookId, tokenValue);
+      dispatch(booksActions.remove(delBookId));
+    };
+
+    setDelButtonDisabled(true);
+
+    try {
+      await tryFunc(token);
+    } catch (error) {
+      tryRefreshToken(error, refreshTokenValue, dispatch, tryFunc);
+    }
+
+    setDelBookId('');
+    setDelModalOpened(false);
+    setDelButtonDisabled(false);
+  };
 
   const fetchAllBooks = useCallback(async () => {
     const tryFunc = async tokenValue => {
@@ -96,16 +122,22 @@ const Library = () => {
                       books={alreadyRead}
                       onResumeClick={toggleResumeModal}
                       setResumeBookId={setResumeBookId}
+                      toggleDelModal={toggleDelModal}
+                      setDelBookId={setDelBookId}
                     />
                     <CardSection
                       className="cards"
                       cardType={cardTypes.reading}
                       books={reading}
+                      toggleDelModal={toggleDelModal}
+                      setDelBookId={setDelBookId}
                     />
                     <CardSection
                       className="cards"
                       cardType={cardTypes.goingToRead}
                       books={goingToread}
+                      toggleDelModal={toggleDelModal}
+                      setDelBookId={setDelBookId}
                     />
                   </>
                 ) : (
@@ -132,6 +164,19 @@ const Library = () => {
               {matches.small && <AddButton onClick={toggleAddBookModal} />}
             </>
           )}
+
+          <CSSTransition
+            in={delModalOpened}
+            unmountOnExit
+            classNames="modal"
+            timeout={300}
+          >
+            <ConfirmDelModal
+              delButtonDisabled={delButtonDisabled}
+              onClose={toggleDelModal}
+              onDelete={onDelete}
+            />
+          </CSSTransition>
 
           <CSSTransition
             in={instructionModalOpened && matches.small}
