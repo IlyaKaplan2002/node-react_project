@@ -56,9 +56,7 @@ const Card = ({
     if (matches.tablet) {
       return 26;
     }
-    if (matches.desktop) {
-      return 50;
-    }
+    return 50;
   };
   const getLengthAuthor = matches => {
     if (matches.mobile) {
@@ -67,9 +65,7 @@ const Card = ({
     if (matches.tablet) {
       return 16;
     }
-    if (matches.desktop) {
-      return 38;
-    }
+    return 38;
   };
   const onDelete = async () => {
     const tryFunc = async tokenValue => {

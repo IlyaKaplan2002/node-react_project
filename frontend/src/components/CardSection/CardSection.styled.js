@@ -42,8 +42,8 @@ const CardsNameList = styled.ul`
     font-weight: ${props => props.theme.fonts.weights.medium};
     grid-template-columns: ${props =>
       props.read
-        ? '2.6fr 1.7fr 0.8fr 1fr 2.8fr'
-        : '2.90fr 1.75fr 0.65fr 0.3fr 0.5fr'};
+        ? '2.6fr 1.4fr 0.8fr 0.8fr 2.8fr'
+        : '2.95fr 1.65fr 0.65fr 0.4fr 0.5fr'};
     margin-bottom: 8px;
   }
   @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
