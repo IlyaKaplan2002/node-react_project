@@ -22,5 +22,11 @@ export const NavigationStyled = styled.div`
     margin: auto;
     align-items: center;
     fill: ${props => props.theme.colors.placeholder};
+    :hover {
+      fill: ${props => props.theme.colors.mainOrange};
+    }
+    :focus {
+      fill: ${props => props.theme.colors.mainOrange};
+    }
   }
 `;

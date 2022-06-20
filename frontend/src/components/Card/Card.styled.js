@@ -165,6 +165,12 @@ const DellIcon = styled.button`
     top: 50%;
     transform: translateY(-50%);
   }
+  :hover {
+    color: ${props => props.theme.colors.buttonHoverGray};
+  }
+  :focus {
+    color: ${props => props.theme.colors.buttonHoverGray};
+  }
 `;
 
 export {

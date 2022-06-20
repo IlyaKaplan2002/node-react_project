@@ -35,16 +35,26 @@ const CardForStart = ({ name, author, year, pages, id, cardType, status }) => {
 
   const getLength = matches => {
     if (matches.mobile) {
+      return 28;
+    }
+    if (matches.tablet) {
+      return 18;
+    }
+    if (matches.desktop) {
+      return 32;
+    }
+  };
+  const getLengthAuthor = matches => {
+    if (matches.mobile) {
       return 16;
     }
     if (matches.tablet) {
-      return 16;
-    }
-    if (matches.desktop) {
       return 26;
     }
+    if (matches.desktop) {
+      return 32;
+    }
   };
-
   return (
     <CardStyled read={isRead}>
       {(withoutDelEmpty || withDel) && (
@@ -99,7 +109,10 @@ const CardForStart = ({ name, author, year, pages, id, cardType, status }) => {
                 }}
               >
                 {matches => (
-                  <EllipsisText text={author} length={getLength(matches)} />
+                  <EllipsisText
+                    text={author}
+                    length={getLengthAuthor(matches)}
+                  />
                 )}
               </Media>
             </span>
