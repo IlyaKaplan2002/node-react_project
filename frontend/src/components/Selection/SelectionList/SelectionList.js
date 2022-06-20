@@ -17,7 +17,7 @@ const SelectionList = ({ books, currentBook, current, onClick }) => {
             className={getClassName(book._id)}
             onClick={() => onClick(book)}
           >
-            <EllipsisText text={book.name} length={10} />
+            <EllipsisText text={book.name} length={50} />
           </label>
         </li>
       ))}

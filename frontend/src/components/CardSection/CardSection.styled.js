@@ -49,8 +49,8 @@ const CardsNameList = styled.ul`
   @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
     grid-template-columns: ${props =>
       props.read
-        ? '1.9fr 1.5fr 0.65fr 0.7fr 2fr'
-        : '2.85fr 1.75fr 0.6fr 0.45fr'};
+        ? '1.9fr 1.53fr 0.6fr 0.8fr 1.9fr'
+        : '2.85fr 1.8fr 0.6fr 0.45fr'};
   }
 `;
 

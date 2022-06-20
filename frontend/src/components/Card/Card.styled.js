@@ -67,9 +67,11 @@ const CardStyled = styled.div`
     }
 
     @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
+      display: flex;
+      align-items: center;
+      height: 34px;
+      padding: 11px;
       margin: 0;
-      padding: 12px 0;
-      height: fit-content;
     }
 
     @media screen and (min-width: ${props => props.theme.breakpoints.desktop}) {
@@ -98,7 +100,7 @@ const ListStyled = styled.div`
   display: grid;
   row-gap: 14px;
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
-    display: inline-grid;
+    height: 34px;
     grid-template-columns: ${props =>
       props.read ? '1fr  0.5fr 0.2fr 1fr' : '2fr 0.5fr 0.5fr'};
     column-gap: 30px;
@@ -152,15 +154,23 @@ const CardNameWrapper = styled.div`
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     display: flex;
     align-items: center;
+    height: 34px;
   }
 `;
 
 const DellIcon = styled.button`
   position: absolute;
   top: 20px;
-  right: 15px;
+  right: 18px;
   color: ${props => props.theme.colors.secondary};
   cursor: pointer;
+
+  &:hover,
+  &:focus {
+    color: ${props => props.theme.colors.mainOrange};
+    transition: 0.2s linear;
+  }
+
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     top: 50%;
     transform: translateY(-50%);

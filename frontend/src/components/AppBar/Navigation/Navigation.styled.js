@@ -12,9 +12,14 @@ export const NavigationStyled = styled.div`
     margin: 0 auto;
     text-align: center;
     margin-right: 8px;
-    &.active {
-      background: ${props => props.theme.colors.input};
-      border-radius: 50%;
+    &.active .icon {
+      fill: ${props => props.theme.colors.mainOrange};
+    }
+
+    &:hover .icon,
+    &:focus .icon {
+      fill: ${props => props.theme.colors.mainOrange};
+      transition: 0.2s linear;
     }
   }
   .icon {

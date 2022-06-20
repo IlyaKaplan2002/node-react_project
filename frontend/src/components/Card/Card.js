@@ -51,16 +51,26 @@ const Card = ({
 
   const getLength = matches => {
     if (matches.mobile) {
+      return 24;
+    }
+    if (matches.tablet) {
+      return 26;
+    }
+    if (matches.desktop) {
+      return 50;
+    }
+  };
+  const getLengthAuthor = matches => {
+    if (matches.mobile) {
       return 16;
     }
     if (matches.tablet) {
       return 16;
     }
     if (matches.desktop) {
-      return 30;
+      return 38;
     }
   };
-
   const onDelete = async () => {
     const tryFunc = async tokenValue => {
       await deleteBook(id, tokenValue);
@@ -102,8 +112,19 @@ const Card = ({
       <ListStyled read={isRead}>
         <ListItemStyled>
           <ListItemName>{t('author')}:</ListItemName>
+
           <span>
-            <EllipsisText text={author} length={12} />
+            <Media
+              queries={{
+                mobile: '(max-width: 767px)',
+                tablet: '(min-width: 768px) and (max-width: 1279px)',
+                desktop: '(min-width: 1280px)',
+              }}
+            >
+              {matches => (
+                <EllipsisText text={author} length={getLengthAuthor(matches)} />
+              )}
+            </Media>
           </span>
         </ListItemStyled>
         <ListItemStyled>
