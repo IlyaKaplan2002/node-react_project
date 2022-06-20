@@ -1,5 +1,5 @@
-import { cardTypes } from 'constants';
 import { isBefore, eachDayOfInterval, isSameDay } from 'date-fns';
+import { cardTypes } from 'constants';
 
 export const getLabels = (training, isCurrent) => {
   if (training && isCurrent) {

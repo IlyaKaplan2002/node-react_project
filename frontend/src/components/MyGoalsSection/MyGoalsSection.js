@@ -1,16 +1,16 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+import { eachDayOfInterval, isValid } from 'date-fns';
+import { trainingsSelectors } from 'redux/trainings';
+import { cardTypes } from 'constants';
+import Button from 'components/reusableComponents/Button';
 import {
   GoalsSectionStyled,
   GoalsCardWrapperStyled,
   GoalsAmount,
   GoalsAmountCard,
 } from './MyGoalsSection.styled';
-import Button from 'components/reusableComponents/Button';
-import { useSelector } from 'react-redux';
-import { trainingsSelectors } from 'redux/trainings';
-import { eachDayOfInterval, isValid } from 'date-fns';
-import { cardTypes } from 'constants';
-import { useTranslation } from 'react-i18next';
 
 const MyGoalsSection = () => {
   const training = useSelector(trainingsSelectors.getTraining);

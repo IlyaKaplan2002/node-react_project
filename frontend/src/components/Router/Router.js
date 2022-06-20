@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { routes } from 'constants';
 import { useSelector } from 'react-redux';
+import { routes } from 'constants';
 import { authSelectors } from 'redux/auth';
 import NotFoundView from 'views/NotFoundView';
 

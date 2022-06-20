@@ -1,9 +1,17 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import Media from 'react-media';
+import { useTranslation } from 'react-i18next';
+import EllipsisText from 'react-ellipsis-text';
+import { tryRefreshToken } from 'helpers';
+import { cardTypes } from 'constants';
+import { authSelectors } from 'redux/auth';
+import { booksActions } from 'redux/books';
+import deleteBook from 'api/books/deleteBook';
+import Button from 'components/reusableComponents/Button';
 import { MdMenuBook } from 'react-icons/md';
 import { AiOutlineStar, AiFillStar } from 'react-icons/ai';
 import { MdOutlineDelete } from 'react-icons/md';
-import Button from 'components/reusableComponents/Button';
-import EllipsisText from 'react-ellipsis-text';
 import {
   CardStyled,
   BookIcon,
@@ -15,15 +23,6 @@ import {
   CardNameWrapper,
   DellIcon,
 } from './Card.styled';
-import { cardTypes } from 'constants';
-import Media from 'react-media';
-import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
-import { authSelectors } from 'redux/auth';
-import deleteBook from 'api/books/deleteBook';
-import { useDispatch } from 'react-redux';
-import { booksActions } from 'redux/books';
-import { tryRefreshToken } from 'helpers';
 
 const Card = ({
   name,

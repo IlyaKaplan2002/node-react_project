@@ -1,4 +1,11 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import EllipsisText from 'react-ellipsis-text';
+import Media from 'react-media';
+import { useTranslation } from 'react-i18next';
+import { cardTypes } from 'constants';
+import { trainingCardTypes } from 'constants';
+import { trainingsActions } from 'redux/trainings';
 import { MdMenuBook } from 'react-icons/md';
 import { MdOutlineDelete } from 'react-icons/md';
 import { MdCheckBoxOutlineBlank } from 'react-icons/md';
@@ -13,13 +20,6 @@ import {
   CardNameWrapper,
   DellIcon,
 } from './CardForStart.styled';
-import { cardTypes } from 'constants';
-import { trainingCardTypes } from 'constants';
-import { useDispatch } from 'react-redux';
-import { trainingsActions } from 'redux/trainings';
-import EllipsisText from 'react-ellipsis-text';
-import Media from 'react-media';
-import { useTranslation } from 'react-i18next';
 
 const CardForStart = ({ name, author, year, pages, id, cardType, status }) => {
   const { t } = useTranslation('translation', { keyPrefix: 'card' });

@@ -1,9 +1,9 @@
-import AddBookForm from 'components/AddBookForm';
-import { useOnEscClose } from 'hooks';
 import React, { useEffect } from 'react';
 import Media from 'react-media';
-import AddBookModalStyled from './AddBookModal.styled';
+import { useOnEscClose } from 'hooks';
+import AddBookForm from 'components/AddBookForm';
 import { HiOutlineArrowNarrowLeft } from 'react-icons/hi';
+import AddBookModalStyled from './AddBookModal.styled';
 
 const AddBookModal = ({ onClose, isInstructionModalOpened, modal }) => {
   const [addOnEscClose, removeOnEscClose] = useOnEscClose(onClose);

@@ -1,15 +1,15 @@
 import React from 'react';
+import Media from 'react-media';
+import ScrollContainer from 'react-indiana-drag-scroll';
+import { useTranslation } from 'react-i18next';
+import { Container } from 'styles';
+import { trainingCardTypes } from 'constants';
+import CardForStart from 'components/CardForStart';
+import Spliter from 'components/reusableComponents/Spliter';
 import {
   CardSectionStyled,
   CardsNameList,
 } from './CardSectionNotActive.styled';
-import CardForStart from 'components/CardForStart';
-import Spliter from 'components/reusableComponents/Spliter';
-import { Container } from 'styles';
-import { trainingCardTypes } from 'constants';
-import Media from 'react-media';
-import ScrollContainer from 'react-indiana-drag-scroll';
-import { useTranslation } from 'react-i18next';
 
 const CardSectionNotActive = ({ cardType, books = [] }) => {
   const withoutDelEmpty = cardType === trainingCardTypes.withoutDelEmpty;

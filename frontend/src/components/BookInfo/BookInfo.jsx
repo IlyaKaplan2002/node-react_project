@@ -1,8 +1,8 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import InfoList from 'components/reusableComponents/InfoList';
 import InfoTitle from 'components/reusableComponents/InfoTitle';
 import { BookInfoContainerStyled } from './BookInfo.styled';
-import { useTranslation } from 'react-i18next';
 
 const BookInfo = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'bookInfo' });

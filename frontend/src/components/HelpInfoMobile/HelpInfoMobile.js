@@ -1,12 +1,12 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import InfoList from 'components/reusableComponents/InfoList';
 import InfoTitle from 'components/reusableComponents/InfoTitle';
 import { routes } from 'constants';
-import React from 'react';
-import { Link } from 'react-router-dom';
 import { Container } from 'styles';
-import HelpInfoMobileStyled from './HelpInfoMobile.styled';
 import Button from '../reusableComponents/Button';
-import { useTranslation } from 'react-i18next';
+import HelpInfoMobileStyled from './HelpInfoMobile.styled';
 
 const HelpInfoMobile = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'bookInfo' });

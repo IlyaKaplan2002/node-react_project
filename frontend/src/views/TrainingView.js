@@ -1,6 +1,6 @@
-import Training from 'components/Training';
 import React from 'react';
 import { Helmet } from 'react-helmet';
+import Training from 'components/Training';
 
 const TrainingView = () => {
   return (
