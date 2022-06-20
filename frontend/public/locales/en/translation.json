@@ -133,5 +133,10 @@
     "new": "New training",
     "back": "Back"
   },
-  "yearsTimer": "Years countdown"
+  "yearsTimer": "Years countdown",
+  "confirmDelModal": {
+    "text": "Are you sure?",
+    "cancel": "Cancel",
+    "delete": "Delete"
+  }
 }
