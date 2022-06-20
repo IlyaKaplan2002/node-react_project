@@ -100,7 +100,7 @@ const ListStyled = styled.div`
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     display: inline-grid;
     grid-template-columns: ${props =>
-      props.read ? '1fr  0.5fr 0.2fr 1fr' : '2fr 0.5fr 0.2fr'};
+      props.read ? '1fr  0.5fr 0.2fr 1fr' : '2fr 0.5fr 0.5fr'};
     column-gap: 30px;
   }
 
