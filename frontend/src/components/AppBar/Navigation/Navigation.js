@@ -1,17 +1,19 @@
 import React from 'react';
-import { NavigationStyled } from './Navigation.styled';
+import { NavLink } from 'react-router-dom';
+import { routes } from 'constants';
 import { VscHome } from 'react-icons/vsc';
 import { MdMenuBook } from 'react-icons/md';
-import { routes } from 'constants';
-import { NavLink } from 'react-router-dom';
+import { NavigationStyled } from './Navigation.styled';
 
 const Navigation = () => {
+  const getClassName = ({ isActive }) => (isActive ? 'link active' : 'link');
+
   return (
     <NavigationStyled>
-      <NavLink to={routes.training.path} className="link">
+      <NavLink to={routes.training.path} className={getClassName}>
         <MdMenuBook className="icon" />
       </NavLink>
-      <NavLink to={routes.library.path} className="link">
+      <NavLink to={routes.library.path} className={getClassName}>
         <VscHome className="icon" />
       </NavLink>
     </NavigationStyled>

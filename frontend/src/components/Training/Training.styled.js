@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const TrainingStyled = styled.div`
-  padding-top: ${props => (props.isCurrent ? '20px' : '54px')};
+  padding-top: ${props => (props.isCurrent ? '40px' : '20px')};
   padding-bottom: 38px;
   display: flex;
   flex-direction: column;

@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { GoTriangleDown } from 'react-icons/go';
-import SelectionList from './SelectionList';
-import classNames from 'classnames';
-import { SelectionWrapper } from './Selection.styled';
 import { useSelector, useDispatch } from 'react-redux';
-import { trainingsActions, trainingsSelectors } from 'redux/trainings';
 import EllipsisText from 'react-ellipsis-text';
 import { useTranslation } from 'react-i18next';
+import classNames from 'classnames';
+import SelectionList from './SelectionList';
+import { trainingsActions, trainingsSelectors } from 'redux/trainings';
+import { GoTriangleDown } from 'react-icons/go';
+import { SelectionWrapper } from './Selection.styled';
 
 const Selection = ({
   books,

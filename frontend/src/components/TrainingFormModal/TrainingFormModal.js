@@ -1,17 +1,17 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { createPortal } from 'react-dom';
-import { OverlayStyled, ModalStyled } from './TrainingFormModal.styled';
-import { HiOutlineArrowNarrowLeft } from 'react-icons/hi';
-import AddTrainingForm from 'components/AddTrainingForm';
 import { useDispatch, useSelector } from 'react-redux';
-import { authSelectors } from 'redux/auth';
-import { useCallback } from 'react';
-import { getAllBooks } from 'api/books';
-import { booksActions, booksSelectors } from 'redux/books';
 import { tryRefreshToken } from 'helpers';
-import { trainingsSelectors } from 'redux/trainings';
-import CardSectionNotActive from 'components/CardSectionNotActive';
 import { trainingCardTypes } from 'constants';
+import { getAllBooks } from 'api/books';
+import { authSelectors } from 'redux/auth';
+import { trainingsSelectors } from 'redux/trainings';
+import { booksActions, booksSelectors } from 'redux/books';
+import AddTrainingForm from 'components/AddTrainingForm';
+import CardSectionNotActive from 'components/CardSectionNotActive';
+import { HiOutlineArrowNarrowLeft } from 'react-icons/hi';
+import { OverlayStyled, ModalStyled } from './TrainingFormModal.styled';
+
 const modalRoot = document.querySelector('#modal-root');
 
 const Modal = ({ onCloseModal = () => {} }) => {

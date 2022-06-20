@@ -1,11 +1,11 @@
-import { logout } from 'api/auth';
-import LossOfChange from 'components/LossOfChange';
-import { tryRefreshToken } from 'helpers';
 import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import { CSSTransition } from 'react-transition-group';
+import { logout } from 'api/auth';
+import { tryRefreshToken } from 'helpers';
 import { authActions, authSelectors } from 'redux/auth';
+import LossOfChange from 'components/LossOfChange';
 import LogoutStyled from './Logout.styled';
 
 const Logout = () => {

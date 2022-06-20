@@ -1,12 +1,12 @@
-import { MdMenuBook, MdOutlineOutlinedFlag } from 'react-icons/md';
+import { useEffect } from 'react';
 import Media from 'react-media';
+import { useTranslation } from 'react-i18next';
+import { useOnEscClose } from 'hooks';
 import { Container } from 'styles';
-import { Wrapper, WrapperStyled } from './InstructionModal.styled';
 import InstructionList from 'components/reusableComponents/InstructionList';
 import Button from 'components/reusableComponents/Button';
-import { useOnEscClose } from 'hooks';
-import { useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
+import { MdMenuBook, MdOutlineOutlinedFlag } from 'react-icons/md';
+import { Wrapper, WrapperStyled } from './InstructionModal.styled';
 
 const InstructionModal = ({ onClose }) => {
   const [addOnEscClose, removeOnEscClose] = useOnEscClose(onClose);

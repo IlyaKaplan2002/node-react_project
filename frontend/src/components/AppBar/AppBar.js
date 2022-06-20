@@ -1,11 +1,11 @@
 import React from 'react';
 import Media from 'react-media';
-import AppBarContainer from './AppBar.styled';
 import Logo from 'components/reusableComponents/Logo';
+import LanguageSelector from 'components/LanguageSelector';
 import Navigation from './Navigation';
 import UserMenu from './UserMenu';
 import Logout from './Logout';
-import LanguageSelector from 'components/LanguageSelector';
+import AppBarContainer from './AppBar.styled';
 
 class AppBar extends React.Component {
   render() {
@@ -26,9 +26,9 @@ class AppBar extends React.Component {
             ) : (
               <AppBarContainer>
                 <Logo />
-                <LanguageSelector />
                 <UserMenu />
                 <div className="containerNavTablDesc">
+                  <LanguageSelector />
                   <Navigation />
                   <Logout />
                 </div>

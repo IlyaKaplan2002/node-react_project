@@ -1,18 +1,9 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import Datetime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
 import { useFormik } from 'formik';
-import { RiCalendar2Line } from 'react-icons/ri';
-import { GoTriangleDown } from 'react-icons/go';
-import Datetime from 'react-datetime';
-import {
-  TrainingFormSection,
-  AddTrainingFormStyled,
-  DatePickerWrapper,
-} from './AddTrainingForm.styled';
-import Button from 'components/reusableComponents/Button';
-import Selection from 'components/Selection';
-import { useDispatch, useSelector } from 'react-redux';
-import { trainingsActions, trainingsSelectors } from 'redux/trainings';
+import { useTranslation } from 'react-i18next';
 import {
   addDays,
   format,
@@ -23,8 +14,17 @@ import {
   isValid,
   sub,
 } from 'date-fns';
+import { trainingsActions, trainingsSelectors } from 'redux/trainings';
 import { notifyError } from 'helpers';
-import { useTranslation } from 'react-i18next';
+import Button from 'components/reusableComponents/Button';
+import Selection from 'components/Selection';
+import { GoTriangleDown } from 'react-icons/go';
+import { RiCalendar2Line } from 'react-icons/ri';
+import {
+  TrainingFormSection,
+  AddTrainingFormStyled,
+  DatePickerWrapper,
+} from './AddTrainingForm.styled';
 
 const AddTrainingForm = ({ books, closeModal = () => {}, desktop }) => {
   const selectedTraining = useSelector(trainingsSelectors.getSelectedTraining);

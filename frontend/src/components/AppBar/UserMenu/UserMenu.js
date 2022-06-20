@@ -1,8 +1,8 @@
 import React from 'react';
-import UserMenuStyled from './UserMenu.styled';
-import Avatar from 'react-avatar';
 import { useSelector } from 'react-redux';
+import Avatar from 'react-avatar';
 import { authSelectors } from 'redux/auth';
+import UserMenuStyled from './UserMenu.styled';
 
 export default function UserMenu() {
   const { name } = useSelector(authSelectors.getUser);

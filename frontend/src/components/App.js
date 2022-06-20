@@ -1,7 +1,7 @@
-import getInfo from 'api/auth/getInfo';
-import { tryRefreshToken } from 'helpers';
 import React, { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { tryRefreshToken } from 'helpers';
+import getInfo from 'api/auth/getInfo';
 import { authActions, authSelectors } from 'redux/auth';
 import Router from './Router';
 
