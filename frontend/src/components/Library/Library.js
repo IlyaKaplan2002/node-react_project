@@ -118,10 +118,8 @@ const Library = () => {
                   <>
                     <CardSection
                       className="cards"
-                      cardType={cardTypes.alreadyRead}
-                      books={alreadyRead}
-                      onResumeClick={toggleResumeModal}
-                      setResumeBookId={setResumeBookId}
+                      cardType={cardTypes.goingToRead}
+                      books={goingToread}
                       toggleDelModal={toggleDelModal}
                       setDelBookId={setDelBookId}
                     />
@@ -134,8 +132,10 @@ const Library = () => {
                     />
                     <CardSection
                       className="cards"
-                      cardType={cardTypes.goingToRead}
-                      books={goingToread}
+                      cardType={cardTypes.alreadyRead}
+                      books={alreadyRead}
+                      onResumeClick={toggleResumeModal}
+                      setResumeBookId={setResumeBookId}
                       toggleDelModal={toggleDelModal}
                       setDelBookId={setDelBookId}
                     />
