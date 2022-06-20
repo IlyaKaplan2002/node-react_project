@@ -8,7 +8,7 @@ import Button from 'components/reusableComponents/Button';
 import { MdMenuBook, MdOutlineOutlinedFlag } from 'react-icons/md';
 import { Wrapper, WrapperStyled } from './InstructionModal.styled';
 
-const InstructionModal = ({ onClose }) => {
+const InstructionModal = ({ onClose, small }) => {
   const [addOnEscClose, removeOnEscClose] = useOnEscClose(onClose);
   const { t } = useTranslation('translation', { keyPrefix: 'instructions' });
 
@@ -27,7 +27,10 @@ const InstructionModal = ({ onClose }) => {
 
   return (
     <WrapperStyled>
-      <Container className="backdrop" onClick={onBackdropClick}>
+      <Container
+        className="backdrop"
+        onClick={small ? onBackdropClick : () => {}}
+      >
         <Wrapper>
           <InstructionList
             className="fisrtStepWrapper"

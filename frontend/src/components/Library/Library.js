@@ -184,7 +184,7 @@ const Library = () => {
             classNames="modal"
             timeout={300}
           >
-            <InstructionModal onClose={closeInstructionModal} />
+            <InstructionModal onClose={closeInstructionModal} small />
           </CSSTransition>
 
           <CSSTransition
