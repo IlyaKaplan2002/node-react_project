@@ -9,8 +9,9 @@ import {
   DivButtonStyled,
   Backdrop,
 } from './LossOfChange.styled';
+import Loader from 'components/reusableComponents/Loader';
 
-const LossOfChange = ({ onCloseModal, onLeaveClick }) => {
+const LossOfChange = ({ onCloseModal, onLeaveClick, buttonDisabled }) => {
   const { t } = useTranslation('translation', { keyPrefix: 'lossOfChange' });
   const [addEsc, removeEsc] = useOnEscClose(onCloseModal);
   const [enable, disable] = useBodyScroll();
@@ -49,6 +50,7 @@ const LossOfChange = ({ onCloseModal, onLeaveClick }) => {
           >
             {t('leave')}{' '}
             <Media query="(min-width:768px)" render={() => <>{t('app')}</>} />
+            {buttonDisabled && <Loader button width={30} height={30} />}
           </Button>
         </DivButtonStyled>
       </ArticleStyled>

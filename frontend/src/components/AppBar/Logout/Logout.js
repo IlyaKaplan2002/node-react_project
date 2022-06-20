@@ -14,6 +14,7 @@ const Logout = () => {
   const token = useSelector(authSelectors.getToken);
   const refreshTokenValue = useSelector(authSelectors.getRefreshToken);
   const { t } = useTranslation();
+  const [btnDisabled, setButtonDisabled] = useState(false);
 
   const onLogout = async () => {
     const tryFunc = async tokenValue => {
@@ -21,11 +22,14 @@ const Logout = () => {
       dispatch(authActions.logout());
     };
 
+    setButtonDisabled(true);
+
     try {
       await tryFunc(token);
     } catch (error) {
       await tryRefreshToken(error, refreshTokenValue, dispatch, tryFunc);
     }
+    setButtonDisabled(false);
   };
 
   const toggleLogout = () => setLogoutModal(prev => !prev);
@@ -43,7 +47,11 @@ const Logout = () => {
         classNames="modal"
         timeout={300}
       >
-        <LossOfChange onCloseModal={toggleLogout} onLeaveClick={onLogout} />
+        <LossOfChange
+          buttonDisabled={btnDisabled}
+          onCloseModal={toggleLogout}
+          onLeaveClick={onLogout}
+        />
       </CSSTransition>
     </>
   );
