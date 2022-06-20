@@ -1,6 +1,6 @@
-import MyTimer from 'components/reusableComponents/Timer';
 import { getYear } from 'date-fns';
 import { useTranslation } from 'react-i18next';
+import MyTimer from 'components/reusableComponents/Timer';
 
 const YearTimer = ({ className }) => {
   const currentYear = getYear(new Date());

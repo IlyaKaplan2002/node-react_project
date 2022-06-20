@@ -4,11 +4,10 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/integration/react';
 import store, { persistor } from 'redux/store';
-import { GlobalStyles } from 'styles';
-import App from 'components/App';
+import { GlobalStyles, theme } from 'styles';
 import { ThemeProvider } from 'styled-components';
-import { theme } from 'styles';
 import Loader from 'components/reusableComponents/Loader';
+import App from 'components/App';
 import './i18n';
 
 ReactDOM.render(

@@ -1,5 +1,5 @@
-import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
+import styled from 'styled-components';
 import mobileInImg from 'assets/img/mobileIn.jpg';
 import mobileUpImg from 'assets/img/mobileUp.jpg';
 import tabletInImg from 'assets/img/tabletIn.jpg';

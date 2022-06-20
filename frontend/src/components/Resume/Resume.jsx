@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import StarRatings from 'react-star-ratings';
+import { useTranslation } from 'react-i18next';
+import { useBodyScroll, useOnEscClose } from 'hooks';
+import { notifyError, tryRefreshToken } from 'helpers';
+import { authSelectors } from 'redux/auth';
+import { booksActions } from 'redux/books';
+import { addResume } from 'api/books';
+import Button from 'components/reusableComponents/Button';
 import {
   ResumeContainerStyled,
   TextStyled,
   TextAreaStyled,
   ResumeBackdrop,
 } from './Resume.styled';
-import Button from 'components/reusableComponents/Button';
-import { notifyError, tryRefreshToken } from 'helpers';
-import { addResume } from 'api/books';
-import { useDispatch, useSelector } from 'react-redux';
-import { authSelectors } from 'redux/auth';
-import { booksActions } from 'redux/books';
-import { useBodyScroll, useOnEscClose } from 'hooks';
-import { useTranslation } from 'react-i18next';
 
 const Resume = ({ onCloseModal, bookId, initBook }) => {
   const [rating, setRating] = useState(initBook.rating);

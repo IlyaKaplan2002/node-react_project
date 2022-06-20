@@ -1,6 +1,6 @@
 import React from 'react';
-import GoBackButtonStyled from './GoBackButton.styled';
 import Icon from '../Icon';
+import GoBackButtonStyled from './GoBackButton.styled';
 
 const GoBackButton = ({ onClick, className }) => {
   return (

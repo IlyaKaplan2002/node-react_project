@@ -1,9 +1,17 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import Media from 'react-media';
+import { useTranslation } from 'react-i18next';
+import EllipsisText from 'react-ellipsis-text';
+import { tryRefreshToken } from 'helpers';
+import { cardTypes } from 'constants';
+import { authSelectors } from 'redux/auth';
+import { booksActions } from 'redux/books';
+import deleteBook from 'api/books/deleteBook';
+import Button from 'components/reusableComponents/Button';
 import { MdMenuBook } from 'react-icons/md';
 import { AiOutlineStar, AiFillStar } from 'react-icons/ai';
 import { MdOutlineDelete } from 'react-icons/md';
-import Button from 'components/reusableComponents/Button';
-import EllipsisText from 'react-ellipsis-text';
 import {
   CardStyled,
   BookIcon,
@@ -15,15 +23,6 @@ import {
   CardNameWrapper,
   DellIcon,
 } from './Card.styled';
-import { cardTypes } from 'constants';
-import Media from 'react-media';
-import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
-import { authSelectors } from 'redux/auth';
-import deleteBook from 'api/books/deleteBook';
-import { useDispatch } from 'react-redux';
-import { booksActions } from 'redux/books';
-import { tryRefreshToken } from 'helpers';
 
 const Card = ({
   name,
@@ -52,16 +51,26 @@ const Card = ({
 
   const getLength = matches => {
     if (matches.mobile) {
+      return 24;
+    }
+    if (matches.tablet) {
+      return 26;
+    }
+    if (matches.desktop) {
+      return 50;
+    }
+  };
+  const getLengthAuthor = matches => {
+    if (matches.mobile) {
       return 16;
     }
     if (matches.tablet) {
       return 16;
     }
     if (matches.desktop) {
-      return 30;
+      return 38;
     }
   };
-
   const onDelete = async () => {
     const tryFunc = async tokenValue => {
       await deleteBook(id, tokenValue);
@@ -103,8 +112,19 @@ const Card = ({
       <ListStyled read={isRead}>
         <ListItemStyled>
           <ListItemName>{t('author')}:</ListItemName>
+
           <span>
-            <EllipsisText text={author} length={12} />
+            <Media
+              queries={{
+                mobile: '(max-width: 767px)',
+                tablet: '(min-width: 768px) and (max-width: 1279px)',
+                desktop: '(min-width: 1280px)',
+              }}
+            >
+              {matches => (
+                <EllipsisText text={author} length={getLengthAuthor(matches)} />
+              )}
+            </Media>
           </span>
         </ListItemStyled>
         <ListItemStyled>

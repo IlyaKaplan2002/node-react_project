@@ -1,7 +1,29 @@
+import React, { useEffect, useState, useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { CSSTransition } from 'react-transition-group';
+import Media from 'react-media';
+import { Notify } from 'notiflix';
+import { useTranslation } from 'react-i18next';
+import {
+  addDays,
+  eachDayOfInterval,
+  isAfter,
+  isBefore,
+  isFuture,
+  isSameDay,
+  isValid,
+} from 'date-fns';
+import { notifyError, tryRefreshToken } from 'helpers';
+import { trainingCardTypes } from 'constants';
+import { authSelectors } from 'redux/auth';
+import { booksActions, booksSelectors } from 'redux/books';
+import { statisticsActions } from 'redux/statistics';
+import { trainingsActions, trainingsSelectors } from 'redux/trainings';
 import { getAllBooks } from 'api/books';
 import { getStatistics } from 'api/statistics';
 import { getCurrentTraining } from 'api/trainings';
 import { postTraining } from 'api/trainings';
+import { Container } from 'styles';
 import AddTrainingForm from 'components/AddTrainingForm';
 import AppBar from 'components/AppBar';
 import CardSectionNotActive from 'components/CardSectionNotActive';
@@ -15,30 +37,6 @@ import Button from 'components/reusableComponents/Button';
 import TrainingFormModal from 'components/TrainingFormModal';
 import WellDone from 'components/WellDone';
 import YearTimer from 'components/YearTimer';
-import { trainingCardTypes } from 'constants';
-import {
-  addDays,
-  eachDayOfInterval,
-  isAfter,
-  isBefore,
-  isFuture,
-  isSameDay,
-  isValid,
-} from 'date-fns';
-import { notifyError, tryRefreshToken } from 'helpers';
-import { Notify } from 'notiflix';
-import React, { useEffect } from 'react';
-import { useState } from 'react';
-import { useCallback } from 'react';
-import { useTranslation } from 'react-i18next';
-import Media from 'react-media';
-import { useDispatch, useSelector } from 'react-redux';
-import { CSSTransition } from 'react-transition-group';
-import { authSelectors } from 'redux/auth';
-import { booksActions, booksSelectors } from 'redux/books';
-import { statisticsActions } from 'redux/statistics';
-import { trainingsActions, trainingsSelectors } from 'redux/trainings';
-import { Container } from 'styles';
 import TrainingStyled from './Training.styled';
 
 const Training = () => {

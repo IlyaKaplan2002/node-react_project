@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import LanguageSelectorStyled from './LanguageSelector.styled';
 import Flag from 'react-world-flags';
+import LanguageSelectorStyled from './LanguageSelector.styled';
 
 const LanguageSelector = ({ className }) => {
   const { i18n } = useTranslation();

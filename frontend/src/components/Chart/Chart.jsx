@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import ChartStyled from './Chart.styled';
+import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+import { trainingsSelectors } from 'redux/trainings';
+import { statisticsSelectors } from 'redux/statistics';
 import Days from './Days';
 import getOptions from './chartOptions';
-import { useSelector } from 'react-redux';
 import {
   getActData,
   getLabels,
   getPagesTodayRead,
   getPlannedData,
 } from './helpers';
-
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -21,9 +22,7 @@ import {
   Legend,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
-import { trainingsSelectors } from 'redux/trainings';
-import { statisticsSelectors } from 'redux/statistics';
-import { useTranslation } from 'react-i18next';
+import ChartStyled from './Chart.styled';
 
 ChartJS.register(
   CategoryScale,

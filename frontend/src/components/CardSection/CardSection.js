@@ -1,14 +1,14 @@
 import React from 'react';
+import Media from 'react-media';
+import { useTranslation } from 'react-i18next';
+import { Card } from 'components/Card';
+import { cardTypes } from 'constants';
+import { Container } from 'styles';
 import {
   CardSectionStyled,
   CardSectionNameStyled,
   CardsNameList,
 } from './CardSection.styled';
-import { Card } from 'components/Card';
-import { cardTypes } from 'constants';
-import { Container } from 'styles';
-import Media from 'react-media';
-import { useTranslation } from 'react-i18next';
 
 const CardSection = ({
   cardType,

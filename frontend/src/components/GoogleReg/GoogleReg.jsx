@@ -1,7 +1,7 @@
-import { googleAuth } from 'api/auth';
-import { notifyError } from 'helpers';
 import React, { useCallback, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { notifyError } from 'helpers';
+import { googleAuth } from 'api/auth';
 import { authActions } from 'redux/auth';
 
 const AuthGoogle = ({ className }) => {

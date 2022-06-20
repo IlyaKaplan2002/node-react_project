@@ -1,15 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import Media from 'react-media';
+import { useTranslation } from 'react-i18next';
+import Button from 'components/reusableComponents/Button';
+import { useBodyScroll, useOnEscClose } from 'hooks';
 import {
   ArticleStyled,
   PStyled,
   DivButtonStyled,
   Backdrop,
 } from './LossOfChange.styled';
-import Button from 'components/reusableComponents/Button';
-import Media from 'react-media';
-import { useTranslation } from 'react-i18next';
-import { useBodyScroll, useOnEscClose } from 'hooks';
-import { useEffect } from 'react';
 
 const LossOfChange = ({ onCloseModal, onLeaveClick }) => {
   const { t } = useTranslation('translation', { keyPrefix: 'lossOfChange' });
