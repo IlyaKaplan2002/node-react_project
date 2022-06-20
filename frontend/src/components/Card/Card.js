@@ -1,13 +1,8 @@
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React from 'react';
 import Media from 'react-media';
 import { useTranslation } from 'react-i18next';
 import EllipsisText from 'react-ellipsis-text';
-import { tryRefreshToken } from 'helpers';
 import { cardTypes } from 'constants';
-import { authSelectors } from 'redux/auth';
-import { booksActions } from 'redux/books';
-import deleteBook from 'api/books/deleteBook';
 import Button from 'components/reusableComponents/Button';
 import { MdMenuBook } from 'react-icons/md';
 import { AiOutlineStar, AiFillStar } from 'react-icons/ai';
@@ -34,12 +29,10 @@ const Card = ({
   cardType,
   id,
   setResumeBookId,
+  toggleModal,
+  setDelBookId,
 }) => {
   const { t } = useTranslation('translation', { keyPrefix: 'card' });
-  const [delDisabled, setDelDisabled] = useState(false);
-  const token = useSelector(authSelectors.getToken);
-  const refreshToken = useSelector(authSelectors.getRefreshToken);
-  const dispatch = useDispatch();
 
   const onResumeButtonClick = () => {
     setResumeBookId(id);
@@ -56,9 +49,7 @@ const Card = ({
     if (matches.tablet) {
       return 26;
     }
-    if (matches.desktop) {
-      return 50;
-    }
+    return 50;
   };
   const getLengthAuthor = matches => {
     if (matches.mobile) {
@@ -67,23 +58,12 @@ const Card = ({
     if (matches.tablet) {
       return 16;
     }
-    if (matches.desktop) {
-      return 38;
-    }
+    return 38;
   };
-  const onDelete = async () => {
-    const tryFunc = async tokenValue => {
-      await deleteBook(id, tokenValue);
-      dispatch(booksActions.remove(id));
-    };
 
-    try {
-      setDelDisabled(true);
-      await tryFunc(token);
-    } catch (error) {
-      tryRefreshToken(error, refreshToken, dispatch, tryFunc);
-    }
-    setDelDisabled(false);
+  const onDelete = () => {
+    toggleModal();
+    setDelBookId(id);
   };
 
   return (
@@ -106,7 +86,7 @@ const Card = ({
           </Media>
         </CardName>
       </CardNameWrapper>
-      <DellIcon disabled={delDisabled} onClick={onDelete}>
+      <DellIcon onClick={onDelete}>
         <MdOutlineDelete size={21} />
       </DellIcon>
       <ListStyled read={isRead}>
