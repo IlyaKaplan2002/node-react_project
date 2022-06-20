@@ -26,9 +26,9 @@ class AppBar extends React.Component {
             ) : (
               <AppBarContainer>
                 <Logo />
-                <LanguageSelector />
                 <UserMenu />
                 <div className="containerNavTablDesc">
+                  <LanguageSelector />
                   <Navigation />
                   <Logout />
                 </div>
