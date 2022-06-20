@@ -165,7 +165,8 @@ const DellIcon = styled.button`
   color: ${props => props.theme.colors.secondary};
   cursor: pointer;
 
-  &:hover {
+  &:hover,
+  &:focus {
     color: ${props => props.theme.colors.mainOrange};
     transition: 0.2s linear;
   }
@@ -173,12 +174,6 @@ const DellIcon = styled.button`
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {
     top: 50%;
     transform: translateY(-50%);
-  }
-  :hover {
-    color: ${props => props.theme.colors.mainOrange};
-  }
-  :focus {
-    color: ${props => props.theme.colors.mainOrange};
   }
 `;
 
