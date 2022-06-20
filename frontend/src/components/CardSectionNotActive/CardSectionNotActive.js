@@ -2,7 +2,6 @@ import React from 'react';
 import {
   CardSectionStyled,
   CardsNameList,
-  ListOwerflow,
 } from './CardSectionNotActive.styled';
 import CardForStart from 'components/CardForStart';
 import Spliter from 'components/reusableComponents/Spliter';
@@ -49,7 +48,7 @@ const CardSectionNotActive = ({ cardType, books = [] }) => {
             </Media>
           )}
           {(withDel || started) && (
-            <ListOwerflow>
+            <>
               {books.map(({ name, author, year, pages, status, _id }) => {
                 return (
                   <div key={_id}>
@@ -66,7 +65,7 @@ const CardSectionNotActive = ({ cardType, books = [] }) => {
                   </div>
                 );
               })}
-            </ListOwerflow>
+            </>
           )}
           {withDel && (
             <Media

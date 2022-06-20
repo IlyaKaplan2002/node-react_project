@@ -158,7 +158,7 @@ const CardNameWrapper = styled.div`
 const DellIcon = styled.button`
   position: absolute;
   top: 20px;
-  right: 5px;
+  right: 15px;
   color: ${props => props.theme.colors.secondary};
   cursor: pointer;
   @media screen and (min-width: ${props => props.theme.breakpoints.tablet}) {

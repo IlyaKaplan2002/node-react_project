@@ -5,7 +5,6 @@ const CardStyled = styled.div`
   padding: 20px 20px 30px 54px;
   margin: 0 auto;
   width: 100%;
-  /* max-width: 280px; */
   font-size: 12px;
   font-family: ${props => props.theme.fonts.families.montserrat};
   font-weight: ${props => props.theme.fonts.weights.medium};
@@ -64,14 +63,6 @@ const CardStyled = styled.div`
       padding: 10px 36px;
       width: 130px;
     }
-
-    /* &:hover {
-      transform: translateY(-0.25em);
-      border: ${props =>
-      props.filled
-        ? props.theme.borders.transparent
-        : props.theme.borders.buttonHover};
-    } */
   }
 `;
 
