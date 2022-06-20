@@ -11,7 +11,7 @@ const addBookSchema = object().shape({
   author: string()
     .max(50, 'Author should be less than 50')
     .matches(
-      /^[a-zA-Zа-яґєіїА-ЯҐЄІЇ]+(([' -][a-zA-Zа-яґєіїА-ЯҐЄІЇ])?[a-zA-Zа-яґєіїА-ЯҐЄІЇ]*)*$/,
+      /^[a-zA-Zа-яґєіїА-ЯҐЄІЇ]+(([' -][a-zA-Zа-яґєіїА-ЯҐЄІЇ\.])?[a-zA-Zа-яґєіїА-ЯҐЄІЇ\.]*)*$/,
       'Author name must be letters'
     )
     .required('Author is required'),
