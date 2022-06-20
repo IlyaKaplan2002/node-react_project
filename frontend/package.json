@@ -31,6 +31,7 @@
     "react-star-ratings": "^2.3.0",
     "react-timer-hook": "^3.0.5",
     "react-transition-group": "^4.4.2",
+    "react-world-flags": "^1.5.0",
     "redux": "^4.1.2",
     "redux-persist": "^6.0.0",
     "serve": "^13.0.2",
