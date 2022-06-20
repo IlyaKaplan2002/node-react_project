@@ -1,4 +1,8 @@
 import React, { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useBodyScroll, useOnEscClose } from 'hooks';
+import Icon from 'components/reusableComponents/Icon';
+import Button from 'components/reusableComponents/Button';
 import {
   ArticleStyled,
   PStyled,
@@ -6,10 +10,6 @@ import {
   WellDoneIcon,
   Backdrop,
 } from './WellDone.styled';
-import Icon from 'components/reusableComponents/Icon';
-import Button from 'components/reusableComponents/Button';
-import { useBodyScroll, useOnEscClose } from 'hooks';
-import { useTranslation } from 'react-i18next';
 
 const WellDone = ({ onCloseModal, onNewTrainingClick }) => {
   const [addEsc, removeEsc] = useOnEscClose(onCloseModal);

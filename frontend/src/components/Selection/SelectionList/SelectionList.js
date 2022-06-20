@@ -1,6 +1,6 @@
 import React from 'react';
-import { SelectionListWrapper } from './SelectionList.styled';
 import EllipsisText from 'react-ellipsis-text';
+import { SelectionListWrapper } from './SelectionList.styled';
 
 const SelectionList = ({ books, currentBook, current, onClick }) => {
   const getClassName = id =>

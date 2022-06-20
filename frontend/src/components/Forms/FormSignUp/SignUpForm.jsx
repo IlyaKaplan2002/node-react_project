@@ -1,6 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
+import { useTranslation } from 'react-i18next';
+import AuthGoogle from '../../GoogleReg/GoogleReg';
+import Button from 'components/reusableComponents/Button';
+import InputField from 'components/reusableComponents/InputField';
+import Loader from 'components/reusableComponents/Loader';
 import signUpShema from 'models/signUpShema';
+import { login, signUp } from 'api/auth';
+import { notifyError } from 'helpers';
+import { authActions } from 'redux/auth';
+import { routes } from 'constants';
 import {
   AuthFormStyled,
   FormSpanStarStyled,
@@ -8,16 +18,6 @@ import {
   FormSpanStyled,
   FormContainer,
 } from '../AuthForm.styled';
-import Button from 'components/reusableComponents/Button';
-import AuthGoogle from '../../GoogleReg/GoogleReg';
-import InputField from 'components/reusableComponents/InputField';
-import { login, signUp } from 'api/auth';
-import { notifyError } from 'helpers';
-import { useDispatch } from 'react-redux';
-import { authActions } from 'redux/auth';
-import { routes } from 'constants';
-import Loader from 'components/reusableComponents/Loader';
-import { useTranslation } from 'react-i18next';
 
 const initialValues = {
   name: '',

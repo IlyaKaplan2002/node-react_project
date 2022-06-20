@@ -1,6 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { cardTypes } from 'constants';
 import { isAfter, isBefore, isSameDay } from 'date-fns';
+import { cardTypes } from 'constants';
 import { authActions } from 'redux/auth';
 import actions from './actions';
 

@@ -1,30 +1,30 @@
 import React from 'react';
-import Button from 'components/reusableComponents/Button';
+import { useDispatch, useSelector } from 'react-redux';
 import Datetime from 'react-datetime';
+import { useFormik } from 'formik';
 import { format, isAfter, isBefore, isSameDay } from 'date-fns';
+import { useTranslation } from 'react-i18next';
+import ScrollContainer from 'react-indiana-drag-scroll';
 import 'react-datetime/css/react-datetime.css';
+import { notifyError, tryRefreshToken } from 'helpers';
+import { cardTypes } from 'constants';
+import resultSchema from 'models/resultSchema';
+import { authSelectors } from 'redux/auth';
+import { booksActions } from 'redux/books';
+import { statisticsActions, statisticsSelectors } from 'redux/statistics';
+import { trainingsActions, trainingsSelectors } from 'redux/trainings';
+import Button from 'components/reusableComponents/Button';
+import InputField from 'components/reusableComponents/InputField';
+import { addStatistics, getStatistics } from 'api/statistics';
+import { getCurrentTraining } from 'api/trainings';
+import { getAllBooks } from 'api/books';
+import { GoTriangleDown } from 'react-icons/go';
 import {
   ResultContainerStyled,
   TextStyled,
   SpanStyled,
   ListStyled,
 } from './Result.styled';
-import { useFormik } from 'formik';
-import { GoTriangleDown } from 'react-icons/go';
-import { useDispatch, useSelector } from 'react-redux';
-import { statisticsActions, statisticsSelectors } from 'redux/statistics';
-import resultSchema from 'models/resultSchema';
-import InputField from 'components/reusableComponents/InputField';
-import { authSelectors } from 'redux/auth';
-import { addStatistics, getStatistics } from 'api/statistics';
-import { notifyError, tryRefreshToken } from 'helpers';
-import { getCurrentTraining } from 'api/trainings';
-import { trainingsActions, trainingsSelectors } from 'redux/trainings';
-import { cardTypes } from 'constants';
-import ScrollContainer from 'react-indiana-drag-scroll';
-import { getAllBooks } from 'api/books';
-import { booksActions } from 'redux/books';
-import { useTranslation } from 'react-i18next';
 
 const initialValues = {
   date: null,

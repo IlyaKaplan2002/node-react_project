@@ -1,9 +1,9 @@
 import React from 'react';
-import { NavigationStyled } from './Navigation.styled';
+import { NavLink } from 'react-router-dom';
+import { routes } from 'constants';
 import { VscHome } from 'react-icons/vsc';
 import { MdMenuBook } from 'react-icons/md';
-import { routes } from 'constants';
-import { NavLink } from 'react-router-dom';
+import { NavigationStyled } from './Navigation.styled';
 
 const Navigation = () => {
   return (

@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import { ArticleStyled, Backdrop, PStyled, WellDoneIcon } from './Done.styled';
-import Icon from 'components/reusableComponents/Icon';
-import Button from 'components/reusableComponents/Button';
 import { useTranslation } from 'react-i18next';
 import { useBodyScroll, useOnEscClose } from 'hooks';
+import Button from 'components/reusableComponents/Button';
+import Icon from 'components/reusableComponents/Icon';
+import { ArticleStyled, Backdrop, PStyled, WellDoneIcon } from './Done.styled';
 
 const Done = ({ onCloseModal }) => {
   const { t } = useTranslation('translation', { keyPrefix: 'done' });
