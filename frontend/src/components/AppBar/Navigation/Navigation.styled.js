@@ -16,6 +16,12 @@ export const NavigationStyled = styled.div`
       background: ${props => props.theme.colors.input};
       border-radius: 50%;
     }
+    &:hover .icon {
+      fill: ${props => props.theme.colors.mainOrange};
+    }
+    &:focus .icon {
+      fill: ${props => props.theme.colors.mainOrange};
+    }
   }
   .icon {
     display: block;

@@ -10,10 +10,16 @@ export const LogoutStyled = styled.div`
     font-family: ${props => props.theme.fonts.families.montserrat};
     font-weight: ${props => props.theme.fonts.weights.light};
     font-size: 14px;
-    text-decoration: underline;
     line-height: 17px;
-    color: ${props => props.theme.colors.mainBlack};
     cursor: pointer;
+    :hover {
+      text-decoration: underline;
+      color: ${props => props.theme.colors.mainOrange};
+    }
+    :focus {
+      text-decoration: underline;
+      color: ${props => props.theme.colors.mainOrange};
+    }
   }
 `;
 

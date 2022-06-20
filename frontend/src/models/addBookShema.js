@@ -9,7 +9,7 @@ const addBookSchema = object().shape({
     .matches(/^[^\s-]/, 'Name should not start from space or dash')
     .required('Name is required'),
   author: string()
-    .max(50, 'Author should be less than 50')
+    .max(80, 'Author should be less than 80')
     .matches(
       /^[a-zA-Zа-яґєіїА-ЯҐЄІЇ]+(([' -][a-zA-Zа-яґєіїА-ЯҐЄІЇ])?[a-zA-Zа-яґєіїА-ЯҐЄІЇ]*)*$/,
       'Author name must be letters'
